@@ -243,8 +243,10 @@
 			var times = new Date().getTime();
 			uniCloud.uploadFile({
 				filePath: fileObjectEvent.tempFilePath,
+				// 文件名 = 时间 +用户名(可选) +.mp4
 				cloudPath: times + '.mp4',
 				onUploadProgress(progressEvent) {
+					// 进度百分比
 					var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
 					me.percentCompleted = percentCompleted;
 				},

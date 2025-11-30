@@ -42,7 +42,7 @@
 				uni.switchTab({
 					url: "../me/me"
 				});
-				
+				// 上传视频源: 1.相册 album 2.摄像头 具体详见api文档
 				uni.chooseVideo({
 					sourceType: ['album'],
 					success(e) {
