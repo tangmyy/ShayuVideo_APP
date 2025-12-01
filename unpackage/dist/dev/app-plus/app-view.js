@@ -1213,7 +1213,7 @@ var render = function () {
                   },
                   attrs: { _i: 5 },
                 },
-                [_vm._v("风间影月")]
+                [_vm._v("脆脆鲨同学")]
               ),
               _c(
                 "uni-view",
