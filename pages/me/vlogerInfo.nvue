@@ -194,7 +194,7 @@
 					<view style="margin-left: 30rpx;padding-top: 20rpx;">
 						<text style="font-size: 20px;color: #FFFFFF;font-weight: 600;">{{pageUserInfo.nickname}}</text>
 						<view style="display: flex;flex-direction: row;">
-							<text style="font-size: 10px;color: #FFFFFF;font-weight: 300;">慕红书号：</text>
+							<text style="font-size: 10px;color: #FFFFFF;font-weight: 300;">视频号：</text>
 							<text style="font-size: 10px;color: #FFFFFF;font-weight: 300;">{{pageUserInfo.imoocNum}}</text>
 						</view>
 
@@ -298,7 +298,7 @@
 					
 			<view v-if="publicVlogList.length > 0" 
 				style="width: 750rpx;display: flex;flex-direction: row;justify-content: center;position: relative; top: -260rpx;">
-				<text style="color: #FFFFFF;font-size: 14px;">- 知深浅 | 唯有你 -</text>
+				<text style="color: #FFFFFF;font-size: 14px;">暂时没有更多啦~</text>
 			</view>
 		</scroll-view>
 		

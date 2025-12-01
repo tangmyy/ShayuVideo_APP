@@ -233,7 +233,7 @@
 		
 			<view v-if="publicVlogList.length > 0" 
 				style="width: 750rpx;display: flex;flex-direction: row;justify-content: center;position: relative; top: -260rpx;">
-				<text style="color: #FFFFFF;font-size: 14px;">- 知深浅 | 唯有你 -</text>
+				<text style="color: #FFFFFF;font-size: 14px;">暂时没有更多啦~</text>
 			</view>
 		</scroll-view>
 	</view>
