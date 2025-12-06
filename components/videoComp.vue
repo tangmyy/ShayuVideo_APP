@@ -103,6 +103,7 @@
 
 <template>
 	<view style="flex: 1;">
+		<!-- 推荐视频流 -->
 		<!-- <uni-list @change="onchange" :num="playerList.length"> -->
 		<list :pagingEnabled="true" :show-scrollbar="false" @scroll="listScroll" @scrollend="scroll" :scrollable="true" >	
 			<refresh @pullingdown="onpullingdown" @refresh="onrefresh" :display="refreshing ? 'show' : 'hide'">
@@ -262,21 +263,27 @@
 			}
 		},
 		created() {
-			
+			// 1. 判断设备平台，设置视频显示模式
+			// iOS平台视频播放有特殊处理，非iOS平台（如Android）使用"cover"模式
+			// 确保视频填充整个容器，可能会有裁剪
 			if(!this.isIOS) {
 				this.objectFit = "cover";
 			}
-			
+			// 2. 获取当前登录用户信息
 			var myUserInfo = getApp().getUserInfoSession();
 			if (myUserInfo != null) {
 				this.userId = getApp().getUserInfoSession().id;
 			}
-			
 			// 查询首页短视频列表
 			this.displayVideoPaging(this.page + 1, true);
-			
+			// 5. 创建视频上下文对象
+			// 创建一个与页面中视频组件绑定的上下文对象
+			// 'myVideo'是视频组件的id，通过这个上下文可以控制视频的播放、暂停等操作
 			var videoContext = uni.createVideoContext('myVideo');
 			this.videoContext = videoContext;
+			// 注意：这里使用的是uni-app的uni.createVideoContext API
+			// 它会返回一个视频上下文对象，可以调用play()、pause()、seek()等方法
+			// 实现对视频播放的精确控制
 		},
 		watch: {
 			refreshList(value) {
@@ -459,13 +466,11 @@
 			reFollowPlayList(vlogerId) {
 				var me = this;
 				var playerList = me.playerList;
-				
 				// 关注以后，循环当前playerList，修改对应粉丝关系的doIFollowVloger改为true
 				for (var i = 0 ; i < playerList.length ; i ++) {
 					var vlog = playerList[i];
 					if (vlog.vlogerId == vlogerId) {
 						vlog.doIFollowVloger = true;
-						
 						playerList.splice(i,1, vlog);
 					}
 				}
@@ -475,8 +480,7 @@
 			reCancelPlayList(vlogerId) {
 				var me = this;
 				var playerList = me.playerList;
-				
-				// 关注以后，循环当前playerList，修改对应粉丝关系的doIFollowVloger改为true
+				// 取注以后，循环当前playerList，修改对应粉丝关系的doIFollowVloger改为false
 				for (var i = 0 ; i < playerList.length ; i ++) {
 					var vlog = playerList[i];
 					if (vlog.vlogerId == vlogerId) {
@@ -635,7 +639,6 @@
 			
 			// 分页查询新的list，并且追加到现有list中
 			displayVideoPaging(page, needClearList) {
-								
 				// 查询首页短视频列表
 				var me = this;
 				var myUserInfo = getApp().getUserInfoSession();

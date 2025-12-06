@@ -103,6 +103,7 @@
 
 <template>
 	<view style="flex: 1;">
+		<!-- 视频详情页 -->
 		<!-- <uni-list @change="onchange" :num="playerList.length"> -->
 		<list :pagingEnabled="true" :show-scrollbar="false" @scroll="listScroll" @scrollend="scroll" :scrollable="true" >	
 			<cell :recycle="false" 

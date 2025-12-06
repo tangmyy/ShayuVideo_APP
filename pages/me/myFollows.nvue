@@ -111,26 +111,6 @@
 				page: 0,
 				totalPage: 0,
 				followsList: [],
-				followsList2: [
-					{
-						"vlogerId": "1001",
-						"face": "../../static/face/face-arrow-1.png",
-						"nickname": "风间影月",
-						"followed": false
-					}, 
-					{
-						"vlogerId": "1002",
-						"face": "../../static/face/face-arrow-1.png",
-						"nickname": "慕课网",
-						"followed": true
-					},
-					{
-						"vlogerId": "1003",
-						"face": "../../static/face/face-arrow-1.png",
-						"nickname": "风间影月",
-						"followed": false
-					}
-				]
 			}
 		},
 		onLoad() {

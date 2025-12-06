@@ -103,6 +103,7 @@
 
 <template>
 	<view style="flex: 1;">
+		<!-- 关注视频流 -->
 		<!-- <uni-list @change="onchange" :num="playerList.length"> -->
 		<list :pagingEnabled="true" :show-scrollbar="false" @scroll="listScroll" @scrollend="scroll" :scrollable="true" >	
 			<refresh @pullingdown="onpullingdown" @refresh="onrefresh" :display="refreshing ? 'show' : 'hide'">
