@@ -96,11 +96,11 @@
 				if (number == 0) {
 					return "0";
 				} else if (number > 999 && number <= 9999) {
-					return (number/1000).toFixed(1) + 'k';
-				} else if (number > 9999 && number <= 99999) {
-					return (number/10000).toFixed(1) + 'w';
-				} else if (number > 99999) {
-					return "10w+";
+					return (number/1000).toFixed(1) + 'K';
+				} else if (number > 9999 && number <= 999999) {
+					return (number/10000).toFixed(1) + '万';
+				} else if (number > 999999) {
+					return "100W+";
 				} 
 				return number;
 			},
