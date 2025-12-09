@@ -208,7 +208,7 @@
 						style="margin-top: 5px;height: 5rpx;width: 250rpx;border-radius: 6rpx;background-color: #ef274d;"></view>
 				</view>
 				<view style="width: 250rpx;align-self: center;" @click="switchTab(2)">
-					<text class="tab-normal" style="align-self: center;" :class="{'tab-selected': currentTab == 2}">赞过</text>
+					<text class="tab-normal" style="align-self: center;" :class="{'tab-selected': currentTab == 2}">喜欢</text>
 					<view v-if="currentTab == 2"
 						style="margin-top: 5px;height: 5rpx;width: 250rpx;border-radius: 6rpx;background-color: #ef274d;"></view>
 				</view>
@@ -218,11 +218,14 @@
 				
 			<view class="vlog-list">
 				<block v-for="(vlog,index) in publicVlogList" :key="index" >
-					<image class="vlog-cover" 
+					<!-- 添加条件判断，确保 vlog 对象存在且有必要的属性 -->
+					<image v-if="vlog && vlog.cover && (vlog.id || vlog.vlogId)"
+						class="vlog-cover" 
 						style="align-self: center;" 
 						:src="vlog.cover" 
-						@click="goToVlog(vlog.id)"
-						mode="aspectFill"></image>
+						@click="goToVlog(vlog.id || vlog.vlogId)"
+						mode="aspectFill">
+					</image>
 				</block>
 			</view>
 			
@@ -233,7 +236,7 @@
 		
 			<view v-if="publicVlogList.length > 0" 
 				style="width: 750rpx;display: flex;flex-direction: row;justify-content: center;position: relative; top: -260rpx;">
-				<text style="color: #FFFFFF;font-size: 14px;">- 知深浅 | 唯有你 -</text>
+				<text style="color: #FFFFFF;font-size: 14px;">暂时没有更多啦~</text>
 			</view>
 		</scroll-view>
 	</view>

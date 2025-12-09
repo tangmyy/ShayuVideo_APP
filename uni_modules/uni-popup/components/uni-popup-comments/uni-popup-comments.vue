@@ -336,8 +336,8 @@
 				// commentTouched: false,
 				activeIndex: -1,
 				
-				bottomTxt: "到底啦~深不？",
-				placeholder: "爱评论的人都是天使~",
+				bottomTxt: "暂时没有更多了",
+				placeholder: "善语结良缘,恶语伤人心~",
 				commentFocus: false,
 				thisFatherCommentId: "0",	// 用于标识当前的回复是否有父id，还是仅仅只是普通评论
 				
@@ -347,38 +347,6 @@
 				totalPage: 0,
 				commentCounts: 88,
 				commentList: [],
-				commentList2: [
-					{
-						vlogerId: "10011",
-						commentUserNickname: "慕课网 | 风间影月",
-						commentUserFace: "/static/face/face-arrow-1.png",
-						content: "欢迎大家哈~~",
-						isLike:	1,
-						isOwner: 1,
-						likeCounts: 6006017,
-						createTime: "2021-08-18 15:20:35"
-					},
-					{
-						vlogerId: "10012",
-						commentUserNickname: "绿箭侠 | 奥利弗·奎因",
-						commentUserFace: "/static/face/face-arrow-2.jpg",
-						content: "欢迎大家我的课堂学习射箭，biu~biu~~",
-						isLike:	1,
-						isOwner: 0,
-						likeCounts: 8607,
-						createTime: "2021-08-20 13:20:35"
-					},
-					{
-						vlogerId: "10013",
-						commentUserNickname: "喵星人·蝙蝠王",
-						commentUserFace: "/static/face/face-cat.png",
-						content: "喵喵~喵喵咪~喵呜喵呜~喵喵~喵喵咪~喵呜喵，喵喵~喵喵咪~喵呜喵呜~~~",
-						isLike:	0,
-						isOwner: 0,
-						likeCounts: 66017,
-						createTime: "2020-09-10 20:20:20"
-					}
-				]
 			}
 		},
 		created() {
@@ -416,7 +384,7 @@
 						if (me.thisVlogTotalComentCounts == 0) {
 							me.bottomTxt = "抢一个沙发吧~";
 						} else {
-							me.bottomTxt = "到底啦~深不？";
+							me.bottomTxt = "暂时没有更多啦";
 						}
 						
 					}

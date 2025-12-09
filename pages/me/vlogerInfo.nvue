@@ -183,7 +183,7 @@
 				style="width: 750rpx;height: 750rpx; box-shadow: inset 0 -150px 180px #313030;"></image>
 			
 			<!-- 安卓下使用一个灰色图片来替代阴影效果，ios支持阴影，安卓则不支持，，，坑爹 -_-!!! -->
-			<image v-if="isAndroid" class="page" @click.self="changeMyBg()" src="../../static/images/bg.png" mode="aspectFill" style="width: 750rpx;height: 700rpx;opacity: 0.5;"></image>
+			<image v-if="isAndroid" class="page" @click.self="changeMyBg()" src="../../static/images/bg .png" mode="aspectFill" style="width: 750rpx;height: 700rpx;opacity: 0.5;"></image>
 			
 			<view style="position: relative; left: 30rpx;top: -560rpx;display: flex;flex-direction: column;width: 500rpx;">
 				<view style="display: flex;flex-direction: row;">
@@ -194,7 +194,7 @@
 					<view style="margin-left: 30rpx;padding-top: 20rpx;">
 						<text style="font-size: 20px;color: #FFFFFF;font-weight: 600;">{{pageUserInfo.nickname}}</text>
 						<view style="display: flex;flex-direction: row;">
-							<text style="font-size: 10px;color: #FFFFFF;font-weight: 300;">慕红书号：</text>
+							<text style="font-size: 10px;color: #FFFFFF;font-weight: 300;">视频号：</text>
 							<text style="font-size: 10px;color: #FFFFFF;font-weight: 300;">{{pageUserInfo.imoocNum}}</text>
 						</view>
 
@@ -298,7 +298,7 @@
 					
 			<view v-if="publicVlogList.length > 0" 
 				style="width: 750rpx;display: flex;flex-direction: row;justify-content: center;position: relative; top: -260rpx;">
-				<text style="color: #FFFFFF;font-size: 14px;">- 知深浅 | 唯有你 -</text>
+				<text style="color: #FFFFFF;font-size: 14px;">暂时没有更多啦~</text>
 			</view>
 		</scroll-view>
 		
@@ -468,11 +468,7 @@
 					this.listRouteType = "myPublicList";
 					this.myPublicList(0);
 				} else if(index == 1) {
-					// this.publicPage = 0;
-					// this.publicTotalPage = 0;
-					// this.listRouteType = "myPrivateList";
-					// this.myPublicList(0);
-					// 别人的页面，私有不显示
+					// 别人的页面，私密不显示
 					this.publicVlogList = [];
 				} else if(index == 2) {
 					this.publicPage = 0;
