@@ -337,7 +337,7 @@
 				activeIndex: -1,
 				
 				bottomTxt: "暂时没有更多了",
-				placeholder: "善于结良缘,恶语伤人心~",
+				placeholder: "善语结良缘,恶语伤人心~",
 				commentFocus: false,
 				thisFatherCommentId: "0",	// 用于标识当前的回复是否有父id，还是仅仅只是普通评论
 				
