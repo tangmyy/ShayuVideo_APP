@@ -239,7 +239,7 @@
 			}
 
 			// 文件名 = 时间 + 用户名 + .mp4
-			var cloudPath = times + (username ? '_' + username : '') + '.mp4';
+			var cloudPath =(username ? '_' + username : '') + times + '.mp4';
 
 			uniCloud.uploadFile({
 				filePath: fileObjectEvent.tempFilePath,
@@ -256,7 +256,7 @@
 					// 获得视频参数
 					me.tempFilePath = videoUrlTemp;
 					me.videoUrl = videoUrl;
-					me.tempCover = videoUrl + "?x-oss-process=video/snapshot,t_1,f_jpg"; // 截帧
+					me.tempCover = videoUrl + "?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto"; // 截帧
 					me.width = fileObjectEvent.width;
 					me.height = fileObjectEvent.height;
 				}
