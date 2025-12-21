@@ -123,7 +123,7 @@ module.exports = {
   ".activate-line": {
     "": {
       "backgroundColor": [
-        "#FFFFFF",
+        "#ffffff",
         0,
         0,
         1

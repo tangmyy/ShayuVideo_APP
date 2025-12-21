@@ -238,8 +238,51 @@
 			this.statusBarHeight = system.statusBarHeight;
 			this.screenWidth = system.screenWidth;
 			
+			// 验证参数
+			if (!params || !params.fileObjectEvent) {
+				uni.showToast({
+					title: "视频参数错误，请重新选择",
+					icon: "none",
+					duration: 3000
+				});
+				setTimeout(() => {
+					uni.navigateBack();
+				}, 1500);
+				return;
+			}
+			
 			// 上个页面传过来的文件事件对象，其中包含了相册中选择的视频内容
-			var fileObjectEvent = JSON.parse(params.fileObjectEvent);
+			var fileObjectEvent = null;
+			try {
+				fileObjectEvent = JSON.parse(params.fileObjectEvent);
+			} catch(e) {
+				console.error('解析视频参数失败:', e);
+				uni.showToast({
+					title: "视频参数解析失败，请重新选择",
+					icon: "none",
+					duration: 3000
+				});
+				setTimeout(() => {
+					uni.navigateBack();
+				}, 1500);
+				return;
+			}
+			
+			// 验证文件路径
+			if (!fileObjectEvent || !fileObjectEvent.tempFilePath) {
+				console.error('视频文件路径不存在:', fileObjectEvent);
+				uni.showToast({
+					title: "视频文件路径错误，请重新选择",
+					icon: "none",
+					duration: 3000
+				});
+				setTimeout(() => {
+					uni.navigateBack();
+				}, 1500);
+				return;
+			}
+			
+			console.log('开始上传视频:', fileObjectEvent.tempFilePath);
 			var times = new Date().getTime();
 			uniCloud.uploadFile({
 				filePath: fileObjectEvent.tempFilePath,
@@ -249,8 +292,10 @@
 					// 进度百分比
 					var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
 					me.percentCompleted = percentCompleted;
+					console.log('上传进度:', percentCompleted + '%');
 				},
 				success(f) {
+					console.log('视频上传成功:', f);
 					var videoUrlTemp = f.filePath;
 					var videoUrl = f.fileID;
 
@@ -258,8 +303,22 @@
 					me.tempFilePath = videoUrlTemp;
 					me.videoUrl = videoUrl;
 					me.tempCover = videoUrl + "?x-oss-process=video/snapshot,t_1,f_jpg";	// 截帧
-					me.width = fileObjectEvent.width;
-					me.height = fileObjectEvent.height;
+					me.width = fileObjectEvent.width || 0;
+					me.height = fileObjectEvent.height || 0;
+					me.percentCompleted = 100; // 确保进度条显示100%
+				},
+				fail(err) {
+					console.error('视频上传失败:', err);
+					me.percentCompleted = 0;
+					uni.showToast({
+						title: "视频上传失败：" + (err.errMsg || err.message || "未知错误"),
+						icon: "none",
+						duration: 3000
+					});
+					// 3秒后返回上一页
+					setTimeout(() => {
+						uni.navigateBack();
+					}, 3000);
 				}
 			});
 		},
