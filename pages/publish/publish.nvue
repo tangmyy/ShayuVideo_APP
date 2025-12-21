@@ -135,6 +135,51 @@
 		position: relative;
 		top: -50px;
 	}
+
+	.tags-preview {
+		margin-top: 20rpx;
+		margin-left: 30rpx;
+		margin-right: 30rpx;
+		flex-direction: row;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.tags-label {
+		color: #9798a0;
+		font-size: 14px;
+		margin-right: 10rpx;
+	}
+
+	.tags-container {
+		flex-direction: row;
+		flex-wrap: wrap;
+		flex: 1;
+	}
+
+	.tag-item {
+		flex-direction: row;
+		align-items: center;
+		background-color: #ef274d;
+		border-radius: 20rpx;
+		padding: 8rpx 16rpx;
+		margin-right: 10rpx;
+		margin-bottom: 10rpx;
+	}
+
+	.tag-text {
+		color: #FFFFFF;
+		font-size: 12px;
+		font-weight: 500;
+	}
+
+	.tag-close {
+		color: #FFFFFF;
+		font-size: 18px;
+		font-weight: bold;
+		margin-left: 8rpx;
+		line-height: 18px;
+	}
 </style>
 
 <template>
@@ -185,11 +230,22 @@
 				<text style="color: #e6e6e6;font-size: 14px;align-self: center;margin-left: 10rpx;">预览视频</text>
 			</view>
 
-			<!-- :style="{screenWidth: screenWidth - 150 + 'px'}" -->
-			<textarea class="vlog-content" placeholder-style="color: #9798a0;" placeholder="添加合适的标题内容" :value="title"
-				:model="title" maxlength="60" @input="typingContent" confirm-type="done"></textarea>
+		<!-- :style="{screenWidth: screenWidth - 150 + 'px'}" -->
+		<textarea class="vlog-content" placeholder-style="color: #9798a0;" placeholder="添加合适的标题与标签内容，例如：标题 #风景 #美食" :value="title"
+			:model="title" maxlength="60" @input="typingContent" confirm-type="done"></textarea>
 
-			<!-- <view :style="{screenWidth: screenWidth + 'px'}" style="height: 1rpx;background-color: #383a44;margin-top: 20rpx;"></view> -->
+		<!-- 标签预览区域 -->
+		<view v-if="tags.length > 0" class="tags-preview">
+			<text class="tags-label">标签：</text>
+			<view class="tags-container">
+				<view v-for="(tag, index) in tags" :key="index" class="tag-item" @click="removeTag(index)">
+					<text class="tag-text">#{{tag}}</text>
+					<text class="tag-close">×</text>
+				</view>
+			</view>
+		</view>
+
+		<!-- <view :style="{screenWidth: screenWidth + 'px'}" style="height: 1rpx;background-color: #383a44;margin-top: 20rpx;"></view> -->
 
 			<view :class="{'btn-publish':!publichTouched, 'btn-publish-touched': publichTouched}"
 				style="margin-top: 30rpx;height: 90rpx;display: flex;justify-content: center;border-radius: 20px;"
@@ -206,7 +262,7 @@
 	var system = uni.getSystemInfoSync();
 	var app = getApp();
 	export default {
-		data() {
+			data() {
 			return {
 				publichTouched: false,
 				preplayTouched: false,
@@ -218,7 +274,8 @@
 				width: 0,
 				height: 0,
 
-				percentCompleted: 0
+				percentCompleted: 0,
+				tags: [] // 标签数组
 			}
 		},
 		onLoad(params) {
@@ -228,8 +285,20 @@
 
 			// 上个页面传过来的文件事件对象，其中包含了相册中选择的视频内容
 			var fileObjectEvent = JSON.parse(params.fileObjectEvent);
+			
+			// 处理时间格式
+			function formatDate(date) {
+			    var year = date.getFullYear();
+			    var month = (date.getMonth() + 1).toString().padStart(2, '0');
+			    var day = date.getDate().toString().padStart(2, '0');
+			    var hours = date.getHours().toString().padStart(2, '0');
+			    var minutes = date.getMinutes().toString().padStart(2, '0');
+			    var seconds = date.getSeconds().toString().padStart(2, '0');
+			    return year + month + day + '_' + hours + minutes + seconds;
+			}
+			var time = formatDate(new Date());
 			var times = new Date().getTime();
-
+			
 			// 获取用户名
 			var userInfo = getApp().getUserInfoSession();
 			var username = '';
@@ -238,8 +307,8 @@
 				username = userInfo.nickname.replace(/[^a-zA-Z0-9\u4e00-\u9fa5_]/g, '');
 			}
 
-			// 文件名 = 时间 + 用户名 + .mp4
-			var cloudPath =(username ? '_' + username : '') + times + '.mp4';
+			// 文件名 = 用户名 + 时间 + 时间戳 + .mp4
+			var cloudPath =(username ? username + '_' : '') +time + '_' +times +'.mp4';
 
 			uniCloud.uploadFile({
 				filePath: fileObjectEvent.tempFilePath,
@@ -265,11 +334,67 @@
 		methods: {
 			typingContent(e) {
 				var event = e;
-				this.title = e.detail.value;
+				var content = e.detail.value;
+				this.title = content;
+				
+				// 实时解析标签：匹配 #标签 格式（#后面跟非空格字符，直到遇到空格或结尾）
+				this.parseTags(content);
+			},
+			
+			// 解析文本中的标签
+			parseTags(content) {
+				var me = this;
+				var tags = [];
+				
+				if (!content || content.trim() === '') {
+					me.tags = [];
+					return;
+				}
+				
+				// 匹配 #标签 格式
+				// 正则说明：# 后面跟一个或多个非空格字符，直到遇到空格、换行或字符串结尾
+				var tagRegex = /#([^\s#]+)/g;
+				var match;
+				var tagSet = new Set(); // 使用Set去重
+				
+				while ((match = tagRegex.exec(content)) !== null) {
+					var tag = match[1].trim();
+					// 过滤空标签和过长的标签（限制20个字符）
+					if (tag && tag.length > 0 && tag.length <= 20) {
+						tagSet.add(tag);
+					}
+				}
+				
+				// 转换为数组
+				me.tags = Array.from(tagSet);
+			},
+			
+			// 删除标签
+			removeTag(index) {
+				var me = this;
+				var tagToRemove = me.tags[index];
+				
+				// 从文本中移除该标签
+				if (tagToRemove) {
+					// 移除文本中对应的 #标签
+					var regex = new RegExp('#\\s*' + tagToRemove.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*', 'g');
+					me.title = me.title.replace(regex, '');
+					
+					// 重新解析标签
+					me.parseTags(me.title);
+				}
 			},
 			doPublich() {
 				var me = this;
 				var userId = getApp().getUserInfoSession().id;
+
+				// 将标签数组转换为字符串，用逗号分隔（或根据后端需求调整格式）
+				var tagsStr = me.tags.join(',');
+				
+				// 如果标签为空，设置为空字符串而不是undefined
+				if (!tagsStr || tagsStr.trim() === '') {
+					tagsStr = '';
+				}
 
 				var vlog = {
 					"vlogerId": userId,
@@ -277,21 +402,29 @@
 					"cover": me.tempCover,
 					"title": me.title,
 					"width": me.width,
-					"height": me.height
+					"height": me.height,
+					"tag": tagsStr // 添加标签字段，确保字段名与后端BO对象一致
 				};
+
+				// 调试日志：打印发送的数据
+				console.log("准备发布视频，数据：", JSON.stringify(vlog));
+				// console.log("标签字符串：", tagsStr);
+				// console.log("标签数组：", me.tags);
 
 				// 发布视频
 				var serverUrl = app.globalData.serverUrl;
 				uni.request({
 					method: "POST",
 					header: {
-						headerUserId: userId,
-						headerUserToken: app.getUserSessionToken()
+						"Content-Type": "application/json", // 确保设置Content-Type
+						"headerUserId": userId,
+						"headerUserToken": app.getUserSessionToken()
 					},
 					url: serverUrl + "/vlog/publish",
 					data: vlog,
 					success(result) {
-
+						console.log("发布视频响应：", result);
+						
 						if (result.data.status == 200) {
 							uni.showToast({
 								title: "发布成功！",
@@ -309,12 +442,20 @@
 							})
 						} else {
 							uni.showToast({
-								title: result.data.msg,
+								title: result.data.msg || "发布失败",
 								icon: "none",
 								duration: 3000
 							});
 						}
 
+					},
+					fail(err) {
+						console.error("发布视频请求失败：", err);
+						uni.showToast({
+							title: "网络错误，请重试",
+							icon: "none",
+							duration: 3000
+						});
 					}
 				});
 
