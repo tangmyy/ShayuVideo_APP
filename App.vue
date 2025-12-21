@@ -303,8 +303,8 @@ export default {
 </script>
 
 <style>
-/*每个页面公共css */
-.activate-line {
-  background-color: #ffffff;
-}
+	/*每个页面公共css */
+	.activate-line {
+	  background-color: #ffffff;
+	}
 </style>
