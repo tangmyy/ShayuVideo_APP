@@ -156,7 +156,7 @@
 								style="width: 150rpx;height: 150rpx;opacity: 0.8;"></image> -->
 						<image v-if="!isIOS" src="/static/images/icon-cd.png"
 								class="play-cd" style="width: 120rpx;height: 120rpx;"></image>
-						<image v-if="isIOS" :src="'https://imooc-news.oss-cn-shanghai.aliyuncs.com/image/cd-play-4.gif?time='+times" 
+						<image v-if="isIOS" :src="'/static/images/cd-play-5.gif'"
 								class="play-cd"></image>
 					</view>
 				</view>
