@@ -77,6 +77,30 @@
 	margin-right: 10rpx;
 	border-radius: 2px;
 }
+
+/* 系统消息样式 */
+.system-icon {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 100rpx;
+	background-color: #ef274d;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-width: 1px;
+	border-color: #F1F1F1;
+}
+
+.system-icon-text {
+	font-size: 60rpx;
+}
+
+.system-nickname {
+	color: #ef274d;
+	font-size: 14px;
+	font-weight: 600;
+}
 </style>
 <template>
 	<view class="page">
@@ -163,7 +187,8 @@
 						class="vlog-cover" 
 						style="align-self: center;"
 						:src="msg.msgContent.vlogCover"
-						@click="goToVlog(msg.msgContent.vlogId)"></image>
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
 				</view>
 				
 				<!-- 点赞评论 -->
@@ -182,7 +207,33 @@
 						class="vlog-cover" 
 						style="align-self: center;"
 						:src="msg.msgContent.vlogCover"
-						@click="goToVlog(msg.msgContent.vlogId)"></image>
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
+				</view>
+				
+				<!-- 系统消息 -->
+				<view v-if="msg.msgType == 6" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 系统消息可以使用系统图标或默认头像 -->
+						<view class="system-icon" style="align-self: center;">
+							<text class="system-icon-text">📢</text>
+						</view>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">系统通知</text>
+<!-- 							<text class="msg-content" style="font-weight: 400;width: 500rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult}}</text>
+							<text class="msg-content" style="font-weight: 200;">XX了你的举报    {{getGraceDateBeforeNow(msg.createTime)}}</text> -->
+							<text class="msg-content" style="font-weight: 200;">{{msg.msgContent.handleResult}}    {{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<image
+						mode="aspectFill" 
+						class="vlog-cover" 
+						style="align-self: center;"
+						:src="msg.msgContent.vlogCover"
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
 				</view>
 			</block>
 		</scroll-view>

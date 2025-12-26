@@ -1233,7 +1233,7 @@ export default {
 
           if (result.data.status == 200) {
             uni.showToast({
-              title: "举报成功，我们会尽快处理",
+              title: "举报成功!",
               icon: "success",
               duration: 2000,
             });
