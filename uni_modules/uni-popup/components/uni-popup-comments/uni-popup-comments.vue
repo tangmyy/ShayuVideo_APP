@@ -240,7 +240,12 @@
   background-color: #2a2a2a;
   border-radius: 10rpx;
   padding: 20rpx;
+  /* #ifndef APP-PLUS-NVUE */
   min-height: 80rpx;
+  /* #endif */
+  /* #ifdef APP-PLUS-NVUE */
+  height: 80rpx;
+  /* #endif */
 }
 
 .report-picker-text {
@@ -260,14 +265,19 @@
 
 .report-textarea {
   width: 100%;
+  /* #ifndef APP-PLUS-NVUE */
   min-height: 250rpx;
+  box-sizing: border-box;
+  /* #endif */
+  /* #ifdef APP-PLUS-NVUE */
+  height: 250rpx;
+  /* #endif */
   background-color: #2a2a2a;
   border-radius: 10rpx;
   padding: 20rpx;
   font-size: 28rpx;
   color: #ffffff;
   margin-bottom: 10rpx;
-  box-sizing: border-box;
 }
 
 .report-char-count {
@@ -319,14 +329,19 @@
 
 .report-textarea {
   width: 100% !important;
+  /* #ifndef APP-PLUS-NVUE */
   min-height: 250rpx !important;
+  box-sizing: border-box;
+  /* #endif */
+  /* #ifdef APP-PLUS-NVUE */
+  height: 250rpx;
+  /* #endif */
   background-color: #2a2a2a;
   border-radius: 10rpx;
   padding: 20rpx;
   font-size: 28rpx;
   color: #ffffff;
   margin-bottom: 10rpx;
-  box-sizing: border-box;
 }
 </style>
 
@@ -492,7 +507,9 @@
                   "
                   >回复</text
                 >
+                <!-- 只有不是自己的评论才显示举报按钮 -->
                 <text
+                  v-if="commentContent.commentUserId !== loginUserId"
                   style="font-size: 30rpx; color: #878585; margin-left: 20px"
                   @click="showReportDialog(commentContent.commentId)"
                   >举报</text
@@ -606,14 +623,12 @@
               class="report-textarea"
               style="
                 width: 100%;
-                min-height: 250rpx;
                 background-color: #2a2a2a;
                 border-radius: 10rpx;
                 padding: 20rpx;
                 font-size: 28rpx;
                 color: #ffffff;
                 margin-bottom: 10rpx;
-                box-sizing: border-box;
               "
               placeholder="请详细描述举报原因（选填，最多500字）"
               placeholder-style="color: #999999"
