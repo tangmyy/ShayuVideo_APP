@@ -255,6 +255,22 @@
         </view>
         <text class="icon-tag-text" style="align-self: center">转为公开</text>
       </view>
+
+      <!-- 编辑视频按钮，只有自己的视频才显示 -->
+      <view
+        v-if="thisVlogerId == userId"
+        class="share-item"
+        @click="editVlog()"
+      >
+        <view class="icon-wrapper" style="align-self: center">
+          <image
+            class="icon-image"
+            src="/static/images/icon-settings.png"
+            style="align-self: center"
+          ></image>
+        </view>
+        <text class="icon-tag-text" style="align-self: center">编辑视频</text>
+      </view>
     </view>
 
     <view class="" style="padding: 0 20rpx">
@@ -670,6 +686,35 @@ export default {
             duration: 3000,
           });
         },
+      });
+    },
+
+    // 编辑视频
+    editVlog() {
+      var me = this;
+
+      // 检查是否登录
+      var myUserInfo = getApp().getUserInfoSession();
+      if (myUserInfo == null) {
+        uni.showToast({
+          duration: 3000,
+          title: "请登录~",
+          icon: "none",
+        });
+        uni.navigateTo({
+          url: "../loginRegist/loginRegist",
+          animationType: "slide-in-bottom",
+        });
+        return;
+      }
+
+      // 关闭分享弹窗
+      me.close();
+
+      // 跳转到编辑页面，传递 mode=edit 和 vlogId
+      uni.navigateTo({
+        url: "/pages/publish/publish?mode=edit&vlogId=" + me.thisVlogId,
+        animationType: "slide-in-bottom",
       });
     },
   },

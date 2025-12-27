@@ -192,7 +192,7 @@
 					style="width: 40rpx;height: 40rpx;opacity: 0.8;" @click="back()"/>			
 			<view class="header-center">
 				<view class="header-item">
-					<text class="header-item-title">发布视频</text>
+					<text class="header-item-title">{{isEditMode ? '编辑视频' : '发布视频'}}</text>
 				</view>
 			</view>
 			<image class="header-right-search" 
@@ -231,8 +231,7 @@
 			</view>
 
 		<!-- :style="{screenWidth: screenWidth - 150 + 'px'}" -->
-		<textarea class="vlog-content" placeholder-style="color: #9798a0;" placeholder="添加合适的标题与标签内容，例如：标题 #风景 #美食" :value="title"
-			:model="title" maxlength="60" @input="typingContent" confirm-type="done"></textarea>
+		<textarea class="vlog-content" placeholder-style="color: #9798a0;" placeholder="添加合适的标题与标签内容，例如：标题 #风景 #美食" :value="title" :model="title" maxlength="60" @input="typingContent" confirm-type="done"></textarea>
 
 		<!-- 标签预览区域 -->
 		<view v-if="tags.length > 0" class="tags-preview">
@@ -250,7 +249,7 @@
 			<view :class="{'btn-publish':!publichTouched, 'btn-publish-touched': publichTouched}"
 				style="margin-top: 30rpx;height: 90rpx;display: flex;justify-content: center;border-radius: 20px;"
 				@touchstart="touchstartPublich" @touchend="touchendPublich" @click="doPublich">
-				<text style="color: #e6e6e6;font-size: 18px;align-self: center;font-weight: 500;">发布 Vlog</text>
+				<text style="color: #e6e6e6;font-size: 18px;align-self: center;font-weight: 500;">{{isEditMode ? '保存修改' : '发布 Vlog'}}</text>
 			</view>
 		</view>
 
@@ -275,7 +274,11 @@
 				height: 0,
 
 				percentCompleted: 0,
-				tags: [] // 标签数组
+				tags: [], // 标签数组
+				
+				// 编辑模式相关
+				isEditMode: false, // 是否为编辑模式
+				editVlogId: "", // 编辑的视频ID
 			}
 		},
 		onLoad(params) {
@@ -283,55 +286,166 @@
 			this.statusBarHeight = system.statusBarHeight;
 			this.screenWidth = system.screenWidth;
 
-			// 上个页面传过来的文件事件对象，其中包含了相册中选择的视频内容
-			var fileObjectEvent = JSON.parse(params.fileObjectEvent);
-			
-			// 处理时间格式
-			function formatDate(date) {
-			    var year = date.getFullYear();
-			    var month = (date.getMonth() + 1).toString().padStart(2, '0');
-			    var day = date.getDate().toString().padStart(2, '0');
-			    var hours = date.getHours().toString().padStart(2, '0');
-			    var minutes = date.getMinutes().toString().padStart(2, '0');
-			    var seconds = date.getSeconds().toString().padStart(2, '0');
-			    return year + month + day + '_' + hours + minutes + seconds;
-			}
-			var time = formatDate(new Date());
-			var times = new Date().getTime();
-			
-			// 获取用户名
-			var userInfo = getApp().getUserInfoSession();
-			var username = '';
-			if (userInfo && userInfo.nickname) {
-				// 清理用户名中的特殊字符，只保留字母、数字、中文、下划线
-				username = userInfo.nickname.replace(/[^a-zA-Z0-9\u4e00-\u9fa5_]/g, '');
-			}
-
-			// 文件名 = 用户名 + 时间 + 时间戳 + .mp4
-			var cloudPath =(username ? username + '_' : '') +time + '_' +times +'.mp4';
-
-			uniCloud.uploadFile({
-				filePath: fileObjectEvent.tempFilePath,
-				cloudPath: cloudPath,
-				onUploadProgress(progressEvent) {
-					// 进度百分比
-					var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-					me.percentCompleted = percentCompleted;
-				},
-				success(f) {
-					var videoUrlTemp = f.filePath;
-					var videoUrl = f.fileID;
-
-					// 获得视频参数
-					me.tempFilePath = videoUrlTemp;
-					me.videoUrl = videoUrl;
-					me.tempCover = videoUrl + "?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto"; // 截帧
-					me.width = fileObjectEvent.width;
-					me.height = fileObjectEvent.height;
+			// 检查是否为编辑模式
+			if (params.mode === 'edit' && params.vlogId) {
+				me.isEditMode = true;
+				me.editVlogId = params.vlogId;
+				me.percentCompleted = 100; // 编辑模式下直接显示编辑表单
+				
+				// 动态设置导航栏标题
+				uni.setNavigationBarTitle({
+					title: '编辑视频'
+				});
+				
+				// 获取视频详情并填充表单
+				me.fetchVlogDetail(params.vlogId);
+			} else {
+				me.isEditMode = false;
+				
+				// 动态设置导航栏标题（发布模式）
+				uni.setNavigationBarTitle({
+					title: '发布视频'
+				});
+				
+				// 发布模式：上传视频
+				
+				// 上个页面传过来的文件事件对象，其中包含了相册中选择的视频内容
+				var fileObjectEvent = JSON.parse(params.fileObjectEvent);
+				
+				// 处理时间格式
+				function formatDate(date) {
+				    var year = date.getFullYear();
+				    var month = (date.getMonth() + 1).toString().padStart(2, '0');
+				    var day = date.getDate().toString().padStart(2, '0');
+				    var hours = date.getHours().toString().padStart(2, '0');
+				    var minutes = date.getMinutes().toString().padStart(2, '0');
+				    var seconds = date.getSeconds().toString().padStart(2, '0');
+				    return year + month + day + '_' + hours + minutes + seconds;
 				}
-			});
+				var time = formatDate(new Date());
+				var times = new Date().getTime();
+				
+				// 获取用户名
+				var userInfo = getApp().getUserInfoSession();
+				var username = '';
+				if (userInfo && userInfo.nickname) {
+					// 清理用户名中的特殊字符，只保留字母、数字、中文、下划线
+					username = userInfo.nickname.replace(/[^a-zA-Z0-9\u4e00-\u9fa5_]/g, '');
+				}
+
+				// 文件名 = 用户名 + 时间 + 时间戳 + .mp4
+				var cloudPath =(username ? username + '_' : '') +time + '_' +times +'.mp4';
+
+				uniCloud.uploadFile({
+					filePath: fileObjectEvent.tempFilePath,
+					cloudPath: cloudPath,
+					onUploadProgress(progressEvent) {
+						// 进度百分比
+						var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+						me.percentCompleted = percentCompleted;
+					},
+					success(f) {
+						var videoUrlTemp = f.filePath;
+						var videoUrl = f.fileID;
+
+						// 获得视频参数
+						me.tempFilePath = videoUrlTemp;
+						me.videoUrl = videoUrl;
+						me.tempCover = videoUrl + "?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto"; // 截帧
+						me.width = fileObjectEvent.width;
+						me.height = fileObjectEvent.height;
+					}
+				});
+			}
 		},
 		methods: {
+			// 获取视频详情（编辑模式使用）
+			fetchVlogDetail(vlogId) {
+				var me = this;
+				var userId = getApp().getUserInfoSession().id;
+				var serverUrl = app.globalData.serverUrl;
+				
+				uni.request({
+					method: "GET",
+					header: {
+						headerUserId: userId,
+						headerUserToken: app.getUserSessionToken()
+					},
+					url: serverUrl + "/vlog/detail?userId=" + userId + "&vlogId=" + vlogId,
+					success(result) {
+						if (result.data.status == 200) {
+							var vlog = result.data.data;
+							
+							// 调试日志：打印获取到的视频数据
+							console.log("获取到的视频详情：", vlog);
+							console.log("视频标题（content）：", vlog.content);
+							console.log("视频标题（title）：", vlog.title);
+							
+							// 填充表单数据
+							// 注意：后端返回的字段是 content，不是 title
+							me.videoUrl = vlog.url;
+							me.tempCover = vlog.cover;
+							me.title = vlog.content || vlog.title || "";
+							me.width = vlog.width || 0;
+							me.height = vlog.height || 0;
+							
+							// 调试日志：确认赋值后的值
+							console.log("赋值后的 title：", me.title);
+							
+							// 解析标签
+							if (vlog.tag && vlog.tag.trim() !== '') {
+								// 标签可能是逗号分隔的字符串
+								var tagArray = vlog.tag.split(',').map(function(tag) {
+									return tag.trim();
+								}).filter(function(tag) {
+									return tag && tag.length > 0;
+								});
+								me.tags = tagArray;
+							} else {
+								me.tags = [];
+							}
+							
+							// 如果标题中包含标签，需要重新解析标签（因为标签是从标题中解析的）
+							if (me.title && me.title.trim() !== '') {
+								// 使用 $nextTick 确保 DOM 更新后再解析标签
+								me.$nextTick(function() {
+									me.parseTags(me.title);
+									// 强制更新视图
+									me.$forceUpdate();
+								});
+							} else {
+								// 即使标题为空，也强制更新视图以确保 textarea 显示空值
+								me.$nextTick(function() {
+									me.$forceUpdate();
+								});
+							}
+						} else {
+							uni.showToast({
+								title: result.data.msg || "获取视频详情失败",
+								icon: "none",
+								duration: 3000
+							});
+							// 获取失败，返回上一页
+							setTimeout(function() {
+								uni.navigateBack();
+							}, 1500);
+						}
+					},
+					fail(err) {
+						console.error("获取视频详情失败：", err);
+						uni.showToast({
+							title: "网络错误，请重试",
+							icon: "none",
+							duration: 3000
+						});
+						// 获取失败，返回上一页
+						setTimeout(function() {
+							uni.navigateBack();
+						}, 1500);
+					}
+				});
+			},
+			
 			typingContent(e) {
 				var event = e;
 				var content = e.detail.value;
@@ -406,43 +520,59 @@
 					"tag": tagsStr // 添加标签字段，确保字段名与后端BO对象一致
 				};
 
-				// 调试日志：打印发送的数据
-				console.log("准备发布视频，数据：", JSON.stringify(vlog));
-				// console.log("标签字符串：", tagsStr);
-				// console.log("标签数组：", me.tags);
+				// 如果是编辑模式，添加视频ID
+				if (me.isEditMode) {
+					vlog.id = me.editVlogId;
+				}
 
-				// 发布视频
+				// 调试日志：打印发送的数据
+				console.log("准备" + (me.isEditMode ? "更新" : "发布") + "视频，数据：", JSON.stringify(vlog));
+
+				// 发布或更新视频
 				var serverUrl = app.globalData.serverUrl;
+				var requestUrl = me.isEditMode ? serverUrl + "/vlog/update" : serverUrl + "/vlog/publish";
+				var requestMethod = me.isEditMode ? "PUT" : "POST";
+				
 				uni.request({
-					method: "POST",
+					method: requestMethod,
 					header: {
 						"Content-Type": "application/json", // 确保设置Content-Type
 						"headerUserId": userId,
 						"headerUserToken": app.getUserSessionToken()
 					},
-					url: serverUrl + "/vlog/publish",
+					url: requestUrl,
 					data: vlog,
 					success(result) {
-						console.log("发布视频响应：", result);
+						console.log((me.isEditMode ? "更新" : "发布") + "视频响应：", result);
 						
 						if (result.data.status == 200) {
 							uni.showToast({
-								title: "发布成功！",
+								title: me.isEditMode ? "更新成功！" : "发布成功！",
 								icon: "none"
 							})
 
-							uni.navigateBack({
-								delta: 1,
-								animationType: 'zoom-fade-in',
-								animationDuration: 1000
-							});
+							// 编辑模式下，返回上一页（视频详情页）
+							if (me.isEditMode) {
+								uni.navigateBack({
+									delta: 1,
+									animationType: 'zoom-fade-in',
+									animationDuration: 1000
+								});
+							} else {
+								// 发布模式下，返回并切换到个人中心
+								uni.navigateBack({
+									delta: 1,
+									animationType: 'zoom-fade-in',
+									animationDuration: 1000
+								});
 
-							uni.switchTab({
-								url: "../me/me"
-							})
+								uni.switchTab({
+									url: "../me/me"
+								})
+							}
 						} else {
 							uni.showToast({
-								title: result.data.msg || "发布失败",
+								title: result.data.msg || (me.isEditMode ? "更新失败" : "发布失败"),
 								icon: "none",
 								duration: 3000
 							});
@@ -450,7 +580,7 @@
 
 					},
 					fail(err) {
-						console.error("发布视频请求失败：", err);
+						console.error((me.isEditMode ? "更新" : "发布") + "视频请求失败：", err);
 						uni.showToast({
 							title: "网络错误，请重试",
 							icon: "none",
