@@ -536,7 +536,47 @@ export default {
             uni.showToast({
               title: "设置完毕~",
             });
+          } else {
+            // 处理错误情况
+            var errorMsg = result.data.msg || "操作失败，请重试";
+            var status = result.data.status;
+            // 根据错误状态码显示特定提示
+            // 注意：这里需要根据实际后端返回的状态码值来匹配
+            // 通常这些错误码可能是字符串标识或数字码
+            if (
+              errorMsg.indexOf("视频不存在") !== -1 ||
+              errorMsg.indexOf("VLOG_NOT_EXIST") !== -1 ||
+              status === 5001
+            ) {
+              errorMsg = "视频不存在或已被删除";
+            } else if (
+              errorMsg.indexOf("无权限") !== -1 ||
+              errorMsg.indexOf("NO_AUTH") !== -1 ||
+              status === 5002
+            ) {
+              errorMsg = "您没有权限修改此视频";
+            } else if (
+              errorMsg.indexOf("封禁") !== -1 ||
+              errorMsg.indexOf("BANNED") !== -1 ||
+              status === 5003
+            ) {
+              errorMsg = "视频已被封禁，无法修改私密状态";
+            }
+
+            uni.showToast({
+              title: errorMsg,
+              icon: "none",
+              duration: 3000,
+            });
           }
+        },
+        fail(err) {
+          console.error("修改视频状态失败：", err);
+          uni.showToast({
+            title: "网络错误，请重试",
+            icon: "none",
+            duration: 3000,
+          });
         },
       });
     },
@@ -565,7 +605,47 @@ export default {
             uni.showToast({
               title: "设置完毕~",
             });
+          } else {
+            // 处理错误情况
+            var errorMsg = result.data.msg || "操作失败，请重试";
+            var status = result.data.status;
+            // 根据错误状态码显示特定提示
+            // 注意：这里需要根据实际后端返回的状态码值来匹配
+            // 通常这些错误码可能是字符串标识或数字码
+            if (
+              errorMsg.indexOf("视频不存在") !== -1 ||
+              errorMsg.indexOf("VLOG_NOT_EXIST") !== -1 ||
+              status === 5001
+            ) {
+              errorMsg = "视频不存在或已被删除";
+            } else if (
+              errorMsg.indexOf("无权限") !== -1 ||
+              errorMsg.indexOf("NO_AUTH") !== -1 ||
+              status === 5002
+            ) {
+              errorMsg = "您没有权限修改此视频";
+            } else if (
+              errorMsg.indexOf("封禁") !== -1 ||
+              errorMsg.indexOf("BANNED") !== -1 ||
+              status === 5003
+            ) {
+              errorMsg = "视频已被封禁，无法修改私密状态";
+            }
+
+            uni.showToast({
+              title: errorMsg,
+              icon: "none",
+              duration: 3000,
+            });
           }
+        },
+        fail(err) {
+          console.error("修改视频状态失败：", err);
+          uni.showToast({
+            title: "网络错误，请重试",
+            icon: "none",
+            duration: 3000,
+          });
         },
       });
     },
