@@ -77,7 +77,23 @@ export default {
         fail(err) {
           console.error("选择视频失败:", err);
           // 用户取消不提示错误
-          if (err.errMsg && err.errMsg.indexOf("cancel") === -1) {
+          // 不同平台取消时的错误信息格式可能不同：
+          // 微信小程序: "chooseVideo:fail cancel"
+          // App: 可能是 "cancel" 或其他格式
+          var errMsg = err.errMsg || "";
+          var isCancel = false;
+
+          // 检查是否是用户取消操作（不区分大小写）
+          if (errMsg) {
+            errMsg = errMsg.toLowerCase();
+            isCancel =
+              errMsg.indexOf("cancel") !== -1 ||
+              errMsg.indexOf("取消") !== -1 ||
+              errMsg.indexOf("user cancel") !== -1;
+          }
+
+          // 如果不是用户取消，才显示错误提示
+          if (!isCancel) {
             uni.showToast({
               title: "选择视频失败：" + (err.errMsg || "未知错误"),
               icon: "none",
@@ -303,8 +319,8 @@ export default {
 </script>
 
 <style>
-	/*每个页面公共css */
-	.activate-line {
-	  background-color: #ffffff;
-	}
+/*每个页面公共css */
+.activate-line {
+  background-color: #ffffff;
+}
 </style>
