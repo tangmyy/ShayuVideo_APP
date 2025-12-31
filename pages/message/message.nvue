@@ -211,28 +211,83 @@
 					</image>
 				</view>
 				
-				<!-- 系统消息 -->
+				<!-- 举报处理 (类型6) -->
 				<view v-if="msg.msgType == 6" class="msg-item-box">
 					<view class="msg-item-left">
-						<!-- 系统消息可以使用系统图标或默认头像 -->
+						<!-- 系统消息图标 -->
+						<view class="system-icon" style="align-self: center;">
+							<text class="system-icon-text">📢</text>
+						</view>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">举报结果</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult || msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 如果有视频封面，显示视频封面 -->
+					<image
+						v-if="msg.msgContent && msg.msgContent.vlogCover"
+						mode="aspectFill" 
+						class="vlog-cover" 
+						style="align-self: center;"
+						:src="msg.msgContent.vlogCover"
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
+				</view>
+				
+				<!-- 系统消息 (类型7) -->
+				<view v-if="msg.msgType == 7" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 系统消息图标 -->
+						<view class="system-icon" style="align-self: center;">
+							<text class="system-icon-text">📢</text>
+						</view>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">系统消息</text>
+							<text class="msg-content" style="font-weight: 600;width: 360rpx;lines: 1;text-overflow: ellipsis;">{{msg.msgContent.title || '系统消息'}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 如果有图片，显示图片 -->
+					<image
+						v-if="msg.msgContent && msg.msgContent.imageUrl"
+						mode="aspectFill" 
+						class="vlog-cover" 
+						style="align-self: center;"
+						:src="msg.msgContent.imageUrl"
+						@click="handleSystemMessageClick(msg)">
+					</image>
+				</view>
+				
+				<!-- 系统公告 (类型8) -->
+				<view v-if="msg.msgType == 8" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 系统消息图标 -->
 						<view class="system-icon" style="align-self: center;">
 							<text class="system-icon-text">📢</text>
 						</view>
 							
 						<view class="msg-item-middle">
 							<text class="system-nickname">系统通知</text>
-<!-- 							<text class="msg-content" style="font-weight: 400;width: 500rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult}}</text>
-							<text class="msg-content" style="font-weight: 200;">XX了你的举报    {{getGraceDateBeforeNow(msg.createTime)}}</text> -->
-							<text class="msg-content" style="font-weight: 200;">{{msg.msgContent.handleResult}}    {{getGraceDateBeforeNow(msg.createTime)}}</text>
+							<text class="msg-content" style="font-weight: 600;width: 360rpx;lines: 1;text-overflow: ellipsis;">{{msg.msgContent.title || '系统公告'}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
 						</view>
 					</view>
 					
+					<!-- 如果有图片，显示图片 -->
 					<image
+						v-if="msg.msgContent && msg.msgContent.imageUrl"
 						mode="aspectFill" 
 						class="vlog-cover" 
 						style="align-self: center;"
-						:src="msg.msgContent.vlogCover"
-						@click="goToVlog(msg.msgContent.vlogId)">
+						:src="msg.msgContent.imageUrl"
+						@click="handleSystemMessageClick(msg)">
 					</image>
 				</view>
 			</block>
@@ -386,6 +441,47 @@
 			getGraceDateBeforeNow(dateTimeStr) {
 				var date = app.dateFormat("YYYY-mm-dd", new Date(dateTimeStr));
 				return getApp().getDateBeforeNow(date);
+			},
+			
+			// 处理系统消息/公告点击（类型7和8）
+			handleSystemMessageClick(msg) {
+				var me = this;
+				var msgContent = msg.msgContent;
+				
+				// 如果有跳转链接，执行跳转
+				if (msgContent && msgContent.link) {
+					var link = msgContent.link;
+					
+					// 如果是相对路径，使用 navigateTo
+					if (link.startsWith('/') || link.startsWith('../')) {
+						uni.navigateTo({
+							url: link,
+							fail(err) {
+								console.error("跳转失败：", err);
+								uni.showToast({
+									title: "页面跳转失败",
+									icon: "none",
+									duration: 2000
+								});
+							}
+						});
+					} else if (link.startsWith('http://') || link.startsWith('https://')) {
+						// 如果是外部链接，可以打开webview或复制链接
+						uni.setClipboardData({
+							data: link,
+							success() {
+								uni.showToast({
+									title: "链接已复制",
+									icon: "none",
+									duration: 2000
+								});
+							}
+						});
+					}
+				} else {
+					// 没有链接，可以显示消息详情（可选）
+					// 这里可以根据需求实现详情弹窗
+				}
 			},
 		}
 	}

@@ -1,140 +1,140 @@
 <style>
-	.page {
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		background-color: #000000;
-	}
+.page {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: #000000;
+}
+	
+.header {
+	position: absolute;
+	left: 0;
+	right: 0;
+	flex-direction: row;
+	height: 100rpx;
+	line-height: 100rpx;
+	align-items: center;
+	padding-left: 40rpx;
+	padding-right: 40rpx;
+}
 
-	.header {
-		position: absolute;
-		left: 0;
-		right: 0;
-		flex-direction: row;
-		height: 100rpx;
-		line-height: 100rpx;
-		align-items: center;
-		padding-left: 40rpx;
-		padding-right: 40rpx;
-	}
+.header-center {
+	flex: 1;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
 
-	.header-center {
-		flex: 1;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-	}
+.header-left,
+.header-right {
+	color: #999;
+	height: 100rpx;
+	line-height: 100rpx;
+	align-items: flex-start;
+	justify-content: flex-end;
+	font-family: iconfont;
+}
 
-	.header-left,
-	.header-right {
-		color: #999;
-		height: 100rpx;
-		line-height: 100rpx;
-		align-items: flex-start;
-		justify-content: flex-end;
-		font-family: iconfont;
-	}
-
-	.header-right-search {
-		height: 100rpx;
-		/* align-items: flex-start;
+.header-right-search {
+	height: 100rpx;
+	/* align-items: flex-start;
 	justify-content: flex-end; */
-	}
+}
 
-	.header-item {
-		align-items: center;
-		margin-left: 6rpx;
-		margin-right: 6rpx;
-	}
+.header-item {
+	align-items: center;
+	margin-left: 6rpx;
+	margin-right: 6rpx;
+}
 
-	.header-item-title {
-		width: 200rpx;
-		text-align: center;
-		height: 60rpx;
-		line-height: 60rpx;
-		color: #FFFFFF;
-		font-size: 18px;
-		font-weight: 400;
-	}
+.header-item-title {
+	width: 200rpx;
+	text-align: center;
+	height: 60rpx;
+	line-height: 60rpx;
+	color: #FFFFFF;
+	font-size: 18px;
+	font-weight: 400;
+}
 
-	.header-refresh-title {
-		width: 300rpx;
-		text-align: center;
-		height: 60rpx;
-		line-height: 60rpx;
-		color: #FFFFFF;
-		font-size: 16px;
-		font-weight: 600;
-	}
+.header-refresh-title {
+	width: 300rpx;
+	text-align: center;
+	height: 60rpx;
+	line-height: 60rpx;
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: 600;
+}
 
-	.header-item-line {
-		height: 5rpx;
-		line-height: 8rpx;
-		width: 60rpx;
-		border-radius: 8rpx;
-	}
+.header-item-line {
+	height: 5rpx;
+	line-height: 8rpx;
+	width: 60rpx;
+	border-radius: 8rpx;
+}
 
-	.preplay-wrapper {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		margin-top: -90rpx;
-		margin-left: 30rpx;
-		border-width: 1px;
-		/* border-color: #343438; */
-		/* background-color: #0c0c0c; */
-		padding: 6rpx 16rpx;
-		width: 200rpx;
-		border-radius: 20rpx;
-	}
+.preplay-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: -90rpx;
+	margin-left: 30rpx;
+	border-width: 1px;
+	/* border-color: #343438; */
+	/* background-color: #0c0c0c; */
+	padding: 6rpx 16rpx;
+	width: 200rpx;
+	border-radius: 20rpx;
+}
 
-	.vlog-content {
-		margin-top: 30rpx;
-		height: 100px;
-		color: #FFFFFF;
-		font-size: 16px;
-		background-color: #0c0c0c;
-		padding-left: 10px;
-		padding-top: 10px;
-		padding-right: 10px;
-		padding-bottom: 10px;
-		border-radius: 10px;
-	}
+.vlog-content {
+	margin-top: 30rpx;
+	height: 100px;
+	color: #FFFFFF;
+	font-size: 16px;
+	background-color: #0c0c0c;
+	padding-left: 10px;
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	border-radius: 10px;
+}
 
-	.btn-preplay {
-		background-color: #0c0c0c;
-		border-color: #343438;
-	}
+.btn-preplay {
+	background-color: #0c0c0c;
+	border-color: #343438;
+}
 
-	.btn-preplay-touched {
-		background-color: #545456;
-		border-color: #000000;
-	}
+.btn-preplay-touched {
+	background-color: #545456;
+	border-color: #000000;
+}
 
-	.btn-publish {
-		background-color: #ef274d;
-	}
+.btn-publish {
+	background-color: #ef274d;
+}
 
-	.btn-publish-touched {
-		background-color: #de6981;
-	}
+.btn-publish-touched {
+	background-color: #de6981;
+}
 
-	.choose-cover {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		width: 360rpx;
-		background-color: #000000;
-		opacity: 0.3;
-		height: 50px;
-		margin-left: 30rpx;
-		border-bottom-right-radius: 10px;
-		border-bottom-left-radius: 10px;
-		position: relative;
-		top: -50px;
-	}
+.choose-cover {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 360rpx;
+	background-color: #000000;
+	opacity: 0.3;
+	height: 50px;
+	margin-left: 30rpx;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	position: relative;
+	top: -50px;
+}
 
 	.tags-preview {
 		margin-top: 20rpx;
@@ -199,7 +199,7 @@
 					src="../../static/images/icon-search.png"  
 					style="width: 50rpx;height: 50rpx;opacity: 0.8;">
 		</view> -->
-
+		
 		<!-- 进度条 -->
 		<view style="marginTop:60rpx;display: flex;flex-direction: column;justify-content: center;"
 			v-if="percentCompleted != 100">
@@ -210,27 +210,27 @@
 			<image mode="aspectFit" src="../../static/images/loading-4.gif"
 				style="width: 600rpx;height: 600rpx;align-self: center;">
 		</view>
-
-
+		
+		
 		<!-- 发布主体内容 -->
 		<view v-if="percentCompleted == 100">
 			<image :src="tempCover" mode="aspectFit"
 				style="marginTop: 30px;width: 360rpx;height: 500rpx;border-radius: 10px;margin-left: 30rpx;margin-top: 10px;">
 			</image>
-
+			
 			<view class="choose-cover" @click="chooseCover">
 				<text style="color: #ffffff;font-size: 14px;align-self: center;">选择封面</text>
 			</view>
-
-			<view class="preplay-wrapper"
+			
+			<view class="preplay-wrapper" 
 				:class="{'btn-preplay':!preplayTouched, 'btn-preplay-touched': preplayTouched}" @click="preview"
 				@touchstart="touchstartPreplay" @touchend="touchendPreplay">
 				<image src="../../static/images/btn-play.png" style="width: 22rpx;height: 22rpx;align-self: center;">
 				</image>
 				<text style="color: #e6e6e6;font-size: 14px;align-self: center;margin-left: 10rpx;">预览视频</text>
 			</view>
-
-		<!-- :style="{screenWidth: screenWidth - 150 + 'px'}" -->
+			
+			<!-- :style="{screenWidth: screenWidth - 150 + 'px'}" -->
 		<textarea class="vlog-content" placeholder-style="color: #9798a0;" placeholder="添加合适的标题与标签内容，例如：标题 #风景 #美食" :value="title" :model="title" maxlength="60" @input="typingContent" confirm-type="done"></textarea>
 
 		<!-- 标签预览区域 -->
@@ -243,17 +243,17 @@
 				</view>
 			</view>
 		</view>
-
-		<!-- <view :style="{screenWidth: screenWidth + 'px'}" style="height: 1rpx;background-color: #383a44;margin-top: 20rpx;"></view> -->
-
-			<view :class="{'btn-publish':!publichTouched, 'btn-publish-touched': publichTouched}"
+			
+			<!-- <view :style="{screenWidth: screenWidth + 'px'}" style="height: 1rpx;background-color: #383a44;margin-top: 20rpx;"></view> -->
+			
+			<view :class="{'btn-publish':!publichTouched, 'btn-publish-touched': publichTouched}" 
 				style="margin-top: 30rpx;height: 90rpx;display: flex;justify-content: center;border-radius: 20px;"
 				@touchstart="touchstartPublich" @touchend="touchendPublich" @click="doPublich">
 				<text style="color: #e6e6e6;font-size: 18px;align-self: center;font-weight: 500;">{{isEditMode ? '保存修改' : '发布 Vlog'}}</text>
 			</view>
 		</view>
-
-
+		
+		
 	</view>
 </template>
 
@@ -261,7 +261,7 @@
 	var system = uni.getSystemInfoSync();
 	var app = getApp();
 	export default {
-			data() {
+		data() {
 			return {
 				publichTouched: false,
 				preplayTouched: false,
@@ -272,7 +272,7 @@
 				title: "",
 				width: 0,
 				height: 0,
-
+				
 				percentCompleted: 0,
 				tags: [], // 标签数组
 				
@@ -308,9 +308,9 @@
 				});
 				
 				// 发布模式：上传视频
-				
-				// 上个页面传过来的文件事件对象，其中包含了相册中选择的视频内容
-				var fileObjectEvent = JSON.parse(params.fileObjectEvent);
+			
+			// 上个页面传过来的文件事件对象，其中包含了相册中选择的视频内容
+			var fileObjectEvent = JSON.parse(params.fileObjectEvent);
 				
 				// 处理时间格式
 				function formatDate(date) {
@@ -323,7 +323,7 @@
 				    return year + month + day + '_' + hours + minutes + seconds;
 				}
 				var time = formatDate(new Date());
-				var times = new Date().getTime();
+			var times = new Date().getTime();
 				
 				// 获取用户名
 				var userInfo = getApp().getUserInfoSession();
@@ -336,26 +336,26 @@
 				// 文件名 = 用户名 + 时间 + 时间戳 + .mp4
 				var cloudPath =(username ? username + '_' : '') +time + '_' +times +'.mp4';
 
-				uniCloud.uploadFile({
-					filePath: fileObjectEvent.tempFilePath,
+			uniCloud.uploadFile({
+				filePath: fileObjectEvent.tempFilePath,
 					cloudPath: cloudPath,
-					onUploadProgress(progressEvent) {
-						// 进度百分比
-						var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-						me.percentCompleted = percentCompleted;
-					},
-					success(f) {
-						var videoUrlTemp = f.filePath;
-						var videoUrl = f.fileID;
+				onUploadProgress(progressEvent) {
+					// 进度百分比
+					var percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+					me.percentCompleted = percentCompleted;
+				},
+				success(f) {
+					var videoUrlTemp = f.filePath;
+					var videoUrl = f.fileID;
 
-						// 获得视频参数
-						me.tempFilePath = videoUrlTemp;
-						me.videoUrl = videoUrl;
+					// 获得视频参数
+					me.tempFilePath = videoUrlTemp;
+					me.videoUrl = videoUrl;
 						me.tempCover = videoUrl + "?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto"; // 截帧
-						me.width = fileObjectEvent.width;
-						me.height = fileObjectEvent.height;
-					}
-				});
+					me.width = fileObjectEvent.width;
+					me.height = fileObjectEvent.height;
+				}
+			});
 			}
 		},
 		methods: {
@@ -501,7 +501,7 @@
 			doPublich() {
 				var me = this;
 				var userId = getApp().getUserInfoSession().id;
-
+				
 				// 将标签数组转换为字符串，用逗号分隔（或根据后端需求调整格式）
 				var tagsStr = me.tags.join(',');
 				
@@ -550,7 +550,7 @@
 								title: me.isEditMode ? "更新成功！" : "发布成功！",
 								icon: "none"
 							})
-
+							
 							// 编辑模式下，返回上一页（视频详情页）
 							if (me.isEditMode) {
 								uni.navigateBack({
@@ -560,15 +560,15 @@
 								});
 							} else {
 								// 发布模式下，返回并切换到个人中心
-								uni.navigateBack({
-									delta: 1,
-									animationType: 'zoom-fade-in',
-									animationDuration: 1000
-								});
-
-								uni.switchTab({
-									url: "../me/me"
-								})
+							uni.navigateBack({
+								delta: 1,
+								animationType: 'zoom-fade-in',
+								animationDuration: 1000
+							});
+							
+							uni.switchTab({
+								url: "../me/me"
+							})
 							}
 						} else {
 							uni.showToast({
@@ -577,7 +577,7 @@
 								duration: 3000
 							});
 						}
-
+						
 					},
 					fail(err) {
 						console.error((me.isEditMode ? "更新" : "发布") + "视频请求失败：", err);
@@ -588,9 +588,9 @@
 						});
 					}
 				});
-
+				
 			},
-
+			
 			preview() {
 				uni.navigateTo({
 					url: "/pages/publish/preview?videoUrl=" + this.videoUrl + "&width=" + this.width + "&height=" +
@@ -599,33 +599,33 @@
 					animationDuration: 500
 				})
 			},
-
+			
 			touchstartPreplay() {
 				this.preplayTouched = true;
 			},
-
+			
 			touchendPreplay() {
 				this.preplayTouched = false;
 			},
-
+			
 			touchstartPublich() {
 				this.publichTouched = true;
 			},
-
+			
 			touchendPublich() {
 				this.publichTouched = false;
 			},
-
+			
 			chooseCover() {
 				var me = this;
 				var userId = getApp().getUserInfoSession().id;
-
+				
 				uni.chooseImage({
 					count: 1,
 					sourceType: ['album'],
 					success(e) {
 						me.tempCover = e.tempFilePaths[0];
-
+						
 						// 上传封面
 						var serverUrl = app.globalData.serverUrl;
 						uni.uploadFile({
@@ -649,7 +649,7 @@
 					}
 				})
 			}
-
+			
 		}
 	}
 </script>
