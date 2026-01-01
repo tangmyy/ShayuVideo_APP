@@ -363,8 +363,37 @@
 					</image>
 				</view>
 				
-				<!-- 举报处理 (类型6) -->
-				<view v-if="msg.msgType == 6" class="msg-item-box">
+				<!-- 举报处理 (类型6) - 被举报人布局：[图片] [消息内容] [申诉按钮] -->
+				<view v-if="msg.msgType == 6 && isReportedUser(msg)" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 如果有视频封面，显示视频封面（放在前面） -->
+						<image
+							v-if="msg.msgContent && msg.msgContent.vlogCover"
+							mode="aspectFill" 
+							class="vlog-cover" 
+							style="align-self: center;margin-right: 20rpx;"
+							:src="msg.msgContent.vlogCover"
+							@click="goToVlog(msg.msgContent.vlogId)">
+						</image>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">被举报通知</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult || msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 申诉按钮 -->
+					<view 
+						class="msg-item-right" 
+						style="background-color: #ef274d;align-self: center;" 
+						@click="showAppealDialog(msg)">
+						<text class="op-fans-btn" style="align-self: center;">申诉</text> 
+					</view>
+				</view>
+				
+				<!-- 举报处理 (类型6) - 举报人布局：[系统消息图标] [消息内容] [图片] -->
+				<view v-if="msg.msgType == 6 && !isReportedUser(msg)" class="msg-item-box">
 					<view class="msg-item-left">
 						<!-- 系统消息图标 -->
 						<view class="system-icon" style="align-self: center;">
@@ -376,14 +405,6 @@
 							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult || msg.msgContent.content || ''}}</text>
 							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
 						</view>
-					</view>
-					
-					<!-- 申诉按钮 -->
-					<view 
-						class="msg-item-right" 
-						:style="msg.msgContent && msg.msgContent.vlogCover ? 'background-color: #ef274d;align-self: center;margin-right: 10rpx;' : 'background-color: #ef274d;align-self: center;'" 
-						@click="showAppealDialog(msg)">
-						<text class="op-fans-btn" style="align-self: center;">申诉</text> 
 					</view>
 					
 					<!-- 如果有视频封面，显示视频封面 -->
@@ -714,6 +735,17 @@
 			getGraceDateBeforeNow(dateTimeStr) {
 				var date = app.dateFormat("YYYY-mm-dd", new Date(dateTimeStr));
 				return getApp().getDateBeforeNow(date);
+			},
+			
+			// 判断是否为被举报人（通过handleResult是否以"您的"开头来判断）
+			isReportedUser(msg) {
+				if (!msg || !msg.msgContent) {
+					return false;
+				}
+				var handleResult = msg.msgContent.handleResult || msg.msgContent.content || '';
+				// 被举报人的消息格式是："您的xxx被举报xxx"，以"您的"开头
+				// 举报人的消息格式是："xxx举报xxx"，不以"您的"开头
+				return handleResult.indexOf('您的') === 0;
 			},
 			
 			// 处理系统消息/公告点击（类型7和8）
