@@ -395,188 +395,54 @@ var render = function () {
         "view",
         { staticClass: ["page"] },
         [
-          _c("scroll-view", { attrs: { scrollY: "true" } }, [
-            _c(
-              "view",
-              {
-                staticStyle: {
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  padding: "20rpx",
+          _c("u-image", {
+            staticClass: ["shark-image"],
+            attrs: { mode: "aspectFill", src: "/static/cuicuisha/shark.jpg" },
+          }),
+          _c(
+            "view",
+            {
+              class: {
+                logout: !_vm.logoutTouched,
+                "logout-touched": _vm.logoutTouched,
+              },
+              staticStyle: {
+                paddingLeft: "30rpx",
+                paddingRight: "30rpx",
+                width: "750rpx",
+                height: "120rpx",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+              },
+              on: {
+                touchstart: function ($event) {
+                  _vm.touchstartLogout()
+                },
+                touchend: function ($event) {
+                  _vm.touchendLogout()
+                },
+                click: function ($event) {
+                  _vm.logout()
                 },
               },
-              [
-                _c(
-                  "view",
-                  {
-                    staticStyle: {
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                    },
+            },
+            [
+              _c(
+                "u-text",
+                {
+                  staticStyle: {
+                    color: "#FFFFFF",
+                    alignSelf: "center",
+                    fontSize: "15px",
                   },
-                  [
-                    _c("u-image", {
-                      staticClass: ["fengjianyingyue"],
-                      staticStyle: { alignSelf: "center" },
-                      attrs: {
-                        src: "/static/cuicuisha/ts_logo.jpg",
-                        mode: "widthFix",
-                      },
-                    }),
-                    _c("u-image", {
-                      staticClass: ["fengjianyingyue-name"],
-                      staticStyle: { alignSelf: "center" },
-                      attrs: {
-                        src: "/static/cuicuisha/logo.png",
-                        mode: "widthFix",
-                      },
-                    }),
-                  ],
-                  1
-                ),
-                _c("view", [
-                  _c(
-                    "u-text",
-                    {
-                      staticClass: ["introduce"],
-                      appendAsTree: true,
-                      attrs: { append: "tree" },
-                    },
-                    [_vm._v("蜜桃乌龙脆脆鲨🍑")]
-                  ),
-                ]),
-              ]
-            ),
-            _c(
-              "view",
-              {
-                staticStyle: {
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  marginTop: "20rpx",
+                  appendAsTree: true,
+                  attrs: { append: "tree" },
                 },
-              },
-              [
-                _c("u-image", {
-                  staticClass: ["course"],
-                  staticStyle: { width: "380rpx" },
-                  attrs: {
-                    src: "/static/cuicuisha/java.png",
-                    mode: "widthFix",
-                  },
-                }),
-              ],
-              1
-            ),
-            _c(
-              "view",
-              {
-                staticStyle: {
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "20rpx",
-                  paddingLeft: "30rpx",
-                  paddingRight: "30rpx",
-                },
-              },
-              [
-                _c("u-image", {
-                  staticClass: ["course"],
-                  attrs: {
-                    src: "/static/cuicuisha/springboot_yz.png",
-                    mode: "widthFix",
-                  },
-                }),
-                _c("u-image", {
-                  staticClass: ["course"],
-                  attrs: {
-                    src: "/static/cuicuisha/nginx.webp",
-                    mode: "widthFix",
-                  },
-                }),
-              ],
-              1
-            ),
-            _c(
-              "view",
-              {
-                staticStyle: {
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "20rpx",
-                  paddingLeft: "30rpx",
-                  paddingRight: "30rpx",
-                },
-              },
-              [
-                _c("u-image", {
-                  staticClass: ["course"],
-                  attrs: {
-                    src: "/static/cuicuisha/springboot_qd.png",
-                    mode: "widthFix",
-                  },
-                }),
-                _c("u-image", {
-                  staticClass: ["course"],
-                  attrs: {
-                    src: "/static/cuicuisha/redisredis.webp",
-                    mode: "widthFix",
-                  },
-                }),
-              ],
-              1
-            ),
-            _c(
-              "view",
-              {
-                class: {
-                  logout: !_vm.logoutTouched,
-                  "logout-touched": _vm.logoutTouched,
-                },
-                staticStyle: {
-                  marginTop: "20rpx",
-                  paddingLeft: "30rpx",
-                  paddingRight: "30rpx",
-                  width: "750rpx",
-                  height: "120rpx",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                },
-                on: {
-                  touchstart: function ($event) {
-                    _vm.touchstartLogout()
-                  },
-                  touchend: function ($event) {
-                    _vm.touchendLogout()
-                  },
-                  click: function ($event) {
-                    _vm.logout()
-                  },
-                },
-              },
-              [
-                _c(
-                  "u-text",
-                  {
-                    staticStyle: {
-                      color: "#FFFFFF",
-                      alignSelf: "center",
-                      fontSize: "15px",
-                    },
-                    appendAsTree: true,
-                    attrs: { append: "tree" },
-                  },
-                  [_vm._v("退出登录")]
-                ),
-              ]
-            ),
-          ]),
+                [_vm._v("退出登录")]
+              ),
+            ]
+          ),
         ],
         1
       ),
@@ -609,7 +475,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar app = getApp();\nvar _default = {\n  components: {},\n  data: function data() {\n    return {\n      logoutTouched: false\n    };\n  },\n  onLoad: function onLoad() {},\n  methods: {\n    touchstartLogout: function touchstartLogout() {\n      this.logoutTouched = true;\n    },\n    touchendLogout: function touchendLogout() {\n      this.logoutTouched = false;\n    },\n    logout: function logout() {\n      var me = this;\n      var userId = getApp().getUserInfoSession().id;\n      var serverUrl = app.globalData.serverUrl;\n      uni.request({\n        method: \"POST\",\n        url: serverUrl + \"/passport/logout?userId=\" + userId,\n        success: function success(result) {\n          var status = result.data.status;\n          if (status == 200) {\n            getApp().clearUserInfo();\n            // 在登录登出后，都需要重新刷新首页list，目的为了刷新关注点赞状态\n            // uni.setStorageSync(\"needRefreshIndexVlogList\", \"1\");\n            // uni.switchTab({\n            // \turl: \"../index/index\"\n            // })\n            uni.reLaunch({\n              url: \"../index/index\"\n            });\n          } else if (status != 200) {\n            uni.showToast({\n              title: result.data.msg,\n              icon: \"none\"\n            });\n          }\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWUvc2V0dGluZ3MubnZ1ZSJdLCJuYW1lcyI6WyJjb21wb25lbnRzIiwiZGF0YSIsImxvZ291dFRvdWNoZWQiLCJvbkxvYWQiLCJtZXRob2RzIiwidG91Y2hzdGFydExvZ291dCIsInRvdWNoZW5kTG9nb3V0IiwibG9nb3V0IiwidW5pIiwibWV0aG9kIiwidXJsIiwic3VjY2VzcyIsImdldEFwcCIsInRpdGxlIiwiaWNvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQXVHQTtBQUFBLGVBQ0E7RUFDQUEsYUFDQTtFQUNBQztJQUNBO01BQ0FDO0lBQ0E7RUFDQTtFQUNBQywyQkFDQTtFQUNBQztJQUNBQztNQUNBO0lBQ0E7SUFDQUM7TUFDQTtJQUNBO0lBQ0FDO01BQ0E7TUFDQTtNQUVBO01BQ0FDO1FBQ0FDO1FBQ0FDO1FBQ0FDO1VBQ0E7VUFDQTtZQUNBQztZQUNBO1lBQ0E7WUFDQTtZQUNBO1lBQ0E7WUFDQUo7Y0FDQUU7WUFDQTtVQUNBO1lBQ0FGO2NBQ0FLO2NBQ0FDO1lBQ0E7VUFDQTtRQUVBO01BQ0E7SUFHQTtFQUNBO0FBQ0E7QUFBQSIsImZpbGUiOiIyNi5qcyIsInNvdXJjZXNDb250ZW50IjpbIjxzdHlsZT5cclxuLnBhZ2Uge1xyXG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuXHRsZWZ0OiAwO1xyXG5cdHJpZ2h0OiAwO1xyXG5cdHRvcDogMDtcclxuXHRib3R0b206IDA7XHJcblx0YmFja2dyb3VuZC1jb2xvcjogIzE4MWIyNztcclxufVxyXG5cclxuLmxpbmUge1xyXG5cdGhlaWdodDogMXJweDtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjMzkzYTQxO1xyXG5cdHdpZHRoOiA3NTBycHg7XHJcbn1cclxuXHJcbi5wbGFjZS1ib3gge1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICM0YTRjNTI7XHJcbn1cclxuLnBsYWNlLWJveC10b3VjaGVkIHtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjNmQ2YjZiO1xyXG59XHJcblxyXG4ucmlnaHQtYXJyb3cge1xyXG5cdHdpZHRoOiAzMnJweDtcclxuXHRoZWlnaHQ6IDMycnB4O1xyXG5cdG1hcmdpbi1sZWZ0OiAyMHJweDtcclxufVxyXG5cclxuLmxvZ291dCB7XHJcblx0YmFja2dyb3VuZC1jb2xvcjogIzRhNGM1MjtcclxufVxyXG4ubG9nb3V0LXRvdWNoZWQge1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICM2ZDZiNmI7XHJcbn1cclxuLmZlbmdqaWFueWluZ3l1ZSB7XHJcblx0d2lkdGg6IDI1MHJweDtcclxuXHRib3JkZXItd2lkdGg6IDFycHg7XHJcblx0Ym9yZGVyLWNvbG9yOiAjRkZGRkZGO1xyXG5cdGJvcmRlci1yYWRpdXM6IDEwcnB4O1xyXG59XHJcbi5mZW5namlhbnlpbmd5dWUtbmFtZSB7XHJcblx0d2lkdGg6IDIwMHJweDtcclxuXHRtYXJnaW4tdG9wOiAyNnJweDtcclxuXHRvcGFjaXR5OiAwLjg7XHJcbn1cclxuLmludHJvZHVjZSB7XHJcblx0Y29sb3I6ICNGMUYxRjE7XHJcblx0Zm9udC1zaXplOiAyNnJweDtcclxuXHRmb250LXdlaWdodDogMzAwO1xyXG5cdHdpZHRoOiA0NDBycHg7XHJcbn1cclxuLmNvdXJzZSB7XHJcblx0d2lkdGg6IDMzMHJweDtcclxuXHRib3JkZXItcmFkaXVzOiA1cHg7XHJcbn1cclxuPC9zdHlsZT5cclxuPHRlbXBsYXRlPlxyXG5cdDx2aWV3IGNsYXNzPVwicGFnZVwiPlxyXG5cdFx0PCEtLSA8dmlldyBjbGFzcz1cImxpbmVcIj48L3ZpZXc+IC0tPlxyXG5cdFx0XHJcblx0XHQ8c2Nyb2xsLXZpZXcgc2Nyb2xsLXk9XCJ0cnVlXCI+XHJcblx0XHRcdDx2aWV3IHN0eWxlPVwiZGlzcGxheTogZmxleDtmbGV4LWRpcmVjdGlvbjogcm93O2p1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtwYWRkaW5nOiAyMHJweDtcIj5cclxuXHRcdFx0XHQ8dmlldyBzdHlsZT1cImRpc3BsYXk6IGZsZXg7ZmxleC1kaXJlY3Rpb246IGNvbHVtbjtqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcIj5cclxuXHRcdFx0XHRcdDxpbWFnZSBzcmM9XCIvc3RhdGljL2N1aWN1aXNoYS90c19sb2dvLmpwZ1wiIG1vZGU9XCJ3aWR0aEZpeFwiIGNsYXNzPVwiZmVuZ2ppYW55aW5neXVlXCIgc3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7XCI+PC9pbWFnZT5cclxuXHRcdFx0XHRcdDxpbWFnZSBzcmM9XCIvc3RhdGljL2N1aWN1aXNoYS9sb2dvLnBuZ1wiIG1vZGU9XCJ3aWR0aEZpeFwiIGNsYXNzPVwiZmVuZ2ppYW55aW5neXVlLW5hbWVcIiBzdHlsZT1cImFsaWduLXNlbGY6IGNlbnRlcjtcIj48L2ltYWdlPlxyXG5cdFx0XHRcdDwvdmlldz5cclxuXHJcblx0XHRcdFx0PHZpZXc+XHJcblx0XHRcdFx0XHQ8dGV4dCBjbGFzcz1cImludHJvZHVjZVwiPlx06Jyc5qGD5LmM6b6Z6ISG6ISG6bKo8J+NkVx0PC90ZXh0PlxyXG5cdFx0XHRcdDwvdmlldz5cclxuXHRcdFx0PC92aWV3PlxyXG5cclxuXHRcdFx0PHZpZXcgc3R5bGU9XCJkaXNwbGF5OiBmbGV4O2ZsZXgtZGlyZWN0aW9uOiByb3c7anVzdGlmeS1jb250ZW50OiBjZW50ZXI7bWFyZ2luLXRvcDogMjBycHg7XCI+XHJcblx0XHRcdFx0PGltYWdlIHNyYz1cIi9zdGF0aWMvY3VpY3Vpc2hhL2phdmEucG5nXCIgbW9kZT1cIndpZHRoRml4XCIgY2xhc3M9XCJjb3Vyc2VcIiBzdHlsZT1cIndpZHRoOiAzODBycHg7XCI+PC9pbWFnZT5cclxuXHRcdFx0PC92aWV3PlxyXG5cclxuXHRcdFx0PHZpZXcgc3R5bGU9XCJkaXNwbGF5OiBmbGV4O2ZsZXgtZGlyZWN0aW9uOiByb3c7anVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO21hcmdpbi10b3A6IDIwcnB4O3BhZGRpbmctbGVmdDogMzBycHg7cGFkZGluZy1yaWdodDogMzBycHg7XCI+XHJcblx0XHRcdFx0PGltYWdlIHNyYz1cIi9zdGF0aWMvY3VpY3Vpc2hhL3NwcmluZ2Jvb3RfeXoucG5nXCIgbW9kZT1cIndpZHRoRml4XCIgY2xhc3M9XCJjb3Vyc2VcIiBzdHlsZT1cIlwiPjwvaW1hZ2U+XHJcblx0XHRcdFx0PGltYWdlIHNyYz1cIi9zdGF0aWMvY3VpY3Vpc2hhL25naW54LndlYnBcIiBtb2RlPVwid2lkdGhGaXhcIiBjbGFzcz1cImNvdXJzZVwiIHN0eWxlPVwiXCI+PC9pbWFnZT5cclxuXHRcdFx0PC92aWV3PlxyXG5cdFx0XHRcclxuXHRcdFx0PHZpZXcgc3R5bGU9XCJkaXNwbGF5OiBmbGV4O2ZsZXgtZGlyZWN0aW9uOiByb3c7anVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO21hcmdpbi10b3A6IDIwcnB4O3BhZGRpbmctbGVmdDogMzBycHg7cGFkZGluZy1yaWdodDogMzBycHg7XCI+XHJcblx0XHRcdFx0PGltYWdlIHNyYz1cIi9zdGF0aWMvY3VpY3Vpc2hhL3NwcmluZ2Jvb3RfcWQucG5nXCIgbW9kZT1cIndpZHRoRml4XCIgY2xhc3M9XCJjb3Vyc2VcIiBzdHlsZT1cIlwiPjwvaW1hZ2U+XHJcblx0XHRcdFx0PGltYWdlIHNyYz1cIi9zdGF0aWMvY3VpY3Vpc2hhL3JlZGlzcmVkaXMud2VicFwiIG1vZGU9XCJ3aWR0aEZpeFwiIGNsYXNzPVwiY291cnNlXCIgc3R5bGU9XCJcIj48L2ltYWdlPlxyXG5cdFx0XHQ8L3ZpZXc+XHJcblx0XHRcdFxyXG5cdFx0XHQ8dmlldyBcclxuXHRcdFx0XHQ6Y2xhc3M9XCJ7J2xvZ291dCc6IWxvZ291dFRvdWNoZWQsICdsb2dvdXQtdG91Y2hlZCc6IGxvZ291dFRvdWNoZWR9XCIgXHJcblx0XHRcdFx0QHRvdWNoc3RhcnQ9XCJ0b3VjaHN0YXJ0TG9nb3V0KClcIlxyXG5cdFx0XHRcdEB0b3VjaGVuZD1cInRvdWNoZW5kTG9nb3V0KClcIlxyXG5cdFx0XHRcdEBjbGljaz1cImxvZ291dCgpXCJcclxuXHRcdFx0XHRzdHlsZT1cIm1hcmdpbi10b3A6IDIwcnB4O3BhZGRpbmctbGVmdDogMzBycHg7cGFkZGluZy1yaWdodDogMzBycHg7d2lkdGg6IDc1MHJweDtoZWlnaHQ6IDEyMHJweDtkaXNwbGF5OiBmbGV4O2ZsZXgtZGlyZWN0aW9uOiByb3c7anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XCI+XHJcblx0XHRcdFx0XHJcblx0XHRcdFx0PHRleHQgc3R5bGU9XCJjb2xvcjogI0ZGRkZGRjthbGlnbi1zZWxmOiBjZW50ZXI7Zm9udC1zaXplOiAxNXB4O1wiPumAgOWHuueZu+W9lTwvdGV4dD5cclxuXHJcblx0XHRcdDwvdmlldz5cclxuXHRcdDwvc2Nyb2xsLXZpZXc+XHJcblx0XHRcclxuXHQ8L3ZpZXc+XHJcbjwvdGVtcGxhdGU+XHJcblxyXG48c2NyaXB0PlxyXG5cdHZhciBhcHAgPSBnZXRBcHAoKTtcclxuXHRleHBvcnQgZGVmYXVsdCB7XHJcblx0XHRjb21wb25lbnRzOiB7XHJcblx0XHR9LFxyXG5cdFx0ZGF0YSgpIHtcclxuXHRcdFx0cmV0dXJuIHtcclxuXHRcdFx0XHRsb2dvdXRUb3VjaGVkOiBmYWxzZVxyXG5cdFx0XHR9XHJcblx0XHR9LFxyXG5cdFx0b25Mb2FkKCkge1xyXG5cdFx0fSxcclxuXHRcdG1ldGhvZHM6IHtcclxuXHRcdFx0dG91Y2hzdGFydExvZ291dCgpIHtcclxuXHRcdFx0XHR0aGlzLmxvZ291dFRvdWNoZWQgPSB0cnVlO1xyXG5cdFx0XHR9LFxyXG5cdFx0XHR0b3VjaGVuZExvZ291dCgpIHtcclxuXHRcdFx0XHR0aGlzLmxvZ291dFRvdWNoZWQgPSBmYWxzZTtcclxuXHRcdFx0fSxcclxuXHRcdFx0bG9nb3V0KCkge1xyXG5cdFx0XHRcdHZhciBtZSA9IHRoaXM7XHJcblx0XHRcdFx0dmFyIHVzZXJJZCA9IGdldEFwcCgpLmdldFVzZXJJbmZvU2Vzc2lvbigpLmlkO1xyXG5cdFx0XHRcdFxyXG5cdFx0XHRcdHZhciBzZXJ2ZXJVcmwgPSBhcHAuZ2xvYmFsRGF0YS5zZXJ2ZXJVcmw7XHJcblx0XHRcdFx0dW5pLnJlcXVlc3Qoe1xyXG5cdFx0XHRcdFx0bWV0aG9kOiBcIlBPU1RcIixcclxuXHRcdFx0XHRcdHVybDogc2VydmVyVXJsICsgXCIvcGFzc3BvcnQvbG9nb3V0P3VzZXJJZD1cIiArIHVzZXJJZCxcclxuXHRcdFx0XHRcdHN1Y2Nlc3MocmVzdWx0KSB7XHJcblx0XHRcdFx0XHRcdHZhciBzdGF0dXMgPSByZXN1bHQuZGF0YS5zdGF0dXM7XHJcblx0XHRcdFx0XHRcdGlmIChzdGF0dXMgPT0gMjAwKSB7XHJcblx0XHRcdFx0XHRcdFx0Z2V0QXBwKCkuY2xlYXJVc2VySW5mbygpO1xyXG5cdFx0XHRcdFx0XHRcdC8vIOWcqOeZu+W9leeZu+WHuuWQju+8jOmDvemcgOimgemHjeaWsOWIt+aWsOmmlumhtWxpc3TvvIznm67nmoTkuLrkuobliLfmlrDlhbPms6jngrnotZ7nirbmgIFcclxuXHRcdFx0XHRcdFx0XHQvLyB1bmkuc2V0U3RvcmFnZVN5bmMoXCJuZWVkUmVmcmVzaEluZGV4VmxvZ0xpc3RcIiwgXCIxXCIpO1xyXG5cdFx0XHRcdFx0XHRcdC8vIHVuaS5zd2l0Y2hUYWIoe1xyXG5cdFx0XHRcdFx0XHRcdC8vIFx0dXJsOiBcIi4uL2luZGV4L2luZGV4XCJcclxuXHRcdFx0XHRcdFx0XHQvLyB9KVxyXG5cdFx0XHRcdFx0XHRcdHVuaS5yZUxhdW5jaCh7XHJcblx0XHRcdFx0XHRcdFx0XHR1cmw6IFwiLi4vaW5kZXgvaW5kZXhcIlxyXG5cdFx0XHRcdFx0XHRcdH0pXHJcblx0XHRcdFx0XHRcdH0gZWxzZSBpZiAoc3RhdHVzICE9IDIwMCkge1xyXG5cdFx0XHRcdFx0XHRcdHVuaS5zaG93VG9hc3Qoe1xyXG5cdFx0XHRcdFx0XHRcdFx0dGl0bGU6IHJlc3VsdC5kYXRhLm1zZyxcclxuXHRcdFx0XHRcdFx0XHRcdGljb246IFwibm9uZVwiXHJcblx0XHRcdFx0XHRcdFx0fSk7XHJcblx0XHRcdFx0XHRcdH1cclxuXHRcdFx0XHRcdFx0XHJcblx0XHRcdFx0XHR9XHJcblx0XHRcdFx0fSk7XHJcblx0XHRcdFx0XHJcblx0XHRcdFx0XHJcblx0XHRcdH1cclxuXHRcdH1cclxuXHR9XHJcbjwvc2NyaXB0PlxyXG5cclxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///26\n");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar app = getApp();\nvar _default = {\n  components: {},\n  data: function data() {\n    return {\n      logoutTouched: false\n    };\n  },\n  onLoad: function onLoad() {},\n  methods: {\n    touchstartLogout: function touchstartLogout() {\n      this.logoutTouched = true;\n    },\n    touchendLogout: function touchendLogout() {\n      this.logoutTouched = false;\n    },\n    logout: function logout() {\n      var me = this;\n      var userId = getApp().getUserInfoSession().id;\n      var serverUrl = app.globalData.serverUrl;\n      uni.request({\n        method: \"POST\",\n        url: serverUrl + \"/passport/logout?userId=\" + userId,\n        success: function success(result) {\n          var status = result.data.status;\n          if (status == 200) {\n            getApp().clearUserInfo();\n            // 在登录登出后，都需要重新刷新首页list，目的为了刷新关注点赞状态\n            // uni.setStorageSync(\"needRefreshIndexVlogList\", \"1\");\n            // uni.switchTab({\n            // \turl: \"../index/index\"\n            // })\n            uni.reLaunch({\n              url: \"../index/index\"\n            });\n          } else if (status != 200) {\n            uni.showToast({\n              title: result.data.msg,\n              icon: \"none\"\n            });\n          }\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWUvc2V0dGluZ3MubnZ1ZSJdLCJuYW1lcyI6WyJjb21wb25lbnRzIiwiZGF0YSIsImxvZ291dFRvdWNoZWQiLCJvbkxvYWQiLCJtZXRob2RzIiwidG91Y2hzdGFydExvZ291dCIsInRvdWNoZW5kTG9nb3V0IiwibG9nb3V0IiwidW5pIiwibWV0aG9kIiwidXJsIiwic3VjY2VzcyIsImdldEFwcCIsInRpdGxlIiwiaWNvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUF5RkE7QUFBQSxlQUNBO0VBQ0FBLGFBQ0E7RUFDQUM7SUFDQTtNQUNBQztJQUNBO0VBQ0E7RUFDQUMsMkJBQ0E7RUFDQUM7SUFDQUM7TUFDQTtJQUNBO0lBQ0FDO01BQ0E7SUFDQTtJQUNBQztNQUNBO01BQ0E7TUFFQTtNQUNBQztRQUNBQztRQUNBQztRQUNBQztVQUNBO1VBQ0E7WUFDQUM7WUFDQTtZQUNBO1lBQ0E7WUFDQTtZQUNBO1lBQ0FKO2NBQ0FFO1lBQ0E7VUFDQTtZQUNBRjtjQUNBSztjQUNBQztZQUNBO1VBQ0E7UUFFQTtNQUNBO0lBR0E7RUFDQTtBQUNBO0FBQUEiLCJmaWxlIjoiMjYuanMiLCJzb3VyY2VzQ29udGVudCI6WyI8c3R5bGU+XHJcbi5wYWdlIHtcclxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XHJcblx0bGVmdDogMDtcclxuXHRyaWdodDogMDtcclxuXHR0b3A6IDA7XHJcblx0Ym90dG9tOiAwO1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICMxODFiMjc7XHJcblx0ZGlzcGxheTogZmxleDtcclxuXHRmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG59XHJcblxyXG4uc2hhcmstaW1hZ2Uge1xyXG5cdHdpZHRoOiA3NTBycHg7XHJcblx0ZmxleDogMTtcclxufVxyXG5cclxuLmxpbmUge1xyXG5cdGhlaWdodDogMXJweDtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjMzkzYTQxO1xyXG5cdHdpZHRoOiA3NTBycHg7XHJcbn1cclxuXHJcbi5wbGFjZS1ib3gge1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICM0YTRjNTI7XHJcbn1cclxuLnBsYWNlLWJveC10b3VjaGVkIHtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjNmQ2YjZiO1xyXG59XHJcblxyXG4ucmlnaHQtYXJyb3cge1xyXG5cdHdpZHRoOiAzMnJweDtcclxuXHRoZWlnaHQ6IDMycnB4O1xyXG5cdG1hcmdpbi1sZWZ0OiAyMHJweDtcclxufVxyXG5cclxuLmxvZ291dCB7XHJcblx0YmFja2dyb3VuZC1jb2xvcjogIzRhNGM1MjtcclxufVxyXG4ubG9nb3V0LXRvdWNoZWQge1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICM2ZDZiNmI7XHJcbn1cclxuLmZlbmdqaWFueWluZ3l1ZSB7XHJcblx0d2lkdGg6IDI1MHJweDtcclxuXHRib3JkZXItd2lkdGg6IDFycHg7XHJcblx0Ym9yZGVyLWNvbG9yOiAjRkZGRkZGO1xyXG5cdGJvcmRlci1yYWRpdXM6IDEwcnB4O1xyXG59XHJcbi5mZW5namlhbnlpbmd5dWUtbmFtZSB7XHJcblx0d2lkdGg6IDIwMHJweDtcclxuXHRtYXJnaW4tdG9wOiAyNnJweDtcclxuXHRvcGFjaXR5OiAwLjg7XHJcbn1cclxuLmludHJvZHVjZSB7XHJcblx0Y29sb3I6ICNGMUYxRjE7XHJcblx0Zm9udC1zaXplOiAyNnJweDtcclxuXHRmb250LXdlaWdodDogMzAwO1xyXG5cdHdpZHRoOiA0NDBycHg7XHJcbn1cclxuLmNvdXJzZSB7XHJcblx0d2lkdGg6IDMzMHJweDtcclxuXHRib3JkZXItcmFkaXVzOiA1cHg7XHJcbn1cclxuPC9zdHlsZT5cclxuPHRlbXBsYXRlPlxyXG5cdDx2aWV3IGNsYXNzPVwicGFnZVwiPlxyXG5cdFx0PCEtLSDpsqjpsbzlm77niYcgLS0+XHJcblx0XHQ8aW1hZ2UgXHJcblx0XHRcdGNsYXNzPVwic2hhcmstaW1hZ2VcIlxyXG5cdFx0XHRtb2RlPVwiYXNwZWN0RmlsbFwiXHJcblx0XHRcdHNyYz1cIi9zdGF0aWMvY3VpY3Vpc2hhL3NoYXJrLmpwZ1wiPlxyXG5cdFx0PC9pbWFnZT5cclxuXHRcdFxyXG5cdFx0PCEtLSDpgIDlh7rnmbvlvZXmjInpkq4gLS0+XHJcblx0XHQ8dmlldyBcclxuXHRcdFx0OmNsYXNzPVwieydsb2dvdXQnOiFsb2dvdXRUb3VjaGVkLCAnbG9nb3V0LXRvdWNoZWQnOiBsb2dvdXRUb3VjaGVkfVwiIFxyXG5cdFx0XHRAdG91Y2hzdGFydD1cInRvdWNoc3RhcnRMb2dvdXQoKVwiXHJcblx0XHRcdEB0b3VjaGVuZD1cInRvdWNoZW5kTG9nb3V0KClcIlxyXG5cdFx0XHRAY2xpY2s9XCJsb2dvdXQoKVwiXHJcblx0XHRcdHN0eWxlPVwicGFkZGluZy1sZWZ0OiAzMHJweDtwYWRkaW5nLXJpZ2h0OiAzMHJweDt3aWR0aDogNzUwcnB4O2hlaWdodDogMTIwcnB4O2Rpc3BsYXk6IGZsZXg7ZmxleC1kaXJlY3Rpb246IHJvdztqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcIj5cclxuXHRcdFx0XHJcblx0XHRcdDx0ZXh0IHN0eWxlPVwiY29sb3I6ICNGRkZGRkY7YWxpZ24tc2VsZjogY2VudGVyO2ZvbnQtc2l6ZTogMTVweDtcIj7pgIDlh7rnmbvlvZU8L3RleHQ+XHJcblxyXG5cdFx0PC92aWV3PlxyXG5cdFx0XHJcblx0PC92aWV3PlxyXG48L3RlbXBsYXRlPlxyXG5cclxuPHNjcmlwdD5cclxuXHR2YXIgYXBwID0gZ2V0QXBwKCk7XHJcblx0ZXhwb3J0IGRlZmF1bHQge1xyXG5cdFx0Y29tcG9uZW50czoge1xyXG5cdFx0fSxcclxuXHRcdGRhdGEoKSB7XHJcblx0XHRcdHJldHVybiB7XHJcblx0XHRcdFx0bG9nb3V0VG91Y2hlZDogZmFsc2VcclxuXHRcdFx0fVxyXG5cdFx0fSxcclxuXHRcdG9uTG9hZCgpIHtcclxuXHRcdH0sXHJcblx0XHRtZXRob2RzOiB7XHJcblx0XHRcdHRvdWNoc3RhcnRMb2dvdXQoKSB7XHJcblx0XHRcdFx0dGhpcy5sb2dvdXRUb3VjaGVkID0gdHJ1ZTtcclxuXHRcdFx0fSxcclxuXHRcdFx0dG91Y2hlbmRMb2dvdXQoKSB7XHJcblx0XHRcdFx0dGhpcy5sb2dvdXRUb3VjaGVkID0gZmFsc2U7XHJcblx0XHRcdH0sXHJcblx0XHRcdGxvZ291dCgpIHtcclxuXHRcdFx0XHR2YXIgbWUgPSB0aGlzO1xyXG5cdFx0XHRcdHZhciB1c2VySWQgPSBnZXRBcHAoKS5nZXRVc2VySW5mb1Nlc3Npb24oKS5pZDtcclxuXHRcdFx0XHRcclxuXHRcdFx0XHR2YXIgc2VydmVyVXJsID0gYXBwLmdsb2JhbERhdGEuc2VydmVyVXJsO1xyXG5cdFx0XHRcdHVuaS5yZXF1ZXN0KHtcclxuXHRcdFx0XHRcdG1ldGhvZDogXCJQT1NUXCIsXHJcblx0XHRcdFx0XHR1cmw6IHNlcnZlclVybCArIFwiL3Bhc3Nwb3J0L2xvZ291dD91c2VySWQ9XCIgKyB1c2VySWQsXHJcblx0XHRcdFx0XHRzdWNjZXNzKHJlc3VsdCkge1xyXG5cdFx0XHRcdFx0XHR2YXIgc3RhdHVzID0gcmVzdWx0LmRhdGEuc3RhdHVzO1xyXG5cdFx0XHRcdFx0XHRpZiAoc3RhdHVzID09IDIwMCkge1xyXG5cdFx0XHRcdFx0XHRcdGdldEFwcCgpLmNsZWFyVXNlckluZm8oKTtcclxuXHRcdFx0XHRcdFx0XHQvLyDlnKjnmbvlvZXnmbvlh7rlkI7vvIzpg73pnIDopoHph43mlrDliLfmlrDpppbpobVsaXN077yM55uu55qE5Li65LqG5Yi35paw5YWz5rOo54K56LWe54q25oCBXHJcblx0XHRcdFx0XHRcdFx0Ly8gdW5pLnNldFN0b3JhZ2VTeW5jKFwibmVlZFJlZnJlc2hJbmRleFZsb2dMaXN0XCIsIFwiMVwiKTtcclxuXHRcdFx0XHRcdFx0XHQvLyB1bmkuc3dpdGNoVGFiKHtcclxuXHRcdFx0XHRcdFx0XHQvLyBcdHVybDogXCIuLi9pbmRleC9pbmRleFwiXHJcblx0XHRcdFx0XHRcdFx0Ly8gfSlcclxuXHRcdFx0XHRcdFx0XHR1bmkucmVMYXVuY2goe1xyXG5cdFx0XHRcdFx0XHRcdFx0dXJsOiBcIi4uL2luZGV4L2luZGV4XCJcclxuXHRcdFx0XHRcdFx0XHR9KVxyXG5cdFx0XHRcdFx0XHR9IGVsc2UgaWYgKHN0YXR1cyAhPSAyMDApIHtcclxuXHRcdFx0XHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcclxuXHRcdFx0XHRcdFx0XHRcdHRpdGxlOiByZXN1bHQuZGF0YS5tc2csXHJcblx0XHRcdFx0XHRcdFx0XHRpY29uOiBcIm5vbmVcIlxyXG5cdFx0XHRcdFx0XHRcdH0pO1xyXG5cdFx0XHRcdFx0XHR9XHJcblx0XHRcdFx0XHRcdFxyXG5cdFx0XHRcdFx0fVxyXG5cdFx0XHRcdH0pO1xyXG5cdFx0XHRcdFxyXG5cdFx0XHRcdFxyXG5cdFx0XHR9XHJcblx0XHR9XHJcblx0fVxyXG48L3NjcmlwdD5cclxuXHJcbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///26\n");
 
 /***/ }),
 /* 27 */
@@ -672,6 +538,34 @@ module.exports = {
         0,
         0,
         0
+      ],
+      "display": [
+        "flex",
+        0,
+        0,
+        0
+      ],
+      "flexDirection": [
+        "column",
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  ".shark-image": {
+    "": {
+      "width": [
+        "750rpx",
+        0,
+        0,
+        1
+      ],
+      "flex": [
+        1,
+        0,
+        0,
+        1
       ]
     }
   },
@@ -681,19 +575,19 @@ module.exports = {
         "1rpx",
         0,
         0,
-        1
+        2
       ],
       "backgroundColor": [
         "#393a41",
         0,
         0,
-        1
+        2
       ],
       "width": [
         "750rpx",
         0,
         0,
-        1
+        2
       ]
     }
   },
@@ -703,7 +597,7 @@ module.exports = {
         "#4a4c52",
         0,
         0,
-        2
+        3
       ]
     }
   },
@@ -713,7 +607,7 @@ module.exports = {
         "#6d6b6b",
         0,
         0,
-        3
+        4
       ]
     }
   },
@@ -723,19 +617,19 @@ module.exports = {
         "32rpx",
         0,
         0,
-        4
+        5
       ],
       "height": [
         "32rpx",
         0,
         0,
-        4
+        5
       ],
       "marginLeft": [
         "20rpx",
         0,
         0,
-        4
+        5
       ]
     }
   },
@@ -745,7 +639,7 @@ module.exports = {
         "#4a4c52",
         0,
         0,
-        5
+        6
       ]
     }
   },
@@ -755,7 +649,7 @@ module.exports = {
         "#6d6b6b",
         0,
         0,
-        6
+        7
       ]
     }
   },
@@ -765,25 +659,25 @@ module.exports = {
         "250rpx",
         0,
         0,
-        7
+        8
       ],
       "borderWidth": [
         "1rpx",
         0,
         0,
-        7
+        8
       ],
       "borderColor": [
         "#FFFFFF",
         0,
         0,
-        7
+        8
       ],
       "borderRadius": [
         "10rpx",
         0,
         0,
-        7
+        8
       ]
     }
   },
@@ -793,19 +687,19 @@ module.exports = {
         "200rpx",
         0,
         0,
-        8
+        9
       ],
       "marginTop": [
         "26rpx",
         0,
         0,
-        8
+        9
       ],
       "opacity": [
         0.8,
         0,
         0,
-        8
+        9
       ]
     }
   },
@@ -815,25 +709,25 @@ module.exports = {
         "#F1F1F1",
         0,
         0,
-        9
+        10
       ],
       "fontSize": [
         "26rpx",
         0,
         0,
-        9
+        10
       ],
       "fontWeight": [
         "300",
         0,
         0,
-        9
+        10
       ],
       "width": [
         "440rpx",
         0,
         0,
-        9
+        10
       ]
     }
   },
@@ -843,13 +737,13 @@ module.exports = {
         "330rpx",
         0,
         0,
-        10
+        11
       ],
       "borderRadius": [
         "5",
         0,
         0,
-        10
+        11
       ]
     }
   },
