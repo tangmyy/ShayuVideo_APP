@@ -309,8 +309,8 @@
 							
 						<view class="msg-item-middle">
 							<text class="user-nickname">{{msg.fromNickname}}</text>
-							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.commentContent}}</text>
-							<text class="msg-content" style="font-weight: 200;">发表了评论    {{getGraceDateBeforeNow(msg.createTime)}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">发表了评论：{{msg.msgContent.commentContent || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
 						</view>
 					</view>
 					
@@ -329,8 +329,8 @@
 							
 						<view class="msg-item-middle">
 							<text class="user-nickname">{{msg.fromNickname}}</text>
-							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.commentContent}}</text>
-							<text class="msg-content" style="font-weight: 200;">回复了你    {{getGraceDateBeforeNow(msg.createTime)}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">回复了你：{{msg.msgContent.commentContent || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
 						</view>
 					</view>
 					
