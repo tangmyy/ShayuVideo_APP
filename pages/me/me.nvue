@@ -316,14 +316,14 @@
 			var myUserId = myUserInfo.id;
 			var serverUrl = app.globalData.serverUrl;
 			
-			// 查询用户信息（带 token 验证）
+			// 查询自己的用户信息（需要token验证）
 			uni.request({
 				method: "GET",
 				header: {
 					headerUserId: myUserId,
 					headerUserToken: userToken
 				},
-				url: serverUrl + "/userInfo/query?userId=" + myUserId,
+				url: serverUrl + "/userInfo/queryMe?userId=" + myUserId,
 				success(result) {
 					if (result.data.status == 200) {
 						me.pageUserInfo = result.data.data;

@@ -386,10 +386,10 @@
 			
 			var serverUrl = app.globalData.serverUrl;
 			
-			// 查询用户信息
+			// 查询用户信息（查看他人主页，使用公开接口，不需要token）
 			uni.request({
 				method: "GET",
-				url: serverUrl + "/userInfo/query?userId=" + userPageId,
+				url: serverUrl + "/userInfo/queryVloger?userId=" + userPageId,
 				success(result) {
 					
 					if (result.data.status == 200) {
