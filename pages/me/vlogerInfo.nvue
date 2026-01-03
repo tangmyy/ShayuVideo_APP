@@ -267,7 +267,8 @@
 					<view v-if="currentTab == 0"
 						style="margin-top: 5px;height: 5rpx;width: 250rpx;border-radius: 6rpx;background-color: #ef274d;"></view>
 				</view>
-				<view style="width: 250rpx;align-self: center;" @click="switchTab(1)">
+				<!-- 私密选项卡：只在自己的页面显示 -->
+				<view v-if="isMe" style="width: 250rpx;align-self: center;" @click="switchTab(1)">
 					<text class="tab-normal" style="align-self: center;" :class="{'tab-selected': currentTab == 1}">私密</text>
 					<view v-if="currentTab == 1"
 						style="margin-top: 5px;height: 5rpx;width: 250rpx;border-radius: 6rpx;background-color: #ef274d;"></view>
@@ -468,8 +469,16 @@
 					this.listRouteType = "myPublicList";
 					this.myPublicList(0);
 				} else if(index == 1) {
-					// 别人的页面，私密不显示
+					// 私密列表：只在自己的页面可以查看
+					if (this.isMe) {
+						this.publicPage = 0;
+						this.publicTotalPage = 0;
+						this.listRouteType = "myPrivateList";
+						this.myPublicList(0);
+					} else {
+						// 别人的页面，不应该显示私密选项卡，但如果误触发则清空列表
 					this.publicVlogList = [];
+					}
 				} else if(index == 2) {
 					this.publicPage = 0;
 					this.publicTotalPage = 0;

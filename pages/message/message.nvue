@@ -607,6 +607,18 @@
 			
 			this.fetchList(0);
 		},
+		onTabItemTap(e) {
+			var tabIndex = e.index;
+			var me = this;
+			// 点击消息tab时，刷新消息列表
+			// tabBar 配置中消息页面是第3个tab（index=2）
+			if (tabIndex == 2) {
+				me.page = 0;
+				me.totalPage = 0;
+				me.msgList = [];
+				me.fetchList(0);
+			}
+		},
 		methods: {
 			goToVlog(vlogId) {
 				uni.navigateTo({

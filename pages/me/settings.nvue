@@ -72,16 +72,16 @@
 		</image>
 		
 		<!-- 退出登录按钮 -->
-		<view 
-			:class="{'logout':!logoutTouched, 'logout-touched': logoutTouched}" 
-			@touchstart="touchstartLogout()"
-			@touchend="touchendLogout()"
-			@click="logout()"
+			<view 
+				:class="{'logout':!logoutTouched, 'logout-touched': logoutTouched}" 
+				@touchstart="touchstartLogout()"
+				@touchend="touchendLogout()"
+				@click="logout()"
 			style="padding-left: 30rpx;padding-right: 30rpx;width: 750rpx;height: 120rpx;display: flex;flex-direction: row;justify-content: center;">
-			
-			<text style="color: #FFFFFF;align-self: center;font-size: 15px;">退出登录</text>
+				
+				<text style="color: #FFFFFF;align-self: center;font-size: 15px;">退出登录</text>
 
-		</view>
+			</view>
 		
 	</view>
 </template>
