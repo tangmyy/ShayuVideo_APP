@@ -89,7 +89,7 @@
 				type="text" 
 				:value="videoNum" 
 				:model="videoNum" 
-				placeholder="请填入漂亮的慕课号~"
+				placeholder="请填入漂亮的视频号~"
 				maxlength="12"
 				:disabled="!canIModify"
 				@input="typingContent"/>
@@ -117,7 +117,7 @@
 				// videoNum: "video-lee",
 				// videoNum: "",
 				wordsLength: 0,
-				canIModify: false,		// 用于判断是否可以修改慕课网号，每个人仅限修改一次（一般可以用于收费二次修改，或者1年免费1次）
+				canIModify: false,		// 用于判断是否可以修改视频号，每个人仅限修改一次（一般可以用于收费二次修改，或者1年免费1次）
 			}
 		},
 		onNavigationBarButtonTap() {
@@ -125,7 +125,7 @@
 			if (videoNum.length > 12 || videoNum.length < 6) {
 				uni.showToast({
 					icon: "none",
-					title: "慕课号长度为6-12"
+					title: "视频号长度为6-12"
 				})
 				return;
 			}
@@ -134,7 +134,7 @@
 			if (oldVideoNum == videoNum) {
 				uni.showToast({
 					icon: "none",
-					title: "慕课号相同"
+					title: "视频号相同"
 				})
 				return;
 			}
@@ -180,7 +180,7 @@
 					"videoNum": videoNum
 				};
 				
-				// 修改慕课号
+				// 修改视频号
 				var serverUrl = app.globalData.serverUrl;
 				uni.request({
 					method: "POST",
