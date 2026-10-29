@@ -183,7 +183,7 @@
 				style="width: 750rpx;height: 750rpx; box-shadow: inset 0 -150px 180px #313030;"></image>
 			
 			<!-- 安卓下使用一个灰色图片来替代阴影效果，ios支持阴影，安卓则不支持，，，坑爹 -_-!!! -->
-			<image v-if="isAndroid" class="page" @click.self="changeMyBg()" src="../../static/images/bg .png" mode="aspectFill" style="width: 750rpx;height: 700rpx;opacity: 0.5;"></image>
+			<image v-if="isAndroid" class="page" @click.self="changeMyBg()" src="../../static/images/bg.png" mode="aspectFill" style="width: 750rpx;height: 700rpx;opacity: 0.5;"></image>
 			
 			<view style="position: relative; left: 30rpx;top: -560rpx;display: flex;flex-direction: column;width: 500rpx;">
 				<view style="display: flex;flex-direction: row;">
