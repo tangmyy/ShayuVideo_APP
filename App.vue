@@ -1,266 +1,326 @@
 <script>
-	import provinceList from './json/area_province.js';
-	import cityList from './json/area_city.js';
-	import districtList from './json/area_district.js';
-	export default {
-		globalData: {  
-			// serverUrl: "http://192.168.18.165:8088",		// 开发环境
-			serverUrl: "http://106.54.6.213:8088",			// 生产环境
-			
-			provinceList: provinceList,
-			cityList: cityList,
-			districtList: districtList,
-		},
-		
-		onLaunch: function() {
-			
-			console.log("onLaunch...测试调试信息的打印");
-			
-			
-			var me = this;
-			uni.onTabBarMidButtonTap(()=>{
-				
-				// 未登录不能发布视频
-				var myUserInfo = getApp().getUserInfoSession();
-				if (myUserInfo == null) {
-					uni.showToast({
-						duration: 3000,
-						title: "请登录~",
-						icon: "none"
-					});
-					uni.navigateTo({
-						url: "../loginRegist/loginRegist",
-						animationType: "slide-in-bottom",
-						success() {
-							me.loginWords = "请登录"
-						}
-					});
-					return;
-				}
-				
-				// console.log('onTabBarMidButtonTap');
-				uni.switchTab({
-					url: "../me/me"
-				});
-				// 上传视频源: 1.相册 album 2.摄像头 具体详见api文档
-				uni.chooseVideo({
-					sourceType: ['album', 'camera'],
-					success(e) {
-						
-						uni.navigateTo({
-							url: "/pages/publish/publish?fileObjectEvent=" + JSON.stringify(e)
-						})
-						
-						/**
-						 * 或者采用uniCloud，在客户端完成上传，减少链路，因为文件大，通信链路和耗时是双倍的
-						 */
-						var times = new Date().getTime();
-					}
-				})
-				
-			});
+import provinceList from "./json/area_province.js";
+import cityList from "./json/area_city.js";
+import districtList from "./json/area_district.js";
+export default {
+  globalData: {
+    // serverUrl: "http://192.168.18.165:8088",		// 开发环境
+    serverUrl: "http://106.54.6.213:8088", // 生产环境
 
-		},
-		onShow: function() {
-		},
-		onHide: function() {
-		},
-		methods: {
-			getDefaultVlogList() {
-				var list = [
-					{
-						vlogId: "251130HG1TFNC568",
-						vlogerId: "251127HS7G8RTT2W",
-						vlogerFace: "/static/face/face-arrow-2.jpg",
-						vlogerName: "脆脆鲨同学",
-						content: "牛",
-						url: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4',
-						cover: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto',
-						isLike: 1,
-						play: false
-					}, {
-						vlogId: "251130HHM713MW00",
-						vlogerId: "251127HS7G8RTT2W",
-						vlogerFace: "/static/face/face-cat.png",
-						vlogerName: "脆脆鲨同学",
-						content: "狗",
-						url: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4',
-						cover: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4?x-oss-process=video/snapshot,t_1,f_jpg',
-						isLike: 1,
-						play: false
-					},
-				];
-				return list;
-			},
-			graceNumber(number) {
-				if (number == 0) {
-					return "0";
-				} else if (number > 999 && number <= 9999) {
-					return (number/1000).toFixed(1) + 'K';
-				} else if (number > 9999 && number <= 999999) {
-					return (number/10000).toFixed(1) + '万';
-				} else if (number > 999999) {
-					return "100W+";
-				} 
-				return number;
-			},
-			// 时间格式化时间为：多少分钟前、多少天前
-			// time 2020-09-10 20:20:20
-			getDateBeforeNow(stringTime) {
-				// console.log(stringTime);
-				stringTime = new Date(stringTime.replace(/-/g,'/'))
-				
-				var minute = 1000 * 60;
-				var hour = minute * 60;
-				var day = hour * 24;
-				var week = day * 7;
-				var month = day * 30;
-		
-				var time1 = new Date().getTime(); //当前的时间戳
-				// console.log(time1);
-				// console.log(new Date(stringTime));
-				var time2 = Date.parse(new Date(stringTime)); //指定时间的时间戳
-				// console.log(time2);
-				var time = time1 - time2;
-		
-				var result = null;
-				if(time < 0) {
-					// alert("设置的时间不能早于当前时间！");
-					result = stringTime;
-				}else if(time/month >= 1){
-					result = parseInt(time/month) + "月前";
-				}else if(time/week >= 1){
-					result = parseInt(time/week) + "周前";
-				}else if(time/day >= 1){
-					result = parseInt(time/day) + "天前";
-				}else if(time/hour >= 1){
-					result = parseInt(time/hour) + "小时前";
-				}else if(time/minute >= 1){
-					result = parseInt(time/minute) + "分钟前";
-				}else {
-					result = "刚刚";
-				}
-				// console.log(result);
-				return result;
-			},
-			
-			// 判断是否为空
-			isStrEmpty (str) {
-				if (str == null || str == undefined || str == "") {
-					return true;
-				} else {
-					return false;
-				}
-				
-			},
-			// 判断用户是否登录
-			userIsLogin() {
-				var userToken = this.getUserSessionToken();
-				var userInfo = this.getUserInfoSession();
-				// console.log("userInfo=" + userInfo);
-				// console.log("userToken=" + userToken);
-				if (!this.isStrEmpty(userToken) && !this.isStrEmpty(userInfo)) {
-					return true;
-				} else {
-					return false;
-				}
-			},
-			// 用户登录以后的session存取，token和userInfo
-			setUserSessionToken(token){
-				uni.setStorageSync("userToken", token);
-			},
-			getUserSessionToken() {
-				var token = uni.getStorageSync("userToken");
-				if (this.isStrEmpty(token)) {
-					return "";
-				}
-				return token;
-			},
-			setUserInfoSession(user){
-				uni.setStorageSync("userInfo", JSON.stringify(user));
-			},
-			getUserInfoSession() {
-				var user = uni.getStorageSync("userInfo");
-				if (this.isStrEmpty(user)) {
-					return null;
-				}
-				return JSON.parse(user);
-			},
-			clearUserInfo () {
-				uni.removeStorageSync("userInfo");
-				uni.removeStorageSync("userToken");
-			},
-			
-			// let date = new Date()
-			// dateFormat("YYYY-mm-dd HH:MM", date)
-			dateFormat(fmt, date) {
-			    let ret;
-			    const opt = {
-			        "Y+": date.getFullYear().toString(),        // 年
-			        "m+": (date.getMonth() + 1).toString(),     // 月
-			        "d+": date.getDate().toString(),            // 日
-			        "H+": date.getHours().toString(),           // 时
-			        "M+": date.getMinutes().toString(),         // 分
-			        "S+": date.getSeconds().toString()          // 秒
-			        // 有其他格式化字符需求可以继续添加，必须转化成字符串
-			    };
-			    for (let k in opt) {
-			        ret = new RegExp("(" + k + ")").exec(fmt);
-			        if (ret) {
-			            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
-			        };
-			    };
-			    return fmt;
-			},
-			
-			// 获得星座
-			getAstro(m, d){
-				return "魔羯水瓶双鱼牡羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯".substr(m*2-(d<"102223444433".charAt(m-1)- -19)*2,2);
-			},
-			//下面写一个测试函数
-			testAstro(month, day){
-				console.log(month + "月" + day + "日: " + this.getAstro(month, day));
-			},
-			// 获得生肖
-			getAnimal(year){
-				year = year % 12;
-				var animal = "";
-				switch(year){
-					case 1:
-					animal = '鸡';break;
-					case 2:
-					animal = '狗';break;
-					case 3:
-					animal = '猪';break;
-					case 4:
-					animal = '鼠';break;
-					case 5:
-					animal = '牛';break;
-					case 6:
-					animal = '虎';break;
-					case 7:
-					animal = '兔';break;
-					case 8:
-					animal = '龙';break;
-					case 9:
-					animal = '蛇';break;
-					case 10:
-					animal = '马';break;
-					case 11:
-					animal = '羊';break;
-					case 0:
-					animal = '猴';break;
-				};
-				return animal;
-			}
-		}
-		
-	}
+    provinceList: provinceList,
+    cityList: cityList,
+    districtList: districtList,
+  },
+
+  onLaunch: function () {
+    console.log("onLaunch...测试调试信息的打印");
+
+    var me = this;
+    uni.onTabBarMidButtonTap(() => {
+      // 未登录不能发布视频
+      var myUserInfo = getApp().getUserInfoSession();
+      if (myUserInfo == null) {
+        uni.showToast({
+          duration: 3000,
+          title: "请登录~",
+          icon: "none",
+        });
+        uni.navigateTo({
+          url: "../loginRegist/loginRegist",
+          animationType: "slide-in-bottom",
+          success() {
+            me.loginWords = "请登录";
+          },
+        });
+        return;
+      }
+
+      // console.log('onTabBarMidButtonTap');
+      // 上传视频源: 1.相册 album 2.摄像头 具体详见api文档
+      uni.chooseVideo({
+        sourceType: ["album", "camera"],
+        success(e) {
+          console.log("选择视频成功:", e);
+          // 检查必要参数
+          if (!e || !e.tempFilePath) {
+            uni.showToast({
+              title: "视频文件获取失败，请重试",
+              icon: "none",
+              duration: 3000,
+            });
+            return;
+          }
+
+          uni.navigateTo({
+            url: "/pages/publish/publish?fileObjectEvent=" + JSON.stringify(e),
+            success() {
+              // 跳转成功后再切换tab（可选，根据需求决定）
+              // uni.switchTab({
+              // 	url: "../me/me"
+              // });
+            },
+            fail(err) {
+              console.error("跳转发布页面失败:", err);
+              uni.showToast({
+                title: "页面跳转失败，请重试",
+                icon: "none",
+                duration: 3000,
+              });
+            },
+          });
+
+          /**
+           * 或者采用uniCloud，在客户端完成上传，减少链路，因为文件大，通信链路和耗时是双倍的
+           */
+          var times = new Date().getTime();
+        },
+        fail(err) {
+          console.error("选择视频失败:", err);
+          // 用户取消不提示错误
+          // 不同平台取消时的错误信息格式可能不同：
+          // 微信小程序: "chooseVideo:fail cancel"
+          // App: 可能是 "cancel" 或其他格式
+          var errMsg = err.errMsg || "";
+          var isCancel = false;
+
+          // 检查是否是用户取消操作（不区分大小写）
+          if (errMsg) {
+            errMsg = errMsg.toLowerCase();
+            isCancel =
+              errMsg.indexOf("cancel") !== -1 ||
+              errMsg.indexOf("取消") !== -1 ||
+              errMsg.indexOf("user cancel") !== -1;
+          }
+
+          // 如果不是用户取消，才显示错误提示
+          if (!isCancel) {
+            uni.showToast({
+              title: "选择视频失败：" + (err.errMsg || "未知错误"),
+              icon: "none",
+              duration: 3000,
+            });
+          }
+        },
+      });
+    });
+  },
+  onShow: function () {},
+  onHide: function () {},
+  methods: {
+    getDefaultVlogList() {
+      var list = [
+        {
+          vlogId: "251130HG1TFNC568",
+          vlogerId: "251127HS7G8RTT2W",
+          vlogerFace: "/static/face/face-arrow-2.jpg",
+          vlogerName: "脆脆鲨同学",
+          content: "牛",
+          url: "https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4",
+          cover:
+            "https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto",
+          isLike: 1,
+          play: false,
+        },
+        {
+          vlogId: "251130HHM713MW00",
+          vlogerId: "251127HS7G8RTT2W",
+          vlogerFace: "/static/face/face-cat.png",
+          vlogerName: "脆脆鲨同学",
+          content: "狗",
+          url: "https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4",
+          cover:
+            "https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4?x-oss-process=video/snapshot,t_1,f_jpg",
+          isLike: 1,
+          play: false,
+        },
+      ];
+      return list;
+    },
+    graceNumber(number) {
+      if (number == 0) {
+        return "0";
+      } else if (number > 999 && number <= 9999) {
+        return (number / 1000).toFixed(1) + "K";
+      } else if (number > 9999 && number <= 999999) {
+        return (number / 10000).toFixed(1) + "万";
+      } else if (number > 999999) {
+        return "100W+";
+      }
+      return number;
+    },
+    // 时间格式化时间为：多少分钟前、多少天前
+    // time 2020-09-10 20:20:20
+    getDateBeforeNow(stringTime) {
+      // console.log(stringTime);
+      stringTime = new Date(stringTime.replace(/-/g, "/"));
+
+      var minute = 1000 * 60;
+      var hour = minute * 60;
+      var day = hour * 24;
+      var week = day * 7;
+      var month = day * 30;
+
+      var time1 = new Date().getTime(); //当前的时间戳
+      // console.log(time1);
+      // console.log(new Date(stringTime));
+      var time2 = Date.parse(new Date(stringTime)); //指定时间的时间戳
+      // console.log(time2);
+      var time = time1 - time2;
+
+      var result = null;
+      if (time < 0) {
+        // alert("设置的时间不能早于当前时间！");
+        result = stringTime;
+      } else if (time / month >= 1) {
+        result = parseInt(time / month) + "月前";
+      } else if (time / week >= 1) {
+        result = parseInt(time / week) + "周前";
+      } else if (time / day >= 1) {
+        result = parseInt(time / day) + "天前";
+      } else if (time / hour >= 1) {
+        result = parseInt(time / hour) + "小时前";
+      } else if (time / minute >= 1) {
+        result = parseInt(time / minute) + "分钟前";
+      } else {
+        result = "刚刚";
+      }
+      // console.log(result);
+      return result;
+    },
+
+    // 判断是否为空
+    isStrEmpty(str) {
+      if (str == null || str == undefined || str == "") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    // 判断用户是否登录
+    userIsLogin() {
+      var userToken = this.getUserSessionToken();
+      var userInfo = this.getUserInfoSession();
+      // console.log("userInfo=" + userInfo);
+      // console.log("userToken=" + userToken);
+      if (!this.isStrEmpty(userToken) && !this.isStrEmpty(userInfo)) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    // 用户登录以后的session存取，token和userInfo
+    setUserSessionToken(token) {
+      uni.setStorageSync("userToken", token);
+    },
+    getUserSessionToken() {
+      var token = uni.getStorageSync("userToken");
+      if (this.isStrEmpty(token)) {
+        return "";
+      }
+      return token;
+    },
+    setUserInfoSession(user) {
+      uni.setStorageSync("userInfo", JSON.stringify(user));
+    },
+    getUserInfoSession() {
+      var user = uni.getStorageSync("userInfo");
+      if (this.isStrEmpty(user)) {
+        return null;
+      }
+      return JSON.parse(user);
+    },
+    clearUserInfo() {
+      uni.removeStorageSync("userInfo");
+      uni.removeStorageSync("userToken");
+    },
+
+    // let date = new Date()
+    // dateFormat("YYYY-mm-dd HH:MM", date)
+    dateFormat(fmt, date) {
+      let ret;
+      const opt = {
+        "Y+": date.getFullYear().toString(), // 年
+        "m+": (date.getMonth() + 1).toString(), // 月
+        "d+": date.getDate().toString(), // 日
+        "H+": date.getHours().toString(), // 时
+        "M+": date.getMinutes().toString(), // 分
+        "S+": date.getSeconds().toString(), // 秒
+        // 有其他格式化字符需求可以继续添加，必须转化成字符串
+      };
+      for (let k in opt) {
+        ret = new RegExp("(" + k + ")").exec(fmt);
+        if (ret) {
+          fmt = fmt.replace(
+            ret[1],
+            ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, "0")
+          );
+        }
+      }
+      return fmt;
+    },
+
+    // 获得星座
+    getAstro(m, d) {
+      return "摩羯水瓶双鱼牡羊金牛双子巨蟹狮子处女天秤天蝎射手摩羯".substr(
+        m * 2 - (d < "102223444433".charAt(m - 1) - -19) * 2,
+        2
+      );
+    },
+    //下面写一个测试函数
+    testAstro(month, day) {
+      console.log(month + "月" + day + "日: " + this.getAstro(month, day));
+    },
+    // 获得生肖
+    getAnimal(year) {
+      year = year % 12;
+      var animal = "";
+      switch (year) {
+        case 1:
+          animal = "鸡";
+          break;
+        case 2:
+          animal = "狗";
+          break;
+        case 3:
+          animal = "猪";
+          break;
+        case 4:
+          animal = "鼠";
+          break;
+        case 5:
+          animal = "牛";
+          break;
+        case 6:
+          animal = "虎";
+          break;
+        case 7:
+          animal = "兔";
+          break;
+        case 8:
+          animal = "龙";
+          break;
+        case 9:
+          animal = "蛇";
+          break;
+        case 10:
+          animal = "马";
+          break;
+        case 11:
+          animal = "羊";
+          break;
+        case 0:
+          animal = "猴";
+          break;
+      }
+      return animal;
+    },
+  },
+};
 </script>
 
 <style>
-	/*每个页面公共css */
-	.activate-line {
-		background-color: #FFFFFF;
-	}
+/*每个页面公共css */
+.activate-line {
+  background-color: #ffffff;
+}
 </style>

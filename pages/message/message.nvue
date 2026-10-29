@@ -77,6 +77,182 @@
 	margin-right: 10rpx;
 	border-radius: 2px;
 }
+
+/* 系统消息样式 */
+.system-icon {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 100rpx;
+	background-color: #ef274d;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-width: 1px;
+	border-color: #F1F1F1;
+}
+
+.system-icon-text {
+	font-size: 60rpx;
+}
+
+.system-nickname {
+	color: #ef274d;
+	font-size: 14px;
+	font-weight: 600;
+}
+
+/* 申诉弹窗样式 */
+.appeal-dialog {
+  width: 680rpx;
+  background-color: #1a1a1a;
+  border-radius: 20rpx;
+  padding: 40rpx;
+}
+
+.appeal-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.appeal-title-text {
+  font-size: 36rpx;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.appeal-close-icon {
+  width: 40rpx;
+  height: 40rpx;
+  opacity: 0.8;
+}
+
+.appeal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.appeal-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30rpx;
+}
+
+.appeal-label {
+  font-size: 28rpx;
+  color: #ffffff;
+  margin-bottom: 20rpx;
+}
+
+.appeal-picker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2a2a2a;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  /* #ifndef APP-PLUS-NVUE */
+  min-height: 80rpx;
+  /* #endif */
+  /* #ifdef APP-PLUS-NVUE */
+  height: 80rpx;
+  /* #endif */
+}
+
+.appeal-picker-text {
+  font-size: 28rpx;
+  color: #ffffff;
+}
+
+.appeal-picker-placeholder {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+.appeal-picker-arrow {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.appeal-textarea {
+  width: 100%;
+  /* #ifndef APP-PLUS-NVUE */
+  min-height: 250rpx;
+  box-sizing: border-box;
+  /* #endif */
+  /* #ifdef APP-PLUS-NVUE */
+  height: 250rpx;
+  /* #endif */
+  background-color: #2a2a2a;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  margin-bottom: 10rpx;
+}
+
+.appeal-char-count {
+  font-size: 24rpx;
+  color: #999999;
+  text-align: right;
+}
+
+.appeal-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40rpx;
+}
+
+.appeal-btn {
+  flex: 1;
+  height: 80rpx;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10rpx;
+}
+
+.appeal-btn-cancel {
+  background-color: #3a3a3a;
+}
+
+.appeal-btn-submit {
+  background-color: #ef274d;
+}
+
+.appeal-btn-text {
+  font-size: 32rpx;
+  color: #ffffff;
+}
+</style>
+
+<!-- nvue样式支持 -->
+<style>
+/* 申诉弹窗样式 - nvue兼容 */
+.appeal-dialog {
+  width: 680rpx !important;
+  background-color: #1a1a1a;
+  border-radius: 20rpx;
+  padding: 40rpx;
+}
+
+.appeal-textarea {
+  width: 100% !important;
+  min-height: 250rpx !important;
+  background-color: #2a2a2a;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  margin-bottom: 10rpx;
+}
 </style>
 <template>
 	<view class="page">
@@ -133,8 +309,8 @@
 							
 						<view class="msg-item-middle">
 							<text class="user-nickname">{{msg.fromNickname}}</text>
-							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.commentContent}}</text>
-							<text class="msg-content" style="font-weight: 200;">发表了评论    {{getGraceDateBeforeNow(msg.createTime)}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">发表了评论：{{msg.msgContent.commentContent || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
 						</view>
 					</view>
 					
@@ -153,8 +329,8 @@
 							
 						<view class="msg-item-middle">
 							<text class="user-nickname">{{msg.fromNickname}}</text>
-							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.commentContent}}</text>
-							<text class="msg-content" style="font-weight: 200;">回复了你    {{getGraceDateBeforeNow(msg.createTime)}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">回复了你：{{msg.msgContent.commentContent || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
 						</view>
 					</view>
 					
@@ -163,7 +339,8 @@
 						class="vlog-cover" 
 						style="align-self: center;"
 						:src="msg.msgContent.vlogCover"
-						@click="goToVlog(msg.msgContent.vlogId)"></image>
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
 				</view>
 				
 				<!-- 点赞评论 -->
@@ -182,10 +359,227 @@
 						class="vlog-cover" 
 						style="align-self: center;"
 						:src="msg.msgContent.vlogCover"
-						@click="goToVlog(msg.msgContent.vlogId)"></image>
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
+				</view>
+				
+				<!-- 举报处理 (类型6) - 被举报人布局：[图片] [消息内容] [申诉按钮] -->
+				<view v-if="msg.msgType == 6 && isReportedUser(msg)" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 如果有视频封面，显示视频封面（放在前面） -->
+						<image
+							v-if="msg.msgContent && msg.msgContent.vlogCover"
+							mode="aspectFill" 
+							class="vlog-cover" 
+							style="align-self: center;margin-right: 20rpx;"
+							:src="msg.msgContent.vlogCover"
+							@click="goToVlog(msg.msgContent.vlogId)">
+						</image>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">被举报通知</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult || msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 申诉按钮 -->
+					<view 
+						class="msg-item-right" 
+						style="background-color: #ef274d;align-self: center;" 
+						@click="showAppealDialog(msg)">
+						<text class="op-fans-btn" style="align-self: center;">申诉</text> 
+					</view>
+				</view>
+				
+				<!-- 举报处理 (类型6) - 举报人布局：[系统消息图标] [消息内容] [图片] -->
+				<view v-if="msg.msgType == 6 && !isReportedUser(msg)" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 系统消息图标 -->
+						<view class="system-icon" style="align-self: center;">
+							<text class="system-icon-text">📢</text>
+						</view>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">举报结果</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult || msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 如果有视频封面，显示视频封面 -->
+					<image
+						v-if="msg.msgContent && msg.msgContent.vlogCover"
+						mode="aspectFill" 
+						class="vlog-cover" 
+						style="align-self: center;"
+						:src="msg.msgContent.vlogCover"
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
+				</view>
+				
+				<!-- 申诉处理 (类型7) -->
+				<view v-if="msg.msgType == 7" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 系统消息图标 -->
+						<view class="system-icon" style="align-self: center;">
+							<text class="system-icon-text">📢</text>
+						</view>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">申诉结果</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 3;text-overflow: ellipsis;">{{msg.msgContent.handleResult || msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 如果有视频封面，显示视频封面 -->
+					<image
+						v-if="msg.msgContent && msg.msgContent.vlogCover"
+						mode="aspectFill" 
+						class="vlog-cover" 
+						style="align-self: center;"
+						:src="msg.msgContent.vlogCover"
+						@click="goToVlog(msg.msgContent.vlogId)">
+					</image>
+				</view>
+				
+				<!-- 系统消息 (类型8) -->
+				<view v-if="msg.msgType == 8" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 系统消息图标 -->
+						<view class="system-icon" style="align-self: center;">
+							<text class="system-icon-text">📢</text>
+						</view>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">系统消息</text>
+							<text class="msg-content" style="font-weight: 600;width: 360rpx;lines: 1;text-overflow: ellipsis;">{{msg.msgContent.title || '系统消息'}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 如果有图片，显示图片 -->
+					<image
+						v-if="msg.msgContent && msg.msgContent.imageUrl"
+						mode="aspectFill" 
+						class="vlog-cover" 
+						style="align-self: center;"
+						:src="msg.msgContent.imageUrl"
+						@click="handleSystemMessageClick(msg)">
+					</image>
+				</view>
+				
+				<!-- 系统公告 (类型9) -->
+				<view v-if="msg.msgType == 9" class="msg-item-box">
+					<view class="msg-item-left">
+						<!-- 系统消息图标 -->
+						<view class="system-icon" style="align-self: center;">
+							<text class="system-icon-text">📢</text>
+						</view>
+							
+						<view class="msg-item-middle">
+							<text class="system-nickname">系统通知</text>
+							<text class="msg-content" style="font-weight: 600;width: 360rpx;lines: 1;text-overflow: ellipsis;">{{msg.msgContent.title || '系统公告'}}</text>
+							<text class="msg-content" style="font-weight: 400;width: 360rpx;lines: 2;text-overflow: ellipsis;">{{msg.msgContent.content || ''}}</text>
+							<text class="msg-content" style="font-weight: 200;">{{getGraceDateBeforeNow(msg.createTime)}}</text>
+						</view>
+					</view>
+					
+					<!-- 如果有图片，显示图片 -->
+					<image
+						v-if="msg.msgContent && msg.msgContent.imageUrl"
+						mode="aspectFill" 
+						class="vlog-cover" 
+						style="align-self: center;"
+						:src="msg.msgContent.imageUrl"
+						@click="handleSystemMessageClick(msg)">
+					</image>
 				</view>
 			</block>
 		</scroll-view>
+		
+		<!-- 申诉弹窗 -->
+		<uni-popup ref="appealPopup" type="center" :mask-click="false">
+			<view
+				class="appeal-dialog"
+				style="
+					width: 680rpx;
+					background-color: #1a1a1a;
+					border-radius: 20rpx;
+					padding: 40rpx;
+				"
+				@click.stop
+			>
+				<view class="appeal-title">
+					<text class="appeal-title-text">申诉</text>
+					<image
+						src="/static/images/icon-close.png"
+						class="appeal-close-icon"
+						@click="closeAppealDialog"
+					></image>
+				</view>
+				<view class="appeal-content">
+					<view class="appeal-item">
+						<text class="appeal-label">申诉原因：</text>
+						<picker
+							mode="selector"
+							:range="appealReasons"
+							:value="selectedAppealReasonIndex"
+							@change="onAppealReasonChange"
+						>
+							<view class="appeal-picker" @click.stop>
+								<text
+									:class="
+										selectedAppealReasonIndex >= 0
+											? 'appeal-picker-text'
+											: 'appeal-picker-placeholder'
+									"
+								>
+									{{
+										selectedAppealReasonIndex >= 0
+											? appealReasons[selectedAppealReasonIndex]
+											: "请选择申诉原因"
+									}}
+								</text>
+								<text class="appeal-picker-arrow">▼</text>
+							</view>
+						</picker>
+					</view>
+					<view class="appeal-item">
+						<text class="appeal-label">详细描述：</text>
+						<textarea
+							class="appeal-textarea"
+							style="
+								width: 100%;
+								background-color: #2a2a2a;
+								border-radius: 10rpx;
+								padding: 20rpx;
+								font-size: 28rpx;
+								color: #ffffff;
+								margin-bottom: 10rpx;
+							"
+							placeholder="请详细描述申诉理由（选填，最多500字）"
+							placeholder-style="color: #999999"
+							v-model="appealDescription"
+							maxlength="500"
+						></textarea>
+						<text class="appeal-char-count"
+							>{{ appealDescription.length }}/500</text
+						>
+					</view>
+				</view>
+				<view class="appeal-buttons">
+					<view class="appeal-btn appeal-btn-cancel" @click="closeAppealDialog">
+						<text class="appeal-btn-text">取消</text>
+					</view>
+					<view class="appeal-btn appeal-btn-submit" @click="submitAppeal">
+						<text class="appeal-btn-text">提交</text>
+					</view>
+				</view>
+			</view>
+		</uni-popup>
 		
 	</view>
 </template>
@@ -198,6 +592,12 @@
 				msgList: [],
 				page: 0,
 				totalPage: 0,
+				
+				// 申诉相关
+				currentAppealMsg: null, // 当前要申诉的消息对象
+				appealReasons: ["处理结果不公正", "内容不存在违规", "误判", "其他"],
+				selectedAppealReasonIndex: -1, // 选中的申诉原因索引
+				appealDescription: "", // 申诉详细描述
 			}
 		},
 		onShow() {
@@ -206,6 +606,18 @@
 			this.msgList = [];
 			
 			this.fetchList(0);
+		},
+		onTabItemTap(e) {
+			var tabIndex = e.index;
+			var me = this;
+			// 点击消息tab时，刷新消息列表
+			// tabBar 配置中消息页面是第3个tab（index=2）
+			if (tabIndex == 2) {
+				me.page = 0;
+				me.totalPage = 0;
+				me.msgList = [];
+				me.fetchList(0);
+			}
 		},
 		methods: {
 			goToVlog(vlogId) {
@@ -335,6 +747,193 @@
 			getGraceDateBeforeNow(dateTimeStr) {
 				var date = app.dateFormat("YYYY-mm-dd", new Date(dateTimeStr));
 				return getApp().getDateBeforeNow(date);
+			},
+			
+			// 判断是否为被举报人（通过handleResult是否以"您的"开头来判断）
+			isReportedUser(msg) {
+				if (!msg || !msg.msgContent) {
+					return false;
+				}
+				var handleResult = msg.msgContent.handleResult || msg.msgContent.content || '';
+				// 被举报人的消息格式是："您的xxx被举报xxx"，以"您的"开头
+				// 举报人的消息格式是："xxx举报xxx"，不以"您的"开头
+				return handleResult.indexOf('您的') === 0;
+			},
+			
+			// 处理系统消息/公告点击（类型7和8）
+			handleSystemMessageClick(msg) {
+				var me = this;
+				var msgContent = msg.msgContent;
+				
+				// 如果有跳转链接，执行跳转
+				if (msgContent && msgContent.link) {
+					var link = msgContent.link;
+					
+					// 如果是相对路径，使用 navigateTo
+					if (link.startsWith('/') || link.startsWith('../')) {
+						uni.navigateTo({
+							url: link,
+							fail(err) {
+								console.error("跳转失败：", err);
+								uni.showToast({
+									title: "页面跳转失败",
+									icon: "none",
+									duration: 2000
+								});
+							}
+						});
+					} else if (link.startsWith('http://') || link.startsWith('https://')) {
+						// 如果是外部链接，可以打开webview或复制链接
+						uni.setClipboardData({
+							data: link,
+							success() {
+								uni.showToast({
+									title: "链接已复制",
+									icon: "none",
+									duration: 2000
+								});
+							}
+						});
+					}
+				} else {
+					// 没有链接，可以显示消息详情（可选）
+					// 这里可以根据需求实现详情弹窗
+				}
+			},
+			
+			// 显示申诉弹窗
+			showAppealDialog(msg) {
+				var me = this;
+				
+				// 检查是否登录
+				var myUserInfo = getApp().getUserInfoSession();
+				if (myUserInfo == null) {
+					uni.showToast({
+						duration: 3000,
+						title: "请登录~",
+						icon: "none",
+					});
+					uni.navigateTo({
+						url: "../loginRegist/loginRegist",
+						animationType: "slide-in-bottom",
+					});
+					return;
+				}
+				
+				// 检查消息中是否有reportId
+				if (!msg.msgContent || !msg.msgContent.reportId) {
+					uni.showToast({
+						title: "无法获取举报信息",
+						icon: "none",
+						duration: 2000
+					});
+					return;
+				}
+				
+				me.currentAppealMsg = msg;
+				me.selectedAppealReasonIndex = -1;
+				me.appealDescription = "";
+				me.$refs.appealPopup.open();
+			},
+			
+			// 关闭申诉弹窗
+			closeAppealDialog() {
+				this.$refs.appealPopup.close();
+				this.currentAppealMsg = null;
+				this.selectedAppealReasonIndex = -1;
+				this.appealDescription = "";
+			},
+			
+			// 选择申诉原因
+			onAppealReasonChange(e) {
+				this.selectedAppealReasonIndex = e.detail.value;
+			},
+			
+			// 提交申诉
+			submitAppeal() {
+				var me = this;
+				
+				// 验证申诉原因
+				if (me.selectedAppealReasonIndex < 0) {
+					uni.showToast({
+						title: "请选择申诉原因",
+						icon: "none",
+						duration: 2000,
+					});
+					return;
+				}
+				
+				var myUserInfo = getApp().getUserInfoSession();
+				if (myUserInfo == null) {
+					uni.showToast({
+						title: "请登录~",
+						icon: "none",
+						duration: 3000,
+					});
+					return;
+				}
+				
+				if (!me.currentAppealMsg || !me.currentAppealMsg.msgContent || !me.currentAppealMsg.msgContent.reportId) {
+					uni.showToast({
+						title: "无法获取举报信息",
+						icon: "none",
+						duration: 2000
+					});
+					return;
+				}
+				
+				var appealerId = myUserInfo.id;
+				var reportId = me.currentAppealMsg.msgContent.reportId;
+				var reason = me.appealReasons[me.selectedAppealReasonIndex];
+				var description = me.appealDescription || "";
+				
+				// 构建申诉数据
+				var appealData = {
+					reportId: reportId,
+					appealerId: appealerId,
+					reason: reason,
+					description: description,
+				};
+				
+				console.log("提交申诉数据：", appealData);
+				
+				var serverUrl = app.globalData.serverUrl;
+				uni.request({
+					method: "POST",
+					header: {
+						"Content-Type": "application/json",
+						headerUserId: appealerId,
+						headerUserToken: app.getUserSessionToken(),
+					},
+					url: serverUrl + "/appeal/create",
+					data: appealData,
+					success(result) {
+						console.log("申诉响应：", result);
+						
+						if (result.data.status == 200) {
+							uni.showToast({
+								title: "申诉提交成功!",
+								icon: "success",
+								duration: 2000,
+							});
+							me.closeAppealDialog();
+						} else {
+							uni.showToast({
+								title: result.data.msg || "申诉提交失败，请重试",
+								icon: "none",
+								duration: 3000,
+							});
+						}
+					},
+					fail(err) {
+						console.error("申诉请求失败：", err);
+						uni.showToast({
+							title: "网络错误，请重试",
+							icon: "none",
+							duration: 3000,
+						});
+					},
+				});
 			},
 		}
 	}

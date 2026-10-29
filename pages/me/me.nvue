@@ -297,18 +297,77 @@
 			if (myUserInfo == null) {
 				return;
 			}
+			
+			// 检查本地是否有 token
+			var userToken = app.getUserSessionToken();
+			if (!userToken || userToken.trim() === '') {
+				// 本地没有 token，清除用户信息并跳转到登录页
+				app.clearUserInfo();
+				me.userIsLogin = false;
+				uni.showToast({
+					title: "登录已失效，请重新登录",
+					icon: "none",
+					duration: 2000
+				});
+				return;
+			}
+			
 			this.pageUserInfo = myUserInfo;
 			var myUserId = myUserInfo.id;
 			var serverUrl = app.globalData.serverUrl;
-			// 查询用户信息
+			
+			// 查询自己的用户信息（需要token验证）
 			uni.request({
 				method: "GET",
-				url: serverUrl + "/userInfo/query?userId=" + myUserId,
+				header: {
+					headerUserId: myUserId,
+					headerUserToken: userToken
+				},
+				url: serverUrl + "/userInfo/queryMe?userId=" + myUserId,
 				success(result) {
 					if (result.data.status == 200) {
 						me.pageUserInfo = result.data.data;
 						me.setBasicUserInfo(me.pageUserInfo);
+					} else {
+						// token 无效或用户被删除，清除本地信息并登出
+						var errorMsg = result.data.msg || "";
+						var status = result.data.status;
+						
+						// 检查是否是 token 相关的错误（401、403 或特定错误码）
+						// 或者错误信息中包含 token 无效、用户不存在等关键词
+						if (status == 401 || 
+						    status == 403 || 
+						    errorMsg.indexOf("token") !== -1 ||
+						    errorMsg.indexOf("登录") !== -1 ||
+						    errorMsg.indexOf("用户不存在") !== -1 ||
+						    errorMsg.indexOf("用户已被删除") !== -1) {
+							// 清除本地用户信息和 token
+							app.clearUserInfo();
+							me.userIsLogin = false;
+							
+							uni.showToast({
+								title: "登录已失效，请重新登录",
+								icon: "none",
+								duration: 2000
+							});
+							
+							// 延迟跳转，让用户看到提示
+							setTimeout(function() {
+								uni.reLaunch({
+									url: "../index/index"
+								});
+							}, 2000);
+						}
 					}
+				},
+				fail(err) {
+					console.error("查询用户信息失败：", err);
+					// 网络错误不自动登出，只提示
+					uni.showToast({
+						title: "网络错误，请重试",
+						icon: "none",
+						duration: 2000
+					});
 				}
 			});
 			

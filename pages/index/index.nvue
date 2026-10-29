@@ -224,7 +224,19 @@
 			// 切换视频要做暂停或播放的判断
 			var me = this;
 			if (tabIndex == 0) {
-				// 虚位以待
+				// 点击首页tab，自动刷新当前显示的tab的视频列表
+				// 根据当前 curIndex 刷新对应的视频列表
+				if (me.curIndex == 1) {
+					// 刷新关注列表
+					if (me.$refs.videoFollowComp != undefined) {
+						me.$refs.videoFollowComp.displayVideoPaging(1, true);
+					}
+				} else if (me.curIndex == 2) {
+					// 刷新推荐列表
+					if (me.$refs.videoComp != undefined) {
+						me.$refs.videoComp.displayVideoPaging(1, true);
+					}
+				}
 			} else if (tabIndex == 1) {
 				me.playStatus = false;
 				me.playFollowStatus = true;

@@ -407,7 +407,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar _default = {\n  data: function data() {\n    return {\n      searchContent: \"\",\n      historyList: ['脆脆鲨', '视频网', 'video', '蝙蝠侠', '灌篮高手', '蜘蛛侠', '钢铁侠']\n    };\n  },\n  onLoad: function onLoad(option) {\n    this.statusBarHeight = system.statusBarHeight;\n\n    // 从本地缓存获得搜索的历史记录\n    var historyListJSON = uni.getStorageSync(\"historyList\");\n    if (historyListJSON == undefined || historyListJSON == \"\" || historyListJSON == null) {\n      this.historyList = [];\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n    } else {\n      this.historyList = JSON.parse(historyListJSON);\n    }\n  },\n  methods: {\n    back: function back() {\n      uni.navigateBack({\n        delta: 1\n      });\n    },\n    scan: function scan() {\n      uni.scanCode({\n        success: function success(e) {\n          // url地址\n          var result = e.result;\n          var vlogId = JSON.parse(result).content;\n          // 跳转页面，把搜索条件携带过去\n          uni.navigateTo({\n            url: \"../vlog/vlog?vlogId=\" + vlogId\n          });\n        }\n      });\n    },\n    typingContent: function typingContent(e) {\n      this.searchContent = e.target.value;\n    },\n    searchByHistory: function searchByHistory(searchContent) {\n      this.searchContent = searchContent;\n      this.doSearch();\n    },\n    doSearch: function doSearch() {\n      var me = this;\n      var searchContent = this.searchContent;\n      if (searchContent == undefined || searchContent == \"\" || searchContent == null) {\n        return;\n      }\n      var tempList = this.historyList;\n      // 判断搜索内容是否已经存在，如果存在，则移除\n      for (var i = 0; i < tempList.length; i++) {\n        var old = tempList[i];\n        if (searchContent === old) {\n          tempList.splice(i, 1);\n          break;\n        }\n      }\n      tempList.unshift(searchContent);\n\n      // 如果超过10个，则删除最后一项\n      tempList.splice(10, 1);\n      this.historyList = tempList;\n      // 清空搜索框内容\n      this.searchContent = \"\";\n      // 保存到本地缓存\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n\n      // 跳转页面，把搜索条件携带过去\n      uni.navigateTo({\n        url: \"searchList?search=\" + searchContent\n      });\n    },\n    removeHistoryItem: function removeHistoryItem(index) {\n      this.historyList.splice(index, 1);\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n    },\n    removeAllHistory: function removeAllHistory() {\n      this.historyList = [];\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvc2VhcmNoL3NlYXJjaC52dWUiXSwibmFtZXMiOlsic3lzdGVtIiwidW5pIiwiZ2V0U3lzdGVtSW5mb1N5bmMiLCJkYXRhIiwic2VhcmNoQ29udGVudCIsImhpc3RvcnlMaXN0Iiwib25Mb2FkIiwib3B0aW9uIiwic3RhdHVzQmFySGVpZ2h0IiwiaGlzdG9yeUxpc3RKU09OIiwiZ2V0U3RvcmFnZVN5bmMiLCJ1bmRlZmluZWQiLCJzZXRTdG9yYWdlU3luYyIsIkpTT04iLCJzdHJpbmdpZnkiLCJwYXJzZSIsIm1ldGhvZHMiLCJiYWNrIiwibmF2aWdhdGVCYWNrIiwiZGVsdGEiLCJzY2FuIiwic2NhbkNvZGUiLCJzdWNjZXNzIiwiZSIsInJlc3VsdCIsInZsb2dJZCIsImNvbnRlbnQiLCJuYXZpZ2F0ZVRvIiwidXJsIiwidHlwaW5nQ29udGVudCIsInRhcmdldCIsInZhbHVlIiwic2VhcmNoQnlIaXN0b3J5IiwiZG9TZWFyY2giLCJtZSIsInRlbXBMaXN0IiwiaSIsImxlbmd0aCIsIm9sZCIsInNwbGljZSIsInVuc2hpZnQiLCJyZW1vdmVIaXN0b3J5SXRlbSIsImluZGV4IiwicmVtb3ZlQWxsSGlzdG9yeSJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNB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RyxFQUFFO01BQ3JCSixHQUFHLENBQUNXLGNBQWMsQ0FBQyxhQUFhLEVBQUVDLElBQUksQ0FBQ0MsU0FBUyxDQUFDLElBQUksQ0FBQ1QsV0FBVyxDQUFDLENBQUM7SUFDcEU7RUFDRDtBQUNELENBQUM7QUFBQSIsImZpbGUiOiIxMS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuXG52YXIgc3lzdGVtID0gdW5pLmdldFN5c3RlbUluZm9TeW5jKCk7XG5leHBvcnQgZGVmYXVsdCB7XG5cdGRhdGEoKSB7XG5cdFx0cmV0dXJuIHtcblx0XHRcdHNlYXJjaENvbnRlbnQ6IFwiXCIsXG5cdFx0XHRoaXN0b3J5TGlzdDogWyfohIbohIbpsqgnLCAn6KeG6aKR572RJywgJ3ZpZGVvJywgJ+idmeidoOS+oCcsICfngYznr67pq5jmiYsnLCAn6JyY6Jub5L6gJywgJ+mSoumTgeS+oCddXG5cdFx0fVxuXHR9LFxuXHRvbkxvYWQob3B0aW9uKSB7XG5cdFx0dGhpcy5zdGF0dXNCYXJIZWlnaHQgPSBzeXN0ZW0uc3RhdHVzQmFySGVpZ2h0O1xuXHRcdFxuXHRcdC8vIOS7juacrOWcsOe8k+WtmOiOt+W+l+aQnOe0oueahOWOhuWPsuiusOW9lVxuXHRcdHZhciBoaXN0b3J5TGlzdEpTT04gPSB1bmkuZ2V0U3RvcmFnZVN5bmMoXCJoaXN0b3J5TGlzdFwiKTtcblx0XHRpZiAoaGlzdG9yeUxpc3RKU09OID09IHVuZGVmaW5lZCB8fCBoaXN0b3J5TGlzdEpTT04gPT0gXCJcIiB8fCBoaXN0b3J5TGlzdEpTT04gPT0gbnVsbCkge1xuXHRcdFx0dGhpcy5oaXN0b3J5TGlzdCA9IFtdO1xuXHRcdFx0dW5pLnNldFN0b3JhZ2VTeW5jKFwiaGlzdG9yeUxpc3RcIiwgSlNPTi5zdHJpbmdpZnkodGhpcy5oaXN0b3J5TGlzdCkpO1xuXHRcdH0gZWxzZSB7XG5cdFx0XHR0aGlzLmhpc3RvcnlMaXN0ID0gSlNPTi5wYXJzZShoaXN0b3J5TGlzdEpTT04pO1xuXHRcdH1cblx0XHRcblx0fSxcblx0bWV0aG9kczoge1xuXHRcdGJhY2soKSB7XG5cdFx0XHR1bmkubmF2aWdhdGVCYWNrKHtcblx0XHRcdFx0ZGVsdGE6IDFcblx0XHRcdH0pXG5cdFx0fSxcblx0XHRzY2FuKCkge1xuXHRcdFx0dW5pLnNjYW5Db2RlKHtcblx0XHRcdFx0c3VjY2VzczogKGUpID0+IHtcblx0XHRcdFx0XHQvLyB1cmzlnLDlnYBcblx0XHRcdFx0XHR2YXIgcmVzdWx0ID0gZS5yZXN1bHQ7XG5cdFx0XHRcdFx0dmFyIHZsb2dJZCA9IEpTT04ucGFyc2UocmVzdWx0KS5jb250ZW50O1xuXHRcdFx0XHRcdC8vIOi3s+i9rOmhtemdou+8jOaKiuaQnOe0ouadoeS7tuaQuuW4pui/h+WOu1xuXHRcdFx0XHRcdHVuaS5uYXZpZ2F0ZVRvKHtcblx0XHRcdFx0XHRcdHVybDogXCIuLi92bG9nL3Zsb2c/dmxvZ0lkPVwiICsgdmxvZ0lkXG5cdFx0XHRcdFx0fSlcblx0XHRcdFx0fVxuXHRcdFx0fSlcblx0XHR9LFxuXHRcdHR5cGluZ0NvbnRlbnQoZSkge1xuXHRcdFx0dGhpcy5zZWFyY2hDb250ZW50ID0gZS50YXJnZXQudmFsdWU7XG5cdFx0fSxcblx0XHRzZWFyY2hCeUhpc3Rvcnkoc2VhcmNoQ29udGVudCkge1xuXHRcdFx0dGhpcy5zZWFyY2hDb250ZW50ID0gc2VhcmNoQ29udGVudDtcblx0XHRcdHRoaXMuZG9TZWFyY2goKTtcblx0XHR9LFxuXHRcdGRvU2VhcmNoKCkge1xuXHRcdFx0dmFyIG1lID0gdGhpcztcblx0XHRcdHZhciBzZWFyY2hDb250ZW50ID0gdGhpcy5zZWFyY2hDb250ZW50O1xuXHRcdFx0aWYgKHNlYXJjaENvbnRlbnQgPT0gdW5kZWZpbmVkIHx8IHNlYXJjaENvbnRlbnQgPT0gXCJcIiB8fCBzZWFyY2hDb250ZW50ID09IG51bGwpIHtcblx0XHRcdFx0cmV0dXJuO1xuXHRcdFx0fVxuXHRcdFx0XG5cdFx0XHR2YXIgdGVtcExpc3QgPSB0aGlzLmhpc3RvcnlMaXN0O1xuXHRcdFx0Ly8g5Yik5pat5pCc57Si5YaF5a655piv5ZCm5bey57uP5a2Y5Zyo77yM5aaC5p6c5a2Y5Zyo77yM5YiZ56e76ZmkXG5cdFx0XHRmb3IgKHZhciBpID0gMCA7IGkgPCB0ZW1wTGlzdC5sZW5ndGggOyBpICsrKSB7XG5cdFx0XHRcdHZhciBvbGQgPSB0ZW1wTGlzdFtpXTtcblx0XHRcdFx0aWYgKHNlYXJjaENvbnRlbnQgPT09IG9sZCkge1xuXHRcdFx0XHRcdHRlbXBMaXN0LnNwbGljZShpLCAxKTtcblx0XHRcdFx0XHRicmVhaztcblx0XHRcdFx0fVxuXHRcdFx0fVxuXHRcdFx0dGVtcExpc3QudW5zaGlmdChzZWFyY2hDb250ZW50KTtcblx0XHRcdFxuXHRcdFx0XG5cdFx0XHQvLyDlpoLmnpzotoXov4cxMOS4qu+8jOWImeWIoOmZpOacgOWQjuS4gOmhuVxuXHRcdFx0dGVtcExpc3Quc3BsaWNlKDEwLCAxKTtcblx0XHRcdFxuXHRcdFx0XG5cdFx0XHR0aGlzLmhpc3RvcnlMaXN0ID0gdGVtcExpc3Q7XG5cdFx0XHQvLyDmuIXnqbrmkJzntKLmoYblhoXlrrlcblx0XHRcdHRoaXMuc2VhcmNoQ29udGVudCA9IFwiXCI7XG5cdFx0XHQvLyDkv53lrZjliLDmnKzlnLDnvJPlrZhcblx0XHRcdHVuaS5zZXRTdG9yYWdlU3luYyhcImhpc3RvcnlMaXN0XCIsIEpTT04uc3RyaW5naWZ5KHRoaXMuaGlzdG9yeUxpc3QpKTtcblx0XHRcdFxuXHRcdFx0Ly8g6Lez6L2s6aG16Z2i77yM5oqK5pCc57Si5p2h5Lu25pC65bim6L+H5Y67XG5cdFx0XHR1bmkubmF2aWdhdGVUbyh7XG5cdFx0XHRcdHVybDogXCJzZWFyY2hMaXN0P3NlYXJjaD1cIiArIHNlYXJjaENvbnRlbnRcblx0XHRcdH0pXG5cdFx0fSxcblx0XHRyZW1vdmVIaXN0b3J5SXRlbShpbmRleCkge1xuXHRcdFx0dGhpcy5oaXN0b3J5TGlzdC5zcGxpY2UoaW5kZXgsIDEpO1xuXHRcdFx0dW5pLnNldFN0b3JhZ2VTeW5jKFwiaGlzdG9yeUxpc3RcIiwgSlNPTi5zdHJpbmdpZnkodGhpcy5oaXN0b3J5TGlzdCkpO1xuXHRcdH0sXG5cdFx0cmVtb3ZlQWxsSGlzdG9yeSgpIHtcblx0XHRcdHRoaXMuaGlzdG9yeUxpc3QgPSBbXTtcblx0XHRcdHVuaS5zZXRTdG9yYWdlU3luYyhcImhpc3RvcnlMaXN0XCIsIEpTT04uc3RyaW5naWZ5KHRoaXMuaGlzdG9yeUxpc3QpKTtcblx0XHR9XG5cdH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///11\n");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar _default = {\n  data: function data() {\n    return {\n      searchContent: \"\",\n      historyList: ['脆脆鲨', '视频网', 'video', '蝙蝠侠', '灌篮高手', '蜘蛛侠', '钢铁侠']\n    };\n  },\n  onLoad: function onLoad(option) {\n    this.statusBarHeight = system.statusBarHeight;\n\n    // 从本地缓存获得搜索的历史记录\n    var historyListJSON = uni.getStorageSync(\"historyList\");\n    if (historyListJSON == undefined || historyListJSON == \"\" || historyListJSON == null) {\n      this.historyList = [];\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n    } else {\n      this.historyList = JSON.parse(historyListJSON);\n    }\n  },\n  methods: {\n    back: function back() {\n      uni.navigateBack({\n        delta: 1\n      });\n    },\n    scan: function scan() {\n      uni.scanCode({\n        success: function success(e) {\n          // url地址\n          var result = e.result;\n          var vlogId = JSON.parse(result).content;\n          // 跳转页面，把搜索条件携带过去\n          uni.navigateTo({\n            url: \"../vlog/vlog?vlogId=\" + vlogId\n          });\n        }\n      });\n    },\n    typingContent: function typingContent(e) {\n      this.searchContent = e.target.value;\n    },\n    searchByHistory: function searchByHistory(searchContent) {\n      this.searchContent = searchContent;\n      this.doSearch();\n    },\n    doSearch: function doSearch() {\n      var me = this;\n      var searchContent = this.searchContent;\n      if (searchContent == undefined || searchContent == \"\" || searchContent == null) {\n        return;\n      }\n      var tempList = this.historyList;\n      // 判断搜索内容是否已经存在，如果存在，则移除\n      for (var i = 0; i < tempList.length; i++) {\n        var old = tempList[i];\n        if (searchContent === old) {\n          tempList.splice(i, 1);\n          break;\n        }\n      }\n      tempList.unshift(searchContent);\n\n      // 如果超过10个，则删除最后一项\n      tempList.splice(10, 1);\n      this.historyList = tempList;\n      // 清空搜索框内容\n      this.searchContent = \"\";\n      // 保存到本地缓存\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n\n      // 跳转页面，把搜索条件携带过去\n      uni.navigateTo({\n        url: \"searchList?search=\" + searchContent\n      });\n    },\n    removeHistoryItem: function removeHistoryItem(index) {\n      this.historyList.splice(index, 1);\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n    },\n    removeAllHistory: function removeAllHistory() {\n      this.historyList = [];\n      uni.setStorageSync(\"historyList\", JSON.stringify(this.historyList));\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvc2VhcmNoL3NlYXJjaC52dWUiXSwibmFtZXMiOlsiZGF0YSIsInNlYXJjaENvbnRlbnQiLCJoaXN0b3J5TGlzdCIsIm9uTG9hZCIsInVuaSIsIm1ldGhvZHMiLCJiYWNrIiwiZGVsdGEiLCJzY2FuIiwic3VjY2VzcyIsInVybCIsInR5cGluZ0NvbnRlbnQiLCJzZWFyY2hCeUhpc3RvcnkiLCJkb1NlYXJjaCIsInRlbXBMaXN0IiwicmVtb3ZlSGlzdG9yeUl0ZW0iLCJyZW1vdmVBbGxIaXN0b3J5Il0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUE0SkE7QUFBQSxlQUNBO0VBQ0FBO0lBQ0E7TUFDQUM7TUFDQUM7SUFDQTtFQUNBO0VBQ0FDO0lBQ0E7O0lBRUE7SUFDQTtJQUNBO01BQ0E7TUFDQUM7SUFDQTtNQUNBO0lBQ0E7RUFFQTtFQUNBQztJQUNBQztNQUNBRjtRQUNBRztNQUNBO0lBQ0E7SUFDQUM7TUFDQUo7UUFDQUs7VUFDQTtVQUNBO1VBQ0E7VUFDQTtVQUNBTDtZQUNBTTtVQUNBO1FBQ0E7TUFDQTtJQUNBO0lBQ0FDO01BQ0E7SUFDQTtJQUNBQztNQUNBO01BQ0E7SUFDQTtJQUNBQztNQUNBO01BQ0E7TUFDQTtRQUNBO01BQ0E7TUFFQTtNQUNBO01BQ0E7UUFDQTtRQUNBO1VBQ0FDO1VBQ0E7UUFDQTtNQUNBO01BQ0FBOztNQUdBO01BQ0FBO01BR0E7TUFDQTtNQUNBO01BQ0E7TUFDQVY7O01BRUE7TUFDQUE7UUFDQU07TUFDQTtJQUNBO0lBQ0FLO01BQ0E7TUFDQVg7SUFDQTtJQUNBWTtNQUNBO01BQ0FaO0lBQ0E7RUFDQTtBQUNBO0FBQUEiLCJmaWxlIjoiMTEuanMiLCJzb3VyY2VzQ29udGVudCI6WyI8c3R5bGU+XG4ucGFnZSB7XG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcblx0bGVmdDogMDtcblx0cmlnaHQ6IDA7XG5cdHRvcDogMDtcblx0Ym90dG9tOiAwO1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjMTgxYjI3O1xufVxuLmhlYWRlci1yaWdodC1zZWFyY2gge1xuXHRoZWlnaHQ6IDEwMHJweDtcblx0LyogYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7XG5cdGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7ICovXG59XG5cbi5iaWctc2VhcmNoLXdyYXBwZXIge1xuXHRwYWRkaW5nOiAzMHJweDtcblx0ZGlzcGxheTogZmxleDtcblx0ZmxleC1kaXJlY3Rpb246IHJvdztcblx0anVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufVxuLmljb24tc2VhcmNoIHtcblx0d2lkdGg6IDQwcnB4O1xuXHRoZWlnaHQ6IDQwcnB4O1xuXHRvcGFjaXR5OiAwLjg7XG5cdGFsaWduLXNlbGY6IGNlbnRlcjtcbn1cbi5zZWFyY2gtYm94IHtcblx0ZGlzcGxheTogZmxleDtcblx0ZmxleC1kaXJlY3Rpb246IHJvdztcbn1cbi5zZWFyY2gtYm94LWxlZnQge1xuXHRwYWRkaW5nOiAwIDEwcnB4O1xuXHRkaXNwbGF5OiBmbGV4O1xuXHRmbGV4LWRpcmVjdGlvbjogcm93O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjNTU1NjVlO1xuXHRib3JkZXItdG9wLWxlZnQtcmFkaXVzOiAzcHg7IFxuXHRib3JkZXItYm90dG9tLWxlZnQtcmFkaXVzOiAzcHg7XG59XG4uc2VhcmNoLWltYWdlIHtcblx0d2lkdGg6IDUwcnB4O1xuXHRoZWlnaHQ6IDUwcnB4O1xuXHRvcGFjaXR5OiAwLjg7XG5cdGFsaWduLXNlbGY6IGNlbnRlcjtcbn1cbi5zZWFyY2gtaW5wdXQge1xuXHR3aWR0aDogMzYwcnB4O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjNTU1NjVlO1xuXHRoZWlnaHQ6IDgwcnB4O1xuXHRmb250LXNpemU6IDE0cHg7XG5cdGNvbG9yOiAjRkZGRkZGO1xufVxuLnNlYXJjaC1ib3gtcmlnaHQge1xuXHRwYWRkaW5nOiAwIDE2cnB4O1xuXHRkaXNwbGF5OiBmbGV4O1xuXHRmbGV4LWRpcmVjdGlvbjogcm93O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjNTU1NjVlO1xuXHRib3JkZXItdG9wLXJpZ2h0LXJhZGl1czogM3B4OyBcblx0Ym9yZGVyLWJvdHRvbS1yaWdodC1yYWRpdXM6IDNweDtcdFxufVxuLnNjYW4taW1hZ2Uge1xuXHR3aWR0aDogNTBycHg7XG5cdGhlaWdodDogNTBycHg7XG5cdG9wYWNpdHk6IDAuODtcblx0YWxpZ24tc2VsZjogY2VudGVyO1xufVxuLnNlYXJjaC1idG4ge1xuXHRjb2xvcjogI0ZGRkZGRjtcblx0Zm9udC1zaXplOiAxNnB4O1xuXHRhbGlnbi1zZWxmOiBjZW50ZXI7XG59XG4udGltZS1pbWFnZSB7XG5cdHdpZHRoOiA0MHJweDtcblx0aGVpZ2h0OiA0MHJweDtcblx0YWxpZ24tc2VsZjogY2VudGVyO1xufVxuLmRlbGV0ZS1pbWFnZSB7XG5cdHdpZHRoOiAzMHJweDtcblx0aGVpZ2h0OiAzMHJweDtcblx0b3BhY2l0eTogMC45O1xuXHRhbGlnbi1zZWxmOiBjZW50ZXI7XG59XG4uaGlzdG9yeS1pdGVtLXdyYXBwZXIge1xuXHRwYWRkaW5nOiAxNnJweCAyNnJweDtcblx0ZGlzcGxheTogZmxleDtcblx0ZmxleC1kaXJlY3Rpb246IHJvdztcblx0anVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xufVxuLnRpbWUtYW5kLXRleHQge1xuXHRkaXNwbGF5OiBmbGV4O1xuXHRmbGV4LWRpcmVjdGlvbjogcm93O1xuXHR3aWR0aDogNTAwcnB4O1xufVxuLmhpc3RvcnktdGV4dCB7XG5cdGNvbG9yOiAjRkZGRkZGO1xuXHRmb250LXNpemU6IDE1cHg7XG5cdGFsaWduLXNlbGY6IGNlbnRlcjtcblx0bWFyZ2luLWxlZnQ6IDIwcnB4O1xufVxuLmNsZWFyLWFsbC13cmFwcGVyIHtcblx0ZGlzcGxheTogZmxleDtcblx0ZmxleC1kaXJlY3Rpb246IHJvdztcblx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG5cdG1hcmdpbi10b3A6IDQwcnB4O1xufVxuLmNsZWFyLWFsbCB7XG5cdGNvbG9yOiAjRjFGMUYxO1xuXHRmb250LXNpemU6IDE0cHg7XG5cdGFsaWduLXNlbGY6IGNlbnRlcjtcbn1cbjwvc3R5bGU+XG5cbjx0ZW1wbGF0ZT5cblx0PHZpZXcgY2xhc3M9XCJwYWdlXCI+XG5cdFx0PCEtLSDov5nph4zmmK/nirbmgIHmoI8sIOavj+S4qumhtemdoumDvemcgOimgeacie+8jOebrueahOS4jeiuqemhtemdouimhueblueKtuaAgeagjyAtLT5cblx0XHQ8dmlldyA6c3R5bGU9XCJ7aGVpZ2h0OiBzdGF0dXNCYXJIZWlnaHQgKyAncHgnfVwiPjwvdmlldz5cblx0XHRcblx0XHQ8dmlldyBjbGFzcz1cImJpZy1zZWFyY2gtd3JhcHBlclwiPlxuXHRcdFx0PGltYWdlIGNsYXNzPVwiaGVhZGVyLXJpZ2h0LXNlYXJjaCBpY29uLXNlYXJjaFwiIHNyYz1cIi9zdGF0aWMvaW1hZ2VzL2ljb24tYmFjay5wbmdcIiBAY2xpY2s9XCJiYWNrKClcIj5cblx0XHRcdDx2aWV3IGNsYXNzPVwic2VhcmNoLWJveFwiPlxuXHRcdFx0XHQ8dmlldyBjbGFzcz1cInNlYXJjaC1ib3gtbGVmdFwiPlxuXHRcdFx0XHRcdDxpbWFnZSBjbGFzcz1cImhlYWRlci1yaWdodC1zZWFyY2ggc2VhcmNoLWltYWdlXCIgc3JjPVwiL3N0YXRpYy9pbWFnZXMvaWNvbi1zZWFyY2gucG5nXCIgLz5cblx0XHRcdFx0PC92aWV3PlxuXHRcdFx0XHQ8dmlldyBzdHlsZT1cIlwiPlxuXHRcdFx0XHRcdDxpbnB1dCB0eXBlPVwidGV4dFwiIFxuXHRcdFx0XHRcdFx0Om1vZGVsPVwic2VhcmNoQ29udGVudFwiIFxuXHRcdFx0XHRcdFx0OnZhbHVlPVwic2VhcmNoQ29udGVudFwiICBcblx0XHRcdFx0XHRcdEBpbnB1dD1cInR5cGluZ0NvbnRlbnRcIiBcblx0XHRcdFx0XHRcdHBsYWNlaG9sZGVyPVwi6K+36L6T5YWl5YaF5a65flwiIFxuXHRcdFx0XHRcdFx0bWF4bGVuZ3RoPVwiMTBcIlxuXHRcdFx0XHRcdFx0Y2xhc3M9XCJzZWFyY2gtaW5wdXRcIi8+XG5cdFx0XHRcdDwvdmlldz5cblx0XHRcdFx0PHZpZXcgY2xhc3M9XCJzZWFyY2gtYm94LXJpZ2h0XCI+XG5cdFx0XHRcdFx0PGltYWdlIGNsYXNzPVwic2Nhbi1pbWFnZVwiIHNyYz1cIi9zdGF0aWMvaW1hZ2VzL2ljb24tc2Nhbi1xcmNvZGUucG5nXCIgQGNsaWNrPVwic2NhbigpXCIvPlxuXHRcdFx0XHQ8L3ZpZXc+XG5cdFx0XHQ8L3ZpZXc+XG5cdFx0XHQ8dmlldyBzdHlsZT1cImFsaWduLXNlbGY6IGNlbnRlcjtcIiBAY2xpY2s9XCJkb1NlYXJjaFwiPjx0ZXh0IGNsYXNzPVwic2VhcmNoLWJ0blwiPuaQnOe0ojwvdGV4dD48L3ZpZXc+XG5cdFx0PC92aWV3PlxuXHRcdFxuXHRcdDx2aWV3PlxuXHRcdFx0PHZpZXcgdi1mb3I9XCIoaCwgaW5kZXgpIGluIGhpc3RvcnlMaXN0XCIgOmtleT1cImluZGV4XCIgY2xhc3M9XCJoaXN0b3J5LWl0ZW0td3JhcHBlclwiPlxuXHRcdFx0XHQ8dmlldyBjbGFzcz1cInRpbWUtYW5kLXRleHRcIiBAY2xpY2s9XCJzZWFyY2hCeUhpc3RvcnkoaClcIj5cblx0XHRcdFx0XHQ8aW1hZ2UgY2xhc3M9XCJ0aW1lLWltYWdlXCIgc3JjPVwiL3N0YXRpYy9pbWFnZXMvaWNvbi10aW1lLnBuZ1wiLz5cblx0XHRcdFx0XHQ8dGV4dCBjbGFzcz1cImhpc3RvcnktdGV4dFwiPnt7aH19PC90ZXh0PlxuXHRcdFx0XHQ8L3ZpZXc+XG5cdFx0XHRcdDxpbWFnZSBjbGFzcz1cImRlbGV0ZS1pbWFnZVwiIHNyYz1cIi9zdGF0aWMvaW1hZ2VzL2ljb24tZGVsZXRlLnBuZ1wiIEBjbGljaz1cInJlbW92ZUhpc3RvcnlJdGVtKGluZGV4KVwiLz5cblx0XHRcdDwvdmlldz5cblx0XHRcdFxuXHRcdFx0PHZpZXcgY2xhc3M9XCJjbGVhci1hbGwtd3JhcHBlclwiIEBjbGljaz1cInJlbW92ZUFsbEhpc3RvcnkoKVwiPlxuXHRcdFx0XHQ8dGV4dCBjbGFzcz1cImNsZWFyLWFsbFwiPua4hemZpOaJgOacieaQnOe0ouiusOW9lTwvdGV4dD5cblx0XHRcdDwvdmlldz5cblx0XHQ8L3ZpZXc+XG5cdDwvdmlldz5cbjwvdGVtcGxhdGU+XG5cbjxzY3JpcHQ+XG5cdHZhciBzeXN0ZW0gPSB1bmkuZ2V0U3lzdGVtSW5mb1N5bmMoKTtcblx0ZXhwb3J0IGRlZmF1bHQge1xuXHRcdGRhdGEoKSB7XG5cdFx0XHRyZXR1cm4ge1xuXHRcdFx0XHRzZWFyY2hDb250ZW50OiBcIlwiLFxuXHRcdFx0XHRoaXN0b3J5TGlzdDogWyfohIbohIbpsqgnLCAn6KeG6aKR572RJywgJ3ZpZGVvJywgJ+idmeidoOS+oCcsICfngYznr67pq5jmiYsnLCAn6JyY6Jub5L6gJywgJ+mSoumTgeS+oCddXG5cdFx0XHR9XG5cdFx0fSxcblx0XHRvbkxvYWQob3B0aW9uKSB7XG5cdFx0XHR0aGlzLnN0YXR1c0JhckhlaWdodCA9IHN5c3RlbS5zdGF0dXNCYXJIZWlnaHQ7XG5cdFx0XHRcblx0XHRcdC8vIOS7juacrOWcsOe8k+WtmOiOt+W+l+aQnOe0oueahOWOhuWPsuiusOW9lVxuXHRcdFx0dmFyIGhpc3RvcnlMaXN0SlNPTiA9IHVuaS5nZXRTdG9yYWdlU3luYyhcImhpc3RvcnlMaXN0XCIpO1xuXHRcdFx0aWYgKGhpc3RvcnlMaXN0SlNPTiA9PSB1bmRlZmluZWQgfHwgaGlzdG9yeUxpc3RKU09OID09IFwiXCIgfHwgaGlzdG9yeUxpc3RKU09OID09IG51bGwpIHtcblx0XHRcdFx0dGhpcy5oaXN0b3J5TGlzdCA9IFtdO1xuXHRcdFx0XHR1bmkuc2V0U3RvcmFnZVN5bmMoXCJoaXN0b3J5TGlzdFwiLCBKU09OLnN0cmluZ2lmeSh0aGlzLmhpc3RvcnlMaXN0KSk7XG5cdFx0XHR9IGVsc2Uge1xuXHRcdFx0XHR0aGlzLmhpc3RvcnlMaXN0ID0gSlNPTi5wYXJzZShoaXN0b3J5TGlzdEpTT04pO1xuXHRcdFx0fVxuXHRcdFx0XG5cdFx0fSxcblx0XHRtZXRob2RzOiB7XG5cdFx0XHRiYWNrKCkge1xuXHRcdFx0XHR1bmkubmF2aWdhdGVCYWNrKHtcblx0XHRcdFx0XHRkZWx0YTogMVxuXHRcdFx0XHR9KVxuXHRcdFx0fSxcblx0XHRcdHNjYW4oKSB7XG5cdFx0XHRcdHVuaS5zY2FuQ29kZSh7XG5cdFx0XHRcdFx0c3VjY2VzczogKGUpID0+IHtcblx0XHRcdFx0XHRcdC8vIHVybOWcsOWdgFxuXHRcdFx0XHRcdFx0dmFyIHJlc3VsdCA9IGUucmVzdWx0O1xuXHRcdFx0XHRcdFx0dmFyIHZsb2dJZCA9IEpTT04ucGFyc2UocmVzdWx0KS5jb250ZW50O1xuXHRcdFx0XHRcdFx0Ly8g6Lez6L2s6aG16Z2i77yM5oqK5pCc57Si5p2h5Lu25pC65bim6L+H5Y67XG5cdFx0XHRcdFx0XHR1bmkubmF2aWdhdGVUbyh7XG5cdFx0XHRcdFx0XHRcdHVybDogXCIuLi92bG9nL3Zsb2c/dmxvZ0lkPVwiICsgdmxvZ0lkXG5cdFx0XHRcdFx0XHR9KVxuXHRcdFx0XHRcdH1cblx0XHRcdFx0fSlcblx0XHRcdH0sXG5cdFx0XHR0eXBpbmdDb250ZW50KGUpIHtcblx0XHRcdFx0dGhpcy5zZWFyY2hDb250ZW50ID0gZS50YXJnZXQudmFsdWU7XG5cdFx0XHR9LFxuXHRcdFx0c2VhcmNoQnlIaXN0b3J5KHNlYXJjaENvbnRlbnQpIHtcblx0XHRcdFx0dGhpcy5zZWFyY2hDb250ZW50ID0gc2VhcmNoQ29udGVudDtcblx0XHRcdFx0dGhpcy5kb1NlYXJjaCgpO1xuXHRcdFx0fSxcblx0XHRcdGRvU2VhcmNoKCkge1xuXHRcdFx0XHR2YXIgbWUgPSB0aGlzO1xuXHRcdFx0XHR2YXIgc2VhcmNoQ29udGVudCA9IHRoaXMuc2VhcmNoQ29udGVudDtcblx0XHRcdFx0aWYgKHNlYXJjaENvbnRlbnQgPT0gdW5kZWZpbmVkIHx8IHNlYXJjaENvbnRlbnQgPT0gXCJcIiB8fCBzZWFyY2hDb250ZW50ID09IG51bGwpIHtcblx0XHRcdFx0XHRyZXR1cm47XG5cdFx0XHRcdH1cblx0XHRcdFx0XG5cdFx0XHRcdHZhciB0ZW1wTGlzdCA9IHRoaXMuaGlzdG9yeUxpc3Q7XG5cdFx0XHRcdC8vIOWIpOaWreaQnOe0ouWGheWuueaYr+WQpuW3sue7j+WtmOWcqO+8jOWmguaenOWtmOWcqO+8jOWImeenu+mZpFxuXHRcdFx0XHRmb3IgKHZhciBpID0gMCA7IGkgPCB0ZW1wTGlzdC5sZW5ndGggOyBpICsrKSB7XG5cdFx0XHRcdFx0dmFyIG9sZCA9IHRlbXBMaXN0W2ldO1xuXHRcdFx0XHRcdGlmIChzZWFyY2hDb250ZW50ID09PSBvbGQpIHtcblx0XHRcdFx0XHRcdHRlbXBMaXN0LnNwbGljZShpLCAxKTtcblx0XHRcdFx0XHRcdGJyZWFrO1xuXHRcdFx0XHRcdH1cblx0XHRcdFx0fVxuXHRcdFx0XHR0ZW1wTGlzdC51bnNoaWZ0KHNlYXJjaENvbnRlbnQpO1xuXHRcdFx0XHRcblx0XHRcdFx0XG5cdFx0XHRcdC8vIOWmguaenOi2hei/hzEw5Liq77yM5YiZ5Yig6Zmk5pyA5ZCO5LiA6aG5XG5cdFx0XHRcdHRlbXBMaXN0LnNwbGljZSgxMCwgMSk7XG5cdFx0XHRcdFxuXHRcdFx0XHRcblx0XHRcdFx0dGhpcy5oaXN0b3J5TGlzdCA9IHRlbXBMaXN0O1xuXHRcdFx0XHQvLyDmuIXnqbrmkJzntKLmoYblhoXlrrlcblx0XHRcdFx0dGhpcy5zZWFyY2hDb250ZW50ID0gXCJcIjtcblx0XHRcdFx0Ly8g5L+d5a2Y5Yiw5pys5Zyw57yT5a2YXG5cdFx0XHRcdHVuaS5zZXRTdG9yYWdlU3luYyhcImhpc3RvcnlMaXN0XCIsIEpTT04uc3RyaW5naWZ5KHRoaXMuaGlzdG9yeUxpc3QpKTtcblx0XHRcdFx0XG5cdFx0XHRcdC8vIOi3s+i9rOmhtemdou+8jOaKiuaQnOe0ouadoeS7tuaQuuW4pui/h+WOu1xuXHRcdFx0XHR1bmkubmF2aWdhdGVUbyh7XG5cdFx0XHRcdFx0dXJsOiBcInNlYXJjaExpc3Q/c2VhcmNoPVwiICsgc2VhcmNoQ29udGVudFxuXHRcdFx0XHR9KVxuXHRcdFx0fSxcblx0XHRcdHJlbW92ZUhpc3RvcnlJdGVtKGluZGV4KSB7XG5cdFx0XHRcdHRoaXMuaGlzdG9yeUxpc3Quc3BsaWNlKGluZGV4LCAxKTtcblx0XHRcdFx0dW5pLnNldFN0b3JhZ2VTeW5jKFwiaGlzdG9yeUxpc3RcIiwgSlNPTi5zdHJpbmdpZnkodGhpcy5oaXN0b3J5TGlzdCkpO1xuXHRcdFx0fSxcblx0XHRcdHJlbW92ZUFsbEhpc3RvcnkoKSB7XG5cdFx0XHRcdHRoaXMuaGlzdG9yeUxpc3QgPSBbXTtcblx0XHRcdFx0dW5pLnNldFN0b3JhZ2VTeW5jKFwiaGlzdG9yeUxpc3RcIiwgSlNPTi5zdHJpbmdpZnkodGhpcy5oaXN0b3J5TGlzdCkpO1xuXHRcdFx0fVxuXHRcdH1cblx0fVxuPC9zY3JpcHQ+XG5cblxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///11\n");
 
 /***/ }),
 /* 12 */
@@ -689,7 +689,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 1);\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _uqrcode = _interopRequireDefault(__webpack_require__(/*! @/uni_modules/Sansnn-uQRCode/components/uqrcode/common/uqrcode.js */ 20));\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar _default = {\n  data: function data() {\n    return {\n      vlogId: \"\",\n      // screenHeight: system.screenHeight,\n      screenHeight: system.safeArea.bottom,\n      statusBarHeight: system.statusBarHeight\n    };\n  },\n  onReady: function onReady() {\n    var vlogId = this.vlogId;\n    var content = {\n      type: \"vlog\",\n      content: vlogId\n    };\n    var contentStr = JSON.stringify(content);\n    _uqrcode.default.make({\n      canvasId: 'qrcode',\n      componentInstance: this,\n      size: 170,\n      margin: 10,\n      text: contentStr,\n      backgroundColor: '#ffffff',\n      foregroundColor: '#0f0827',\n      fileType: 'png',\n      errorCorrectLevel: _uqrcode.default.errorCorrectLevel.H\n    }).then(function (res) {});\n  },\n  onLoad: function onLoad(params) {\n    var vlogId = params.vlogId;\n    this.vlogId = vlogId;\n  },\n  methods: {\n    close: function close() {\n      uni.navigateBack({\n        delta: 1,\n        animationType: \"slide-out-bottom\"\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvcXJjb2RlL3FyY29kZS52dWUiXSwibmFtZXMiOlsic3lzdGVtIiwidW5pIiwiZ2V0U3lzdGVtSW5mb1N5bmMiLCJkYXRhIiwidmxvZ0lkIiwic2NyZWVuSGVpZ2h0Iiwic2FmZUFyZWEiLCJib3R0b20iLCJzdGF0dXNCYXJIZWlnaHQiLCJvblJlYWR5IiwiY29udGVudCIsInR5cGUiLCJjb250ZW50U3RyIiwiSlNPTiIsInN0cmluZ2lmeSIsInVRUkNvZGUiLCJtYWtlIiwiY2FudmFzSWQiLCJjb21wb25lbnRJbnN0YW5jZSIsInNpemUiLCJtYXJnaW4iLCJ0ZXh0IiwiYmFja2dyb3VuZENvbG9yIiwiZm9yZWdyb3VuZENvbG9yIiwiZmlsZVR5cGUiLCJlcnJvckNvcnJlY3RMZXZlbCIsIkgiLCJ0aGVuIiwicmVzIiwib25Mb2FkIiwicGFyYW1zIiwibWV0aG9kcyIsImNsb3NlIiwibmF2aWdhdGVCYWNrIiwiZGVsdGEiLCJhbmltYXRpb25UeXBlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBa0ZBO0FBbEZBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FBRUEsSUFBSUEsTUFBTSxHQUFHQyxHQUFHLENBQUNDLGlCQUFpQixFQUFFO0FBQUMsZUFFdEI7RUFDZEMsSUFBSSxrQkFBRztJQUNOLE9BQU87TUFDTkMsTUFBTSxFQUFFLEVBQUU7TUFDVjtNQUNBQyxZQUFZLEVBQUVMLE1BQU0sQ0FBQ00sUUFBUSxDQUFDQyxNQUFNO01BQ3BDQyxlQUFlLEVBQUVSLE1BQU0sQ0FBQ1E7SUFDekIsQ0FBQztFQUNGLENBQUM7RUFDREMsT0FBTyxxQkFBRztJQUNULElBQUlMLE1BQU0sR0FBRyxJQUFJLENBQUNBLE1BQU07SUFDeEIsSUFBSU0sT0FBTyxHQUFHO01BQ2JDLElBQUksRUFBRSxNQUFNO01BQ1pELE9BQU8sRUFBRU47SUFDVixDQUFDO0lBQ0QsSUFBSVEsVUFBVSxHQUFHQyxJQUFJLENBQUNDLFNBQVMsQ0FBQ0osT0FBTyxDQUFDO0lBQ3JDSyxnQkFBTyxDQUFDQyxJQUFJLENBQUM7TUFDVEMsUUFBUSxFQUFFLFFBQVE7TUFDbEJDLGlCQUFpQixFQUFFLElBQUk7TUFDdkJDLElBQUksRUFBRSxHQUFHO01BQ1RDLE1BQU0sRUFBRSxFQUFFO01BQ1ZDLElBQUksRUFBRVQsVUFBVTtNQUNoQlUsZUFBZSxFQUFFLFNBQVM7TUFDMUJDLGVBQWUsRUFBRSxTQUFTO01BQzFCQyxRQUFRLEVBQUUsS0FBSztNQUNmQyxpQkFBaUIsRUFBRVYsZ0JBQU8sQ0FBQ1UsaUJBQWlCLENBQUNDO0lBQ2pELENBQUMsQ0FBQyxDQUNEQyxJQUFJLENBQUMsVUFBQUMsR0FBRyxFQUFJLENBQ2IsQ0FBQyxDQUFDO0VBQ0osQ0FBQztFQUNIQyxNQUFNLGtCQUFDQyxNQUFNLEVBQUU7SUFDZCxJQUFJMUIsTUFBTSxHQUFHMEIsTUFBTSxDQUFDMUIsTUFBTTtJQUMxQixJQUFJLENBQUNBLE1BQU0sR0FBR0EsTUFBTTtFQUNyQixDQUFDO0VBQ0QyQixPQUFPLEVBQUU7SUFDUkMsS0FBSyxtQkFBRztNQUNQL0IsR0FBRyxDQUFDZ0MsWUFBWSxDQUFDO1FBQ2hCQyxLQUFLLEVBQUUsQ0FBQztRQUNSQyxhQUFhLEVBQUU7TUFDaEIsQ0FBQyxDQUFDO0lBQ0g7RUFDRDtBQUNELENBQUM7QUFBQSIsImZpbGUiOiIxOS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuXG52YXIgc3lzdGVtID0gdW5pLmdldFN5c3RlbUluZm9TeW5jKCk7XG5pbXBvcnQgdVFSQ29kZSBmcm9tICdAL3VuaV9tb2R1bGVzL1NhbnNubi11UVJDb2RlL2NvbXBvbmVudHMvdXFyY29kZS9jb21tb24vdXFyY29kZS5qcydcbmV4cG9ydCBkZWZhdWx0IHtcblx0ZGF0YSgpIHtcblx0XHRyZXR1cm4ge1xuXHRcdFx0dmxvZ0lkOiBcIlwiLFxuXHRcdFx0Ly8gc2NyZWVuSGVpZ2h0OiBzeXN0ZW0uc2NyZWVuSGVpZ2h0LFxuXHRcdFx0c2NyZWVuSGVpZ2h0OiBzeXN0ZW0uc2FmZUFyZWEuYm90dG9tLFxuXHRcdFx0c3RhdHVzQmFySGVpZ2h0OiBzeXN0ZW0uc3RhdHVzQmFySGVpZ2h0XG5cdFx0fVxuXHR9LFxuXHRvblJlYWR5KCkge1xuXHRcdHZhciB2bG9nSWQgPSB0aGlzLnZsb2dJZDtcblx0XHR2YXIgY29udGVudCA9IHtcblx0XHRcdHR5cGU6IFwidmxvZ1wiLFxuXHRcdFx0Y29udGVudDogdmxvZ0lkXG5cdFx0fTtcblx0XHR2YXIgY29udGVudFN0ciA9IEpTT04uc3RyaW5naWZ5KGNvbnRlbnQpO1xuXHQgICAgdVFSQ29kZS5tYWtlKHtcblx0ICAgICAgICBjYW52YXNJZDogJ3FyY29kZScsXG5cdCAgICAgICAgY29tcG9uZW50SW5zdGFuY2U6IHRoaXMsXG5cdCAgICAgICAgc2l6ZTogMTcwLFxuXHQgICAgICAgIG1hcmdpbjogMTAsXG5cdCAgICAgICAgdGV4dDogY29udGVudFN0cixcblx0ICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6ICcjZmZmZmZmJyxcblx0ICAgICAgICBmb3JlZ3JvdW5kQ29sb3I6ICcjMGYwODI3Jyxcblx0ICAgICAgICBmaWxlVHlwZTogJ3BuZycsXG5cdCAgICAgICAgZXJyb3JDb3JyZWN0TGV2ZWw6IHVRUkNvZGUuZXJyb3JDb3JyZWN0TGV2ZWwuSFxuXHQgICAgfSlcblx0ICAgIC50aGVuKHJlcyA9PiB7XG5cdCAgICB9KVxuXHQgIH0sXG5cdG9uTG9hZChwYXJhbXMpIHtcblx0XHR2YXIgdmxvZ0lkID0gcGFyYW1zLnZsb2dJZDtcblx0XHR0aGlzLnZsb2dJZCA9IHZsb2dJZDtcblx0fSxcblx0bWV0aG9kczoge1xuXHRcdGNsb3NlKCkge1xuXHRcdFx0dW5pLm5hdmlnYXRlQmFjayh7XG5cdFx0XHRcdGRlbHRhOiAxLFxuXHRcdFx0XHRhbmltYXRpb25UeXBlOiBcInNsaWRlLW91dC1ib3R0b21cIlxuXHRcdFx0fSlcblx0XHR9LFxuXHR9XG59XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///19\n");
+eval("\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 1);\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _uqrcode = _interopRequireDefault(__webpack_require__(/*! @/uni_modules/Sansnn-uQRCode/components/uqrcode/common/uqrcode.js */ 20));\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar _default = {\n  data: function data() {\n    return {\n      vlogId: \"\",\n      // screenHeight: system.screenHeight,\n      screenHeight: system.safeArea.bottom,\n      statusBarHeight: system.statusBarHeight\n    };\n  },\n  onReady: function onReady() {\n    var vlogId = this.vlogId;\n    var content = {\n      type: \"vlog\",\n      content: vlogId\n    };\n    var contentStr = JSON.stringify(content);\n    _uqrcode.default.make({\n      canvasId: 'qrcode',\n      componentInstance: this,\n      size: 170,\n      margin: 10,\n      text: contentStr,\n      backgroundColor: '#ffffff',\n      foregroundColor: '#0f0827',\n      fileType: 'png',\n      errorCorrectLevel: _uqrcode.default.errorCorrectLevel.H\n    }).then(function (res) {});\n  },\n  onLoad: function onLoad(params) {\n    var vlogId = params.vlogId;\n    this.vlogId = vlogId;\n  },\n  methods: {\n    close: function close() {\n      uni.navigateBack({\n        delta: 1,\n        animationType: \"slide-out-bottom\"\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvcXJjb2RlL3FyY29kZS52dWUiXSwibmFtZXMiOlsiZGF0YSIsInZsb2dJZCIsInNjcmVlbkhlaWdodCIsInN0YXR1c0JhckhlaWdodCIsIm9uUmVhZHkiLCJ0eXBlIiwiY29udGVudCIsInVRUkNvZGUiLCJjYW52YXNJZCIsImNvbXBvbmVudEluc3RhbmNlIiwic2l6ZSIsIm1hcmdpbiIsInRleHQiLCJiYWNrZ3JvdW5kQ29sb3IiLCJmb3JlZ3JvdW5kQ29sb3IiLCJmaWxlVHlwZSIsImVycm9yQ29ycmVjdExldmVsIiwidGhlbiIsIm9uTG9hZCIsIm1ldGhvZHMiLCJjbG9zZSIsInVuaSIsImRlbHRhIiwiYW5pbWF0aW9uVHlwZSJdLCJtYXBwaW5ncyI6Ijs7Ozs7OztBQWtGQTs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQURBO0FBQUEsZUFFQTtFQUNBQTtJQUNBO01BQ0FDO01BQ0E7TUFDQUM7TUFDQUM7SUFDQTtFQUNBO0VBQ0FDO0lBQ0E7SUFDQTtNQUNBQztNQUNBQztJQUNBO0lBQ0E7SUFDQUM7TUFDQUM7TUFDQUM7TUFDQUM7TUFDQUM7TUFDQUM7TUFDQUM7TUFDQUM7TUFDQUM7TUFDQUM7SUFDQSxHQUNBQyxxQkFDQTtFQUNBO0VBQ0FDO0lBQ0E7SUFDQTtFQUNBO0VBQ0FDO0lBQ0FDO01BQ0FDO1FBQ0FDO1FBQ0FDO01BQ0E7SUFDQTtFQUNBO0FBQ0E7QUFBQSIsImZpbGUiOiIxOS5qcyIsInNvdXJjZXNDb250ZW50IjpbIjxzdHlsZT5cclxuLnBhZ2Uge1xyXG5cdHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuXHRsZWZ0OiAwO1xyXG5cdHJpZ2h0OiAwO1xyXG5cdHRvcDogMDtcclxuXHRib3R0b206IDA7XHJcblx0YmFja2dyb3VuZC1jb2xvcjogI0ZGRkZGRjtcclxuXHRcclxuXHRkaXNwbGF5OiBmbGV4O1xyXG5cdGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcblx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuXHJcbi5xcmNvZGUtbWlkZGxlLWJveCB7XHJcblx0ZGlzcGxheTogZmxleDtcclxuXHRmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG5cdGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG5cdG1hcmdpbi10b3A6IC0xMjBycHg7XHJcbn1cclxuXHJcbi5xcmNvZGUtYm94IHtcclxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XHJcblx0dG9wOiAwO1xyXG5cdGJvdHRvbTogMDtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjRkZGRkZGO1xyXG5cdFxyXG5cdGJveC1zaGFkb3c6MCAxMHB4IDE2cHggMCByZ2JhKDAsMCwwLDAuMiksMCA2cHggMjBweCAwIHJnYmEoMCwwLDAsMC4xOSkgIWltcG9ydGFudDtcclxufVxyXG5cclxuLnVzZXItYm94IHtcclxuXHRkaXNwbGF5OiBmbGV4O1xyXG5cdGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcblx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcblx0bWFyZ2luLXRvcDogLTcwcnB4O1xyXG59XHJcblxyXG4uY2FudmFzLXFyY29kZS1ib3gge1xyXG5cdG1hcmdpbi10b3A6IDUwcnB4O1xyXG59XHJcblxyXG4uYmctY292ZXIge1xyXG5cdHdpZHRoOiA3NTBycHg7XHJcbn1cclxuXHJcbi5idG4tY2xvc2Uge1xyXG5cdC8qIHBvc2l0aW9uOiBhYnNvbHV0ZTsgKi9cclxuXHQvKiB0b3A6IDA7XHJcblx0Ym90dG9tOiAwOyAqL1xyXG5cdHdpZHRoOiA1MHJweDtcclxuXHRoZWlnaHQ6IDUwcnB4O1xyXG5cdG1hcmdpbi10b3A6IDgwcnB4O1xyXG5cdG1hcmdpbi1sZWZ0OiAyMHJweDtcclxufVxyXG48L3N0eWxlPlxyXG5cclxuPHRlbXBsYXRlPlxyXG5cdDx2aWV3IGNsYXNzPVwicGFnZVwiPlxyXG5cdFx0XHJcblx0XHQ8aW1hZ2UgbW9kZT1cInNjYWxlVG9GaWxsXCIgOnN0eWxlPVwie2hlaWdodDpzY3JlZW5IZWlnaHQrJ3B4J31cIiBjbGFzcz1cImJnLWNvdmVyXCJcclxuXHRcdFx0c3JjPVwiLi4vLi4vc3RhdGljL2ltYWdlcy9iZy1xcmNvZGUyLnBuZ1wiPjwvaW1hZ2U+XHJcblx0XHRcclxuXHRcdDx2aWV3IGNsYXNzPVwicXJjb2RlLWJveFwiIHN0eWxlPVwid2lkdGg6IDU1MHJweDtoZWlnaHQ6IDcwMHJweDttYXJnaW4tdG9wOiAzMjBycHg7YWxpZ24tc2VsZjogY2VudGVyO1wiPlxyXG5cdFx0XHJcblx0XHRcdDx2aWV3IGNsYXNzPVwidXNlci1ib3hcIj5cclxuXHRcdFx0XHQ8aW1hZ2UgbW9kZT1cImFzcGVjdEZpbGxcIiBjbGFzcz1cImJnLWNvdmVyXCIgc3R5bGU9XCJ3aWR0aDogMTMwcnB4O2hlaWdodDogMTMwcnB4O2JvcmRlci1yYWRpdXM6IDEwMHB4O2FsaWduLXNlbGY6IGNlbnRlcjtcIlxyXG5cdFx0XHRcdFx0c3JjPVwiLi4vLi4vc3RhdGljL2ZhY2UvZmFjZS1hcnJvdy0yLmpwZ1wiPjwvaW1hZ2U+XHJcblx0XHRcdFx0PHRleHQgc3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7IG1hcmdpbi10b3A6IDEwcnB4O2ZvbnQtc2l6ZTogMTRweDtmb250LXdlaWdodDogNDAwO1wiPuiEhuiEhumyqOWQjOWtpjwvdGV4dD5cclxuXHRcdFx0XHRcclxuXHRcdFx0XHQ8dmlldyBjbGFzcz1cImNhbnZhcy1xcmNvZGUtYm94XCIgc3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7XCI+XHJcblx0XHRcdFx0XHQ8Y2FudmFzIGlkPVwicXJjb2RlXCIgY2FudmFzLWlkPVwicXJjb2RlXCIgc3R5bGU9XCJ3aWR0aDogMTcwcHg7aGVpZ2h0OiAxNzBweDthbGlnbi1zZWxmOiBjZW50ZXI7XCIgLz5cclxuXHRcdFx0XHQ8L3ZpZXc+XHJcblx0XHRcdFx0XHJcblx0XHRcdFx0PHRleHQgc3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7IG1hcmdpbi10b3A6IDIwcnB4O2NvbG9yOiAjODA4MDgwO2ZvbnQtc2l6ZTogMTFweDtmb250LXdlaWdodDogMzAwO1wiPuaJq+aPj+S6jOe7tOegge+8jOWwseiDveeci+aIkeeahOS9nOWTgeWTnzwvdGV4dD5cclxuXHRcdFx0PC92aWV3PlxyXG5cdFx0XHRcclxuXHRcdDwvdmlldz5cclxuXHQ8L3ZpZXc+XHJcbjwvdGVtcGxhdGU+XHJcblxyXG48c2NyaXB0PlxyXG5cdHZhciBzeXN0ZW0gPSB1bmkuZ2V0U3lzdGVtSW5mb1N5bmMoKTtcclxuXHRpbXBvcnQgdVFSQ29kZSBmcm9tICdAL3VuaV9tb2R1bGVzL1NhbnNubi11UVJDb2RlL2NvbXBvbmVudHMvdXFyY29kZS9jb21tb24vdXFyY29kZS5qcydcclxuXHRleHBvcnQgZGVmYXVsdCB7XHJcblx0XHRkYXRhKCkge1xyXG5cdFx0XHRyZXR1cm4ge1xyXG5cdFx0XHRcdHZsb2dJZDogXCJcIixcclxuXHRcdFx0XHQvLyBzY3JlZW5IZWlnaHQ6IHN5c3RlbS5zY3JlZW5IZWlnaHQsXHJcblx0XHRcdFx0c2NyZWVuSGVpZ2h0OiBzeXN0ZW0uc2FmZUFyZWEuYm90dG9tLFxyXG5cdFx0XHRcdHN0YXR1c0JhckhlaWdodDogc3lzdGVtLnN0YXR1c0JhckhlaWdodFxyXG5cdFx0XHR9XHJcblx0XHR9LFxyXG5cdFx0b25SZWFkeSgpIHtcclxuXHRcdFx0dmFyIHZsb2dJZCA9IHRoaXMudmxvZ0lkO1xyXG5cdFx0XHR2YXIgY29udGVudCA9IHtcclxuXHRcdFx0XHR0eXBlOiBcInZsb2dcIixcclxuXHRcdFx0XHRjb250ZW50OiB2bG9nSWRcclxuXHRcdFx0fTtcclxuXHRcdFx0dmFyIGNvbnRlbnRTdHIgPSBKU09OLnN0cmluZ2lmeShjb250ZW50KTtcclxuXHRcdCAgICB1UVJDb2RlLm1ha2Uoe1xyXG5cdFx0ICAgICAgICBjYW52YXNJZDogJ3FyY29kZScsXHJcblx0XHQgICAgICAgIGNvbXBvbmVudEluc3RhbmNlOiB0aGlzLFxyXG5cdFx0ICAgICAgICBzaXplOiAxNzAsXHJcblx0XHQgICAgICAgIG1hcmdpbjogMTAsXHJcblx0XHQgICAgICAgIHRleHQ6IGNvbnRlbnRTdHIsXHJcblx0XHQgICAgICAgIGJhY2tncm91bmRDb2xvcjogJyNmZmZmZmYnLFxyXG5cdFx0ICAgICAgICBmb3JlZ3JvdW5kQ29sb3I6ICcjMGYwODI3JyxcclxuXHRcdCAgICAgICAgZmlsZVR5cGU6ICdwbmcnLFxyXG5cdFx0ICAgICAgICBlcnJvckNvcnJlY3RMZXZlbDogdVFSQ29kZS5lcnJvckNvcnJlY3RMZXZlbC5IXHJcblx0XHQgICAgfSlcclxuXHRcdCAgICAudGhlbihyZXMgPT4ge1xyXG5cdFx0ICAgIH0pXHJcblx0XHQgIH0sXHJcblx0XHRvbkxvYWQocGFyYW1zKSB7XHJcblx0XHRcdHZhciB2bG9nSWQgPSBwYXJhbXMudmxvZ0lkO1xyXG5cdFx0XHR0aGlzLnZsb2dJZCA9IHZsb2dJZDtcclxuXHRcdH0sXHJcblx0XHRtZXRob2RzOiB7XHJcblx0XHRcdGNsb3NlKCkge1xyXG5cdFx0XHRcdHVuaS5uYXZpZ2F0ZUJhY2soe1xyXG5cdFx0XHRcdFx0ZGVsdGE6IDEsXHJcblx0XHRcdFx0XHRhbmltYXRpb25UeXBlOiBcInNsaWRlLW91dC1ib3R0b21cIlxyXG5cdFx0XHRcdH0pXHJcblx0XHRcdH0sXHJcblx0XHR9XHJcblx0fVxyXG48L3NjcmlwdD5cclxuXHJcblxyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///19\n");
 
 /***/ }),
 /* 20 */
@@ -936,7 +936,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar app = getApp();\nvar _default = {\n  data: function data() {\n    return {\n      statusBarHeight: 0,\n      mobile: \"16689532246\",\n      verifyCode: \"\",\n      codeBtnText: \"获得验证码\",\n      codeTimes: 0,\n      loginTouched: false,\n      codeTouched: false\n    };\n  },\n  onLoad: function onLoad() {\n    this.statusBarHeight = system.statusBarHeight;\n  },\n  methods: {\n    touchstartLogin: function touchstartLogin() {\n      this.loginTouched = true;\n    },\n    touchendLogin: function touchendLogin() {\n      this.loginTouched = false;\n    },\n    touchstartCode: function touchstartCode() {\n      // timer在运行期间，禁止触摸\n      if (this.codeTimes > 0) {\n        return;\n      } else {\n        this.codeTouched = true;\n      }\n    },\n    touchendCode: function touchendCode() {\n      // timer在运行期间，禁止触摸\n      if (this.codeTimes > 0) {\n        return;\n      } else {\n        this.codeTouched = false;\n      }\n    },\n    close: function close() {\n      uni.navigateBack({\n        delta: 1,\n        animationType: \"slide-out-bottom\"\n      });\n    },\n    typingMobile: function typingMobile(e) {\n      var event = e;\n      this.mobile = e.detail.value;\n    },\n    typingVerifyCode: function typingVerifyCode(e) {\n      var event = e;\n      this.verifyCode = e.detail.value;\n    },\n    getCode: function getCode() {\n      var me = this;\n      if (me.codeTimes > 0) {\n        return;\n      }\n      me.codeTouched = true;\n      var mobile = me.mobile;\n      if (app.isStrEmpty(mobile) || mobile.length != 11) {\n        uni.showToast({\n          title: \"手机号不正确\",\n          icon: \"none\"\n        });\n        return;\n      }\n      var serverUrl = app.globalData.serverUrl;\n      // 调用后端发送验证码\n      uni.request({\n        method: \"POST\",\n        url: serverUrl + \"/passport/getSMSCode?mobile=\" + mobile,\n        success: function success(result) {\n          var status = result.data.status;\n          if (status != 200) {\n            uni.showToast({\n              title: result.data.msg,\n              icon: \"none\"\n            });\n          }\n\n          // 开始倒数60秒限制\n          if (me.codeTimes == 0) {\n            me.doTimer(59);\n          }\n        }\n      });\n    },\n    // 发送验证码的倒计时方法\n    doTimer: function doTimer(times) {\n      var me = this;\n      // 倒计时定时器\n      var sendCodeBtnFunction = function sendCodeBtnFunction() {\n        var left = times--;\n        if (left <= 0) {\n          me.codeTouched = false;\n          me.codeBtnText = \"发送验证码\";\n          clearInterval(smsTimer);\n        } else {\n          me.codeBtnText = left + \"s\";\n        }\n        me.codeTimes = left;\n      };\n      var smsTimer = setInterval(sendCodeBtnFunction, 1000);\n    },\n    loginOrRegist: function loginOrRegist() {\n      var me = this;\n      var verifyCode = me.verifyCode;\n      var mobile = me.mobile;\n      if (app.isStrEmpty(verifyCode)) {\n        uni.showToast({\n          title: \"请填写验证码\",\n          icon: \"none\"\n        });\n        return;\n      }\n      if (app.isStrEmpty(mobile) || mobile.length != 11) {\n        uni.showToast({\n          title: \"手机号不正确\",\n          icon: \"none\"\n        });\n        return;\n      }\n      var serverUrl = app.globalData.serverUrl;\n      // 调用后端登录注册\n      uni.request({\n        method: \"POST\",\n        url: serverUrl + \"/passport/login\",\n        data: {\n          \"mobile\": mobile,\n          \"smsCode\": verifyCode\n        },\n        success: function success(result) {\n          var status = result.data.status;\n          if (status == 200) {\n            var userInfo = result.data.data;\n            app.setUserInfoSession(userInfo);\n            app.setUserSessionToken(userInfo.userToken);\n            // 登录成功，关闭当前页\n            // me.close();\n            uni.reLaunch({\n              url: \"../me/me\"\n            });\n          } else if (status != 200) {\n            uni.showToast({\n              title: result.data.msg,\n              icon: \"none\",\n              duration: 3000\n            });\n          }\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbG9naW5SZWdpc3QvbG9naW5SZWdpc3QudnVlIl0sIm5hbWVzIjpbInN5c3RlbSIsInVuaSIsImdldFN5c3RlbUluZm9TeW5jIiwiYXBwIiwiZ2V0QXBwIiwiZGF0YSIsInN0YXR1c0JhckhlaWdodCIsIm1vYmlsZSIsInZlcmlmeUNvZGUiLCJjb2RlQnRuVGV4dCIsImNvZGVUaW1lcyIsImxvZ2luVG91Y2hlZCIsImNvZGVUb3VjaGVkIiwib25Mb2FkIiwibWV0aG9kcyIsInRvdWNoc3RhcnRMb2dpbiIsInRvdWNoZW5kTG9naW4iLCJ0b3VjaHN0YXJ0Q29kZSIsInRvdWNoZW5kQ29kZSIsImNsb3NlIiwibmF2aWdhdGVCYWNrIiwiZGVsdGEiLCJhbmltYXRpb25UeXBlIiwidHlwaW5nTW9iaWxlIiwiZSIsImV2ZW50IiwiZGV0YWlsIiwidmFsdWUiLCJ0eXBpbmdWZXJpZnlDb2RlIiwiZ2V0Q29kZSIsIm1lIiwiaXNTdHJFbXB0eSIsImxlbmd0aCIsInNob3dUb2FzdCIsInRpdGxlIiwiaWNvbiIsInNlcnZlclVybCIsImdsb2JhbERhdGEiLCJyZXF1ZXN0IiwibWV0aG9kIiwidXJsIiwic3VjY2VzcyIsInJlc3VsdCIsInN0YXR1cyIsIm1zZyIsImRvVGltZXIiLCJ0aW1lcyIsInNlbmRDb2RlQnRuRnVuY3Rpb24iLCJsZWZ0IiwiY2xlYXJJbnRlcnZhbCIsInNtc1RpbWVyIiwic2V0SW50ZXJ2YWwiLCJsb2dpbk9yUmVnaXN0IiwidXNlckluZm8iLCJzZXRVc2VySW5mb1Nlc3Npb24iLCJzZXRVc2VyU2Vzc2lvblRva2VuIiwidXNlclRva2VuIiwicmVMYXVuY2giLCJkdXJhdGlvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFD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QU0sRUFBRSxNQUFNO1FBQ2RDLEdBQUcsRUFBRUosU0FBUyxHQUFHLGlCQUFpQjtRQUNsQy9CLElBQUksRUFBRTtVQUNMLFFBQVEsRUFBRUUsTUFBTTtVQUNoQixTQUFTLEVBQUVDO1FBQ1osQ0FBQztRQUNEaUMsT0FBTyxtQkFBQ0MsTUFBTSxFQUFFO1VBQ2YsSUFBSUMsTUFBTSxHQUFHRCxNQUFNLENBQUNyQyxJQUFJLENBQUNzQyxNQUFNO1VBQy9CLElBQUlBLE1BQU0sSUFBSSxHQUFHLEVBQUU7WUFDbEIsSUFBSVUsUUFBUSxHQUFHWCxNQUFNLENBQUNyQyxJQUFJLENBQUNBLElBQUk7WUFDL0JGLEdBQUcsQ0FBQ21ELGtCQUFrQixDQUFDRCxRQUFRLENBQUM7WUFDaENsRCxHQUFHLENBQUNvRCxtQkFBbUIsQ0FBQ0YsUUFBUSxDQUFDRyxTQUFTLENBQUM7WUFDM0M7WUFDQTtZQUNBdkQsR0FBRyxDQUFDd0QsUUFBUSxDQUFDO2NBQ1pqQixHQUFHLEVBQUU7WUFDTixDQUFDLENBQUM7VUFDSCxDQUFDLE1BQU0sSUFBSUcsTUFBTSxJQUFJLEdBQUcsRUFBRTtZQUN6QjFDLEdBQUcsQ0FBQ2dDLFNBQVMsQ0FBQztjQUNiQyxLQUFLLEVBQUVRLE1BQU0sQ0FBQ3JDLElBQUksQ0FBQ3VDLEdBQUc7Y0FDdEJULElBQUksRUFBRSxNQUFNO2NBQ1p1QixRQUFRLEVBQUU7WUFDWCxDQUFDLENBQUM7VUFDSDtRQUNEO01BQ0QsQ0FBQyxDQUFDO0lBQ0g7RUFDRDtBQUNELENBQUM7QUFBQSIsImZpbGUiOiIyNi5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cblxudmFyIHN5c3RlbSA9IHVuaS5nZXRTeXN0ZW1JbmZvU3luYygpO1xudmFyIGFwcCA9IGdldEFwcCgpO1xuZXhwb3J0IGRlZmF1bHQge1xuXHRkYXRhKCkge1xuXHRcdHJldHVybiB7XG5cdFx0XHRzdGF0dXNCYXJIZWlnaHQ6IDAsXG5cdFx0XHRcblx0XHRcdG1vYmlsZTogXCIxNjY4OTUzMjI0NlwiLFxuXHRcdFx0dmVyaWZ5Q29kZTogXCJcIixcblx0XHRcdGNvZGVCdG5UZXh0OiBcIuiOt+W+l+mqjOivgeeggVwiLFxuXHRcdFx0Y29kZVRpbWVzOiAwLFxuXHRcdFx0XG5cdFx0XHRsb2dpblRvdWNoZWQ6IGZhbHNlLFxuXHRcdFx0Y29kZVRvdWNoZWQ6IGZhbHNlLFxuXHRcdH1cblx0fSxcblx0b25Mb2FkKCkge1xuXHRcdHRoaXMuc3RhdHVzQmFySGVpZ2h0ID0gc3lzdGVtLnN0YXR1c0JhckhlaWdodDtcblx0fSxcblx0bWV0aG9kczoge1xuXHRcdHRvdWNoc3RhcnRMb2dpbigpIHtcblx0XHRcdHRoaXMubG9naW5Ub3VjaGVkID0gdHJ1ZTtcblx0XHR9LFxuXHRcdHRvdWNoZW5kTG9naW4oKSB7XG5cdFx0XHR0aGlzLmxvZ2luVG91Y2hlZCA9IGZhbHNlO1xuXHRcdH0sXG5cdFx0dG91Y2hzdGFydENvZGUoKSB7XG5cdFx0XHQvLyB0aW1lcuWcqOi/kOihjOacn+mXtO+8jOemgeatouinpuaRuFxuXHRcdFx0aWYodGhpcy5jb2RlVGltZXMgPiAwKSB7XG5cdFx0XHRcdHJldHVybjtcblx0XHRcdH0gZWxzZSB7XG5cdFx0XHRcdHRoaXMuY29kZVRvdWNoZWQgPSB0cnVlO1xuXHRcdFx0fVxuXHRcdH0sXG5cdFx0dG91Y2hlbmRDb2RlKCkge1xuXHRcdFx0Ly8gdGltZXLlnKjov5DooYzmnJ/pl7TvvIznpoHmraLop6bmkbhcblx0XHRcdGlmKHRoaXMuY29kZVRpbWVzID4gMCkge1xuXHRcdFx0XHRyZXR1cm47XG5cdFx0XHR9IGVsc2Uge1xuXHRcdFx0XHR0aGlzLmNvZGVUb3VjaGVkID0gZmFsc2U7XG5cdFx0XHR9XG5cdFx0fSxcblx0XHRjbG9zZSgpIHtcblx0XHRcdHVuaS5uYXZpZ2F0ZUJhY2soe1xuXHRcdFx0XHRkZWx0YTogMSxcblx0XHRcdFx0YW5pbWF0aW9uVHlwZTogXCJzbGlkZS1vdXQtYm90dG9tXCJcblx0XHRcdH0pXG5cdFx0fSxcblx0XHR0eXBpbmdNb2JpbGUoZSkge1xuXHRcdFx0dmFyIGV2ZW50ID0gZTtcblx0XHRcdHRoaXMubW9iaWxlID0gZS5kZXRhaWwudmFsdWU7XG5cdFx0fSxcblx0XHR0eXBpbmdWZXJpZnlDb2RlKGUpIHtcblx0XHRcdHZhciBldmVudCA9IGU7XG5cdFx0XHR0aGlzLnZlcmlmeUNvZGUgPSBlLmRldGFpbC52YWx1ZTtcblx0XHR9LFxuXHRcdGdldENvZGUoKSB7XG5cdFx0XHR2YXIgbWUgPSB0aGlzO1xuXHRcdFx0XG5cdFx0XHRpZihtZS5jb2RlVGltZXMgPiAwKSB7XG5cdFx0XHRcdHJldHVybjtcblx0XHRcdH1cblx0XHRcdFxuXHRcdFx0bWUuY29kZVRvdWNoZWQgPSB0cnVlO1xuXHRcdFx0XG5cdFx0XHR2YXIgbW9iaWxlID0gbWUubW9iaWxlO1xuXHRcdFx0XG5cdFx0XHRpZiAoYXBwLmlzU3RyRW1wdHkobW9iaWxlKSB8fCBtb2JpbGUubGVuZ3RoICE9IDExKSB7XG5cdFx0XHRcdHVuaS5zaG93VG9hc3Qoe1xuXHRcdFx0XHRcdHRpdGxlOiBcIuaJi+acuuWPt+S4jeato+ehrlwiLFxuXHRcdFx0XHRcdGljb246IFwibm9uZVwiXG5cdFx0XHRcdH0pO1xuXHRcdFx0XHRyZXR1cm47XG5cdFx0XHR9XG5cdFx0XHRcblx0XHRcdHZhciBzZXJ2ZXJVcmwgPSBhcHAuZ2xvYmFsRGF0YS5zZXJ2ZXJVcmw7XG5cdFx0XHQvLyDosIPnlKjlkI7nq6/lj5HpgIHpqozor4HnoIFcblx0XHRcdHVuaS5yZXF1ZXN0KHtcblx0XHRcdFx0bWV0aG9kOiBcIlBPU1RcIixcblx0XHRcdFx0dXJsOiBzZXJ2ZXJVcmwgKyBcIi9wYXNzcG9ydC9nZXRTTVNDb2RlP21vYmlsZT1cIiArIG1vYmlsZSxcblx0XHRcdFx0c3VjY2VzcyhyZXN1bHQpIHtcblx0XHRcdFx0XHR2YXIgc3RhdHVzID0gcmVzdWx0LmRhdGEuc3RhdHVzO1xuXHRcdFx0XHRcdGlmIChzdGF0dXMgIT0gMjAwKSB7XG5cdFx0XHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcblx0XHRcdFx0XHRcdFx0dGl0bGU6IHJlc3VsdC5kYXRhLm1zZyxcblx0XHRcdFx0XHRcdFx0aWNvbjogXCJub25lXCJcblx0XHRcdFx0XHRcdH0pO1xuXHRcdFx0XHRcdH1cblx0XHRcdFx0XHRcblx0XHRcdFx0XHQvLyDlvIDlp4vlgJLmlbA2MOenkumZkOWItlxuXHRcdFx0XHRcdGlmKG1lLmNvZGVUaW1lcyA9PSAwKSB7XG5cdFx0XHRcdFx0XHRtZS5kb1RpbWVyKDU5KTtcblx0XHRcdFx0XHR9XG5cdFx0XHRcdH1cblx0XHRcdH0pO1xuXHRcdFx0XHRcblx0XHR9LFxuXHRcdC8vIOWPkemAgemqjOivgeeggeeahOWAkuiuoeaXtuaWueazlVxuXHRcdGRvVGltZXIodGltZXMpIHtcblx0XHRcdHZhciBtZSA9IHRoaXM7XG5cdFx0XHQvLyDlgJLorqHml7blrprml7blmahcblx0XHRcdHZhciBzZW5kQ29kZUJ0bkZ1bmN0aW9uID0gZnVuY3Rpb24oKXtcblx0XHRcdFx0dmFyIGxlZnQgPSB0aW1lcy0tO1xuXG5cdFx0XHRcdGlmIChsZWZ0IDw9IDApIHtcblx0XHRcdFx0XHRtZS5jb2RlVG91Y2hlZCA9IGZhbHNlO1xuXHRcdFx0XHRcdG1lLmNvZGVCdG5UZXh0ID0gXCLlj5HpgIHpqozor4HnoIFcIjtcblx0XHRcdFx0XHRjbGVhckludGVydmFsKHNtc1RpbWVyKTtcblx0XHRcdFx0fSBlbHNlIHtcblx0XHRcdFx0XHRtZS5jb2RlQnRuVGV4dCA9IGxlZnQgKyBcInNcIjtcblx0XHRcdFx0fVxuXHRcdFx0XHRtZS5jb2RlVGltZXMgPSBsZWZ0O1xuXHRcdFx0fTtcblx0XHRcdHZhciBzbXNUaW1lciA9IHNldEludGVydmFsKHNlbmRDb2RlQnRuRnVuY3Rpb24sIDEwMDApO1xuXHRcdH0sXG5cdFx0bG9naW5PclJlZ2lzdCgpIHtcblx0XHRcdHZhciBtZSA9IHRoaXM7XG5cdFx0XHR2YXIgdmVyaWZ5Q29kZSA9IG1lLnZlcmlmeUNvZGU7XG5cdFx0XHR2YXIgbW9iaWxlID0gbWUubW9iaWxlO1xuXHRcdFx0XG5cdFx0XHRpZiAoYXBwLmlzU3RyRW1wdHkodmVyaWZ5Q29kZSkpIHtcblx0XHRcdFx0dW5pLnNob3dUb2FzdCh7XG5cdFx0XHRcdFx0dGl0bGU6IFwi6K+35aGr5YaZ6aqM6K+B56CBXCIsXG5cdFx0XHRcdFx0aWNvbjogXCJub25lXCJcblx0XHRcdFx0fSk7XG5cdFx0XHRcdHJldHVybjtcblx0XHRcdH1cblx0XHRcdFxuXHRcdFx0aWYgKGFwcC5pc1N0ckVtcHR5KG1vYmlsZSkgfHwgbW9iaWxlLmxlbmd0aCAhPSAxMSkge1xuXHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcblx0XHRcdFx0XHR0aXRsZTogXCLmiYvmnLrlj7fkuI3mraPnoa5cIixcblx0XHRcdFx0XHRpY29uOiBcIm5vbmVcIlxuXHRcdFx0XHR9KTtcblx0XHRcdFx0cmV0dXJuO1xuXHRcdFx0fVxuXHRcdFx0XG5cdFx0XHR2YXIgc2VydmVyVXJsID0gYXBwLmdsb2JhbERhdGEuc2VydmVyVXJsO1xuXHRcdFx0Ly8g6LCD55So5ZCO56uv55m75b2V5rOo5YaMXG5cdFx0XHR1bmkucmVxdWVzdCh7XG5cdFx0XHRcdG1ldGhvZDogXCJQT1NUXCIsXG5cdFx0XHRcdHVybDogc2VydmVyVXJsICsgXCIvcGFzc3BvcnQvbG9naW5cIixcblx0XHRcdFx0ZGF0YToge1xuXHRcdFx0XHRcdFwibW9iaWxlXCI6IG1vYmlsZSxcblx0XHRcdFx0XHRcInNtc0NvZGVcIjogdmVyaWZ5Q29kZVxuXHRcdFx0XHR9LFxuXHRcdFx0XHRzdWNjZXNzKHJlc3VsdCkge1xuXHRcdFx0XHRcdHZhciBzdGF0dXMgPSByZXN1bHQuZGF0YS5zdGF0dXM7XG5cdFx0XHRcdFx0aWYgKHN0YXR1cyA9PSAyMDApIHtcblx0XHRcdFx0XHRcdHZhciB1c2VySW5mbyA9IHJlc3VsdC5kYXRhLmRhdGE7XG5cdFx0XHRcdFx0XHRhcHAuc2V0VXNlckluZm9TZXNzaW9uKHVzZXJJbmZvKTtcblx0XHRcdFx0XHRcdGFwcC5zZXRVc2VyU2Vzc2lvblRva2VuKHVzZXJJbmZvLnVzZXJUb2tlbik7XG5cdFx0XHRcdFx0XHQvLyDnmbvlvZXmiJDlip/vvIzlhbPpl63lvZPliY3pobVcblx0XHRcdFx0XHRcdC8vIG1lLmNsb3NlKCk7XG5cdFx0XHRcdFx0XHR1bmkucmVMYXVuY2goe1xuXHRcdFx0XHRcdFx0XHR1cmw6IFwiLi4vbWUvbWVcIlxuXHRcdFx0XHRcdFx0fSlcblx0XHRcdFx0XHR9IGVsc2UgaWYgKHN0YXR1cyAhPSAyMDApIHtcblx0XHRcdFx0XHRcdHVuaS5zaG93VG9hc3Qoe1xuXHRcdFx0XHRcdFx0XHR0aXRsZTogcmVzdWx0LmRhdGEubXNnLFxuXHRcdFx0XHRcdFx0XHRpY29uOiBcIm5vbmVcIixcblx0XHRcdFx0XHRcdFx0ZHVyYXRpb246IDMwMDBcblx0XHRcdFx0XHRcdH0pO1xuXHRcdFx0XHRcdH1cblx0XHRcdFx0fVxuXHRcdFx0fSk7XG5cdFx0fVxuXHR9XG59XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///26\n");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar app = getApp();\nvar _default = {\n  data: function data() {\n    return {\n      statusBarHeight: 0,\n      mobile: \"\",\n      verifyCode: \"\",\n      codeBtnText: \"获得验证码\",\n      codeTimes: 0,\n      loginTouched: false,\n      codeTouched: false\n    };\n  },\n  onLoad: function onLoad() {\n    this.statusBarHeight = system.statusBarHeight;\n  },\n  methods: {\n    touchstartLogin: function touchstartLogin() {\n      this.loginTouched = true;\n    },\n    touchendLogin: function touchendLogin() {\n      this.loginTouched = false;\n    },\n    touchstartCode: function touchstartCode() {\n      // timer在运行期间，禁止触摸\n      if (this.codeTimes > 0) {\n        return;\n      } else {\n        this.codeTouched = true;\n      }\n    },\n    touchendCode: function touchendCode() {\n      // timer在运行期间，禁止触摸\n      if (this.codeTimes > 0) {\n        return;\n      } else {\n        this.codeTouched = false;\n      }\n    },\n    close: function close() {\n      uni.navigateBack({\n        delta: 1,\n        animationType: \"slide-out-bottom\"\n      });\n    },\n    typingMobile: function typingMobile(e) {\n      var event = e;\n      this.mobile = e.detail.value;\n    },\n    typingVerifyCode: function typingVerifyCode(e) {\n      var event = e;\n      this.verifyCode = e.detail.value;\n    },\n    getCode: function getCode() {\n      var me = this;\n      if (me.codeTimes > 0) {\n        return;\n      }\n      me.codeTouched = true;\n      var mobile = me.mobile;\n      if (app.isStrEmpty(mobile) || mobile.length != 11) {\n        uni.showToast({\n          title: \"手机号不正确\",\n          icon: \"none\"\n        });\n        return;\n      }\n      var serverUrl = app.globalData.serverUrl;\n      // 调用后端发送验证码\n      uni.request({\n        method: \"POST\",\n        url: serverUrl + \"/passport/getSMSCode?mobile=\" + mobile,\n        success: function success(result) {\n          var status = result.data.status;\n          if (status != 200) {\n            uni.showToast({\n              title: result.data.msg,\n              icon: \"none\"\n            });\n          }\n\n          // 开始倒数60秒限制\n          if (me.codeTimes == 0) {\n            me.doTimer(59);\n          }\n        }\n      });\n    },\n    // 发送验证码的倒计时方法\n    doTimer: function doTimer(times) {\n      var me = this;\n      // 倒计时定时器\n      var sendCodeBtnFunction = function sendCodeBtnFunction() {\n        var left = times--;\n        if (left <= 0) {\n          me.codeTouched = false;\n          me.codeBtnText = \"发送验证码\";\n          clearInterval(smsTimer);\n        } else {\n          me.codeBtnText = left + \"s\";\n        }\n        me.codeTimes = left;\n      };\n      var smsTimer = setInterval(sendCodeBtnFunction, 1000);\n    },\n    loginOrRegist: function loginOrRegist() {\n      var me = this;\n      var verifyCode = me.verifyCode;\n      var mobile = me.mobile;\n      if (app.isStrEmpty(verifyCode)) {\n        uni.showToast({\n          title: \"请填写验证码\",\n          icon: \"none\"\n        });\n        return;\n      }\n      if (app.isStrEmpty(mobile) || mobile.length != 11) {\n        uni.showToast({\n          title: \"手机号不正确\",\n          icon: \"none\"\n        });\n        return;\n      }\n      var serverUrl = app.globalData.serverUrl;\n      // 调用后端登录注册\n      uni.request({\n        method: \"POST\",\n        url: serverUrl + \"/passport/login\",\n        data: {\n          \"mobile\": mobile,\n          \"smsCode\": verifyCode\n        },\n        success: function success(result) {\n          var status = result.data.status;\n          if (status == 200) {\n            var userInfo = result.data.data;\n            app.setUserInfoSession(userInfo);\n            app.setUserSessionToken(userInfo.userToken);\n            // 登录成功，关闭当前页\n            // me.close();\n            uni.reLaunch({\n              url: \"../me/me\"\n            });\n          } else if (status != 200) {\n            uni.showToast({\n              title: result.data.msg,\n              icon: \"none\",\n              duration: 3000\n            });\n          }\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbG9naW5SZWdpc3QvbG9naW5SZWdpc3QudnVlIl0sIm5hbWVzIjpbImRhdGEiLCJzdGF0dXNCYXJIZWlnaHQiLCJtb2JpbGUiLCJ2ZXJpZnlDb2RlIiwiY29kZUJ0blRleHQiLCJjb2RlVGltZXMiLCJsb2dpblRvdWNoZWQiLCJjb2RlVG91Y2hlZCIsIm9uTG9hZCIsIm1ldGhvZHMiLCJ0b3VjaHN0YXJ0TG9naW4iLCJ0b3VjaGVuZExvZ2luIiwidG91Y2hzdGFydENvZGUiLCJ0b3VjaGVuZENvZGUiLCJjbG9zZSIsInVuaSIsImRlbHRhIiwiYW5pbWF0aW9uVHlwZSIsInR5cGluZ01vYmlsZSIsInR5cGluZ1ZlcmlmeUNvZGUiLCJnZXRDb2RlIiwibWUiLCJ0aXRsZSIsImljb24iLCJtZXRob2QiLCJ1cmwiLCJzdWNjZXNzIiwiZG9UaW1lciIsImNsZWFySW50ZXJ2YWwiLCJsb2dpbk9yUmVnaXN0IiwiYXBwIiwiZHVyYXRpb24iXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUEwSkE7QUFDQTtBQUFBLGVBQ0E7RUFDQUE7SUFDQTtNQUNBQztNQUVBQztNQUNBQztNQUNBQztNQUNBQztNQUVBQztNQUNBQztJQUNBO0VBQ0E7RUFDQUM7SUFDQTtFQUNBO0VBQ0FDO0lBQ0FDO01BQ0E7SUFDQTtJQUNBQztNQUNBO0lBQ0E7SUFDQUM7TUFDQTtNQUNBO1FBQ0E7TUFDQTtRQUNBO01BQ0E7SUFDQTtJQUNBQztNQUNBO01BQ0E7UUFDQTtNQUNBO1FBQ0E7TUFDQTtJQUNBO0lBQ0FDO01BQ0FDO1FBQ0FDO1FBQ0FDO01BQ0E7SUFDQTtJQUNBQztNQUNBO01BQ0E7SUFDQTtJQUNBQztNQUNBO01BQ0E7SUFDQTtJQUNBQztNQUNBO01BRUE7UUFDQTtNQUNBO01BRUFDO01BRUE7TUFFQTtRQUNBTjtVQUNBTztVQUNBQztRQUNBO1FBQ0E7TUFDQTtNQUVBO01BQ0E7TUFDQVI7UUFDQVM7UUFDQUM7UUFDQUM7VUFDQTtVQUNBO1lBQ0FYO2NBQ0FPO2NBQ0FDO1lBQ0E7VUFDQTs7VUFFQTtVQUNBO1lBQ0FGO1VBQ0E7UUFDQTtNQUNBO0lBRUE7SUFDQTtJQUNBTTtNQUNBO01BQ0E7TUFDQTtRQUNBO1FBRUE7VUFDQU47VUFDQUE7VUFDQU87UUFDQTtVQUNBUDtRQUNBO1FBQ0FBO01BQ0E7TUFDQTtJQUNBO0lBQ0FRO01BQ0E7TUFDQTtNQUNBO01BRUE7UUFDQWQ7VUFDQU87VUFDQUM7UUFDQTtRQUNBO01BQ0E7TUFFQTtRQUNBUjtVQUNBTztVQUNBQztRQUNBO1FBQ0E7TUFDQTtNQUVBO01BQ0E7TUFDQVI7UUFDQVM7UUFDQUM7UUFDQXpCO1VBQ0E7VUFDQTtRQUNBO1FBQ0EwQjtVQUNBO1VBQ0E7WUFDQTtZQUNBSTtZQUNBQTtZQUNBO1lBQ0E7WUFDQWY7Y0FDQVU7WUFDQTtVQUNBO1lBQ0FWO2NBQ0FPO2NBQ0FDO2NBQ0FRO1lBQ0E7VUFDQTtRQUNBO01BQ0E7SUFDQTtFQUNBO0FBQ0E7QUFBQSIsImZpbGUiOiIyNi5qcyIsInNvdXJjZXNDb250ZW50IjpbIjxzdHlsZT5cbi5wYWdlIHtcblx0cG9zaXRpb246IGFic29sdXRlO1xuXHRsZWZ0OiAwO1xuXHRyaWdodDogMDtcblx0dG9wOiAwO1xuXHRib3R0b206IDA7XG5cdGJhY2tncm91bmQtY29sb3I6ICNGRkZGRkY7XG5cdHBhZGRpbmc6IDIwcnB4O1xuXHRcblx0ZGlzcGxheTogZmxleDtcblx0ZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbn1cbi5sb2dpbi1ib3gge1xuXHRkaXNwbGF5OiBmbGV4O1xuXHRmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuXHRtYXJnaW4tdG9wOiAyMDBycHg7XG5cdHBhZGRpbmc6IDIwcnB4O1xufVxuLmNvZGUtdGV4dCB7XG5cdGZvbnQtd2VpZ2h0OiA2MDA7XG5cdGZvbnQtc2l6ZTogNjBycHg7XG59XG4uY29kZS10aXBzIHtcblx0Zm9udC13ZWlnaHQ6IDMwMDtcblx0Zm9udC1zaXplOiAzNHJweDtcblx0Y29sb3I6ICM4MDgwODA7XG5cdG1hcmdpbi10b3A6IDIwcnB4O1xufVxuLm1vYmlsZS1ib3gge1xuXHRoZWlnaHQ6IDEwMHJweDtcblx0ZGlzcGxheTogZmxleDtcblx0ZmxleC1kaXJlY3Rpb246IHJvdztcblx0cGFkZGluZzogMCAyMHJweDtcblx0Ym9yZGVyLWNvbG9yOiAjODA4MDgwO1xuXHRib3JkZXItd2lkdGg6IDFweDtcbn1cbi5tb2JpbGUtcHJlZml4IHtcblx0Y29sb3I6ICM4MDgwODA7XG5cdGZvbnQtd2VpZ2h0OiA0MDA7XG5cdGZvbnQtc2l6ZTogMzZycHg7XG59XG4ubW9iaWxlIHtcblx0Y29sb3I6ICMwQzBDMEM7XG5cdGZvbnQtd2VpZ2h0OiA0MDA7XG5cdGZvbnQtc2l6ZTogMzhycHg7XG59XG4ubWlkZGxlIHtcblx0d2lkdGg6IDFycHg7XG5cdGJhY2tncm91bmQtY29sb3I6ICNhZmFmYjM7XG5cdGhlaWdodDogNjBycHg7XG5cdG1hcmdpbjogMCA0MHJweDtcbn1cbi5saW5lIHtcblx0aGVpZ2h0OiAxcnB4O1xuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjYWZhZmIzO1xufVxuLmxvZ2luLWJ0bi10ZXh0IHtcblx0Zm9udC1zaXplOiA0MHJweDtcblx0Y29sb3I6ICNGRkZGRkY7XG5cdGZvbnQtd2VpZ2h0OiA1MDA7XG59XG4uY29kZS1idG4tdGV4dCB7XG5cdGZvbnQtc2l6ZTogMzBycHg7XG5cdGNvbG9yOiAjRkZGRkZGO1xuXHRmb250LXdlaWdodDogMzAwO1xufVxuLmJ0bi1sb2dpbiB7XG5cdGJhY2tncm91bmQtY29sb3I6ICNlZjI3NGQ7XG5cdC8qIGJvcmRlci1jb2xvcjogIzM0MzQzODsgKi9cbn1cbi5idG4tbG9naW4tdG91Y2hlZCB7XG5cdGJhY2tncm91bmQtY29sb3I6ICNlMjdjODI7XG5cdC8qIGJvcmRlci1jb2xvcjogIzAwMDAwMDsgKi9cbn1cbi5idG4tY29kZSB7XG5cdGJhY2tncm91bmQtY29sb3I6ICMwYWJiMDM7XG59XG4uYnRuLWNvZGUtdG91Y2hlZCB7XG5cdGJhY2tncm91bmQtY29sb3I6ICM2YmU4NjY7XG59XG48L3N0eWxlPlxuXG48dGVtcGxhdGU+XG5cdDx2aWV3IGNsYXNzPVwicGFnZVwiPlxuXHRcdDwhLS0g6L+Z6YeM5piv54q25oCB5qCPLCDmr4/kuKrpobXpnaLpg73pnIDopoHmnInvvIznm67nmoTkuI3orqnpobXpnaLopobnm5bnirbmgIHmoI8gLS0+XG5cdFx0PHZpZXcgOnN0eWxlPVwie2hlaWdodDogc3RhdHVzQmFySGVpZ2h0ICsgJ3B4J31cIj48L3ZpZXc+XG5cdFx0XG5cdFx0PGltYWdlIHNyYz1cIi4uLy4uL3N0YXRpYy9pbWFnZXMvaWNvbi1jbG9zZS1ibGFjay5wbmdcIiBzdHlsZT1cIndpZHRoOiA1MHJweDtoZWlnaHQ6IDUwcnB4O1wiIEBjbGljaz1cImNsb3NlKClcIj48L2ltYWdlPlxuXHRcdFxuXHRcdDx2aWV3IGNsYXNzPVwibG9naW4tYm94XCI+XG5cdFx0XHQ8dGV4dCBjbGFzcz1cImNvZGUtdGV4dFwiPumqjOivgeeggeeZu+W9lTwvdGV4dD5cblx0XHRcdDx0ZXh0IGNsYXNzPVwiY29kZS10aXBzXCI+5rOo77ya5pyq5rOo5YaM55qE5omL5py65Y+36aqM6K+B6YCa6L+H5ZCO5bCG6Ieq5Yqo5rOo5YaMfjwvdGV4dD5cblx0XHRcdFxuXHRcdFx0PHZpZXcgY2xhc3M9XCJtb2JpbGUtYm94XCI+XG5cdFx0XHRcdDx0ZXh0IGNsYXNzPVwibW9iaWxlLXByZWZpeFwiIHN0eWxlPVwiYWxpZ24tc2VsZjogY2VudGVyO1wiPis4NjwvdGV4dD5cblx0XHRcdFx0XG5cdFx0XHRcdDx2aWV3IGNsYXNzPVwibWlkZGxlXCIgc3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7XCI+PC92aWV3PlxuXHRcdFx0XHRcblx0XHRcdFx0PGlucHV0IHR5cGU9XCJudW1iZXJcIiBcblx0XHRcdFx0XHRjbGFzcz1cIm1vYmlsZVwiIFxuXHRcdFx0XHRcdDp2YWx1ZT1cIm1vYmlsZVwiIFxuXHRcdFx0XHRcdDptb2RlbD1cIm1vYmlsZVwiIFxuXHRcdFx0XHRcdEBpbnB1dD1cInR5cGluZ01vYmlsZVwiXG5cdFx0XHRcdFx0cGxhY2Vob2xkZXI9XCLor7fovpPlhaXmiYvmnLrlj7dcIiBcblx0XHRcdFx0XHRtYXhsZW5ndGg9XCIxMVwiXG5cdFx0XHRcdFx0c3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7XCIvPlxuXHRcdFx0PC92aWV3PlxuXHRcdFx0PHZpZXcgY2xhc3M9XCJsaW5lXCIgc3R5bGU9XCJoZWlnaHQ6IDFycHg7YmFja2dyb3VuZC1jb2xvcjogI2FmYWZiMztcIj48L3ZpZXc+XG5cdFx0XHRcblx0XHRcdDx2aWV3IGNsYXNzPVwibW9iaWxlLWJveFwiIHN0eWxlPVwibWFyZ2luLXRvcDogMjBycHg7XCI+XG5cdFx0XHRcdDxpbnB1dCB0eXBlPVwibnVtYmVyXCIgXG5cdFx0XHRcdFx0Y2xhc3M9XCJtb2JpbGVcIiBcblx0XHRcdFx0XHQ6dmFsdWU9XCJ2ZXJpZnlDb2RlXCJcblx0XHRcdFx0XHQ6bW9kZWw9XCJ2ZXJpZnlDb2RlXCJcblx0XHRcdFx0XHRAaW5wdXQ9XCJ0eXBpbmdWZXJpZnlDb2RlXCJcblx0XHRcdFx0XHRwbGFjZWhvbGRlcj1cIuivt+i+k+WFpemqjOivgeeggVwiIFxuXHRcdFx0XHRcdG1heGxlbmd0aD1cIjZcIiBcblx0XHRcdFx0XHRzdHlsZT1cIndpZHRoOiAzNjBycHg7YWxpZ24tc2VsZjogY2VudGVyO1wiLz5cblx0XHRcdFx0XG5cdFx0XHRcdDx2aWV3IGNsYXNzPVwibWlkZGxlXCIgc3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7XCI+PC92aWV3PlxuXHRcdFx0XHRcblx0XHRcdFx0PHZpZXdcblx0XHRcdFx0XHQ6Y2xhc3M9XCJ7J2J0bi1jb2RlJzohY29kZVRvdWNoZWQsICdidG4tY29kZS10b3VjaGVkJzogY29kZVRvdWNoZWR9XCJcblx0XHRcdFx0XHRAdG91Y2hzdGFydD1cInRvdWNoc3RhcnRDb2RlXCJcblx0XHRcdFx0XHRAdG91Y2hlbmQ9XCJ0b3VjaGVuZENvZGVcIlxuXHRcdFx0XHRcdEBjbGljaz1cImdldENvZGUoKVwiXG5cdFx0XHRcdFx0c3R5bGU9XCJib3JkZXItd2lkdGg6IDFweDtib3JkZXItY29sb3I6ICNGRkZGRkY7d2lkdGg6IDIyMHJweDtoZWlnaHQ6IDgwcnB4O2JvcmRlci1yYWRpdXM6IDYwcnB4O2Rpc3BsYXk6IGZsZXg7ZmxleC1kaXJlY3Rpb246IHJvdztqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjthbGlnbi1zZWxmOiBjZW50ZXI7XCI+XG5cdFx0XHRcdFx0PHRleHQgY2xhc3M9XCJjb2RlLWJ0bi10ZXh0XCIgc3R5bGU9XCJhbGlnbi1zZWxmOiBjZW50ZXI7XCI+e3tjb2RlQnRuVGV4dH19PC90ZXh0PlxuXHRcdFx0XHQ8L3ZpZXc+XG5cdFx0XHQ8L3ZpZXc+XG5cdFx0XHQ8dmlldyBjbGFzcz1cImxpbmVcIj48L3ZpZXc+XG5cdFx0XHRcblx0XHRcdDx2aWV3IFxuXHRcdFx0XHQ6Y2xhc3M9XCJ7J2J0bi1sb2dpbic6IWxvZ2luVG91Y2hlZCwgJ2J0bi1sb2dpbi10b3VjaGVkJzogbG9naW5Ub3VjaGVkfVwiXG5cdFx0XHRcdEB0b3VjaHN0YXJ0PVwidG91Y2hzdGFydExvZ2luXCJcblx0XHRcdFx0QHRvdWNoZW5kPVwidG91Y2hlbmRMb2dpblwiXG5cdFx0XHRcdEBjbGljaz1cImxvZ2luT3JSZWdpc3QoKVwiXG5cdFx0XHRcdHN0eWxlPVwibWFyZ2luLXRvcDogNTBycHg7Ym9yZGVyLXdpZHRoOiAxcHg7Ym9yZGVyLWNvbG9yOiAjRkZGRkZGO3dpZHRoOiA2NTBycHg7aGVpZ2h0OiAxMjBycHg7b3BhY2l0eTogMC44O2JvcmRlci1yYWRpdXM6IDEwMHJweDtkaXNwbGF5OiBmbGV4O2ZsZXgtZGlyZWN0aW9uOiByb3c7anVzdGlmeS1jb250ZW50OiBjZW50ZXI7YWxpZ24tc2VsZjogY2VudGVyO1wiPlxuXHRcdFx0XHRcdDx0ZXh0IGNsYXNzPVwibG9naW4tYnRuLXRleHRcIiBzdHlsZT1cImFsaWduLXNlbGY6IGNlbnRlcjtcIj7nmbvlvZUgLyDms6jlhow8L3RleHQ+XG5cdFx0XHQ8L3ZpZXc+XG5cdFx0XHRcblx0XHRcdDx2aWV3IHN0eWxlPVwiZGlzcGxheTogZmxleDtmbGV4LWRpcmVjdGlvbjogY29sdW1uO21hcmdpbi10b3A6IDUwcnB4O1wiPlxuXHRcdFx0XHQ8dGV4dCBzdHlsZT1cImNvbG9yOiAjODA4MDgwO2ZvbnQtc2l6ZTogMzBycHg7XCI+KuazqOaEj++8mjwvdGV4dD5cblx0XHRcdFx0PHRleHQgc3R5bGU9XCJjb2xvcjogIzgwODA4MDtmb250LXNpemU6IDMwcnB4O1wiPjEuIOS9k+mqjOeJiOWQr+WKqOWQjuiHquWKqOeZu+W9le+8jOmAgOWHuuWQjuWPr+S7peS9v+eUqOaJi+acuuWPt+i/m+ihjOeZu+W9leaIluazqOWGjOOAgjwvdGV4dD5cblx0XHRcdFx0PHRleHQgc3R5bGU9XCJjb2xvcjogIzgwODA4MDtmb250LXNpemU6IDMwcnB4O1wiPjIuIOS9k+mqjOeJiOeahOm7mOiupOa1i+ivlei0puWPt+S4reWMheWQq+S4gOS6m+WGhee9ruaVsOaNru+8jOWPr+eUqOS6jua1i+ivleaIluafpeeci+OAgjwvdGV4dD5cblx0XHRcdFx0PHRleHQgc3R5bGU9XCJjb2xvcjogIzgwODA4MDtmb250LXNpemU6IDMwcnB4O1wiPjMuIOS9k+mqjOeJiOS4jeiDveWPkeW4g+inhumikeOAgjwvdGV4dD5cblx0XHRcdFx0PHRleHQgc3R5bGU9XCJjb2xvcjogIzgwODA4MDtmb250LXNpemU6IDMwcnB4O1wiPjQuIOS9k+mqjOeJiOS4reeVmeiogOWSjOS/ruaUueeUqOaIt+S/oeaBr+etieaTjeS9nOS8muWumuaXtuiHquWKqOa4hemZpOOAgjwvdGV4dD5cblx0XHRcdDwvdmlldz5cblx0XHQ8L3ZpZXc+XG5cdDwvdmlldz5cbjwvdGVtcGxhdGU+XG5cbjxzY3JpcHQ+XG5cdHZhciBzeXN0ZW0gPSB1bmkuZ2V0U3lzdGVtSW5mb1N5bmMoKTtcblx0dmFyIGFwcCA9IGdldEFwcCgpO1xuXHRleHBvcnQgZGVmYXVsdCB7XG5cdFx0ZGF0YSgpIHtcblx0XHRcdHJldHVybiB7XG5cdFx0XHRcdHN0YXR1c0JhckhlaWdodDogMCxcblx0XHRcdFx0XG5cdFx0XHRcdG1vYmlsZTogXCJcIixcblx0XHRcdFx0dmVyaWZ5Q29kZTogXCJcIixcblx0XHRcdFx0Y29kZUJ0blRleHQ6IFwi6I635b6X6aqM6K+B56CBXCIsXG5cdFx0XHRcdGNvZGVUaW1lczogMCxcblx0XHRcdFx0XG5cdFx0XHRcdGxvZ2luVG91Y2hlZDogZmFsc2UsXG5cdFx0XHRcdGNvZGVUb3VjaGVkOiBmYWxzZSxcblx0XHRcdH1cblx0XHR9LFxuXHRcdG9uTG9hZCgpIHtcblx0XHRcdHRoaXMuc3RhdHVzQmFySGVpZ2h0ID0gc3lzdGVtLnN0YXR1c0JhckhlaWdodDtcblx0XHR9LFxuXHRcdG1ldGhvZHM6IHtcblx0XHRcdHRvdWNoc3RhcnRMb2dpbigpIHtcblx0XHRcdFx0dGhpcy5sb2dpblRvdWNoZWQgPSB0cnVlO1xuXHRcdFx0fSxcblx0XHRcdHRvdWNoZW5kTG9naW4oKSB7XG5cdFx0XHRcdHRoaXMubG9naW5Ub3VjaGVkID0gZmFsc2U7XG5cdFx0XHR9LFxuXHRcdFx0dG91Y2hzdGFydENvZGUoKSB7XG5cdFx0XHRcdC8vIHRpbWVy5Zyo6L+Q6KGM5pyf6Ze077yM56aB5q2i6Kem5pG4XG5cdFx0XHRcdGlmKHRoaXMuY29kZVRpbWVzID4gMCkge1xuXHRcdFx0XHRcdHJldHVybjtcblx0XHRcdFx0fSBlbHNlIHtcblx0XHRcdFx0XHR0aGlzLmNvZGVUb3VjaGVkID0gdHJ1ZTtcblx0XHRcdFx0fVxuXHRcdFx0fSxcblx0XHRcdHRvdWNoZW5kQ29kZSgpIHtcblx0XHRcdFx0Ly8gdGltZXLlnKjov5DooYzmnJ/pl7TvvIznpoHmraLop6bmkbhcblx0XHRcdFx0aWYodGhpcy5jb2RlVGltZXMgPiAwKSB7XG5cdFx0XHRcdFx0cmV0dXJuO1xuXHRcdFx0XHR9IGVsc2Uge1xuXHRcdFx0XHRcdHRoaXMuY29kZVRvdWNoZWQgPSBmYWxzZTtcblx0XHRcdFx0fVxuXHRcdFx0fSxcblx0XHRcdGNsb3NlKCkge1xuXHRcdFx0XHR1bmkubmF2aWdhdGVCYWNrKHtcblx0XHRcdFx0XHRkZWx0YTogMSxcblx0XHRcdFx0XHRhbmltYXRpb25UeXBlOiBcInNsaWRlLW91dC1ib3R0b21cIlxuXHRcdFx0XHR9KVxuXHRcdFx0fSxcblx0XHRcdHR5cGluZ01vYmlsZShlKSB7XG5cdFx0XHRcdHZhciBldmVudCA9IGU7XG5cdFx0XHRcdHRoaXMubW9iaWxlID0gZS5kZXRhaWwudmFsdWU7XG5cdFx0XHR9LFxuXHRcdFx0dHlwaW5nVmVyaWZ5Q29kZShlKSB7XG5cdFx0XHRcdHZhciBldmVudCA9IGU7XG5cdFx0XHRcdHRoaXMudmVyaWZ5Q29kZSA9IGUuZGV0YWlsLnZhbHVlO1xuXHRcdFx0fSxcblx0XHRcdGdldENvZGUoKSB7XG5cdFx0XHRcdHZhciBtZSA9IHRoaXM7XG5cdFx0XHRcdFxuXHRcdFx0XHRpZihtZS5jb2RlVGltZXMgPiAwKSB7XG5cdFx0XHRcdFx0cmV0dXJuO1xuXHRcdFx0XHR9XG5cdFx0XHRcdFxuXHRcdFx0XHRtZS5jb2RlVG91Y2hlZCA9IHRydWU7XG5cdFx0XHRcdFxuXHRcdFx0XHR2YXIgbW9iaWxlID0gbWUubW9iaWxlO1xuXHRcdFx0XHRcblx0XHRcdFx0aWYgKGFwcC5pc1N0ckVtcHR5KG1vYmlsZSkgfHwgbW9iaWxlLmxlbmd0aCAhPSAxMSkge1xuXHRcdFx0XHRcdHVuaS5zaG93VG9hc3Qoe1xuXHRcdFx0XHRcdFx0dGl0bGU6IFwi5omL5py65Y+35LiN5q2j56GuXCIsXG5cdFx0XHRcdFx0XHRpY29uOiBcIm5vbmVcIlxuXHRcdFx0XHRcdH0pO1xuXHRcdFx0XHRcdHJldHVybjtcblx0XHRcdFx0fVxuXHRcdFx0XHRcblx0XHRcdFx0dmFyIHNlcnZlclVybCA9IGFwcC5nbG9iYWxEYXRhLnNlcnZlclVybDtcblx0XHRcdFx0Ly8g6LCD55So5ZCO56uv5Y+R6YCB6aqM6K+B56CBXG5cdFx0XHRcdHVuaS5yZXF1ZXN0KHtcblx0XHRcdFx0XHRtZXRob2Q6IFwiUE9TVFwiLFxuXHRcdFx0XHRcdHVybDogc2VydmVyVXJsICsgXCIvcGFzc3BvcnQvZ2V0U01TQ29kZT9tb2JpbGU9XCIgKyBtb2JpbGUsXG5cdFx0XHRcdFx0c3VjY2VzcyhyZXN1bHQpIHtcblx0XHRcdFx0XHRcdHZhciBzdGF0dXMgPSByZXN1bHQuZGF0YS5zdGF0dXM7XG5cdFx0XHRcdFx0XHRpZiAoc3RhdHVzICE9IDIwMCkge1xuXHRcdFx0XHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcblx0XHRcdFx0XHRcdFx0XHR0aXRsZTogcmVzdWx0LmRhdGEubXNnLFxuXHRcdFx0XHRcdFx0XHRcdGljb246IFwibm9uZVwiXG5cdFx0XHRcdFx0XHRcdH0pO1xuXHRcdFx0XHRcdFx0fVxuXHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0XHQvLyDlvIDlp4vlgJLmlbA2MOenkumZkOWItlxuXHRcdFx0XHRcdFx0aWYobWUuY29kZVRpbWVzID09IDApIHtcblx0XHRcdFx0XHRcdFx0bWUuZG9UaW1lcig1OSk7XG5cdFx0XHRcdFx0XHR9XG5cdFx0XHRcdFx0fVxuXHRcdFx0XHR9KTtcblx0XHRcdFx0XHRcblx0XHRcdH0sXG5cdFx0XHQvLyDlj5HpgIHpqozor4HnoIHnmoTlgJLorqHml7bmlrnms5Vcblx0XHRcdGRvVGltZXIodGltZXMpIHtcblx0XHRcdFx0dmFyIG1lID0gdGhpcztcblx0XHRcdFx0Ly8g5YCS6K6h5pe25a6a5pe25ZmoXG5cdFx0XHRcdHZhciBzZW5kQ29kZUJ0bkZ1bmN0aW9uID0gZnVuY3Rpb24oKXtcblx0XHRcdFx0XHR2YXIgbGVmdCA9IHRpbWVzLS07XG5cblx0XHRcdFx0XHRpZiAobGVmdCA8PSAwKSB7XG5cdFx0XHRcdFx0XHRtZS5jb2RlVG91Y2hlZCA9IGZhbHNlO1xuXHRcdFx0XHRcdFx0bWUuY29kZUJ0blRleHQgPSBcIuWPkemAgemqjOivgeeggVwiO1xuXHRcdFx0XHRcdFx0Y2xlYXJJbnRlcnZhbChzbXNUaW1lcik7XG5cdFx0XHRcdFx0fSBlbHNlIHtcblx0XHRcdFx0XHRcdG1lLmNvZGVCdG5UZXh0ID0gbGVmdCArIFwic1wiO1xuXHRcdFx0XHRcdH1cblx0XHRcdFx0XHRtZS5jb2RlVGltZXMgPSBsZWZ0O1xuXHRcdFx0XHR9O1xuXHRcdFx0XHR2YXIgc21zVGltZXIgPSBzZXRJbnRlcnZhbChzZW5kQ29kZUJ0bkZ1bmN0aW9uLCAxMDAwKTtcblx0XHRcdH0sXG5cdFx0XHRsb2dpbk9yUmVnaXN0KCkge1xuXHRcdFx0XHR2YXIgbWUgPSB0aGlzO1xuXHRcdFx0XHR2YXIgdmVyaWZ5Q29kZSA9IG1lLnZlcmlmeUNvZGU7XG5cdFx0XHRcdHZhciBtb2JpbGUgPSBtZS5tb2JpbGU7XG5cdFx0XHRcdFxuXHRcdFx0XHRpZiAoYXBwLmlzU3RyRW1wdHkodmVyaWZ5Q29kZSkpIHtcblx0XHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcblx0XHRcdFx0XHRcdHRpdGxlOiBcIuivt+Whq+WGmemqjOivgeeggVwiLFxuXHRcdFx0XHRcdFx0aWNvbjogXCJub25lXCJcblx0XHRcdFx0XHR9KTtcblx0XHRcdFx0XHRyZXR1cm47XG5cdFx0XHRcdH1cblx0XHRcdFx0XG5cdFx0XHRcdGlmIChhcHAuaXNTdHJFbXB0eShtb2JpbGUpIHx8IG1vYmlsZS5sZW5ndGggIT0gMTEpIHtcblx0XHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcblx0XHRcdFx0XHRcdHRpdGxlOiBcIuaJi+acuuWPt+S4jeato+ehrlwiLFxuXHRcdFx0XHRcdFx0aWNvbjogXCJub25lXCJcblx0XHRcdFx0XHR9KTtcblx0XHRcdFx0XHRyZXR1cm47XG5cdFx0XHRcdH1cblx0XHRcdFx0XG5cdFx0XHRcdHZhciBzZXJ2ZXJVcmwgPSBhcHAuZ2xvYmFsRGF0YS5zZXJ2ZXJVcmw7XG5cdFx0XHRcdC8vIOiwg+eUqOWQjuerr+eZu+W9leazqOWGjFxuXHRcdFx0XHR1bmkucmVxdWVzdCh7XG5cdFx0XHRcdFx0bWV0aG9kOiBcIlBPU1RcIixcblx0XHRcdFx0XHR1cmw6IHNlcnZlclVybCArIFwiL3Bhc3Nwb3J0L2xvZ2luXCIsXG5cdFx0XHRcdFx0ZGF0YToge1xuXHRcdFx0XHRcdFx0XCJtb2JpbGVcIjogbW9iaWxlLFxuXHRcdFx0XHRcdFx0XCJzbXNDb2RlXCI6IHZlcmlmeUNvZGVcblx0XHRcdFx0XHR9LFxuXHRcdFx0XHRcdHN1Y2Nlc3MocmVzdWx0KSB7XG5cdFx0XHRcdFx0XHR2YXIgc3RhdHVzID0gcmVzdWx0LmRhdGEuc3RhdHVzO1xuXHRcdFx0XHRcdFx0aWYgKHN0YXR1cyA9PSAyMDApIHtcblx0XHRcdFx0XHRcdFx0dmFyIHVzZXJJbmZvID0gcmVzdWx0LmRhdGEuZGF0YTtcblx0XHRcdFx0XHRcdFx0YXBwLnNldFVzZXJJbmZvU2Vzc2lvbih1c2VySW5mbyk7XG5cdFx0XHRcdFx0XHRcdGFwcC5zZXRVc2VyU2Vzc2lvblRva2VuKHVzZXJJbmZvLnVzZXJUb2tlbik7XG5cdFx0XHRcdFx0XHRcdC8vIOeZu+W9leaIkOWKn++8jOWFs+mXreW9k+WJjemhtVxuXHRcdFx0XHRcdFx0XHQvLyBtZS5jbG9zZSgpO1xuXHRcdFx0XHRcdFx0XHR1bmkucmVMYXVuY2goe1xuXHRcdFx0XHRcdFx0XHRcdHVybDogXCIuLi9tZS9tZVwiXG5cdFx0XHRcdFx0XHRcdH0pXG5cdFx0XHRcdFx0XHR9IGVsc2UgaWYgKHN0YXR1cyAhPSAyMDApIHtcblx0XHRcdFx0XHRcdFx0dW5pLnNob3dUb2FzdCh7XG5cdFx0XHRcdFx0XHRcdFx0dGl0bGU6IHJlc3VsdC5kYXRhLm1zZyxcblx0XHRcdFx0XHRcdFx0XHRpY29uOiBcIm5vbmVcIixcblx0XHRcdFx0XHRcdFx0XHRkdXJhdGlvbjogMzAwMFxuXHRcdFx0XHRcdFx0XHR9KTtcblx0XHRcdFx0XHRcdH1cblx0XHRcdFx0XHR9XG5cdFx0XHRcdH0pO1xuXHRcdFx0fVxuXHRcdH1cblx0fVxuPC9zY3JpcHQ+XG5cblxuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///26\n");
 
 /***/ }),
 /* 27 */
@@ -1054,7 +1054,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar app = getApp();\nvar _default = {\n  data: function data() {\n    return {\n      // bgUrl: \"/static/face/face-arrow-1.png\",\n      bgUrl: getApp().getUserInfoSession().bgImg,\n      changeTouched: false,\n      screenHeight: system.safeArea.bottom\n    };\n  },\n  onShow: function onShow() {\n    var bgimg = app.getUserInfoSession().bgImg;\n    if (app.isStrEmpty(bgimg)) {\n      bgimg = \"/static/images/defaultBgImg.png\";\n    }\n    this.bgUrl = bgimg;\n    // this.bgUrl = \"../../static/face/face-arrow-1.png\";\n  },\n\n  methods: {\n    touchstartChange: function touchstartChange() {\n      this.changeTouched = true;\n    },\n    touchendChange: function touchendChange() {\n      this.changeTouched = false;\n    },\n    changeBg: function changeBg() {\n      var me = this;\n      var userId = getApp().getUserInfoSession().id;\n      uni.chooseImage({\n        count: 1,\n        sizeType: [\"compressed\"],\n        crop: {\n          quality: 60,\n          width: 400,\n          height: 400\n        },\n        success: function success(e) {\n          var newBg = e.tempFilePaths[0];\n          me.bgUrl = newBg;\n\n          // 上传\n          var serverUrl = app.globalData.serverUrl;\n          uni.uploadFile({\n            header: {\n              headerUserId: userId,\n              headerUserToken: app.getUserSessionToken()\n            },\n            url: serverUrl + \"/userInfo/modifyImage?userId=\" + userId + \"&type=1\",\n            name: \"file\",\n            filePath: newBg,\n            success: function success(result) {\n              if (result.statusCode == 200) {\n                var res = JSON.parse(result.data);\n                if (res.status = 200) {\n                  var userInfoUpdated = res.data;\n                  // 重置本地用户信息\n                  app.setUserInfoSession(userInfoUpdated);\n                  uni.navigateBack({\n                    delta: 1,\n                    animationType: \"fade-out\"\n                  });\n                } else {\n                  uni.showToast({\n                    title: res.msg,\n                    icon: 'error'\n                  });\n                }\n              } else {\n                uni.showToast({\n                  title: \"上传失败\",\n                  icon: 'error'\n                });\n              }\n            }\n          });\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWUvbXlCYWNrSW1nLnZ1ZSJdLCJuYW1lcyI6WyJzeXN0ZW0iLCJ1bmkiLCJnZXRTeXN0ZW1JbmZvU3luYyIsImFwcCIsImdldEFwcCIsImRhdGEiLCJiZ1VybCIsImdldFVzZXJJbmZvU2Vzc2lvbiIsImJnSW1nIiwiY2hhbmdlVG91Y2hlZCIsInNjcmVlbkhlaWdodCIsInNhZmVBcmVhIiwiYm90dG9tIiwib25TaG93IiwiYmdpbWciLCJpc1N0ckVtcHR5IiwibWV0aG9kcyIsInRvdWNoc3RhcnRDaGFuZ2UiLCJ0b3VjaGVuZENoYW5nZSIsImNoYW5nZUJnIiwibWUiLCJ1c2VySWQiLCJpZCIsImNob29zZUltYWdlIiwiY291bnQiLCJzaXplVHlwZSIsImNyb3AiLCJxdWFsaXR5Iiwid2lkdGgiLCJoZWlnaHQiLCJzdWNjZXNzIiwiZSIsIm5ld0JnIiwidGVtcEZpbGVQYXRocyIsInNlcnZlclVybCIsImdsb2JhbERhdGEiLCJ1cGxvYWRGaWxlIiwiaGVhZGVyIiwiaGVhZGVyVXNlcklkIiwiaGVhZGVyVXNlclRva2VuIiwiZ2V0VXNlclNlc3Npb25Ub2tlbiIsInVybCIsIm5hbWUiLCJmaWxlUGF0aCIsInJlc3VsdCIsInN0YXR1c0NvZGUiLCJyZXMiLCJKU09OIiwicGFyc2UiLCJzdGF0dXMiLCJ1c2VySW5mb1VwZGF0ZWQiLCJzZXRVc2VySW5mb1Nlc3Npb24iLCJuYXZpZ2F0ZUJhY2siLCJkZWx0YSIsImFuaW1hdGlvblR5cGUiLCJzaG93VG9hc3QiLCJ0aXRsZSIsIm1zZyIsImljb24iXSwibWFwcGluZ3MiOiI7Ozs7OztBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtB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UCxDQUFDLENBQUM7Z0JBQ0g7Y0FDRCxDQUFDLE1BQU07Z0JBQ056RCxHQUFHLENBQUNzRCxTQUFTLENBQUM7a0JBQ2JDLEtBQUssRUFBRSxNQUFNO2tCQUNiRSxJQUFJLEVBQUU7Z0JBQ1AsQ0FBQyxDQUFDO2NBQ0g7WUFFRDtVQUNELENBQUMsQ0FBQztRQUNIO01BQ0QsQ0FBQyxDQUFDO0lBQ0g7RUFDRDtBQUNELENBQUM7QUFBQSIsImZpbGUiOiIzMS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuXG52YXIgc3lzdGVtID0gdW5pLmdldFN5c3RlbUluZm9TeW5jKCk7XG52YXIgYXBwID0gZ2V0QXBwKCk7XG5leHBvcnQgZGVmYXVsdCB7XG5cdGRhdGEoKSB7XG5cdFx0cmV0dXJuIHtcblx0XHRcdC8vIGJnVXJsOiBcIi9zdGF0aWMvZmFjZS9mYWNlLWFycm93LTEucG5nXCIsXG5cdFx0XHRiZ1VybDogZ2V0QXBwKCkuZ2V0VXNlckluZm9TZXNzaW9uKCkuYmdJbWcsXG5cdFx0XHRcblx0XHRcdGNoYW5nZVRvdWNoZWQ6IGZhbHNlLFxuXHRcdFx0XG5cdFx0XHRzY3JlZW5IZWlnaHQ6IHN5c3RlbS5zYWZlQXJlYS5ib3R0b20sXG5cdFx0fVxuXHR9LFxuXHRvblNob3coKSB7XG5cdFx0dmFyIGJnaW1nID0gYXBwLmdldFVzZXJJbmZvU2Vzc2lvbigpLmJnSW1nO1xuXHRcdGlmIChhcHAuaXNTdHJFbXB0eShiZ2ltZykpIHtcblx0XHRcdGJnaW1nID0gXCIvc3RhdGljL2ltYWdlcy9kZWZhdWx0QmdJbWcucG5nXCI7XG5cdFx0fVxuXHRcdHRoaXMuYmdVcmwgPSBiZ2ltZztcblx0XHQvLyB0aGlzLmJnVXJsID0gXCIuLi8uLi9zdGF0aWMvZmFjZS9mYWNlLWFycm93LTEucG5nXCI7XG5cdH0sXG5cdG1ldGhvZHM6IHtcblx0XHR0b3VjaHN0YXJ0Q2hhbmdlKCkge1xuXHRcdFx0dGhpcy5jaGFuZ2VUb3VjaGVkID0gdHJ1ZTtcblx0XHR9LFxuXHRcdHRvdWNoZW5kQ2hhbmdlKCkge1xuXHRcdFx0dGhpcy5jaGFuZ2VUb3VjaGVkID0gZmFsc2U7XG5cdFx0fSxcblx0XHRjaGFuZ2VCZygpIHtcblx0XHRcdHZhciBtZSA9IHRoaXM7XG5cdFx0XHR2YXIgdXNlcklkID0gZ2V0QXBwKCkuZ2V0VXNlckluZm9TZXNzaW9uKCkuaWQ7XG5cdFx0XHRcblx0XHRcdHVuaS5jaG9vc2VJbWFnZSh7XG5cdFx0XHRcdGNvdW50OiAxLFxuXHRcdFx0XHRzaXplVHlwZTogW1wiY29tcHJlc3NlZFwiXSxcblx0XHRcdFx0Y3JvcDoge1xuXHRcdFx0XHRcdHF1YWxpdHk6IDYwLFxuXHRcdFx0XHRcdHdpZHRoOiA0MDAsXG5cdFx0XHRcdFx0aGVpZ2h0OiA0MDBcblx0XHRcdFx0fSxcblx0XHRcdFx0c3VjY2VzczogKGUpID0+IHtcblx0XHRcdFx0XHR2YXIgbmV3QmcgPSBlLnRlbXBGaWxlUGF0aHNbMF07XG5cdFx0XHRcdFx0bWUuYmdVcmwgPSBuZXdCZztcblx0XHRcdFx0XHRcblx0XHRcdFx0XHQvLyDkuIrkvKBcblx0XHRcdFx0XHR2YXIgc2VydmVyVXJsID0gYXBwLmdsb2JhbERhdGEuc2VydmVyVXJsO1xuXHRcdFx0XHRcdHVuaS51cGxvYWRGaWxlKHtcblx0XHRcdFx0XHRcdGhlYWRlcjoge1xuXHRcdFx0XHRcdFx0XHRoZWFkZXJVc2VySWQ6IHVzZXJJZCxcblx0XHRcdFx0XHRcdFx0aGVhZGVyVXNlclRva2VuOiBhcHAuZ2V0VXNlclNlc3Npb25Ub2tlbigpXG5cdFx0XHRcdFx0XHR9LFxuXHRcdFx0XHRcdFx0dXJsOiBzZXJ2ZXJVcmwgKyBcIi91c2VySW5mby9tb2RpZnlJbWFnZT91c2VySWQ9XCIgKyB1c2VySWQgKyBcIiZ0eXBlPTFcIixcblx0XHRcdFx0XHRcdG5hbWU6IFwiZmlsZVwiLFxuXHRcdFx0XHRcdFx0ZmlsZVBhdGg6IG5ld0JnLFxuXHRcdFx0XHRcdFx0c3VjY2VzcyhyZXN1bHQpIHtcblx0XHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0XHRcdGlmIChyZXN1bHQuc3RhdHVzQ29kZSA9PSAyMDApIHtcblx0XHRcdFx0XHRcdFx0XHR2YXIgcmVzID0gSlNPTi5wYXJzZShyZXN1bHQuZGF0YSk7XG5cdFx0XHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0XHRcdFx0aWYgKHJlcy5zdGF0dXMgPSAyMDApIHtcblx0XHRcdFx0XHRcdFx0XHRcdHZhciB1c2VySW5mb1VwZGF0ZWQgPSByZXMuZGF0YTtcblx0XHRcdFx0XHRcdFx0XHRcdC8vIOmHjee9ruacrOWcsOeUqOaIt+S/oeaBr1xuXHRcdFx0XHRcdFx0XHRcdFx0YXBwLnNldFVzZXJJbmZvU2Vzc2lvbih1c2VySW5mb1VwZGF0ZWQpO1xuXHRcdFx0XHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0XHRcdFx0XHR1bmkubmF2aWdhdGVCYWNrKHtcblx0XHRcdFx0XHRcdFx0XHRcdFx0ZGVsdGE6IDEsXG5cdFx0XHRcdFx0XHRcdFx0XHRcdGFuaW1hdGlvblR5cGU6IFwiZmFkZS1vdXRcIlxuXHRcdFx0XHRcdFx0XHRcdFx0fSlcblx0XHRcdFx0XHRcdFx0XHR9IGVsc2Uge1xuXHRcdFx0XHRcdFx0XHRcdFx0dW5pLnNob3dUb2FzdCh7XG5cdFx0XHRcdFx0XHRcdFx0XHRcdHRpdGxlOiByZXMubXNnLFxuXHRcdFx0XHRcdFx0XHRcdFx0XHRpY29uOiAnZXJyb3InXG5cdFx0XHRcdFx0XHRcdFx0XHR9KVxuXHRcdFx0XHRcdFx0XHRcdH1cblx0XHRcdFx0XHRcdFx0fSBlbHNlIHtcblx0XHRcdFx0XHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcblx0XHRcdFx0XHRcdFx0XHRcdHRpdGxlOiBcIuS4iuS8oOWksei0pVwiLFxuXHRcdFx0XHRcdFx0XHRcdFx0aWNvbjogJ2Vycm9yJ1xuXHRcdFx0XHRcdFx0XHRcdH0pXG5cdFx0XHRcdFx0XHRcdH1cblx0XHRcdFx0XHRcdFx0XG5cdFx0XHRcdFx0XHR9XG5cdFx0XHRcdFx0fSlcblx0XHRcdFx0fVxuXHRcdFx0fSlcblx0XHR9IFxuXHR9XG59XG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///31\n");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar app = getApp();\nvar _default = {\n  data: function data() {\n    return {\n      // bgUrl: \"/static/face/face-arrow-1.png\",\n      bgUrl: getApp().getUserInfoSession().bgImg,\n      changeTouched: false,\n      screenHeight: system.safeArea.bottom\n    };\n  },\n  onShow: function onShow() {\n    var bgimg = app.getUserInfoSession().bgImg;\n    if (app.isStrEmpty(bgimg)) {\n      bgimg = \"/static/images/defaultBgImg.png\";\n    }\n    this.bgUrl = bgimg;\n    // this.bgUrl = \"../../static/face/face-arrow-1.png\";\n  },\n\n  methods: {\n    touchstartChange: function touchstartChange() {\n      this.changeTouched = true;\n    },\n    touchendChange: function touchendChange() {\n      this.changeTouched = false;\n    },\n    changeBg: function changeBg() {\n      var me = this;\n      var userId = getApp().getUserInfoSession().id;\n      uni.chooseImage({\n        count: 1,\n        sizeType: [\"compressed\"],\n        crop: {\n          quality: 60,\n          width: 400,\n          height: 400\n        },\n        success: function success(e) {\n          var newBg = e.tempFilePaths[0];\n          me.bgUrl = newBg;\n\n          // 上传\n          var serverUrl = app.globalData.serverUrl;\n          uni.uploadFile({\n            header: {\n              headerUserId: userId,\n              headerUserToken: app.getUserSessionToken()\n            },\n            url: serverUrl + \"/userInfo/modifyImage?userId=\" + userId + \"&type=1\",\n            name: \"file\",\n            filePath: newBg,\n            success: function success(result) {\n              if (result.statusCode == 200) {\n                var res = JSON.parse(result.data);\n                if (res.status = 200) {\n                  var userInfoUpdated = res.data;\n                  // 重置本地用户信息\n                  app.setUserInfoSession(userInfoUpdated);\n                  uni.navigateBack({\n                    delta: 1,\n                    animationType: \"fade-out\"\n                  });\n                } else {\n                  uni.showToast({\n                    title: res.msg,\n                    icon: 'error'\n                  });\n                }\n              } else {\n                uni.showToast({\n                  title: \"上传失败\",\n                  icon: 'error'\n                });\n              }\n            }\n          });\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWUvbXlCYWNrSW1nLnZ1ZSJdLCJuYW1lcyI6WyJkYXRhIiwiYmdVcmwiLCJjaGFuZ2VUb3VjaGVkIiwic2NyZWVuSGVpZ2h0Iiwib25TaG93IiwiYmdpbWciLCJtZXRob2RzIiwidG91Y2hzdGFydENoYW5nZSIsInRvdWNoZW5kQ2hhbmdlIiwiY2hhbmdlQmciLCJ1bmkiLCJjb3VudCIsInNpemVUeXBlIiwiY3JvcCIsInF1YWxpdHkiLCJ3aWR0aCIsImhlaWdodCIsInN1Y2Nlc3MiLCJtZSIsImhlYWRlciIsImhlYWRlclVzZXJJZCIsImhlYWRlclVzZXJUb2tlbiIsInVybCIsIm5hbWUiLCJmaWxlUGF0aCIsImFwcCIsImRlbHRhIiwiYW5pbWF0aW9uVHlwZSIsInRpdGxlIiwiaWNvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBZ0RBO0FBQ0E7QUFBQSxlQUNBO0VBQ0FBO0lBQ0E7TUFDQTtNQUNBQztNQUVBQztNQUVBQztJQUNBO0VBQ0E7RUFDQUM7SUFDQTtJQUNBO01BQ0FDO0lBQ0E7SUFDQTtJQUNBO0VBQ0E7O0VBQ0FDO0lBQ0FDO01BQ0E7SUFDQTtJQUNBQztNQUNBO0lBQ0E7SUFDQUM7TUFDQTtNQUNBO01BRUFDO1FBQ0FDO1FBQ0FDO1FBQ0FDO1VBQ0FDO1VBQ0FDO1VBQ0FDO1FBQ0E7UUFDQUM7VUFDQTtVQUNBQzs7VUFFQTtVQUNBO1VBQ0FSO1lBQ0FTO2NBQ0FDO2NBQ0FDO1lBQ0E7WUFDQUM7WUFDQUM7WUFDQUM7WUFDQVA7Y0FFQTtnQkFDQTtnQkFFQTtrQkFDQTtrQkFDQTtrQkFDQVE7a0JBRUFmO29CQUNBZ0I7b0JBQ0FDO2tCQUNBO2dCQUNBO2tCQUNBakI7b0JBQ0FrQjtvQkFDQUM7a0JBQ0E7Z0JBQ0E7Y0FDQTtnQkFDQW5CO2tCQUNBa0I7a0JBQ0FDO2dCQUNBO2NBQ0E7WUFFQTtVQUNBO1FBQ0E7TUFDQTtJQUNBO0VBQ0E7QUFDQTtBQUFBIiwiZmlsZSI6IjMxLmpzIiwic291cmNlc0NvbnRlbnQiOlsiPHN0eWxlPlxyXG4ucGFnZSB7XHJcblx0cG9zaXRpb246IGFic29sdXRlO1xyXG5cdGxlZnQ6IDA7XHJcblx0cmlnaHQ6IDA7XHJcblx0dG9wOiAwO1xyXG5cdGJvdHRvbTogMDtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwMDAwO1xyXG59XHJcbi5iZy13cmFwcGVyIHtcclxuXHRkaXNwbGF5OiBmbGV4O1xyXG5cdGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcblx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuLmJnLXNpemUge1xyXG5cdHdpZHRoOiA3NTBycHg7XHJcblx0aGVpZ2h0OiA3NTBycHg7XHJcbn1cclxuLmJ1dHRvbi1jaGFuZ2UtYmcge1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICMxZTFlMWU7XHJcbn1cclxuLmJ1dHRvbi1jaGFuZ2UtYmctdG91Y2hlZCB7XHJcblx0YmFja2dyb3VuZC1jb2xvcjogIzY0NjI2MjtcclxufVxyXG48L3N0eWxlPlxyXG5cclxuPHRlbXBsYXRlPlxyXG5cdDx2aWV3IGNsYXNzPVwicGFnZVwiPlxyXG5cdFx0XHJcblx0XHRcclxuXHRcdDx2aWV3IGNsYXNzPVwiYmctd3JhcHBlclwiIDpzdHlsZT1cIntoZWlnaHQ6IHNjcmVlbkhlaWdodCArICdweCd9XCI+XHJcblx0XHRcdDxpbWFnZSA6c3JjPVwiYmdVcmxcIiBjbGFzcz1cImJnLXNpemVcIiBzdHlsZT1cImFsaWduLXNlbGY6IGNlbnRlcjtcIj48L2ltYWdlPlxyXG5cdFx0XHQ8IS0tIDxpbWFnZSBzcmM9XCIuLi8uLi9zdGF0aWMvaW1hZ2VzL2RlZmF1bHRCZ0ltZy5wbmdcIiBjbGFzcz1cImJnLXNpemVcIiBzdHlsZT1cImFsaWduLXNlbGY6IGNlbnRlcjtcIj48L2ltYWdlPiAtLT5cclxuXHRcdFx0XHJcblx0XHRcdDx2aWV3IFxyXG5cdFx0XHRcdDpjbGFzcz1cInsnYnV0dG9uLWNoYW5nZS1iZyc6IWNoYW5nZVRvdWNoZWQsICdidXR0b24tY2hhbmdlLWJnLXRvdWNoZWQnOiBjaGFuZ2VUb3VjaGVkfVwiXHJcblx0XHRcdFx0QHRvdWNoc3RhcnQ9XCJ0b3VjaHN0YXJ0Q2hhbmdlXCJcclxuXHRcdFx0XHRAdG91Y2hlbmQ9XCJ0b3VjaGVuZENoYW5nZVwiXHJcblx0XHRcdFx0QGNsaWNrPVwiY2hhbmdlQmcoKVwiXHJcblx0XHRcdFx0c3R5bGU9XCJ3aWR0aDogMjUwcnB4O2hlaWdodDogODBycHg7Ym9yZGVyLXJhZGl1czogNTBweDtkaXNwbGF5OiBmbGV4O2ZsZXgtZGlyZWN0aW9uOiBjb2x1bW47anVzdGlmeS1jb250ZW50OiBjZW50ZXI7bWFyZ2luLXRvcDogMTUwcnB4O2FsaWduLXNlbGY6IGNlbnRlcjtcIj5cclxuXHRcdFx0XHQ8dGV4dCBzdHlsZT1cImNvbG9yOiAjRkZGRkZGO2FsaWduLXNlbGY6IGNlbnRlcjtcIj7mm7TmjaLog4zmma88L3RleHQ+XHJcblx0XHRcdDwvdmlldz5cclxuXHRcdDwvdmlldz5cclxuXHRcdFxyXG5cdDwvdmlldz5cclxuPC90ZW1wbGF0ZT5cclxuXHJcbjxzY3JpcHQ+XHJcblx0dmFyIHN5c3RlbSA9IHVuaS5nZXRTeXN0ZW1JbmZvU3luYygpO1xyXG5cdHZhciBhcHAgPSBnZXRBcHAoKTtcclxuXHRleHBvcnQgZGVmYXVsdCB7XHJcblx0XHRkYXRhKCkge1xyXG5cdFx0XHRyZXR1cm4ge1xyXG5cdFx0XHRcdC8vIGJnVXJsOiBcIi9zdGF0aWMvZmFjZS9mYWNlLWFycm93LTEucG5nXCIsXHJcblx0XHRcdFx0YmdVcmw6IGdldEFwcCgpLmdldFVzZXJJbmZvU2Vzc2lvbigpLmJnSW1nLFxyXG5cdFx0XHRcdFxyXG5cdFx0XHRcdGNoYW5nZVRvdWNoZWQ6IGZhbHNlLFxyXG5cdFx0XHRcdFxyXG5cdFx0XHRcdHNjcmVlbkhlaWdodDogc3lzdGVtLnNhZmVBcmVhLmJvdHRvbSxcclxuXHRcdFx0fVxyXG5cdFx0fSxcclxuXHRcdG9uU2hvdygpIHtcclxuXHRcdFx0dmFyIGJnaW1nID0gYXBwLmdldFVzZXJJbmZvU2Vzc2lvbigpLmJnSW1nO1xyXG5cdFx0XHRpZiAoYXBwLmlzU3RyRW1wdHkoYmdpbWcpKSB7XHJcblx0XHRcdFx0YmdpbWcgPSBcIi9zdGF0aWMvaW1hZ2VzL2RlZmF1bHRCZ0ltZy5wbmdcIjtcclxuXHRcdFx0fVxyXG5cdFx0XHR0aGlzLmJnVXJsID0gYmdpbWc7XHJcblx0XHRcdC8vIHRoaXMuYmdVcmwgPSBcIi4uLy4uL3N0YXRpYy9mYWNlL2ZhY2UtYXJyb3ctMS5wbmdcIjtcclxuXHRcdH0sXHJcblx0XHRtZXRob2RzOiB7XHJcblx0XHRcdHRvdWNoc3RhcnRDaGFuZ2UoKSB7XHJcblx0XHRcdFx0dGhpcy5jaGFuZ2VUb3VjaGVkID0gdHJ1ZTtcclxuXHRcdFx0fSxcclxuXHRcdFx0dG91Y2hlbmRDaGFuZ2UoKSB7XHJcblx0XHRcdFx0dGhpcy5jaGFuZ2VUb3VjaGVkID0gZmFsc2U7XHJcblx0XHRcdH0sXHJcblx0XHRcdGNoYW5nZUJnKCkge1xyXG5cdFx0XHRcdHZhciBtZSA9IHRoaXM7XHJcblx0XHRcdFx0dmFyIHVzZXJJZCA9IGdldEFwcCgpLmdldFVzZXJJbmZvU2Vzc2lvbigpLmlkO1xyXG5cdFx0XHRcdFxyXG5cdFx0XHRcdHVuaS5jaG9vc2VJbWFnZSh7XHJcblx0XHRcdFx0XHRjb3VudDogMSxcclxuXHRcdFx0XHRcdHNpemVUeXBlOiBbXCJjb21wcmVzc2VkXCJdLFxyXG5cdFx0XHRcdFx0Y3JvcDoge1xyXG5cdFx0XHRcdFx0XHRxdWFsaXR5OiA2MCxcclxuXHRcdFx0XHRcdFx0d2lkdGg6IDQwMCxcclxuXHRcdFx0XHRcdFx0aGVpZ2h0OiA0MDBcclxuXHRcdFx0XHRcdH0sXHJcblx0XHRcdFx0XHRzdWNjZXNzOiAoZSkgPT4ge1xyXG5cdFx0XHRcdFx0XHR2YXIgbmV3QmcgPSBlLnRlbXBGaWxlUGF0aHNbMF07XHJcblx0XHRcdFx0XHRcdG1lLmJnVXJsID0gbmV3Qmc7XHJcblx0XHRcdFx0XHRcdFxyXG5cdFx0XHRcdFx0XHQvLyDkuIrkvKBcclxuXHRcdFx0XHRcdFx0dmFyIHNlcnZlclVybCA9IGFwcC5nbG9iYWxEYXRhLnNlcnZlclVybDtcclxuXHRcdFx0XHRcdFx0dW5pLnVwbG9hZEZpbGUoe1xyXG5cdFx0XHRcdFx0XHRcdGhlYWRlcjoge1xyXG5cdFx0XHRcdFx0XHRcdFx0aGVhZGVyVXNlcklkOiB1c2VySWQsXHJcblx0XHRcdFx0XHRcdFx0XHRoZWFkZXJVc2VyVG9rZW46IGFwcC5nZXRVc2VyU2Vzc2lvblRva2VuKClcclxuXHRcdFx0XHRcdFx0XHR9LFxyXG5cdFx0XHRcdFx0XHRcdHVybDogc2VydmVyVXJsICsgXCIvdXNlckluZm8vbW9kaWZ5SW1hZ2U/dXNlcklkPVwiICsgdXNlcklkICsgXCImdHlwZT0xXCIsXHJcblx0XHRcdFx0XHRcdFx0bmFtZTogXCJmaWxlXCIsXHJcblx0XHRcdFx0XHRcdFx0ZmlsZVBhdGg6IG5ld0JnLFxyXG5cdFx0XHRcdFx0XHRcdHN1Y2Nlc3MocmVzdWx0KSB7XHJcblx0XHRcdFx0XHRcdFx0XHRcclxuXHRcdFx0XHRcdFx0XHRcdGlmIChyZXN1bHQuc3RhdHVzQ29kZSA9PSAyMDApIHtcclxuXHRcdFx0XHRcdFx0XHRcdFx0dmFyIHJlcyA9IEpTT04ucGFyc2UocmVzdWx0LmRhdGEpO1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcclxuXHRcdFx0XHRcdFx0XHRcdFx0aWYgKHJlcy5zdGF0dXMgPSAyMDApIHtcclxuXHRcdFx0XHRcdFx0XHRcdFx0XHR2YXIgdXNlckluZm9VcGRhdGVkID0gcmVzLmRhdGE7XHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0Ly8g6YeN572u5pys5Zyw55So5oi35L+h5oGvXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0YXBwLnNldFVzZXJJbmZvU2Vzc2lvbih1c2VySW5mb1VwZGF0ZWQpO1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdFxyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdHVuaS5uYXZpZ2F0ZUJhY2soe1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdFx0ZGVsdGE6IDEsXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0XHRhbmltYXRpb25UeXBlOiBcImZhZGUtb3V0XCJcclxuXHRcdFx0XHRcdFx0XHRcdFx0XHR9KVxyXG5cdFx0XHRcdFx0XHRcdFx0XHR9IGVsc2Uge1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdHVuaS5zaG93VG9hc3Qoe1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdFx0dGl0bGU6IHJlcy5tc2csXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0XHRpY29uOiAnZXJyb3InXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0fSlcclxuXHRcdFx0XHRcdFx0XHRcdFx0fVxyXG5cdFx0XHRcdFx0XHRcdFx0fSBlbHNlIHtcclxuXHRcdFx0XHRcdFx0XHRcdFx0dW5pLnNob3dUb2FzdCh7XHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0dGl0bGU6IFwi5LiK5Lyg5aSx6LSlXCIsXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0aWNvbjogJ2Vycm9yJ1xyXG5cdFx0XHRcdFx0XHRcdFx0XHR9KVxyXG5cdFx0XHRcdFx0XHRcdFx0fVxyXG5cdFx0XHRcdFx0XHRcdFx0XHJcblx0XHRcdFx0XHRcdFx0fVxyXG5cdFx0XHRcdFx0XHR9KVxyXG5cdFx0XHRcdFx0fVxyXG5cdFx0XHRcdH0pXHJcblx0XHRcdH0gXHJcblx0XHR9XHJcblx0fVxyXG48L3NjcmlwdD5cclxuXHJcblxyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///31\n");
 
 /***/ }),
 /* 32 */
@@ -1172,7 +1172,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar app = getApp();\nvar _default = {\n  data: function data() {\n    return {\n      faceUrl: getApp().getUserInfoSession().face,\n      changeTouched: false,\n      screenHeight: system.safeArea.bottom\n    };\n  },\n  methods: {\n    touchstartChange: function touchstartChange() {\n      this.changeTouched = true;\n    },\n    touchendChange: function touchendChange() {\n      this.changeTouched = false;\n    },\n    changeFace: function changeFace() {\n      var me = this;\n      var userId = getApp().getUserInfoSession().id;\n      uni.chooseImage({\n        count: 1,\n        sizeType: [\"compressed\"],\n        crop: {\n          quality: 60,\n          width: 300,\n          height: 300\n        },\n        success: function success(e) {\n          var newFace = e.tempFilePaths[0];\n          me.faceUrl = newFace;\n\n          // 上传\n          var serverUrl = app.globalData.serverUrl;\n          uni.uploadFile({\n            header: {\n              headerUserId: userId,\n              headerUserToken: app.getUserSessionToken()\n            },\n            url: serverUrl + \"/userInfo/modifyImage?userId=\" + userId + \"&type=2\",\n            name: \"file\",\n            filePath: newFace,\n            success: function success(result) {\n              if (result.statusCode == 200) {\n                var res = JSON.parse(result.data);\n                if (res.status = 200) {\n                  var userInfoUpdated = res.data;\n                  // 重置本地用户信息\n                  app.setUserInfoSession(userInfoUpdated);\n                  uni.navigateBack({\n                    delta: 1,\n                    animationType: \"fade-out\"\n                  });\n                } else {\n                  uni.showToast({\n                    title: res.msg,\n                    icon: 'error'\n                  });\n                }\n              } else {\n                uni.showToast({\n                  title: \"上传失败\",\n                  icon: 'error'\n                });\n              }\n            }\n          });\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWUvbXlGYWNlLnZ1ZSJdLCJuYW1lcyI6WyJkYXRhIiwiZmFjZVVybCIsImNoYW5nZVRvdWNoZWQiLCJzY3JlZW5IZWlnaHQiLCJtZXRob2RzIiwidG91Y2hzdGFydENoYW5nZSIsInRvdWNoZW5kQ2hhbmdlIiwiY2hhbmdlRmFjZSIsInVuaSIsImNvdW50Iiwic2l6ZVR5cGUiLCJjcm9wIiwicXVhbGl0eSIsIndpZHRoIiwiaGVpZ2h0Iiwic3VjY2VzcyIsIm1lIiwiaGVhZGVyIiwiaGVhZGVyVXNlcklkIiwiaGVhZGVyVXNlclRva2VuIiwidXJsIiwibmFtZSIsImZpbGVQYXRoIiwiYXBwIiwiZGVsdGEiLCJhbmltYXRpb25UeXBlIiwidGl0bGUiLCJpY29uIl0sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBOENBO0FBQ0E7QUFBQSxlQUNBO0VBQ0FBO0lBQ0E7TUFDQUM7TUFFQUM7TUFFQUM7SUFDQTtFQUNBO0VBQ0FDO0lBQ0FDO01BQ0E7SUFDQTtJQUNBQztNQUNBO0lBQ0E7SUFDQUM7TUFDQTtNQUNBO01BRUFDO1FBQ0FDO1FBQ0FDO1FBQ0FDO1VBQ0FDO1VBQ0FDO1VBQ0FDO1FBQ0E7UUFDQUM7VUFDQTtVQUNBQzs7VUFFQTtVQUNBO1VBQ0FSO1lBQ0FTO2NBQ0FDO2NBQ0FDO1lBQ0E7WUFDQUM7WUFDQUM7WUFDQUM7WUFDQVA7Y0FFQTtnQkFDQTtnQkFFQTtrQkFDQTtrQkFDQTtrQkFDQVE7a0JBRUFmO29CQUNBZ0I7b0JBQ0FDO2tCQUNBO2dCQUNBO2tCQUNBakI7b0JBQ0FrQjtvQkFDQUM7a0JBQ0E7Z0JBQ0E7Y0FDQTtnQkFDQW5CO2tCQUNBa0I7a0JBQ0FDO2dCQUNBO2NBQ0E7WUFFQTtVQUNBO1FBQ0E7TUFDQTtJQUNBO0VBQ0E7QUFDQTtBQUFBIiwiZmlsZSI6IjM2LmpzIiwic291cmNlc0NvbnRlbnQiOlsiPHN0eWxlPlxyXG4ucGFnZSB7XHJcblx0cG9zaXRpb246IGFic29sdXRlO1xyXG5cdGxlZnQ6IDA7XHJcblx0cmlnaHQ6IDA7XHJcblx0dG9wOiAwO1xyXG5cdGJvdHRvbTogMDtcclxuXHRiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwMDAwO1xyXG59XHJcbi5iZy13cmFwcGVyIHtcclxuXHRkaXNwbGF5OiBmbGV4O1xyXG5cdGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcblx0anVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuLmJnLXNpemUge1xyXG5cdHdpZHRoOiA3NTBycHg7XHJcblx0aGVpZ2h0OiA3NTBycHg7XHJcbn1cclxuLmJ1dHRvbi1jaGFuZ2UtYmcge1xyXG5cdGJhY2tncm91bmQtY29sb3I6ICMxZTFlMWU7XHJcbn1cclxuLmJ1dHRvbi1jaGFuZ2UtYmctdG91Y2hlZCB7XHJcblx0YmFja2dyb3VuZC1jb2xvcjogIzY0NjI2MjtcclxufVxyXG48L3N0eWxlPlxyXG5cclxuPHRlbXBsYXRlPlxyXG5cdDx2aWV3IGNsYXNzPVwicGFnZVwiPlxyXG5cdFx0XHJcblx0XHQ8dmlldyBjbGFzcz1cImJnLXdyYXBwZXJcIiA6c3R5bGU9XCJ7aGVpZ2h0OiBzY3JlZW5IZWlnaHQgKyAncHgnfVwiPlxyXG5cdFx0XHQ8aW1hZ2UgOnNyYz1cImZhY2VVcmxcIiBjbGFzcz1cImJnLXNpemVcIiBzdHlsZT1cImFsaWduLXNlbGY6IGNlbnRlcjtcIj48L2ltYWdlPlxyXG5cdFx0XHRcclxuXHRcdFx0PHZpZXcgXHJcblx0XHRcdFx0OmNsYXNzPVwieydidXR0b24tY2hhbmdlLWJnJzohY2hhbmdlVG91Y2hlZCwgJ2J1dHRvbi1jaGFuZ2UtYmctdG91Y2hlZCc6IGNoYW5nZVRvdWNoZWR9XCJcclxuXHRcdFx0XHRAdG91Y2hzdGFydD1cInRvdWNoc3RhcnRDaGFuZ2VcIlxyXG5cdFx0XHRcdEB0b3VjaGVuZD1cInRvdWNoZW5kQ2hhbmdlXCJcclxuXHRcdFx0XHRAY2xpY2s9XCJjaGFuZ2VGYWNlKClcIlxyXG5cdFx0XHRcdHN0eWxlPVwid2lkdGg6IDI1MHJweDtoZWlnaHQ6IDgwcnB4O2JvcmRlci1yYWRpdXM6IDUwcHg7ZGlzcGxheTogZmxleDtmbGV4LWRpcmVjdGlvbjogY29sdW1uO2p1c3RpZnktY29udGVudDogY2VudGVyO21hcmdpbi10b3A6IDE1MHJweDthbGlnbi1zZWxmOiBjZW50ZXI7XCI+XHJcblx0XHRcdFx0PHRleHQgc3R5bGU9XCJjb2xvcjogI0ZGRkZGRjthbGlnbi1zZWxmOiBjZW50ZXI7XCI+5pu05o2i5aS05YOPPC90ZXh0PlxyXG5cdFx0XHQ8L3ZpZXc+XHJcblx0XHQ8L3ZpZXc+XHJcblx0XHRcclxuXHQ8L3ZpZXc+XHJcbjwvdGVtcGxhdGU+XHJcblxyXG48c2NyaXB0PlxyXG5cdHZhciBzeXN0ZW0gPSB1bmkuZ2V0U3lzdGVtSW5mb1N5bmMoKTtcclxuXHR2YXIgYXBwID0gZ2V0QXBwKCk7XHJcblx0ZXhwb3J0IGRlZmF1bHQge1xyXG5cdFx0ZGF0YSgpIHtcclxuXHRcdFx0cmV0dXJuIHtcclxuXHRcdFx0XHRmYWNlVXJsOiBnZXRBcHAoKS5nZXRVc2VySW5mb1Nlc3Npb24oKS5mYWNlLFxyXG5cdFx0XHRcdFxyXG5cdFx0XHRcdGNoYW5nZVRvdWNoZWQ6IGZhbHNlLFxyXG5cdFx0XHRcdFxyXG5cdFx0XHRcdHNjcmVlbkhlaWdodDogc3lzdGVtLnNhZmVBcmVhLmJvdHRvbSxcclxuXHRcdFx0fVxyXG5cdFx0fSxcclxuXHRcdG1ldGhvZHM6IHtcclxuXHRcdFx0dG91Y2hzdGFydENoYW5nZSgpIHtcclxuXHRcdFx0XHR0aGlzLmNoYW5nZVRvdWNoZWQgPSB0cnVlO1xyXG5cdFx0XHR9LFxyXG5cdFx0XHR0b3VjaGVuZENoYW5nZSgpIHtcclxuXHRcdFx0XHR0aGlzLmNoYW5nZVRvdWNoZWQgPSBmYWxzZTtcclxuXHRcdFx0fSxcclxuXHRcdFx0Y2hhbmdlRmFjZSgpIHtcclxuXHRcdFx0XHR2YXIgbWUgPSB0aGlzO1xyXG5cdFx0XHRcdHZhciB1c2VySWQgPSBnZXRBcHAoKS5nZXRVc2VySW5mb1Nlc3Npb24oKS5pZDtcclxuXHRcdFx0XHRcclxuXHRcdFx0XHR1bmkuY2hvb3NlSW1hZ2Uoe1xyXG5cdFx0XHRcdFx0Y291bnQ6IDEsXHJcblx0XHRcdFx0XHRzaXplVHlwZTogW1wiY29tcHJlc3NlZFwiXSxcclxuXHRcdFx0XHRcdGNyb3A6IHtcclxuXHRcdFx0XHRcdFx0cXVhbGl0eTogNjAsXHJcblx0XHRcdFx0XHRcdHdpZHRoOiAzMDAsXHJcblx0XHRcdFx0XHRcdGhlaWdodDogMzAwXHJcblx0XHRcdFx0XHR9LFxyXG5cdFx0XHRcdFx0c3VjY2VzczogKGUpID0+IHtcclxuXHRcdFx0XHRcdFx0dmFyIG5ld0ZhY2UgPSBlLnRlbXBGaWxlUGF0aHNbMF07XHJcblx0XHRcdFx0XHRcdG1lLmZhY2VVcmwgPSBuZXdGYWNlO1xyXG5cdFx0XHRcdFx0XHRcclxuXHRcdFx0XHRcdFx0Ly8g5LiK5LygXHJcblx0XHRcdFx0XHRcdHZhciBzZXJ2ZXJVcmwgPSBhcHAuZ2xvYmFsRGF0YS5zZXJ2ZXJVcmw7XHJcblx0XHRcdFx0XHRcdHVuaS51cGxvYWRGaWxlKHtcclxuXHRcdFx0XHRcdFx0XHRoZWFkZXI6IHtcclxuXHRcdFx0XHRcdFx0XHRcdGhlYWRlclVzZXJJZDogdXNlcklkLFxyXG5cdFx0XHRcdFx0XHRcdFx0aGVhZGVyVXNlclRva2VuOiBhcHAuZ2V0VXNlclNlc3Npb25Ub2tlbigpXHJcblx0XHRcdFx0XHRcdFx0fSxcclxuXHRcdFx0XHRcdFx0XHR1cmw6IHNlcnZlclVybCArIFwiL3VzZXJJbmZvL21vZGlmeUltYWdlP3VzZXJJZD1cIiArIHVzZXJJZCArIFwiJnR5cGU9MlwiLFxyXG5cdFx0XHRcdFx0XHRcdG5hbWU6IFwiZmlsZVwiLFxyXG5cdFx0XHRcdFx0XHRcdGZpbGVQYXRoOiBuZXdGYWNlLFxyXG5cdFx0XHRcdFx0XHRcdHN1Y2Nlc3MocmVzdWx0KSB7XHJcblx0XHRcdFx0XHRcdFx0XHRcclxuXHRcdFx0XHRcdFx0XHRcdGlmIChyZXN1bHQuc3RhdHVzQ29kZSA9PSAyMDApIHtcclxuXHRcdFx0XHRcdFx0XHRcdFx0dmFyIHJlcyA9IEpTT04ucGFyc2UocmVzdWx0LmRhdGEpO1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcclxuXHRcdFx0XHRcdFx0XHRcdFx0aWYgKHJlcy5zdGF0dXMgPSAyMDApIHtcclxuXHRcdFx0XHRcdFx0XHRcdFx0XHR2YXIgdXNlckluZm9VcGRhdGVkID0gcmVzLmRhdGE7XHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0Ly8g6YeN572u5pys5Zyw55So5oi35L+h5oGvXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0YXBwLnNldFVzZXJJbmZvU2Vzc2lvbih1c2VySW5mb1VwZGF0ZWQpO1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdFxyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdHVuaS5uYXZpZ2F0ZUJhY2soe1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdFx0ZGVsdGE6IDEsXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0XHRhbmltYXRpb25UeXBlOiBcImZhZGUtb3V0XCJcclxuXHRcdFx0XHRcdFx0XHRcdFx0XHR9KVxyXG5cdFx0XHRcdFx0XHRcdFx0XHR9IGVsc2Uge1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdHVuaS5zaG93VG9hc3Qoe1xyXG5cdFx0XHRcdFx0XHRcdFx0XHRcdFx0dGl0bGU6IHJlcy5tc2csXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0XHRpY29uOiAnZXJyb3InXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0fSlcclxuXHRcdFx0XHRcdFx0XHRcdFx0fVxyXG5cdFx0XHRcdFx0XHRcdFx0fSBlbHNlIHtcclxuXHRcdFx0XHRcdFx0XHRcdFx0dW5pLnNob3dUb2FzdCh7XHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0dGl0bGU6IFwi5LiK5Lyg5aSx6LSlXCIsXHJcblx0XHRcdFx0XHRcdFx0XHRcdFx0aWNvbjogJ2Vycm9yJ1xyXG5cdFx0XHRcdFx0XHRcdFx0XHR9KVxyXG5cdFx0XHRcdFx0XHRcdFx0fVxyXG5cdFx0XHRcdFx0XHRcdFx0XHJcblx0XHRcdFx0XHRcdFx0fVxyXG5cdFx0XHRcdFx0XHR9KVxyXG5cdFx0XHRcdFx0fVxyXG5cdFx0XHRcdH0pXHJcblx0XHRcdH0gXHJcblx0XHR9XHJcblx0fVxyXG48L3NjcmlwdD5cclxuXHJcblxyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///36\n");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\nvar system = uni.getSystemInfoSync();\nvar app = getApp();\nvar _default = {\n  data: function data() {\n    return {\n      faceUrl: getApp().getUserInfoSession().face,\n      changeTouched: false,\n      screenHeight: system.safeArea.bottom\n    };\n  },\n  methods: {\n    touchstartChange: function touchstartChange() {\n      this.changeTouched = true;\n    },\n    touchendChange: function touchendChange() {\n      this.changeTouched = false;\n    },\n    changeFace: function changeFace() {\n      var me = this;\n      var userId = getApp().getUserInfoSession().id;\n      uni.chooseImage({\n        count: 1,\n        sizeType: [\"compressed\"],\n        crop: {\n          quality: 60,\n          width: 300,\n          height: 300\n        },\n        success: function success(e) {\n          var newFace = e.tempFilePaths[0];\n          me.faceUrl = newFace;\n\n          // 上传\n          var serverUrl = app.globalData.serverUrl;\n          uni.uploadFile({\n            header: {\n              headerUserId: userId,\n              headerUserToken: app.getUserSessionToken()\n            },\n            url: serverUrl + \"/userInfo/modifyImage?userId=\" + userId + \"&type=2\",\n            name: \"file\",\n            filePath: newFace,\n            success: function success(result) {\n              if (result.statusCode == 200) {\n                var res = JSON.parse(result.data);\n                if (res.status = 200) {\n                  var userInfoUpdated = res.data;\n                  // 重置本地用户信息\n                  app.setUserInfoSession(userInfoUpdated);\n                  uni.navigateBack({\n                    delta: 1,\n                    animationType: \"fade-out\"\n                  });\n                } else {\n                  uni.showToast({\n                    title: res.msg,\n                    icon: 'error'\n                  });\n                }\n              } else {\n                uni.showToast({\n                  title: \"上传失败\",\n                  icon: 'error'\n                });\n              }\n            }\n          });\n        }\n      });\n    }\n  }\n};\nexports.default = _default;//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vcGFnZXMvbWUvbXlGYWNlLnZ1ZSJdLCJuYW1lcyI6WyJzeXN0ZW0iLCJ1bmkiLCJnZXRTeXN0ZW1JbmZvU3luYyIsImFwcCIsImdldEFwcCIsImRhdGEiLCJmYWNlVXJsIiwiZ2V0VXNlckluZm9TZXNzaW9uIiwiZmFjZSIsImNoYW5nZVRvdWNoZWQiLCJzY3JlZW5IZWlnaHQiLCJzYWZlQXJlYSIsImJvdHRvbSIsIm1ldGhvZHMiLCJ0b3VjaHN0YXJ0Q2hhbmdlIiwidG91Y2hlbmRDaGFuZ2UiLCJjaGFuZ2VGYWNlIiwibWUiLCJ1c2VySWQiLCJpZCIsImNob29zZUltYWdlIiwiY291bnQiLCJzaXplVHlwZSIsImNyb3AiLCJxdWFsaXR5Iiwid2lkdGgiLCJoZWlnaHQiLCJzdWNjZXNzIiwiZSIsIm5ld0ZhY2UiLCJ0ZW1wRmlsZVBhdGhzIiwic2VydmVyVXJsIiwiZ2xvYmFsRGF0YSIsInVwbG9hZEZpbGUiLCJoZWFkZXIiLCJoZWFkZXJVc2VySWQiLCJoZWFkZXJVc2VyVG9rZW4iLCJnZXRVc2VyU2Vzc2lvblRva2VuIiwidXJsIiwibmFtZSIsImZpbGVQYXRoIiwicmVzdWx0Iiwic3RhdHVzQ29kZSIsInJlcyIsIkpTT04iLCJwYXJzZSIsInN0YXR1cyIsInVzZXJJbmZvVXBkYXRlZCIsInNldFVzZXJJbmZvU2Vzc2lvbiIsIm5hdmlnYXRlQmFjayIsImRlbHRhIiwiYW5pbWF0aW9uVHlwZSIsInNob3dUb2FzdCIsInRpdGxlIiwibXNnIiwiaWNvbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNB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L1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuLy9cbi8vXG4vL1xuXG52YXIgc3lzdGVtID0gdW5pLmdldFN5c3RlbUluZm9TeW5jKCk7XG52YXIgYXBwID0gZ2V0QXBwKCk7XG5leHBvcnQgZGVmYXVsdCB7XG5cdGRhdGEoKSB7XG5cdFx0cmV0dXJuIHtcblx0XHRcdGZhY2VVcmw6IGdldEFwcCgpLmdldFVzZXJJbmZvU2Vzc2lvbigpLmZhY2UsXG5cdFx0XHRcblx0XHRcdGNoYW5nZVRvdWNoZWQ6IGZhbHNlLFxuXHRcdFx0XG5cdFx0XHRzY3JlZW5IZWlnaHQ6IHN5c3RlbS5zYWZlQXJlYS5ib3R0b20sXG5cdFx0fVxuXHR9LFxuXHRtZXRob2RzOiB7XG5cdFx0dG91Y2hzdGFydENoYW5nZSgpIHtcblx0XHRcdHRoaXMuY2hhbmdlVG91Y2hlZCA9IHRydWU7XG5cdFx0fSxcblx0XHR0b3VjaGVuZENoYW5nZSgpIHtcblx0XHRcdHRoaXMuY2hhbmdlVG91Y2hlZCA9IGZhbHNlO1xuXHRcdH0sXG5cdFx0Y2hhbmdlRmFjZSgpIHtcblx0XHRcdHZhciBtZSA9IHRoaXM7XG5cdFx0XHR2YXIgdXNlcklkID0gZ2V0QXBwKCkuZ2V0VXNlckluZm9TZXNzaW9uKCkuaWQ7XG5cdFx0XHRcblx0XHRcdHVuaS5jaG9vc2VJbWFnZSh7XG5cdFx0XHRcdGNvdW50OiAxLFxuXHRcdFx0XHRzaXplVHlwZTogW1wiY29tcHJlc3NlZFwiXSxcblx0XHRcdFx0Y3JvcDoge1xuXHRcdFx0XHRcdHF1YWxpdHk6IDYwLFxuXHRcdFx0XHRcdHdpZHRoOiAzMDAsXG5cdFx0XHRcdFx0aGVpZ2h0OiAzMDBcblx0XHRcdFx0fSxcblx0XHRcdFx0c3VjY2VzczogKGUpID0+IHtcblx0XHRcdFx0XHR2YXIgbmV3RmFjZSA9IGUudGVtcEZpbGVQYXRoc1swXTtcblx0XHRcdFx0XHRtZS5mYWNlVXJsID0gbmV3RmFjZTtcblx0XHRcdFx0XHRcblx0XHRcdFx0XHQvLyDkuIrkvKBcblx0XHRcdFx0XHR2YXIgc2VydmVyVXJsID0gYXBwLmdsb2JhbERhdGEuc2VydmVyVXJsO1xuXHRcdFx0XHRcdHVuaS51cGxvYWRGaWxlKHtcblx0XHRcdFx0XHRcdGhlYWRlcjoge1xuXHRcdFx0XHRcdFx0XHRoZWFkZXJVc2VySWQ6IHVzZXJJZCxcblx0XHRcdFx0XHRcdFx0aGVhZGVyVXNlclRva2VuOiBhcHAuZ2V0VXNlclNlc3Npb25Ub2tlbigpXG5cdFx0XHRcdFx0XHR9LFxuXHRcdFx0XHRcdFx0dXJsOiBzZXJ2ZXJVcmwgKyBcIi91c2VySW5mby9tb2RpZnlJbWFnZT91c2VySWQ9XCIgKyB1c2VySWQgKyBcIiZ0eXBlPTJcIixcblx0XHRcdFx0XHRcdG5hbWU6IFwiZmlsZVwiLFxuXHRcdFx0XHRcdFx0ZmlsZVBhdGg6IG5ld0ZhY2UsXG5cdFx0XHRcdFx0XHRzdWNjZXNzKHJlc3VsdCkge1xuXHRcdFx0XHRcdFx0XHRcblx0XHRcdFx0XHRcdFx0aWYgKHJlc3VsdC5zdGF0dXNDb2RlID09IDIwMCkge1xuXHRcdFx0XHRcdFx0XHRcdHZhciByZXMgPSBKU09OLnBhcnNlKHJlc3VsdC5kYXRhKTtcblx0XHRcdFx0XHRcdFx0XHRcblx0XHRcdFx0XHRcdFx0XHRpZiAocmVzLnN0YXR1cyA9IDIwMCkge1xuXHRcdFx0XHRcdFx0XHRcdFx0dmFyIHVzZXJJbmZvVXBkYXRlZCA9IHJlcy5kYXRhO1xuXHRcdFx0XHRcdFx0XHRcdFx0Ly8g6YeN572u5pys5Zyw55So5oi35L+h5oGvXG5cdFx0XHRcdFx0XHRcdFx0XHRhcHAuc2V0VXNlckluZm9TZXNzaW9uKHVzZXJJbmZvVXBkYXRlZCk7XG5cdFx0XHRcdFx0XHRcdFx0XHRcblx0XHRcdFx0XHRcdFx0XHRcdHVuaS5uYXZpZ2F0ZUJhY2soe1xuXHRcdFx0XHRcdFx0XHRcdFx0XHRkZWx0YTogMSxcblx0XHRcdFx0XHRcdFx0XHRcdFx0YW5pbWF0aW9uVHlwZTogXCJmYWRlLW91dFwiXG5cdFx0XHRcdFx0XHRcdFx0XHR9KVxuXHRcdFx0XHRcdFx0XHRcdH0gZWxzZSB7XG5cdFx0XHRcdFx0XHRcdFx0XHR1bmkuc2hvd1RvYXN0KHtcblx0XHRcdFx0XHRcdFx0XHRcdFx0dGl0bGU6IHJlcy5tc2csXG5cdFx0XHRcdFx0XHRcdFx0XHRcdGljb246ICdlcnJvcidcblx0XHRcdFx0XHRcdFx0XHRcdH0pXG5cdFx0XHRcdFx0XHRcdFx0fVxuXHRcdFx0XHRcdFx0XHR9IGVsc2Uge1xuXHRcdFx0XHRcdFx0XHRcdHVuaS5zaG93VG9hc3Qoe1xuXHRcdFx0XHRcdFx0XHRcdFx0dGl0bGU6IFwi5LiK5Lyg5aSx6LSlXCIsXG5cdFx0XHRcdFx0XHRcdFx0XHRpY29uOiAnZXJyb3InXG5cdFx0XHRcdFx0XHRcdFx0fSlcblx0XHRcdFx0XHRcdFx0fVxuXHRcdFx0XHRcdFx0XHRcblx0XHRcdFx0XHRcdH1cblx0XHRcdFx0XHR9KVxuXHRcdFx0XHR9XG5cdFx0XHR9KVxuXHRcdH0gXG5cdH1cbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///36\n");
 
 /***/ }),
 /* 37 */
@@ -1204,7 +1204,7 @@ var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/ru
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 63));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 64));
 var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 65));
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e34) { throw _e34; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e35) { didErr = true; err = _e35; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e35) { throw _e35; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e36) { didErr = true; err = _e36; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -1291,6 +1291,7 @@ var s = n(function (e, t) {
           },
           random: function random(t) {
             for (var n, s = [], r = function r(t) {
+                t = t;
                 var n = 987654321,
                   s = 4294967295;
                 return function () {
@@ -1335,7 +1336,7 @@ var s = n(function (e, t) {
             return new o.init(n, t);
           }
         },
-        h = a.Utf8 = {
+        l = a.Utf8 = {
           stringify: function stringify(e) {
             try {
               return decodeURIComponent(escape(u.stringify(e)));
@@ -1347,12 +1348,12 @@ var s = n(function (e, t) {
             return u.parse(unescape(encodeURIComponent(e)));
           }
         },
-        l = r.BufferedBlockAlgorithm = i.extend({
+        h = r.BufferedBlockAlgorithm = i.extend({
           reset: function reset() {
             this._data = new o.init(), this._nDataBytes = 0;
           },
           _append: function _append(e) {
-            "string" == typeof e && (e = h.parse(e)), this._data.concat(e), this._nDataBytes += e.sigBytes;
+            "string" == typeof e && (e = l.parse(e)), this._data.concat(e), this._nDataBytes += e.sigBytes;
           },
           _process: function _process(t) {
             var n = this._data,
@@ -1363,13 +1364,13 @@ var s = n(function (e, t) {
               c = (a = t ? e.ceil(a) : e.max((0 | a) - this._minBufferSize, 0)) * i,
               u = e.min(4 * c, r);
             if (c) {
-              for (var h = 0; h < c; h += i) {
-                this._doProcessBlock(s, h);
+              for (var l = 0; l < c; l += i) {
+                this._doProcessBlock(s, l);
               }
-              var l = s.splice(0, c);
+              var h = s.splice(0, c);
               n.sigBytes -= u;
             }
-            return new o.init(l, u);
+            return new o.init(h, u);
           },
           clone: function clone() {
             var e = i.clone.call(this);
@@ -1377,13 +1378,13 @@ var s = n(function (e, t) {
           },
           _minBufferSize: 0
         });
-      r.Hasher = l.extend({
+      r.Hasher = h.extend({
         cfg: i.extend(),
         init: function init(e) {
           this.cfg = this.cfg.extend(e), this.reset();
         },
         reset: function reset() {
-          l.reset.call(this), this._doReset();
+          h.reset.call(this), this._doReset();
         },
         update: function update(e) {
           return this._append(e), this._process(), this;
@@ -1442,18 +1443,18 @@ var s = n(function (e, t) {
             y = e[t + 6],
             _ = e[t + 7],
             w = e[t + 8],
-            I = e[t + 9],
-            v = e[t + 10],
+            v = e[t + 9],
+            I = e[t + 10],
             S = e[t + 11],
-            T = e[t + 12],
-            b = e[t + 13],
-            E = e[t + 14],
-            k = e[t + 15],
-            A = i[0],
+            b = e[t + 12],
+            k = e[t + 13],
+            A = e[t + 14],
+            T = e[t + 15],
+            C = i[0],
             P = i[1],
-            C = i[2],
-            O = i[3];
-          A = u(A, P, C, O, o, 7, a[0]), O = u(O, A, P, C, c, 12, a[1]), C = u(C, O, A, P, p, 17, a[2]), P = u(P, C, O, A, f, 22, a[3]), A = u(A, P, C, O, g, 7, a[4]), O = u(O, A, P, C, m, 12, a[5]), C = u(C, O, A, P, y, 17, a[6]), P = u(P, C, O, A, _, 22, a[7]), A = u(A, P, C, O, w, 7, a[8]), O = u(O, A, P, C, I, 12, a[9]), C = u(C, O, A, P, v, 17, a[10]), P = u(P, C, O, A, S, 22, a[11]), A = u(A, P, C, O, T, 7, a[12]), O = u(O, A, P, C, b, 12, a[13]), C = u(C, O, A, P, E, 17, a[14]), A = h(A, P = u(P, C, O, A, k, 22, a[15]), C, O, c, 5, a[16]), O = h(O, A, P, C, y, 9, a[17]), C = h(C, O, A, P, S, 14, a[18]), P = h(P, C, O, A, o, 20, a[19]), A = h(A, P, C, O, m, 5, a[20]), O = h(O, A, P, C, v, 9, a[21]), C = h(C, O, A, P, k, 14, a[22]), P = h(P, C, O, A, g, 20, a[23]), A = h(A, P, C, O, I, 5, a[24]), O = h(O, A, P, C, E, 9, a[25]), C = h(C, O, A, P, f, 14, a[26]), P = h(P, C, O, A, w, 20, a[27]), A = h(A, P, C, O, b, 5, a[28]), O = h(O, A, P, C, p, 9, a[29]), C = h(C, O, A, P, _, 14, a[30]), A = l(A, P = h(P, C, O, A, T, 20, a[31]), C, O, m, 4, a[32]), O = l(O, A, P, C, w, 11, a[33]), C = l(C, O, A, P, S, 16, a[34]), P = l(P, C, O, A, E, 23, a[35]), A = l(A, P, C, O, c, 4, a[36]), O = l(O, A, P, C, g, 11, a[37]), C = l(C, O, A, P, _, 16, a[38]), P = l(P, C, O, A, v, 23, a[39]), A = l(A, P, C, O, b, 4, a[40]), O = l(O, A, P, C, o, 11, a[41]), C = l(C, O, A, P, f, 16, a[42]), P = l(P, C, O, A, y, 23, a[43]), A = l(A, P, C, O, I, 4, a[44]), O = l(O, A, P, C, T, 11, a[45]), C = l(C, O, A, P, k, 16, a[46]), A = d(A, P = l(P, C, O, A, p, 23, a[47]), C, O, o, 6, a[48]), O = d(O, A, P, C, _, 10, a[49]), C = d(C, O, A, P, E, 15, a[50]), P = d(P, C, O, A, m, 21, a[51]), A = d(A, P, C, O, T, 6, a[52]), O = d(O, A, P, C, f, 10, a[53]), C = d(C, O, A, P, v, 15, a[54]), P = d(P, C, O, A, c, 21, a[55]), A = d(A, P, C, O, w, 6, a[56]), O = d(O, A, P, C, k, 10, a[57]), C = d(C, O, A, P, y, 15, a[58]), P = d(P, C, O, A, b, 21, a[59]), A = d(A, P, C, O, g, 6, a[60]), O = d(O, A, P, C, S, 10, a[61]), C = d(C, O, A, P, p, 15, a[62]), P = d(P, C, O, A, I, 21, a[63]), i[0] = i[0] + A | 0, i[1] = i[1] + P | 0, i[2] = i[2] + C | 0, i[3] = i[3] + O | 0;
+            O = i[2],
+            E = i[3];
+          C = u(C, P, O, E, o, 7, a[0]), E = u(E, C, P, O, c, 12, a[1]), O = u(O, E, C, P, p, 17, a[2]), P = u(P, O, E, C, f, 22, a[3]), C = u(C, P, O, E, g, 7, a[4]), E = u(E, C, P, O, m, 12, a[5]), O = u(O, E, C, P, y, 17, a[6]), P = u(P, O, E, C, _, 22, a[7]), C = u(C, P, O, E, w, 7, a[8]), E = u(E, C, P, O, v, 12, a[9]), O = u(O, E, C, P, I, 17, a[10]), P = u(P, O, E, C, S, 22, a[11]), C = u(C, P, O, E, b, 7, a[12]), E = u(E, C, P, O, k, 12, a[13]), O = u(O, E, C, P, A, 17, a[14]), C = l(C, P = u(P, O, E, C, T, 22, a[15]), O, E, c, 5, a[16]), E = l(E, C, P, O, y, 9, a[17]), O = l(O, E, C, P, S, 14, a[18]), P = l(P, O, E, C, o, 20, a[19]), C = l(C, P, O, E, m, 5, a[20]), E = l(E, C, P, O, I, 9, a[21]), O = l(O, E, C, P, T, 14, a[22]), P = l(P, O, E, C, g, 20, a[23]), C = l(C, P, O, E, v, 5, a[24]), E = l(E, C, P, O, A, 9, a[25]), O = l(O, E, C, P, f, 14, a[26]), P = l(P, O, E, C, w, 20, a[27]), C = l(C, P, O, E, k, 5, a[28]), E = l(E, C, P, O, p, 9, a[29]), O = l(O, E, C, P, _, 14, a[30]), C = h(C, P = l(P, O, E, C, b, 20, a[31]), O, E, m, 4, a[32]), E = h(E, C, P, O, w, 11, a[33]), O = h(O, E, C, P, S, 16, a[34]), P = h(P, O, E, C, A, 23, a[35]), C = h(C, P, O, E, c, 4, a[36]), E = h(E, C, P, O, g, 11, a[37]), O = h(O, E, C, P, _, 16, a[38]), P = h(P, O, E, C, I, 23, a[39]), C = h(C, P, O, E, k, 4, a[40]), E = h(E, C, P, O, o, 11, a[41]), O = h(O, E, C, P, f, 16, a[42]), P = h(P, O, E, C, y, 23, a[43]), C = h(C, P, O, E, v, 4, a[44]), E = h(E, C, P, O, b, 11, a[45]), O = h(O, E, C, P, T, 16, a[46]), C = d(C, P = h(P, O, E, C, p, 23, a[47]), O, E, o, 6, a[48]), E = d(E, C, P, O, _, 10, a[49]), O = d(O, E, C, P, A, 15, a[50]), P = d(P, O, E, C, m, 21, a[51]), C = d(C, P, O, E, b, 6, a[52]), E = d(E, C, P, O, f, 10, a[53]), O = d(O, E, C, P, I, 15, a[54]), P = d(P, O, E, C, c, 21, a[55]), C = d(C, P, O, E, w, 6, a[56]), E = d(E, C, P, O, T, 10, a[57]), O = d(O, E, C, P, y, 15, a[58]), P = d(P, O, E, C, k, 21, a[59]), C = d(C, P, O, E, g, 6, a[60]), E = d(E, C, P, O, S, 10, a[61]), O = d(O, E, C, P, p, 15, a[62]), P = d(P, O, E, C, v, 21, a[63]), i[0] = i[0] + C | 0, i[1] = i[1] + P | 0, i[2] = i[2] + O | 0, i[3] = i[3] + E | 0;
         },
         _doFinalize: function _doFinalize() {
           var t = this._data,
@@ -1465,8 +1466,8 @@ var s = n(function (e, t) {
             o = s;
           n[15 + (r + 64 >>> 9 << 4)] = 16711935 & (i << 8 | i >>> 24) | 4278255360 & (i << 24 | i >>> 8), n[14 + (r + 64 >>> 9 << 4)] = 16711935 & (o << 8 | o >>> 24) | 4278255360 & (o << 24 | o >>> 8), t.sigBytes = 4 * (n.length + 1), this._process();
           for (var a = this._hash, c = a.words, u = 0; u < 4; u++) {
-            var h = c[u];
-            c[u] = 16711935 & (h << 8 | h >>> 24) | 4278255360 & (h << 24 | h >>> 8);
+            var l = c[u];
+            c[u] = 16711935 & (l << 8 | l >>> 24) | 4278255360 & (l << 24 | l >>> 8);
           }
           return a;
         },
@@ -1479,11 +1480,11 @@ var s = n(function (e, t) {
         var a = e + (t & n | ~t & s) + r + o;
         return (a << i | a >>> 32 - i) + t;
       }
-      function h(e, t, n, s, r, i, o) {
+      function l(e, t, n, s, r, i, o) {
         var a = e + (t & s | n & ~s) + r + o;
         return (a << i | a >>> 32 - i) + t;
       }
-      function l(e, t, n, s, r, i, o) {
+      function h(e, t, n, s, r, i, o) {
         var a = e + (t ^ n ^ s) + r + o;
         return (a << i | a >>> 32 - i) + t;
       }
@@ -1583,28 +1584,22 @@ var s = n(function (e, t) {
       };
     }(), n.enc.Base64);
   });
-var c = "uni_id_token",
-  u = "uni_id_token_expired",
-  h = "uniIdToken",
-  l = {
-    DEFAULT: "FUNCTION",
-    FUNCTION: "FUNCTION",
-    OBJECT: "OBJECT",
-    CLIENT_DB: "CLIENT_DB"
-  },
-  d = "pending",
-  p = "fulfilled",
-  f = "rejected";
-function g(e) {
+var c = "FUNCTION",
+  u = "OBJECT",
+  l = "CLIENT_DB",
+  h = "pending",
+  d = "fulfilled",
+  p = "rejected";
+function f(e) {
   return Object.prototype.toString.call(e).slice(8, -1).toLowerCase();
 }
-function m(e) {
-  return "object" === g(e);
+function g(e) {
+  return "object" === f(e);
 }
-function y(e) {
+function m(e) {
   return "function" == typeof e;
 }
-function _(e) {
+function y(e) {
   return function () {
     try {
       return e.apply(e, arguments);
@@ -1613,14 +1608,14 @@ function _(e) {
     }
   };
 }
-var w = "REJECTED",
-  I = "NOT_PENDING";
+var _ = "REJECTED",
+  w = "NOT_PENDING";
 var v = /*#__PURE__*/function () {
   function v() {
     var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       e = _ref.createPromise,
       _ref$retryRule = _ref.retryRule,
-      t = _ref$retryRule === void 0 ? w : _ref$retryRule;
+      t = _ref$retryRule === void 0 ? _ : _ref$retryRule;
     (0, _classCallCheck2.default)(this, v);
     this.createPromise = e, this.status = null, this.promise = null, this.retryRule = t;
   }
@@ -1629,102 +1624,49 @@ var v = /*#__PURE__*/function () {
     get: function get() {
       if (!this.status) return !0;
       switch (this.retryRule) {
+        case _:
+          return this.status === p;
         case w:
-          return this.status === f;
-        case I:
-          return this.status !== d;
+          return this.status !== h;
       }
     }
   }, {
     key: "exec",
     value: function exec() {
       var _this = this;
-      return this.needRetry ? (this.status = d, this.promise = this.createPromise().then(function (e) {
-        return _this.status = p, Promise.resolve(e);
+      return this.needRetry ? (this.status = h, this.promise = this.createPromise().then(function (e) {
+        return _this.status = d, Promise.resolve(e);
       }, function (e) {
-        return _this.status = f, Promise.reject(e);
+        return _this.status = p, Promise.reject(e);
       }), this.promise) : this.promise;
     }
   }]);
   return v;
 }();
-var S = /*#__PURE__*/function () {
-  function S() {
-    (0, _classCallCheck2.default)(this, S);
-    this._callback = {};
-  }
-  (0, _createClass2.default)(S, [{
-    key: "addListener",
-    value: function addListener(e, t) {
-      this._callback[e] || (this._callback[e] = []), this._callback[e].push(t);
-    }
-  }, {
-    key: "on",
-    value: function on(e, t) {
-      return this.addListener(e, t);
-    }
-  }, {
-    key: "removeListener",
-    value: function removeListener(e, t) {
-      if (!t) throw new Error('The "listener" argument must be of type function. Received undefined');
-      var n = this._callback[e];
-      if (!n) return;
-      var s = function (e, t) {
-        for (var _n2 = e.length - 1; _n2 >= 0; _n2--) {
-          if (e[_n2] === t) return _n2;
-        }
-        return -1;
-      }(n, t);
-      n.splice(s, 1);
-    }
-  }, {
-    key: "off",
-    value: function off(e, t) {
-      return this.removeListener(e, t);
-    }
-  }, {
-    key: "removeAllListener",
-    value: function removeAllListener(e) {
-      delete this._callback[e];
-    }
-  }, {
-    key: "emit",
-    value: function emit(e) {
-      var n = this._callback[e];
-      for (var _len = arguments.length, t = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        t[_key - 1] = arguments[_key];
-      }
-      if (n) for (var _e2 = 0; _e2 < n.length; _e2++) {
-        n[_e2].apply(n, t);
-      }
-    }
-  }]);
-  return S;
-}();
-function T(e) {
+function I(e) {
   return e && "string" == typeof e ? JSON.parse(e) : e;
 }
-var b = "development" === "development",
-  E = "app-plus",
+var S = "development" === "development",
+  b = "app-plus",
   k = "true" === false || !0 === false,
-  A = T([]),
-  P = "h5" === E ? "web" : "app-plus" === E || "app-harmony" === E ? "app" : E,
-  C = T({"address":["127.0.0.1","26.56.156.58","192.168.1.5","192.168.107.1","192.168.3.1"],"servePort":7000,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","D:/HBuilderX/plugins/unicloud/**/*.js"]}),
-  O = T([{"provider":"aliyun","spaceName":"shayu","spaceId":"mp-e6f8891e-bc34-4d31-8c67-699d68be55b4","clientSecret":"L9b0/Ppd7c3hgLDc7hmzvA==","endpoint":"https://api.next.bspapp.com"}]) || [],
-  x = true;
-var N = "";
+  A = I([]),
+  T = "h5" === b ? "web" : "app-plus" === b || "app-harmony" === b ? "app" : b,
+  C = I({"address":["127.0.0.1","26.56.156.58","172.20.10.8","192.168.107.1","192.168.3.1"],"servePort":7000,"debugPort":9000,"initialLaunchType":"local","skipFiles":["<node_internals>/**","D:/HBuilderX/plugins/unicloud/**/*.js"]}),
+  P = I([{"provider":"aliyun","spaceName":"shayu","spaceId":"mp-e6f8891e-bc34-4d31-8c67-699d68be55b4","clientSecret":"L9b0/Ppd7c3hgLDc7hmzvA==","endpoint":"https://api.next.bspapp.com"}]) || [],
+  O = true;
+var E = "";
 try {
-  N = (__webpack_require__(/*! uni-stat-config */ 66).default || __webpack_require__(/*! uni-stat-config */ 66)).appid;
+  E = (__webpack_require__(/*! uni-stat-config */ 66).default || __webpack_require__(/*! uni-stat-config */ 66)).appid;
 } catch (e) {}
-var R,
+var x,
   L = {};
 function U(e) {
   var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var n, s;
   return n = L, s = e, Object.prototype.hasOwnProperty.call(n, s) || (L[e] = t), L[e];
 }
-function D() {
-  return R || (R = function () {
+function R() {
+  return x || (x = function () {
     if ("undefined" != typeof globalThis) return globalThis;
     if ("undefined" != typeof self) return self;
     if ("undefined" != typeof window) return window;
@@ -1732,105 +1674,102 @@ function D() {
       return this;
     }
     return void 0 !== e() ? e() : new Function("return this")();
-  }(), R);
+  }(), x);
 }
-"app" === P && (L = uni._globalUniCloudObj ? uni._globalUniCloudObj : uni._globalUniCloudObj = {});
-var M = ["invoke", "success", "fail", "complete"],
-  q = U("_globalUniCloudInterceptor");
-function F(e, t) {
-  q[e] || (q[e] = {}), m(t) && Object.keys(t).forEach(function (n) {
-    M.indexOf(n) > -1 && function (e, t, n) {
-      var s = q[e][t];
-      s || (s = q[e][t] = []), -1 === s.indexOf(n) && y(n) && s.push(n);
+"app" === T && (L = uni._globalUniCloudObj ? uni._globalUniCloudObj : uni._globalUniCloudObj = {});
+var N = ["invoke", "success", "fail", "complete"],
+  D = U("_globalUniCloudInterceptor");
+function M(e, t) {
+  D[e] || (D[e] = {}), g(t) && Object.keys(t).forEach(function (n) {
+    N.indexOf(n) > -1 && function (e, t, n) {
+      var s = D[e][t];
+      s || (s = D[e][t] = []), -1 === s.indexOf(n) && m(n) && s.push(n);
     }(e, n, t[n]);
   });
 }
-function K(e, t) {
-  q[e] || (q[e] = {}), m(t) ? Object.keys(t).forEach(function (n) {
-    M.indexOf(n) > -1 && function (e, t, n) {
-      var s = q[e][t];
+function q(e, t) {
+  D[e] || (D[e] = {}), g(t) ? Object.keys(t).forEach(function (n) {
+    N.indexOf(n) > -1 && function (e, t, n) {
+      var s = D[e][t];
       if (!s) return;
       var r = s.indexOf(n);
       r > -1 && s.splice(r, 1);
     }(e, n, t[n]);
-  }) : delete q[e];
+  }) : delete D[e];
 }
-function j(e, t) {
+function F(e, t) {
   return e && 0 !== e.length ? e.reduce(function (e, n) {
     return e.then(function () {
       return n(t);
     });
   }, Promise.resolve()) : Promise.resolve();
 }
-function $(e, t) {
-  return q[e] && q[e][t] || [];
+function K(e, t) {
+  return D[e] && D[e][t] || [];
 }
-function B(e) {
-  F("callObject", e);
+function j(e) {
+  M("callObject", e);
 }
-var W = U("_globalUniCloudListener"),
-  H = {
-    RESPONSE: "response",
-    NEED_LOGIN: "needLogin",
-    REFRESH_TOKEN: "refreshToken"
-  },
-  J = {
-    CLIENT_DB: "clientdb",
-    CLOUD_FUNCTION: "cloudfunction",
-    CLOUD_OBJECT: "cloudobject"
-  };
-function z(e) {
-  return W[e] || (W[e] = []), W[e];
+var $ = U("_globalUniCloudListener"),
+  B = "response",
+  W = "needLogin",
+  H = "refreshToken",
+  J = "failover",
+  z = "clientdb",
+  V = "cloudfunction",
+  G = "cloudobject";
+function Q(e) {
+  return $[e] || ($[e] = []), $[e];
 }
-function V(e, t) {
-  var n = z(e);
+function Y(e, t) {
+  var n = Q(e);
   n.includes(t) || n.push(t);
 }
-function G(e, t) {
-  var n = z(e),
+function X(e, t) {
+  var n = Q(e),
     s = n.indexOf(t);
   -1 !== s && n.splice(s, 1);
 }
-function Y(e, t) {
-  var n = z(e);
-  for (var _e3 = 0; _e3 < n.length; _e3++) {
-    (0, n[_e3])(t);
+function Z(e, t) {
+  var n = Q(e);
+  for (var _e2 = 0; _e2 < n.length; _e2++) {
+    (0, n[_e2])(t);
   }
 }
-var Q,
-  X = !1;
-function Z() {
-  return Q || (Q = new Promise(function (e) {
-    X && e(), function t() {
+var ee,
+  te = !1;
+function ne() {
+  return ee || (ee = new Promise(function (e) {
+    te && e(), function t() {
       if ("function" == typeof getCurrentPages) {
         var _t2 = getCurrentPages();
-        _t2 && _t2[0] && (X = !0, e());
+        _t2 && _t2[0] && (te = !0, e());
       }
-      X || setTimeout(function () {
+      te || setTimeout(function () {
         t();
       }, 30);
     }();
-  }), Q);
+  }), ee);
 }
-function ee(e) {
+function se(e) {
   var t = {};
-  for (var _n3 in e) {
-    var _s2 = e[_n3];
-    y(_s2) && (t[_n3] = _(_s2));
+  for (var _n2 in e) {
+    var _s2 = e[_n2];
+    m(_s2) && (t[_n2] = y(_s2));
   }
   return t;
 }
-var te = /*#__PURE__*/function (_Error) {
-  (0, _inherits2.default)(te, _Error);
-  var _super = _createSuper(te);
-  function te(e) {
+var re = /*#__PURE__*/function (_Error) {
+  (0, _inherits2.default)(re, _Error);
+  var _super = _createSuper(re);
+  function re(e) {
     var _this2;
-    (0, _classCallCheck2.default)(this, te);
+    (0, _classCallCheck2.default)(this, re);
     var t = e.message || e.errMsg || "unknown system error";
     _this2 = _super.call(this, t), _this2.errMsg = t, _this2.code = _this2.errCode = e.code || e.errCode || "SYSTEM_ERROR", _this2.errSubject = _this2.subject = e.subject || e.errSubject, _this2.cause = e.cause, _this2.requestId = e.requestId;
     return _this2;
   }
-  (0, _createClass2.default)(te, [{
+  (0, _createClass2.default)(re, [{
     key: "toJson",
     value: function toJson() {
       var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
@@ -1842,10 +1781,10 @@ var te = /*#__PURE__*/function (_Error) {
       };
     }
   }]);
-  return te;
+  return re;
 }( /*#__PURE__*/(0, _wrapNativeSuper2.default)(Error));
-exports.UniCloudError = te;
-var ne = {
+exports.UniCloudError = re;
+var ie = {
   request: function request(e) {
     return uni.request(e);
   },
@@ -1868,31 +1807,31 @@ var ne = {
     return uni.connectSocket(e);
   }
 };
-function se() {
+function oe() {
   return {
-    token: ne.getStorageSync(c) || ne.getStorageSync(h),
-    tokenExpired: ne.getStorageSync(u)
+    token: ie.getStorageSync("uni_id_token") || ie.getStorageSync("uniIdToken"),
+    tokenExpired: ie.getStorageSync("uni_id_token_expired")
   };
 }
-function re() {
+function ae() {
   var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     e = _ref2.token,
     t = _ref2.tokenExpired;
-  e && ne.setStorageSync(c, e), t && ne.setStorageSync(u, t);
+  e && ie.setStorageSync("uni_id_token", e), t && ie.setStorageSync("uni_id_token_expired", t);
 }
-var ie, oe;
-function ae() {
-  return ie || (ie = "mp-weixin" === P && wx.canIUse("getAppBaseInfo") && wx.canIUse("getDeviceInfo") ? _objectSpread(_objectSpread({}, uni.getAppBaseInfo()), uni.getDeviceInfo()) : uni.getSystemInfoSync()), ie;
+var ce, ue;
+function le() {
+  return ce || (ce = "mp-weixin" === T && wx.canIUse("getAppBaseInfo") && wx.canIUse("getDeviceInfo") ? _objectSpread(_objectSpread({}, uni.getAppBaseInfo()), uni.getDeviceInfo()) : uni.getSystemInfoSync()), ce;
 }
-function ce() {
+function he() {
   var e, t;
   try {
     if (uni.getLaunchOptionsSync) {
       if (uni.getLaunchOptionsSync.toString().indexOf("not yet implemented") > -1) return;
       var _uni$getLaunchOptions = uni.getLaunchOptionsSync(),
-        _n4 = _uni$getLaunchOptions.scene,
+        _n3 = _uni$getLaunchOptions.scene,
         _s3 = _uni$getLaunchOptions.channel;
-      e = _s3, t = _n4;
+      e = _s3, t = _n3;
     }
   } catch (e) {}
   return {
@@ -1900,33 +1839,33 @@ function ce() {
     scene: t
   };
 }
-var ue = {};
-function he() {
+var de = {};
+function pe() {
   var e = uni.getLocale && uni.getLocale() || "en";
-  if (oe) return _objectSpread(_objectSpread(_objectSpread({}, ue), oe), {}, {
+  if (ue) return _objectSpread(_objectSpread(_objectSpread({}, de), ue), {}, {
     locale: e,
     LOCALE: e
   });
-  var t = ae(),
+  var t = le(),
     n = t.deviceId,
     s = t.osName,
     r = t.uniPlatform,
     i = t.appId,
     o = ["appId", "appLanguage", "appName", "appVersion", "appVersionCode", "appWgtVersion", "browserName", "browserVersion", "deviceBrand", "deviceId", "deviceModel", "deviceType", "osName", "osVersion", "romName", "romVersion", "ua", "hostName", "hostVersion", "uniPlatform", "uniRuntimeVersion", "uniRuntimeVersionCode", "uniCompilerVersion", "uniCompilerVersionCode"];
-  for (var _e4 in t) {
-    Object.hasOwnProperty.call(t, _e4) && -1 === o.indexOf(_e4) && delete t[_e4];
+  for (var _e3 in t) {
+    Object.hasOwnProperty.call(t, _e3) && -1 === o.indexOf(_e3) && delete t[_e3];
   }
-  return oe = _objectSpread(_objectSpread({
+  return ue = _objectSpread(_objectSpread({
     PLATFORM: r,
     OS: s,
     APPID: i,
     DEVICEID: n
-  }, ce()), t), _objectSpread(_objectSpread(_objectSpread({}, ue), oe), {}, {
+  }, he()), t), _objectSpread(_objectSpread(_objectSpread({}, de), ue), {}, {
     locale: e,
     LOCALE: e
   });
 }
-var le = {
+var fe = {
   sign: function sign(e, t) {
     var n = "";
     return Object.keys(e).sort().forEach(function (t) {
@@ -1937,19 +1876,19 @@ var le = {
     return new Promise(function (n, s) {
       t(Object.assign(e, {
         complete: function complete(e) {
-          e || (e = {}), b && "web" === P && e.errMsg && 0 === e.errMsg.indexOf("request:fail") && console.warn("发布H5，需要在uniCloud后台操作，绑定安全域名，否则会因为跨域问题而无法访问。教程参考：https://uniapp.dcloud.io/uniCloud/quickstart?id=useinh5");
+          e || (e = {}), S && "web" === T && e.errMsg && 0 === e.errMsg.indexOf("request:fail") && console.warn("发布H5，需要在uniCloud后台操作，绑定安全域名，否则会因为跨域问题而无法访问。教程参考：https://uniapp.dcloud.io/uniCloud/quickstart?id=useinh5");
           var t = e.data && e.data.header && e.data.header["x-serverless-request-id"] || e.header && e.header["request-id"];
           if (!e.statusCode || e.statusCode >= 400) {
-            var _n5 = e.data && e.data.error && e.data.error.code || "SYS_ERR",
+            var _n4 = e.data && e.data.error && e.data.error.code || "SYS_ERR",
               _r = e.data && e.data.error && e.data.error.message || e.errMsg || "request:fail";
-            return s(new te({
-              code: _n5,
+            return s(new re({
+              code: _n4,
               message: _r,
               requestId: t
             }));
           }
           var r = e.data;
-          if (r.error) return s(new te({
+          if (r.error) return s(new re({
             code: r.error.code,
             message: r.error.message,
             requestId: t
@@ -1963,31 +1902,31 @@ var le = {
     return a.stringify(o.parse(e));
   }
 };
-var de = /*#__PURE__*/function () {
-  function de(e) {
+var ge = /*#__PURE__*/function () {
+  function ge(e) {
     var _this3 = this;
-    (0, _classCallCheck2.default)(this, de);
+    (0, _classCallCheck2.default)(this, ge);
     ["spaceId", "clientSecret"].forEach(function (t) {
       if (!Object.prototype.hasOwnProperty.call(e, t)) throw new Error("".concat(t, " required"));
     }), this.config = Object.assign({}, {
       endpoint: 0 === e.spaceId.indexOf("mp-") ? "https://api.next.bspapp.com" : "https://api.bspapp.com"
-    }, e), this.config.provider = "aliyun", this.config.requestUrl = this.config.endpoint + "/client", this.config.envType = this.config.envType || "public", this.config.accessTokenKey = "access_token_" + this.config.spaceId, this.adapter = ne, this._getAccessTokenPromiseHub = new v({
+    }, e), this.config.provider = "aliyun", this.config.requestUrl = this.config.endpoint + "/client", this.config.envType = this.config.envType || "public", this.config.accessTokenKey = "access_token_" + this.config.spaceId, this.adapter = ie, this._getAccessTokenPromiseHub = new v({
       createPromise: function createPromise() {
         return _this3.requestAuth(_this3.setupRequest({
           method: "serverless.auth.user.anonymousAuthorize",
           params: "{}"
         }, "auth")).then(function (e) {
-          if (!e.result || !e.result.accessToken) throw new te({
+          if (!e.result || !e.result.accessToken) throw new re({
             code: "AUTH_FAILED",
             message: "获取accessToken失败"
           });
           _this3.setAccessToken(e.result.accessToken);
         });
       },
-      retryRule: I
+      retryRule: w
     });
   }
-  (0, _createClass2.default)(de, [{
+  (0, _createClass2.default)(ge, [{
     key: "hasAccessToken",
     get: function get() {
       return !!this.accessToken;
@@ -2000,7 +1939,7 @@ var de = /*#__PURE__*/function () {
   }, {
     key: "requestWrapped",
     value: function requestWrapped(e) {
-      return le.wrappedRequest(e, this.adapter.request);
+      return fe.wrappedRequest(e, this.adapter.request);
     }
   }, {
     key: "requestAuth",
@@ -2031,7 +1970,7 @@ var de = /*#__PURE__*/function () {
     key: "rebuildRequest",
     value: function rebuildRequest(e) {
       var t = Object.assign({}, e);
-      return t.data.token = this.accessToken, t.header["x-basement-token"] = this.accessToken, t.header["x-serverless-sign"] = le.sign(t.data, this.config.clientSecret), t;
+      return t.data.token = this.accessToken, t.header["x-basement-token"] = this.accessToken, t.header["x-serverless-sign"] = fe.sign(t.data, this.config.clientSecret), t;
     }
   }, {
     key: "setupRequest",
@@ -2043,7 +1982,7 @@ var de = /*#__PURE__*/function () {
         s = {
           "Content-Type": "application/json"
         };
-      return "auth" !== t && (n.token = this.accessToken, s["x-basement-token"] = this.accessToken), s["x-serverless-sign"] = le.sign(n, this.config.clientSecret), {
+      return "auth" !== t && (n.token = this.accessToken, s["x-basement-token"] = this.accessToken), s["x-serverless-sign"] = fe.sign(n, this.config.clientSecret), {
         url: this.config.requestUrl,
         method: "POST",
         data: n,
@@ -2122,13 +2061,13 @@ var de = /*#__PURE__*/function () {
             "X-OSS-server-side-encrpytion": "AES256"
           },
           success: function success(e) {
-            e && e.statusCode < 400 ? o(e) : a(new te({
+            e && e.statusCode < 400 ? o(e) : a(new re({
               code: "UPLOAD_FAILED",
               message: "文件上传失败"
             }));
           },
           fail: function fail(e) {
-            a(new te({
+            a(new re({
               code: e.code || "UPLOAD_FAILED",
               message: e.message || e.errMsg || "文件上传失败"
             }));
@@ -2155,17 +2094,17 @@ var de = /*#__PURE__*/function () {
     key: "uploadFile",
     value: function () {
       var _uploadFile = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(_ref4) {
-        var e, t, _ref4$fileType, n, _ref4$cloudPathAsReal, s, r, i, o, a, c, u, h, l, d, p, f, m, y, _, _e5, w;
+        var e, t, _ref4$fileType, n, _ref4$cloudPathAsReal, s, r, i, o, a, c, u, l, h, d, p, g, m, y, _, _e4, w;
         return _regenerator.default.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 e = _ref4.filePath, t = _ref4.cloudPath, _ref4$fileType = _ref4.fileType, n = _ref4$fileType === void 0 ? "image" : _ref4$fileType, _ref4$cloudPathAsReal = _ref4.cloudPathAsRealPath, s = _ref4$cloudPathAsReal === void 0 ? !1 : _ref4$cloudPathAsReal, r = _ref4.onUploadProgress, i = _ref4.config;
-                if (!("string" !== g(t))) {
+                if (!("string" !== f(t))) {
                   _context2.next = 3;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "cloudPath必须为字符串类型"
                 });
@@ -2174,7 +2113,7 @@ var de = /*#__PURE__*/function () {
                   _context2.next = 5;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "cloudPath不可为空"
                 });
@@ -2183,7 +2122,7 @@ var de = /*#__PURE__*/function () {
                   _context2.next = 7;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "cloudPath不合法"
                 });
@@ -2193,7 +2132,7 @@ var de = /*#__PURE__*/function () {
                   _context2.next = 10;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "使用cloudPath作为路径时，cloudPath不可包含“\\”"
                 });
@@ -2208,34 +2147,34 @@ var de = /*#__PURE__*/function () {
                 a = _context2.sent.result;
                 c = "https://" + a.cdnDomain + "/" + a.ossPath;
                 u = a.securityToken;
-                h = a.accessKeyId;
-                l = a.signature;
+                l = a.accessKeyId;
+                h = a.signature;
                 d = a.host;
                 p = a.ossPath;
-                f = a.id;
+                g = a.id;
                 m = a.policy;
                 y = a.ossCallbackUrl;
                 _ = {
                   "Cache-Control": "max-age=2592000",
                   "Content-Disposition": "attachment",
-                  OSSAccessKeyId: h,
-                  Signature: l,
+                  OSSAccessKeyId: l,
+                  Signature: h,
                   host: d,
-                  id: f,
+                  id: g,
                   key: p,
                   policy: m,
                   success_action_status: 200
                 };
                 if (u && (_["x-oss-security-token"] = u), y) {
-                  _e5 = JSON.stringify({
+                  _e4 = JSON.stringify({
                     callbackUrl: y,
                     callbackBody: JSON.stringify({
-                      fileId: f,
+                      fileId: g,
                       spaceId: this.config.spaceId
                     }),
                     callbackBodyType: "application/json"
                   });
-                  _.callback = le.toBase64(_e5);
+                  _.callback = fe.toBase64(_e4);
                 }
                 w = {
                   url: "https://" + a.host,
@@ -2262,7 +2201,7 @@ var de = /*#__PURE__*/function () {
               case 29:
                 _context2.next = 31;
                 return this.reportOSSUpload({
-                  id: f
+                  id: g
                 });
               case 31:
                 if (!_context2.sent.success) {
@@ -2275,7 +2214,7 @@ var de = /*#__PURE__*/function () {
                   fileID: c
                 });
               case 33:
-                throw new te({
+                throw new re({
                   code: "UPLOAD_FAILED",
                   message: "文件上传失败"
                 });
@@ -2298,7 +2237,7 @@ var de = /*#__PURE__*/function () {
       var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         e = _ref5.fileList;
       return new Promise(function (t, n) {
-        Array.isArray(e) && 0 !== e.length || n(new te({
+        Array.isArray(e) && 0 !== e.length || n(new re({
           code: "INVALID_PARAM",
           message: "fileList的元素必须是非空的字符串"
         })), _this6.getFileInfo({
@@ -2333,7 +2272,7 @@ var de = /*#__PURE__*/function () {
                   _context3.next = 3;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "fileList的元素必须是非空的字符串"
                 });
@@ -2366,11 +2305,11 @@ var de = /*#__PURE__*/function () {
       return getFileInfo;
     }()
   }]);
-  return de;
+  return ge;
 }();
-var pe = {
+var me = {
   init: function init(e) {
-    var t = new de(e),
+    var t = new ge(e),
       n = {
         signInAnonymously: function signInAnonymously() {
           return t.authorize();
@@ -2384,13 +2323,13 @@ var pe = {
     }, t.customAuth = t.auth, t;
   }
 };
-var fe = "undefined" != typeof location && "http:" === location.protocol ? "http:" : "https:";
-var ge;
+var ye = "undefined" != typeof location && "http:" === location.protocol ? "http:" : "https:";
+var _e;
 !function (e) {
   e.local = "local", e.none = "none", e.session = "session";
-}(ge || (ge = {}));
-var me = function me() {},
-  ye = n(function (e, t) {
+}(_e || (_e = {}));
+var we = function we() {},
+  ve = n(function (e, t) {
     var n;
     e.exports = (n = r, function (e) {
       var t = n,
@@ -2415,12 +2354,12 @@ var me = function me() {},
         }
       }();
       var u = [],
-        h = o.SHA256 = i.extend({
+        l = o.SHA256 = i.extend({
           _doReset: function _doReset() {
             this._hash = new r.init(a.slice(0));
           },
           _doProcessBlock: function _doProcessBlock(e, t) {
-            for (var n = this._hash.words, s = n[0], r = n[1], i = n[2], o = n[3], a = n[4], h = n[5], l = n[6], d = n[7], p = 0; p < 64; p++) {
+            for (var n = this._hash.words, s = n[0], r = n[1], i = n[2], o = n[3], a = n[4], l = n[5], h = n[6], d = n[7], p = 0; p < 64; p++) {
               if (p < 16) u[p] = 0 | e[t + p];else {
                 var f = u[p - 15],
                   g = (f << 25 | f >>> 7) ^ (f << 14 | f >>> 18) ^ f >>> 3,
@@ -2430,10 +2369,10 @@ var me = function me() {},
               }
               var _ = s & r ^ s & i ^ r & i,
                 w = (s << 30 | s >>> 2) ^ (s << 19 | s >>> 13) ^ (s << 10 | s >>> 22),
-                I = d + ((a << 26 | a >>> 6) ^ (a << 21 | a >>> 11) ^ (a << 7 | a >>> 25)) + (a & h ^ ~a & l) + c[p] + u[p];
-              d = l, l = h, h = a, a = o + I | 0, o = i, i = r, r = s, s = I + (w + _) | 0;
+                v = d + ((a << 26 | a >>> 6) ^ (a << 21 | a >>> 11) ^ (a << 7 | a >>> 25)) + (a & l ^ ~a & h) + c[p] + u[p];
+              d = h, h = l, l = a, a = o + v | 0, o = i, i = r, r = s, s = v + (w + _) | 0;
             }
-            n[0] = n[0] + s | 0, n[1] = n[1] + r | 0, n[2] = n[2] + i | 0, n[3] = n[3] + o | 0, n[4] = n[4] + a | 0, n[5] = n[5] + h | 0, n[6] = n[6] + l | 0, n[7] = n[7] + d | 0;
+            n[0] = n[0] + s | 0, n[1] = n[1] + r | 0, n[2] = n[2] + i | 0, n[3] = n[3] + o | 0, n[4] = n[4] + a | 0, n[5] = n[5] + l | 0, n[6] = n[6] + h | 0, n[7] = n[7] + d | 0;
           },
           _doFinalize: function _doFinalize() {
             var t = this._data,
@@ -2447,19 +2386,19 @@ var me = function me() {},
             return e._hash = this._hash.clone(), e;
           }
         });
-      t.SHA256 = i._createHelper(h), t.HmacSHA256 = i._createHmacHelper(h);
+      t.SHA256 = i._createHelper(l), t.HmacSHA256 = i._createHmacHelper(l);
     }(Math), n.SHA256);
   }),
-  _e = ye,
-  we = n(function (e, t) {
+  Ie = ve,
+  Se = n(function (e, t) {
     e.exports = r.HmacSHA256;
   });
-var Ie = function Ie() {
+var be = function be() {
   var e;
   if (!Promise) {
     e = function e() {}, e.promise = {};
     var _t3 = function _t3() {
-      throw new te({
+      throw new re({
         message: 'Your Node runtime does support ES6 Promises. Set "global.Promise" to your preferred implementation of promises.'
       });
     };
@@ -2470,46 +2409,47 @@ var Ie = function Ie() {
     }), e;
   }
   var t = new Promise(function (t, n) {
-    e = function e(_e6, s) {
-      return _e6 ? n(_e6) : t(s);
+    e = function e(_e5, s) {
+      return _e5 ? n(_e5) : t(s);
     };
   });
   return e.promise = t, e;
 };
-function ve(e) {
+function ke(e) {
   return void 0 === e;
 }
-function Se(e) {
+function Ae(e) {
   return "[object Null]" === Object.prototype.toString.call(e);
 }
 function Te() {
   var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
   return e.replace(/([\s\S]+)\s+(请前往云开发AI小助手查看问题：.*)/, "$1");
 }
-function be() {
+function Ce() {
   var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 32;
-  var t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var n = "";
-  for (var _s4 = 0; _s4 < e; _s4++) {
-    n += t.charAt(Math.floor(62 * Math.random()));
+  var t = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+    n = t.length;
+  var s = "";
+  for (var _r2 = 0; _r2 < e; _r2++) {
+    s += t.charAt(Math.floor(Math.random() * n));
   }
-  return n;
+  return s;
 }
-var Ee;
-function ke(e) {
+var Pe;
+function Oe(e) {
   var t = (n = e, "[object Array]" === Object.prototype.toString.call(n) ? e : [e]);
   var n;
   var _iterator = _createForOfIteratorHelper(t),
     _step;
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var _e7 = _step.value;
-      var _t4 = _e7.isMatch,
-        _n6 = _e7.genAdapter,
-        _s5 = _e7.runtime;
+      var _e6 = _step.value;
+      var _t4 = _e6.isMatch,
+        _n5 = _e6.genAdapter,
+        _s4 = _e6.runtime;
       if (_t4()) return {
-        adapter: _n6(),
-        runtime: _s5
+        adapter: _n5(),
+        runtime: _s4
       };
     }
   } catch (err) {
@@ -2520,72 +2460,72 @@ function ke(e) {
 }
 !function (e) {
   e.WEB = "web", e.WX_MP = "wx_mp";
-}(Ee || (Ee = {}));
-var Ae = {
+}(Pe || (Pe = {}));
+var Ee = {
     adapter: null,
     runtime: void 0
   },
-  Pe = ["anonymousUuidKey"];
-var Ce = /*#__PURE__*/function (_me) {
-  (0, _inherits2.default)(Ce, _me);
-  var _super2 = _createSuper(Ce);
-  function Ce() {
+  xe = ["anonymousUuidKey"];
+var Le = /*#__PURE__*/function (_we) {
+  (0, _inherits2.default)(Le, _we);
+  var _super2 = _createSuper(Le);
+  function Le() {
     var _this7;
-    (0, _classCallCheck2.default)(this, Ce);
-    _this7 = _super2.call(this), Ae.adapter.root.tcbObject || (Ae.adapter.root.tcbObject = {});
+    (0, _classCallCheck2.default)(this, Le);
+    _this7 = _super2.call(this), Ee.adapter.root.tcbObject || (Ee.adapter.root.tcbObject = {});
     return _this7;
   }
-  (0, _createClass2.default)(Ce, [{
+  (0, _createClass2.default)(Le, [{
     key: "setItem",
     value: function setItem(e, t) {
-      Ae.adapter.root.tcbObject[e] = t;
+      Ee.adapter.root.tcbObject[e] = t;
     }
   }, {
     key: "getItem",
     value: function getItem(e) {
-      return Ae.adapter.root.tcbObject[e];
+      return Ee.adapter.root.tcbObject[e];
     }
   }, {
     key: "removeItem",
     value: function removeItem(e) {
-      delete Ae.adapter.root.tcbObject[e];
+      delete Ee.adapter.root.tcbObject[e];
     }
   }, {
     key: "clear",
     value: function clear() {
-      delete Ae.adapter.root.tcbObject;
+      delete Ee.adapter.root.tcbObject;
     }
   }]);
-  return Ce;
-}(me);
-function Oe(e, t) {
+  return Le;
+}(we);
+function Ue(e, t) {
   switch (e) {
     case "local":
-      return t.localStorage || new Ce();
+      return t.localStorage || new Le();
     case "none":
-      return new Ce();
+      return new Le();
     default:
-      return t.sessionStorage || new Ce();
+      return t.sessionStorage || new Le();
   }
 }
-var xe = /*#__PURE__*/function () {
-  function xe(e) {
-    (0, _classCallCheck2.default)(this, xe);
+var Re = /*#__PURE__*/function () {
+  function Re(e) {
+    (0, _classCallCheck2.default)(this, Re);
     if (!this._storage) {
-      this._persistence = Ae.adapter.primaryStorage || e.persistence, this._storage = Oe(this._persistence, Ae.adapter);
+      this._persistence = Ee.adapter.primaryStorage || e.persistence, this._storage = Ue(this._persistence, Ee.adapter);
       var _t5 = "access_token_".concat(e.env),
-        _n7 = "access_token_expire_".concat(e.env),
-        _s6 = "refresh_token_".concat(e.env),
-        _r2 = "anonymous_uuid_".concat(e.env),
+        _n6 = "access_token_expire_".concat(e.env),
+        _s5 = "refresh_token_".concat(e.env),
+        _r3 = "anonymous_uuid_".concat(e.env),
         _i = "login_type_".concat(e.env),
         _o = "device_id",
         _a = "token_type_".concat(e.env),
         _c = "user_info_".concat(e.env);
       this.keys = {
         accessTokenKey: _t5,
-        accessTokenExpireKey: _n7,
-        refreshTokenKey: _s6,
-        anonymousUuidKey: _r2,
+        accessTokenExpireKey: _n6,
+        refreshTokenKey: _s5,
+        anonymousUuidKey: _r3,
         loginTypeKey: _i,
         userInfoKey: _c,
         deviceIdKey: _o,
@@ -2593,18 +2533,18 @@ var xe = /*#__PURE__*/function () {
       };
     }
   }
-  (0, _createClass2.default)(xe, [{
+  (0, _createClass2.default)(Re, [{
     key: "updatePersistence",
     value: function updatePersistence(e) {
       if (e === this._persistence) return;
       var t = "local" === this._persistence;
       this._persistence = e;
-      var n = Oe(e, Ae.adapter);
-      for (var _e8 in this.keys) {
-        var _s7 = this.keys[_e8];
-        if (t && Pe.includes(_e8)) continue;
-        var _r3 = this._storage.getItem(_s7);
-        ve(_r3) || Se(_r3) || (n.setItem(_s7, _r3), this._storage.removeItem(_s7));
+      var n = Ue(e, Ee.adapter);
+      for (var _e7 in this.keys) {
+        var _s6 = this.keys[_e7];
+        if (t && xe.includes(_e7)) continue;
+        var _r4 = this._storage.getItem(_s6);
+        ke(_r4) || Ae(_r4) || (n.setItem(_s6, _r4), this._storage.removeItem(_s6));
       }
       this._storage = n;
     }
@@ -2645,32 +2585,32 @@ var xe = /*#__PURE__*/function () {
       this._storage.removeItem(e);
     }
   }]);
-  return xe;
+  return Re;
 }();
 var Ne = {},
-  Re = {};
-function Le(e) {
+  De = {};
+function Me(e) {
   return Ne[e];
 }
-var Ue = /*#__PURE__*/(0, _createClass2.default)(function Ue(e, t) {
-  (0, _classCallCheck2.default)(this, Ue);
+var qe = /*#__PURE__*/(0, _createClass2.default)(function qe(e, t) {
+  (0, _classCallCheck2.default)(this, qe);
   this.data = t || null, this.name = e;
 });
-var De = /*#__PURE__*/function (_Ue) {
-  (0, _inherits2.default)(De, _Ue);
-  var _super3 = _createSuper(De);
-  function De(e, t) {
+var Fe = /*#__PURE__*/function (_qe) {
+  (0, _inherits2.default)(Fe, _qe);
+  var _super3 = _createSuper(Fe);
+  function Fe(e, t) {
     var _this8;
-    (0, _classCallCheck2.default)(this, De);
+    (0, _classCallCheck2.default)(this, Fe);
     _this8 = _super3.call(this, "error", {
       error: e,
       data: t
     }), _this8.error = e;
     return _this8;
   }
-  return (0, _createClass2.default)(De);
-}(Ue);
-var Me = new ( /*#__PURE__*/function () {
+  return (0, _createClass2.default)(Fe);
+}(qe);
+var Ke = new ( /*#__PURE__*/function () {
   function _class() {
     (0, _classCallCheck2.default)(this, _class);
     this._listeners = {};
@@ -2687,21 +2627,21 @@ var Me = new ( /*#__PURE__*/function () {
     value: function off(e, t) {
       return function (e, t, n) {
         if (n && n[e]) {
-          var _s8 = n[e].indexOf(t);
-          -1 !== _s8 && n[e].splice(_s8, 1);
+          var _s7 = n[e].indexOf(t);
+          -1 !== _s7 && n[e].splice(_s7, 1);
         }
       }(e, t, this._listeners), this;
     }
   }, {
     key: "fire",
     value: function fire(e, t) {
-      if (e instanceof De) return console.error(e.error), this;
-      var n = "string" == typeof e ? new Ue(e, t || {}) : e;
+      if (e instanceof Fe) return console.error(e.error), this;
+      var n = "string" == typeof e ? new qe(e, t || {}) : e;
       var s = n.name;
       if (this._listens(s)) {
         n.target = this;
-        var _e9 = this._listeners[s] ? (0, _toConsumableArray2.default)(this._listeners[s]) : [];
-        var _iterator2 = _createForOfIteratorHelper(_e9),
+        var _e8 = this._listeners[s] ? (0, _toConsumableArray2.default)(this._listeners[s]) : [];
+        var _iterator2 = _createForOfIteratorHelper(_e8),
           _step2;
         try {
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -2724,31 +2664,31 @@ var Me = new ( /*#__PURE__*/function () {
   }]);
   return _class;
 }())();
-function qe(e, t) {
-  Me.on(e, t);
+function je(e, t) {
+  Ke.on(e, t);
 }
-function Fe(e) {
+function $e(e) {
   var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  Me.fire(e, t);
+  Ke.fire(e, t);
 }
-function Ke(e, t) {
-  Me.off(e, t);
+function Be(e, t) {
+  Ke.off(e, t);
 }
-var je = "loginStateChanged",
-  $e = "loginStateExpire",
-  Be = "loginTypeChanged",
-  We = "anonymousConverted",
-  He = "refreshAccessToken";
-var Je;
+var We = "loginStateChanged",
+  He = "loginStateExpire",
+  Je = "loginTypeChanged",
+  ze = "anonymousConverted",
+  Ve = "refreshAccessToken";
+var Ge;
 !function (e) {
   e.ANONYMOUS = "ANONYMOUS", e.WECHAT = "WECHAT", e.WECHAT_PUBLIC = "WECHAT-PUBLIC", e.WECHAT_OPEN = "WECHAT-OPEN", e.CUSTOM = "CUSTOM", e.EMAIL = "EMAIL", e.USERNAME = "USERNAME", e.NULL = "NULL";
-}(Je || (Je = {}));
-var ze = /*#__PURE__*/function () {
-  function ze() {
-    (0, _classCallCheck2.default)(this, ze);
+}(Ge || (Ge = {}));
+var Qe = /*#__PURE__*/function () {
+  function Qe() {
+    (0, _classCallCheck2.default)(this, Qe);
     this._fnPromiseMap = new Map();
   }
-  (0, _createClass2.default)(ze, [{
+  (0, _createClass2.default)(Qe, [{
     key: "run",
     value: function () {
       var _run = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(e, t) {
@@ -2761,7 +2701,7 @@ var ze = /*#__PURE__*/function () {
                 n = this._fnPromiseMap.get(e);
                 return _context5.abrupt("return", (n || (n = new Promise( /*#__PURE__*/function () {
                   var _ref7 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(n, s) {
-                    var _e10;
+                    var _s8;
                     return _regenerator.default.wrap(function _callee4$(_context4) {
                       while (1) {
                         switch (_context4.prev = _context4.next) {
@@ -2770,10 +2710,10 @@ var ze = /*#__PURE__*/function () {
                             _context4.next = 3;
                             return _this9._runIdlePromise();
                           case 3:
-                            _e10 = t();
+                            _s8 = t();
                             _context4.t0 = n;
                             _context4.next = 7;
-                            return _e10;
+                            return _s8;
                           case 7:
                             _context4.t1 = _context4.sent;
                             (0, _context4.t0)(_context4.t1);
@@ -2816,24 +2756,24 @@ var ze = /*#__PURE__*/function () {
       return Promise.resolve();
     }
   }]);
-  return ze;
+  return Qe;
 }();
-var Ve = /*#__PURE__*/function () {
-  function Ve(e) {
-    (0, _classCallCheck2.default)(this, Ve);
-    this._singlePromise = new ze(), this._cache = Le(e.env), this._baseURL = "https://".concat(e.env, ".ap-shanghai.tcb-api.tencentcloudapi.com"), this._reqClass = new Ae.adapter.reqClass({
+var Ye = /*#__PURE__*/function () {
+  function Ye(e) {
+    (0, _classCallCheck2.default)(this, Ye);
+    this._singlePromise = new Qe(), this._cache = Me(e.env), this._baseURL = "https://".concat(e.env, ".ap-shanghai.tcb-api.tencentcloudapi.com"), this._reqClass = new Ee.adapter.reqClass({
       timeout: e.timeout,
       timeoutMsg: "\u8BF7\u6C42\u5728".concat(e.timeout / 1e3, "s\u5185\u672A\u5B8C\u6210\uFF0C\u5DF2\u4E2D\u65AD"),
       restrictedMethods: ["post"]
     });
   }
-  (0, _createClass2.default)(Ve, [{
+  (0, _createClass2.default)(Ye, [{
     key: "_getDeviceId",
     value: function _getDeviceId() {
       if (this._deviceID) return this._deviceID;
       var e = this._cache.keys.deviceIdKey;
       var t = this._cache.getStore(e);
-      return "string" == typeof t && t.length >= 16 && t.length <= 48 || (t = be(), this._cache.setStore(e, t)), this._deviceID = t, t;
+      return "string" == typeof t && t.length >= 16 && t.length <= 48 || (t = Ce(), this._cache.setStore(e, t)), this._deviceID = t, t;
     }
   }, {
     key: "_request",
@@ -2841,9 +2781,9 @@ var Ve = /*#__PURE__*/function () {
       var _request2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(e, t) {
         var n,
           s,
-          _e11,
+          _e9,
           _t7,
-          _n8,
+          _n7,
           _args6 = arguments;
         return _regenerator.default.wrap(function _callee6$(_context6) {
           while (1) {
@@ -2851,20 +2791,20 @@ var Ve = /*#__PURE__*/function () {
               case 0:
                 n = _args6.length > 2 && _args6[2] !== undefined ? _args6[2] : {};
                 s = {
-                  "x-request-id": be(),
+                  "x-request-id": Ce(),
                   "x-device-id": this._getDeviceId()
                 };
                 if (!n.withAccessToken) {
                   _context6.next = 9;
                   break;
                 }
-                _e11 = this._cache.keys.tokenTypeKey;
+                _e9 = this._cache.keys.tokenTypeKey;
                 _context6.next = 6;
                 return this.getAccessToken();
               case 6:
                 _t7 = _context6.sent;
-                _n8 = this._cache.getStore(_e11);
-                s.authorization = "".concat(_n8, " ").concat(_t7);
+                _n7 = this._cache.getStore(_e9);
+                s.authorization = "".concat(_n7, " ").concat(_t7);
               case 9:
                 return _context6.abrupt("return", this._reqClass["get" === n.method ? "get" : "post"]({
                   url: "".concat(this._baseURL).concat(e),
@@ -2894,11 +2834,11 @@ var Ve = /*#__PURE__*/function () {
             switch (_context8.prev = _context8.next) {
               case 0:
                 _this$_cache$keys = this._cache.keys, e = _this$_cache$keys.loginTypeKey, t = _this$_cache$keys.accessTokenKey, n = _this$_cache$keys.accessTokenExpireKey, s = _this$_cache$keys.tokenTypeKey, r = this._cache.getStore(e);
-                if (!(r && r !== Je.ANONYMOUS)) {
+                if (!(r && r !== Ge.ANONYMOUS)) {
                   _context8.next = 3;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_OPERATION",
                   message: "非匿名登录不支持刷新 access token"
                 });
@@ -2979,7 +2919,7 @@ var Ve = /*#__PURE__*/function () {
             switch (_context10.prev = _context10.next) {
               case 0:
                 _this$_cache$keys3 = this._cache.keys, e = _this$_cache$keys3.accessTokenKey, t = _this$_cache$keys3.accessTokenExpireKey, n = _this$_cache$keys3.loginTypeKey;
-                return _context10.abrupt("return", (this._cache.removeStore(e), this._cache.removeStore(t), this._cache.setStore(n, Je.ANONYMOUS), this.getAccessToken()));
+                return _context10.abrupt("return", (this._cache.removeStore(e), this._cache.removeStore(t), this._cache.setStore(n, Ge.ANONYMOUS), this.getAccessToken()));
               case 2:
               case "end":
                 return _context10.stop();
@@ -3033,13 +2973,13 @@ var Ve = /*#__PURE__*/function () {
       return getUserInfo;
     }()
   }]);
-  return Ve;
+  return Ye;
 }();
-var Ge = ["auth.getJwt", "auth.logout", "auth.signInWithTicket", "auth.signInAnonymously", "auth.signIn", "auth.fetchAccessTokenWithRefreshToken", "auth.signUpWithEmailAndPassword", "auth.activateEndUserMail", "auth.sendPasswordResetEmail", "auth.resetPasswordWithToken", "auth.isUsernameRegistered"],
-  Ye = {
+var Xe = ["auth.getJwt", "auth.logout", "auth.signInWithTicket", "auth.signInAnonymously", "auth.signIn", "auth.fetchAccessTokenWithRefreshToken", "auth.signUpWithEmailAndPassword", "auth.activateEndUserMail", "auth.sendPasswordResetEmail", "auth.resetPasswordWithToken", "auth.isUsernameRegistered"],
+  Ze = {
     "X-SDK-Version": "1.3.5"
   };
-function Qe(e, t, n) {
+function et(e, t, n) {
   var s = e[t];
   e[t] = function (t) {
     var r = {},
@@ -3053,35 +2993,35 @@ function Qe(e, t, n) {
     var o = t.data;
     return o && function () {
       var e;
-      if (e = o, "[object FormData]" !== Object.prototype.toString.call(e)) t.data = _objectSpread(_objectSpread({}, o), r);else for (var _e12 in r) {
-        o.append(_e12, r[_e12]);
+      if (e = o, "[object FormData]" !== Object.prototype.toString.call(e)) t.data = _objectSpread(_objectSpread({}, o), r);else for (var _e10 in r) {
+        o.append(_e10, r[_e10]);
       }
     }(), t.headers = _objectSpread(_objectSpread({}, t.headers || {}), i), s.call(e, t);
   };
 }
-function Xe() {
+function tt() {
   var e = Math.random().toString(16).slice(2);
   return {
     data: {
       seqId: e
     },
-    headers: _objectSpread(_objectSpread({}, Ye), {}, {
+    headers: _objectSpread(_objectSpread({}, Ze), {}, {
       "x-seqid": e
     })
   };
 }
-var Ze = /*#__PURE__*/function () {
-  function Ze() {
+var nt = /*#__PURE__*/function () {
+  function nt() {
     var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    (0, _classCallCheck2.default)(this, Ze);
+    (0, _classCallCheck2.default)(this, nt);
     var t;
-    this.config = e, this._reqClass = new Ae.adapter.reqClass({
+    this.config = e, this._reqClass = new Ee.adapter.reqClass({
       timeout: this.config.timeout,
       timeoutMsg: "\u8BF7\u6C42\u5728".concat(this.config.timeout / 1e3, "s\u5185\u672A\u5B8C\u6210\uFF0C\u5DF2\u4E2D\u65AD"),
       restrictedMethods: ["post"]
-    }), this._cache = Le(this.config.env), this._localCache = (t = this.config.env, Re[t]), this.oauth = new Ve(this.config), Qe(this._reqClass, "post", [Xe]), Qe(this._reqClass, "upload", [Xe]), Qe(this._reqClass, "download", [Xe]);
+    }), this._cache = Me(this.config.env), this._localCache = (t = this.config.env, De[t]), this.oauth = new Ye(this.config), et(this._reqClass, "post", [tt]), et(this._reqClass, "upload", [tt]), et(this._reqClass, "download", [tt]);
   }
-  (0, _createClass2.default)(Ze, [{
+  (0, _createClass2.default)(nt, [{
     key: "post",
     value: function () {
       var _post = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee13(e) {
@@ -3198,7 +3138,7 @@ var Ze = /*#__PURE__*/function () {
     key: "_refreshAccessToken",
     value: function () {
       var _refreshAccessToken3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee17() {
-        var _this$_cache$keys4, e, t, n, s, r, i, o, a, _e13, _e14, _t8, _s9;
+        var _this$_cache$keys4, e, t, n, s, r, i, o, a, _e11, _e12, _t8, _s9;
         return _regenerator.default.wrap(function _callee17$(_context17) {
           while (1) {
             switch (_context17.prev = _context17.next) {
@@ -3210,7 +3150,7 @@ var Ze = /*#__PURE__*/function () {
                   _context17.next = 5;
                   break;
                 }
-                throw new te({
+                throw new re({
                   message: "未登录CloudBase"
                 });
               case 5:
@@ -3225,29 +3165,29 @@ var Ze = /*#__PURE__*/function () {
                   _context17.next = 21;
                   break;
                 }
-                _e13 = a.data.code;
-                if (!("SIGN_PARAM_INVALID" === _e13 || "REFRESH_TOKEN_EXPIRED" === _e13 || "INVALID_REFRESH_TOKEN" === _e13)) {
+                _e11 = a.data.code;
+                if (!("SIGN_PARAM_INVALID" === _e11 || "REFRESH_TOKEN_EXPIRED" === _e11 || "INVALID_REFRESH_TOKEN" === _e11)) {
                   _context17.next = 20;
                   break;
                 }
-                if (!(this._cache.getStore(s) === Je.ANONYMOUS && "INVALID_REFRESH_TOKEN" === _e13)) {
+                if (!(this._cache.getStore(s) === Ge.ANONYMOUS && "INVALID_REFRESH_TOKEN" === _e11)) {
                   _context17.next = 19;
                   break;
                 }
-                _e14 = this._cache.getStore(r);
+                _e12 = this._cache.getStore(r);
                 _t8 = this._cache.getStore(n);
                 _context17.next = 17;
                 return this.send("auth.signInAnonymously", {
-                  anonymous_uuid: _e14,
+                  anonymous_uuid: _e12,
                   refresh_token: _t8
                 });
               case 17:
                 _s9 = _context17.sent;
                 return _context17.abrupt("return", (this.setRefreshToken(_s9.refresh_token), this._refreshAccessToken()));
               case 19:
-                Fe($e), this._cache.removeStore(n);
+                $e(He), this._cache.removeStore(n);
               case 20:
-                throw new te({
+                throw new re({
                   code: a.data.code,
                   message: "\u5237\u65B0access token\u5931\u8D25\uFF1A".concat(a.data.code)
                 });
@@ -3256,7 +3196,7 @@ var Ze = /*#__PURE__*/function () {
                   _context17.next = 23;
                   break;
                 }
-                return _context17.abrupt("return", (Fe(He), this._cache.setStore(e, a.data.access_token), this._cache.setStore(t, a.data.access_token_expire + Date.now()), {
+                return _context17.abrupt("return", ($e(Ve), this._cache.setStore(e, a.data.access_token), this._cache.setStore(t, a.data.access_token_expire + Date.now()), {
                   accessToken: a.data.access_token,
                   accessTokenExpire: a.data.access_token_expire
                 }));
@@ -3288,7 +3228,7 @@ var Ze = /*#__PURE__*/function () {
                   _context18.next = 3;
                   break;
                 }
-                throw new te({
+                throw new re({
                   message: "refresh token不存在，登录状态异常"
                 });
               case 3:
@@ -3330,7 +3270,7 @@ var Ze = /*#__PURE__*/function () {
     key: "request",
     value: function () {
       var _request3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee19(e, t, n) {
-        var s, r, i, o, _e15, _e16, a, c, u, h, l, d, p, f, g;
+        var s, r, i, o, _e13, _e14, a, c, u, l, h, d, p, f, g;
         return _regenerator.default.wrap(function _callee19$(_context19) {
           while (1) {
             switch (_context19.prev = _context19.next) {
@@ -3342,7 +3282,7 @@ var Ze = /*#__PURE__*/function () {
                   env: this.config.env,
                   dataVersion: "2019-08-16"
                 }, t);
-                _context19.t0 = -1 === Ge.indexOf(e);
+                _context19.t0 = -1 === Xe.indexOf(e);
                 if (!_context19.t0) {
                   _context19.next = 9;
                   break;
@@ -3358,16 +3298,16 @@ var Ze = /*#__PURE__*/function () {
                   break;
                 }
                 o = new FormData();
-                for (_e15 in o) {
-                  o.hasOwnProperty(_e15) && void 0 !== o[_e15] && o.append(_e15, i[_e15]);
+                for (_e13 in o) {
+                  o.hasOwnProperty(_e13) && void 0 !== o[_e13] && o.append(_e13, i[_e13]);
                 }
                 r = "multipart/form-data";
                 _context19.next = 17;
                 break;
               case 15:
                 r = "application/json", o = {};
-                for (_e16 in i) {
-                  void 0 !== i[_e16] && (o[_e16] = i[_e16]);
+                for (_e14 in i) {
+                  void 0 !== i[_e14] && (o[_e14] = i[_e14]);
                 }
               case 17:
                 a = {
@@ -3378,21 +3318,21 @@ var Ze = /*#__PURE__*/function () {
                 n && n.timeout && (a.timeout = n.timeout), n && n.onUploadProgress && (a.onUploadProgress = n.onUploadProgress);
                 c = this._localCache.getStore(s);
                 c && (a.headers["X-TCB-Trace"] = c);
-                u = t.parse, h = t.inQuery, l = t.search;
+                u = t.parse, l = t.inQuery, h = t.search;
                 d = {
                   env: this.config.env
                 };
-                u && (d.parse = !0), h && (d = _objectSpread(_objectSpread({}, h), d));
+                u && (d.parse = !0), l && (d = _objectSpread(_objectSpread({}, l), d));
                 p = function (e, t) {
                   var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
                   var s = /\?/.test(t);
                   var r = "";
-                  for (var _e17 in n) {
-                    "" === r ? !s && (t += "?") : r += "&", r += "".concat(_e17, "=").concat(encodeURIComponent(n[_e17]));
+                  for (var _e15 in n) {
+                    "" === r ? !s && (t += "?") : r += "&", r += "".concat(_e15, "=").concat(encodeURIComponent(n[_e15]));
                   }
                   return /^http(s)?\:\/\//.test(t += r) ? t : "".concat(e).concat(t);
-                }(fe, "//tcb-api.tencentcloudapi.com/web", d);
-                l && (p += l);
+                }(ye, "//tcb-api.tencentcloudapi.com/web", d);
+                h && (p += h);
                 _context19.next = 28;
                 return this.post(_objectSpread({
                   url: p,
@@ -3405,7 +3345,7 @@ var Ze = /*#__PURE__*/function () {
                   _context19.next = 32;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "NETWORK_ERROR",
                   message: "network request error"
                 });
@@ -3444,7 +3384,7 @@ var Ze = /*#__PURE__*/function () {
                 }));
               case 4:
                 s = _context20.sent;
-                if (!(("ACCESS_TOKEN_DISABLED" === s.data.code || "ACCESS_TOKEN_EXPIRED" === s.data.code) && -1 === Ge.indexOf(e))) {
+                if (!(("ACCESS_TOKEN_DISABLED" === s.data.code || "ACCESS_TOKEN_EXPIRED" === s.data.code) && -1 === Xe.indexOf(e))) {
                   _context20.next = 14;
                   break;
                 }
@@ -3461,7 +3401,7 @@ var Ze = /*#__PURE__*/function () {
                   _context20.next = 13;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: _s10.data.code,
                   message: Te(_s10.data.message)
                 });
@@ -3472,7 +3412,7 @@ var Ze = /*#__PURE__*/function () {
                   _context20.next = 16;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: s.data.code,
                   message: Te(s.data.message)
                 });
@@ -3500,18 +3440,18 @@ var Ze = /*#__PURE__*/function () {
       this._cache.removeStore(t), this._cache.removeStore(n), this._cache.setStore(s, e);
     }
   }]);
-  return Ze;
+  return nt;
 }();
-var et = {};
-function tt(e) {
-  return et[e];
+var st = {};
+function rt(e) {
+  return st[e];
 }
-var nt = /*#__PURE__*/function () {
-  function nt(e) {
-    (0, _classCallCheck2.default)(this, nt);
-    this.config = e, this._cache = Le(e.env), this._request = tt(e.env);
+var it = /*#__PURE__*/function () {
+  function it(e) {
+    (0, _classCallCheck2.default)(this, it);
+    this.config = e, this._cache = Me(e.env), this._request = rt(e.env);
   }
-  (0, _createClass2.default)(nt, [{
+  (0, _createClass2.default)(it, [{
     key: "setRefreshToken",
     value: function setRefreshToken(e) {
       var _this$_cache$keys7 = this._cache.keys,
@@ -3562,21 +3502,21 @@ var nt = /*#__PURE__*/function () {
       this._cache.setStore(t, e);
     }
   }]);
-  return nt;
+  return it;
 }();
-var st = /*#__PURE__*/function () {
-  function st(e) {
-    (0, _classCallCheck2.default)(this, st);
-    if (!e) throw new te({
+var ot = /*#__PURE__*/function () {
+  function ot(e) {
+    (0, _classCallCheck2.default)(this, ot);
+    if (!e) throw new re({
       code: "PARAM_ERROR",
       message: "envId is not defined"
     });
-    this._envId = e, this._cache = Le(this._envId), this._request = tt(this._envId), this.setUserInfo();
+    this._envId = e, this._cache = Me(this._envId), this._request = rt(this._envId), this.setUserInfo();
   }
-  (0, _createClass2.default)(st, [{
+  (0, _createClass2.default)(ot, [{
     key: "linkWithTicket",
     value: function linkWithTicket(e) {
-      if ("string" != typeof e) throw new te({
+      if ("string" != typeof e) throw new re({
         code: "PARAM_ERROR",
         message: "ticket must be string"
       });
@@ -3607,7 +3547,7 @@ var st = /*#__PURE__*/function () {
   }, {
     key: "updateUsername",
     value: function updateUsername(e) {
-      if ("string" != typeof e) throw new te({
+      if ("string" != typeof e) throw new re({
         code: "PARAM_ERROR",
         message: "username must be a string"
       });
@@ -3750,16 +3690,16 @@ var st = /*#__PURE__*/function () {
       this._cache.setStore(t, e), this.setUserInfo();
     }
   }]);
-  return st;
+  return ot;
 }();
-var rt = /*#__PURE__*/function () {
-  function rt(e) {
-    (0, _classCallCheck2.default)(this, rt);
-    if (!e) throw new te({
+var at = /*#__PURE__*/function () {
+  function at(e) {
+    (0, _classCallCheck2.default)(this, at);
+    if (!e) throw new re({
       code: "PARAM_ERROR",
       message: "envId is not defined"
     });
-    this._cache = Le(e);
+    this._cache = Me(e);
     var _this$_cache$keys9 = this._cache.keys,
       t = _this$_cache$keys9.refreshTokenKey,
       n = _this$_cache$keys9.accessTokenKey,
@@ -3771,22 +3711,22 @@ var rt = /*#__PURE__*/function () {
       refreshToken: r,
       accessToken: i,
       accessTokenExpire: o
-    }, this.user = new st(e);
+    }, this.user = new ot(e);
   }
-  (0, _createClass2.default)(rt, [{
+  (0, _createClass2.default)(at, [{
     key: "isAnonymousAuth",
     get: function get() {
-      return this.loginType === Je.ANONYMOUS;
+      return this.loginType === Ge.ANONYMOUS;
     }
   }, {
     key: "isCustomAuth",
     get: function get() {
-      return this.loginType === Je.CUSTOM;
+      return this.loginType === Ge.CUSTOM;
     }
   }, {
     key: "isWeixinAuth",
     get: function get() {
-      return this.loginType === Je.WECHAT || this.loginType === Je.WECHAT_OPEN || this.loginType === Je.WECHAT_PUBLIC;
+      return this.loginType === Ge.WECHAT || this.loginType === Ge.WECHAT_OPEN || this.loginType === Ge.WECHAT_PUBLIC;
     }
   }, {
     key: "loginType",
@@ -3794,16 +3734,16 @@ var rt = /*#__PURE__*/function () {
       return this._cache.getStore(this._cache.keys.loginTypeKey);
     }
   }]);
-  return rt;
+  return at;
 }();
-var it = /*#__PURE__*/function (_nt) {
-  (0, _inherits2.default)(it, _nt);
-  var _super4 = _createSuper(it);
-  function it() {
-    (0, _classCallCheck2.default)(this, it);
+var ct = /*#__PURE__*/function (_it) {
+  (0, _inherits2.default)(ct, _it);
+  var _super4 = _createSuper(ct);
+  function ct() {
+    (0, _classCallCheck2.default)(this, ct);
     return _super4.apply(this, arguments);
   }
-  (0, _createClass2.default)(it, [{
+  (0, _createClass2.default)(ct, [{
     key: "signIn",
     value: function () {
       var _signIn = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee25() {
@@ -3816,13 +3756,13 @@ var it = /*#__PURE__*/function (_nt) {
                 _context25.next = 3;
                 return this._request.oauth.getAccessToken();
               case 3:
-                Fe(je);
-                Fe(Be, {
+                $e(We);
+                $e(Je, {
                   env: this.config.env,
-                  loginType: Je.ANONYMOUS,
+                  loginType: Ge.ANONYMOUS,
                   persistence: "local"
                 });
-                e = new rt(this.config.env);
+                e = new at(this.config.env);
                 _context25.next = 8;
                 return e.user.refresh();
               case 8:
@@ -3870,11 +3810,11 @@ var it = /*#__PURE__*/function (_nt) {
                 _context26.next = 13;
                 return this._request.refreshAccessToken();
               case 13:
-                Fe(We, {
+                $e(ze, {
                   env: this.config.env
                 });
-                Fe(Be, {
-                  loginType: Je.CUSTOM,
+                $e(Je, {
+                  loginType: Ge.CUSTOM,
                   persistence: "local"
                 });
                 return _context26.abrupt("return", {
@@ -3883,7 +3823,7 @@ var it = /*#__PURE__*/function (_nt) {
                   }
                 });
               case 16:
-                throw new te({
+                throw new re({
                   message: "匿名转化失败"
                 });
               case 17:
@@ -3904,7 +3844,7 @@ var it = /*#__PURE__*/function (_nt) {
       var _this$_cache$keys11 = this._cache.keys,
         t = _this$_cache$keys11.anonymousUuidKey,
         n = _this$_cache$keys11.loginTypeKey;
-      this._cache.removeStore(t), this._cache.setStore(t, e), this._cache.setStore(n, Je.ANONYMOUS);
+      this._cache.removeStore(t), this._cache.setStore(t, e), this._cache.setStore(n, Ge.ANONYMOUS);
     }
   }, {
     key: "_clearAnonymousUUID",
@@ -3912,16 +3852,16 @@ var it = /*#__PURE__*/function (_nt) {
       this._cache.removeStore(this._cache.keys.anonymousUuidKey);
     }
   }]);
-  return it;
-}(nt);
-var ot = /*#__PURE__*/function (_nt2) {
-  (0, _inherits2.default)(ot, _nt2);
-  var _super5 = _createSuper(ot);
-  function ot() {
-    (0, _classCallCheck2.default)(this, ot);
+  return ct;
+}(it);
+var ut = /*#__PURE__*/function (_it2) {
+  (0, _inherits2.default)(ut, _it2);
+  var _super5 = _createSuper(ut);
+  function ut() {
+    (0, _classCallCheck2.default)(this, ut);
     return _super5.apply(this, arguments);
   }
-  (0, _createClass2.default)(ot, [{
+  (0, _createClass2.default)(ut, [{
     key: "signIn",
     value: function () {
       var _signIn2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee27(e) {
@@ -3934,7 +3874,7 @@ var ot = /*#__PURE__*/function (_nt2) {
                   _context27.next = 2;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "PARAM_ERROR",
                   message: "ticket must be a string"
                 });
@@ -3955,18 +3895,18 @@ var ot = /*#__PURE__*/function (_nt2) {
                 _context27.next = 10;
                 return this._request.refreshAccessToken();
               case 10:
-                Fe(je);
-                Fe(Be, {
+                $e(We);
+                $e(Je, {
                   env: this.config.env,
-                  loginType: Je.CUSTOM,
+                  loginType: Ge.CUSTOM,
                   persistence: this.config.persistence
                 });
                 _context27.next = 14;
                 return this.refreshUserInfo();
               case 14:
-                return _context27.abrupt("return", new rt(this.config.env));
+                return _context27.abrupt("return", new at(this.config.env));
               case 15:
-                throw new te({
+                throw new re({
                   message: "自定义登录失败"
                 });
               case 16:
@@ -3982,16 +3922,16 @@ var ot = /*#__PURE__*/function (_nt2) {
       return signIn;
     }()
   }]);
-  return ot;
-}(nt);
-var at = /*#__PURE__*/function (_nt3) {
-  (0, _inherits2.default)(at, _nt3);
-  var _super6 = _createSuper(at);
-  function at() {
-    (0, _classCallCheck2.default)(this, at);
+  return ut;
+}(it);
+var lt = /*#__PURE__*/function (_it3) {
+  (0, _inherits2.default)(lt, _it3);
+  var _super6 = _createSuper(lt);
+  function lt() {
+    (0, _classCallCheck2.default)(this, lt);
     return _super6.apply(this, arguments);
   }
-  (0, _createClass2.default)(at, [{
+  (0, _createClass2.default)(lt, [{
     key: "signIn",
     value: function () {
       var _signIn3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee28(e, t) {
@@ -4004,7 +3944,7 @@ var at = /*#__PURE__*/function (_nt3) {
                   _context28.next = 2;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "PARAM_ERROR",
                   message: "email must be a string"
                 });
@@ -4041,18 +3981,18 @@ var at = /*#__PURE__*/function (_nt3) {
                 _context28.next = 19;
                 return this.refreshUserInfo();
               case 19:
-                Fe(je);
-                Fe(Be, {
+                $e(We);
+                $e(Je, {
                   env: this.config.env,
-                  loginType: Je.EMAIL,
+                  loginType: Ge.EMAIL,
                   persistence: this.config.persistence
                 });
-                return _context28.abrupt("return", new rt(this.config.env));
+                return _context28.abrupt("return", new at(this.config.env));
               case 22:
-                throw s.code ? new te({
+                throw s.code ? new re({
                   code: s.code,
                   message: "\u90AE\u7BB1\u767B\u5F55\u5931\u8D25: ".concat(s.message)
-                }) : new te({
+                }) : new re({
                   message: "邮箱登录失败"
                 });
               case 23:
@@ -4115,16 +4055,16 @@ var at = /*#__PURE__*/function (_nt3) {
       return resetPasswordWithToken;
     }()
   }]);
-  return at;
-}(nt);
-var ct = /*#__PURE__*/function (_nt4) {
-  (0, _inherits2.default)(ct, _nt4);
-  var _super7 = _createSuper(ct);
-  function ct() {
-    (0, _classCallCheck2.default)(this, ct);
+  return lt;
+}(it);
+var ht = /*#__PURE__*/function (_it4) {
+  (0, _inherits2.default)(ht, _it4);
+  var _super7 = _createSuper(ht);
+  function ht() {
+    (0, _classCallCheck2.default)(this, ht);
     return _super7.apply(this, arguments);
   }
-  (0, _createClass2.default)(ct, [{
+  (0, _createClass2.default)(ht, [{
     key: "signIn",
     value: function () {
       var _signIn4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee31(e, t) {
@@ -4137,7 +4077,7 @@ var ct = /*#__PURE__*/function (_nt4) {
                   _context31.next = 2;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "PARAM_ERROR",
                   message: "username must be a string"
                 });
@@ -4146,7 +4086,7 @@ var ct = /*#__PURE__*/function (_nt4) {
                 n = this._cache.keys.refreshTokenKey;
                 _context31.next = 6;
                 return this._request.send("auth.signIn", {
-                  loginType: Je.USERNAME,
+                  loginType: Ge.USERNAME,
                   username: e,
                   password: t,
                   refresh_token: this._cache.getStore(n) || ""
@@ -4175,18 +4115,18 @@ var ct = /*#__PURE__*/function (_nt4) {
                 _context31.next = 20;
                 return this.refreshUserInfo();
               case 20:
-                Fe(je);
-                Fe(Be, {
+                $e(We);
+                $e(Je, {
                   env: this.config.env,
-                  loginType: Je.USERNAME,
+                  loginType: Ge.USERNAME,
                   persistence: this.config.persistence
                 });
-                return _context31.abrupt("return", new rt(this.config.env));
+                return _context31.abrupt("return", new at(this.config.env));
               case 23:
-                throw s.code ? new te({
+                throw s.code ? new re({
                   code: s.code,
                   message: "\u7528\u6237\u540D\u5BC6\u7801\u767B\u5F55\u5931\u8D25: ".concat(s.message)
-                }) : new te({
+                }) : new re({
                   message: "用户名密码登录失败"
                 });
               case 24:
@@ -4202,14 +4142,14 @@ var ct = /*#__PURE__*/function (_nt4) {
       return signIn;
     }()
   }]);
-  return ct;
-}(nt);
-var ut = /*#__PURE__*/function () {
-  function ut(e) {
-    (0, _classCallCheck2.default)(this, ut);
-    this.config = e, this._cache = Le(e.env), this._request = tt(e.env), this._onAnonymousConverted = this._onAnonymousConverted.bind(this), this._onLoginTypeChanged = this._onLoginTypeChanged.bind(this), qe(Be, this._onLoginTypeChanged);
+  return ht;
+}(it);
+var dt = /*#__PURE__*/function () {
+  function dt(e) {
+    (0, _classCallCheck2.default)(this, dt);
+    this.config = e, this._cache = Me(e.env), this._request = rt(e.env), this._onAnonymousConverted = this._onAnonymousConverted.bind(this), this._onLoginTypeChanged = this._onLoginTypeChanged.bind(this), je(Je, this._onLoginTypeChanged);
   }
-  (0, _createClass2.default)(ut, [{
+  (0, _createClass2.default)(dt, [{
     key: "currentUser",
     get: function get() {
       var e = this.hasLoginState();
@@ -4223,22 +4163,22 @@ var ut = /*#__PURE__*/function () {
   }, {
     key: "anonymousAuthProvider",
     value: function anonymousAuthProvider() {
-      return new it(this.config);
+      return new ct(this.config);
     }
   }, {
     key: "customAuthProvider",
     value: function customAuthProvider() {
-      return new ot(this.config);
+      return new ut(this.config);
     }
   }, {
     key: "emailAuthProvider",
     value: function emailAuthProvider() {
-      return new at(this.config);
+      return new lt(this.config);
     }
   }, {
     key: "usernameAuthProvider",
     value: function usernameAuthProvider() {
-      return new ct(this.config);
+      return new ht(this.config);
     }
   }, {
     key: "signInAnonymously",
@@ -4248,7 +4188,7 @@ var ut = /*#__PURE__*/function () {
           while (1) {
             switch (_context32.prev = _context32.next) {
               case 0:
-                return _context32.abrupt("return", new it(this.config).signIn());
+                return _context32.abrupt("return", new ct(this.config).signIn());
               case 1:
               case "end":
                 return _context32.stop();
@@ -4269,7 +4209,7 @@ var ut = /*#__PURE__*/function () {
           while (1) {
             switch (_context33.prev = _context33.next) {
               case 0:
-                return _context33.abrupt("return", new at(this.config).signIn(e, t));
+                return _context33.abrupt("return", new lt(this.config).signIn(e, t));
               case 1:
               case "end":
                 return _context33.stop();
@@ -4285,7 +4225,7 @@ var ut = /*#__PURE__*/function () {
   }, {
     key: "signInWithUsernameAndPassword",
     value: function signInWithUsernameAndPassword(e, t) {
-      return new ct(this.config).signIn(e, t);
+      return new ht(this.config).signIn(e, t);
     }
   }, {
     key: "linkAndRetrieveDataWithTicket",
@@ -4295,7 +4235,7 @@ var ut = /*#__PURE__*/function () {
           while (1) {
             switch (_context34.prev = _context34.next) {
               case 0:
-                this._anonymousAuthProvider || (this._anonymousAuthProvider = new it(this.config)), qe(We, this._onAnonymousConverted);
+                this._anonymousAuthProvider || (this._anonymousAuthProvider = new ct(this.config)), je(ze, this._onAnonymousConverted);
                 _context34.next = 3;
                 return this._anonymousAuthProvider.linkAndRetrieveDataWithTicket(e);
               case 3:
@@ -4321,11 +4261,11 @@ var ut = /*#__PURE__*/function () {
           while (1) {
             switch (_context35.prev = _context35.next) {
               case 0:
-                if (!(this.loginType === Je.ANONYMOUS)) {
+                if (!(this.loginType === Ge.ANONYMOUS)) {
                   _context35.next = 2;
                   break;
                 }
-                throw new te({
+                throw new re({
                   message: "匿名用户不支持登出操作"
                 });
               case 2:
@@ -4342,9 +4282,9 @@ var ut = /*#__PURE__*/function () {
                 });
               case 7:
                 r = _context35.sent;
-                return _context35.abrupt("return", (this._cache.removeStore(e), this._cache.removeStore(t), this._cache.removeStore(n), Fe(je), Fe(Be, {
+                return _context35.abrupt("return", (this._cache.removeStore(e), this._cache.removeStore(t), this._cache.removeStore(n), $e(We), $e(Je, {
                   env: this.config.env,
-                  loginType: Je.NULL,
+                  loginType: Ge.NULL,
                   persistence: this.config.persistence
                 }), r));
               case 9:
@@ -4410,7 +4350,7 @@ var ut = /*#__PURE__*/function () {
     key: "onLoginStateChanged",
     value: function onLoginStateChanged(e) {
       var _this13 = this;
-      qe(je, function () {
+      je(We, function () {
         var t = _this13.hasLoginState();
         e.call(_this13, t);
       });
@@ -4420,23 +4360,23 @@ var ut = /*#__PURE__*/function () {
   }, {
     key: "onLoginStateExpired",
     value: function onLoginStateExpired(e) {
-      qe($e, e.bind(this));
+      je(He, e.bind(this));
     }
   }, {
     key: "onAccessTokenRefreshed",
     value: function onAccessTokenRefreshed(e) {
-      qe(He, e.bind(this));
+      je(Ve, e.bind(this));
     }
   }, {
     key: "onAnonymousConverted",
     value: function onAnonymousConverted(e) {
-      qe(We, e.bind(this));
+      je(ze, e.bind(this));
     }
   }, {
     key: "onLoginTypeChanged",
     value: function onLoginTypeChanged(e) {
       var _this14 = this;
-      qe(Be, function () {
+      je(Je, function () {
         var t = _this14.hasLoginState();
         e.call(_this14, t);
       });
@@ -4478,7 +4418,7 @@ var ut = /*#__PURE__*/function () {
         t = _this$_cache$keys13.accessTokenExpireKey,
         n = this._cache.getStore(e),
         s = this._cache.getStore(t);
-      return this._request.oauth.isAccessTokenExpired(n, s) ? null : new rt(this.config.env);
+      return this._request.oauth.isAccessTokenExpired(n, s) ? null : new at(this.config.env);
     }
   }, {
     key: "isUsernameRegistered",
@@ -4493,7 +4433,7 @@ var ut = /*#__PURE__*/function () {
                   _context39.next = 2;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "PARAM_ERROR",
                   message: "username must be a string"
                 });
@@ -4531,7 +4471,7 @@ var ut = /*#__PURE__*/function () {
           while (1) {
             switch (_context40.prev = _context40.next) {
               case 0:
-                return _context40.abrupt("return", new ot(this.config).signIn(e));
+                return _context40.abrupt("return", new ut(this.config).signIn(e));
               case 1:
               case "end":
                 return _context40.stop();
@@ -4585,11 +4525,11 @@ var ut = /*#__PURE__*/function () {
       s === this.config.env && (this._cache.updatePersistence(n), this._cache.setStore(this._cache.keys.loginTypeKey, t));
     }
   }]);
-  return ut;
+  return dt;
 }();
-var ht = function ht(e, t) {
-    t = t || Ie();
-    var n = tt(this.config.env),
+var pt = function pt(e, t) {
+    t = t || be();
+    var n = rt(this.config.env),
       s = e.cloudPath,
       r = e.filePath,
       i = e.onUploadProgress,
@@ -4602,13 +4542,13 @@ var ht = function ht(e, t) {
         a = _e$data2.url,
         c = _e$data2.authorization,
         u = _e$data2.token,
-        h = _e$data2.fileId,
-        l = _e$data2.cosFileId,
+        l = _e$data2.fileId,
+        h = _e$data2.cosFileId,
         d = e.requestId,
         p = {
           key: s,
           signature: c,
-          "x-cos-meta-fileid": l,
+          "x-cos-meta-fileid": h,
           success_action_status: "201",
           "x-cos-security-token": u
         };
@@ -4621,9 +4561,9 @@ var ht = function ht(e, t) {
         onUploadProgress: i
       }).then(function (e) {
         201 === e.statusCode ? t(null, {
-          fileID: h,
+          fileID: l,
           requestId: d
-        }) : t(new te({
+        }) : t(new re({
           code: "STORAGE_REQUEST_FAIL",
           message: "STORAGE_REQUEST_FAIL: ".concat(e.data)
         }));
@@ -4634,9 +4574,9 @@ var ht = function ht(e, t) {
       t(e);
     }), t.promise;
   },
-  lt = function lt(e, t) {
-    t = t || Ie();
-    var n = tt(this.config.env),
+  ft = function ft(e, t) {
+    t = t || be();
+    var n = rt(this.config.env),
       s = e.cloudPath;
     return n.send("storage.getUploadMetadata", {
       path: s
@@ -4646,9 +4586,9 @@ var ht = function ht(e, t) {
       t(e);
     }), t.promise;
   },
-  dt = function dt(_ref10, t) {
+  gt = function gt(_ref10, t) {
     var e = _ref10.fileList;
-    if (t = t || Ie(), !e || !Array.isArray(e)) return {
+    if (t = t || be(), !e || !Array.isArray(e)) return {
       code: "INVALID_PARAM",
       message: "fileList必须是非空的数组"
     };
@@ -4670,7 +4610,7 @@ var ht = function ht(e, t) {
     var n = {
       fileid_list: e
     };
-    return tt(this.config.env).send("storage.batchDeleteFile", n).then(function (e) {
+    return rt(this.config.env).send("storage.batchDeleteFile", n).then(function (e) {
       e.code ? t(null, e) : t(null, {
         fileList: e.data.delete_list,
         requestId: e.requestId
@@ -4679,9 +4619,9 @@ var ht = function ht(e, t) {
       t(e);
     }), t.promise;
   },
-  pt = function pt(_ref11, t) {
+  mt = function mt(_ref11, t) {
     var e = _ref11.fileList;
-    t = t || Ie(), e && Array.isArray(e) || t(null, {
+    t = t || be(), e && Array.isArray(e) || t(null, {
       code: "INVALID_PARAM",
       message: "fileList必须是非空的数组"
     });
@@ -4712,7 +4652,7 @@ var ht = function ht(e, t) {
     var s = {
       file_list: n
     };
-    return tt(this.config.env).send("storage.batchGetDownloadUrl", s).then(function (e) {
+    return rt(this.config.env).send("storage.batchGetDownloadUrl", s).then(function (e) {
       e.code ? t(null, e) : t(null, {
         fileList: e.data.download_list,
         requestId: e.requestId
@@ -4721,7 +4661,7 @@ var ht = function ht(e, t) {
       t(e);
     }), t.promise;
   },
-  ft = /*#__PURE__*/function () {
+  yt = /*#__PURE__*/function () {
     var _ref13 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee41(_ref12, t) {
       var e, n, s, r;
       return _regenerator.default.wrap(function _callee41$(_context41) {
@@ -4730,7 +4670,7 @@ var ht = function ht(e, t) {
             case 0:
               e = _ref12.fileID;
               _context41.next = 3;
-              return pt.call(this, {
+              return mt.call(this, {
                 fileList: [{
                   fileID: e,
                   maxAge: 600
@@ -4746,7 +4686,7 @@ var ht = function ht(e, t) {
                 e(n);
               }));
             case 6:
-              s = tt(this.config.env);
+              s = rt(this.config.env);
               r = n.download_url;
               if (!(r = encodeURI(r), !t)) {
                 _context41.next = 10;
@@ -4771,25 +4711,25 @@ var ht = function ht(e, t) {
         }
       }, _callee41, this);
     }));
-    return function ft(_x33, _x34) {
+    return function yt(_x33, _x34) {
       return _ref13.apply(this, arguments);
     };
   }(),
-  gt = function gt(_ref14, o) {
+  _t = function _t(_ref14, o) {
     var e = _ref14.name,
       t = _ref14.data,
       n = _ref14.query,
       s = _ref14.parse,
       r = _ref14.search,
       i = _ref14.timeout;
-    var a = o || Ie();
+    var a = o || be();
     var c;
     try {
       c = t ? JSON.stringify(t) : "";
     } catch (e) {
       return Promise.reject(e);
     }
-    if (!e) return Promise.reject(new te({
+    if (!e) return Promise.reject(new re({
       code: "PARAM_ERROR",
       message: "函数名不能为空"
     }));
@@ -4800,7 +4740,7 @@ var ht = function ht(e, t) {
       function_name: e,
       request_data: c
     };
-    return tt(this.config.env).send("functions.invokeFunction", u, {
+    return rt(this.config.env).send("functions.invokeFunction", u, {
       timeout: i
     }).then(function (e) {
       if (e.code) a(null, e);else {
@@ -4814,7 +4754,7 @@ var ht = function ht(e, t) {
             requestId: e.requestId
           });
         } catch (e) {
-          a(new te({
+          a(new re({
             message: "response data must be json"
           }));
         }
@@ -4824,31 +4764,30 @@ var ht = function ht(e, t) {
       a(e);
     }), a.promise;
   },
-  mt = {
+  wt = {
     timeout: 15e3,
     persistence: "session"
   },
-  yt = 6e5,
-  _t = {};
-var wt = /*#__PURE__*/function () {
-  function wt(e) {
-    (0, _classCallCheck2.default)(this, wt);
+  vt = {};
+var It = /*#__PURE__*/function () {
+  function It(e) {
+    (0, _classCallCheck2.default)(this, It);
     this.config = e || this.config, this.authObj = void 0;
   }
-  (0, _createClass2.default)(wt, [{
+  (0, _createClass2.default)(It, [{
     key: "init",
     value: function init(e) {
-      switch (Ae.adapter || (this.requestClient = new Ae.adapter.reqClass({
+      switch (Ee.adapter || (this.requestClient = new Ee.adapter.reqClass({
         timeout: e.timeout || 5e3,
         timeoutMsg: "\u8BF7\u6C42\u5728".concat((e.timeout || 5e3) / 1e3, "s\u5185\u672A\u5B8C\u6210\uFF0C\u5DF2\u4E2D\u65AD")
-      })), this.config = _objectSpread(_objectSpread({}, mt), e), !0) {
-        case this.config.timeout > yt:
-          console.warn("timeout大于可配置上限[10分钟]，已重置为上限数值"), this.config.timeout = yt;
+      })), this.config = _objectSpread(_objectSpread({}, wt), e), !0) {
+        case this.config.timeout > 6e5:
+          console.warn("timeout大于可配置上限[10分钟]，已重置为上限数值"), this.config.timeout = 6e5;
           break;
         case this.config.timeout < 100:
           console.warn("timeout小于可配置下限[100ms]，已重置为下限数值"), this.config.timeout = 100;
       }
-      return new wt(this.config);
+      return new It(this.config);
     }
   }, {
     key: "auth",
@@ -4856,59 +4795,59 @@ var wt = /*#__PURE__*/function () {
       var _ref15 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         e = _ref15.persistence;
       if (this.authObj) return this.authObj;
-      var t = e || Ae.adapter.primaryStorage || mt.persistence;
+      var t = e || Ee.adapter.primaryStorage || wt.persistence;
       var n;
       return t !== this.config.persistence && (this.config.persistence = t), function (e) {
         var t = e.env;
-        Ne[t] = new xe(e), Re[t] = new xe(_objectSpread(_objectSpread({}, e), {}, {
+        Ne[t] = new Re(e), De[t] = new Re(_objectSpread(_objectSpread({}, e), {}, {
           persistence: "local"
         }));
-      }(this.config), n = this.config, et[n.env] = new Ze(n), this.authObj = new ut(this.config), this.authObj;
+      }(this.config), n = this.config, st[n.env] = new nt(n), this.authObj = new dt(this.config), this.authObj;
     }
   }, {
     key: "on",
     value: function on(e, t) {
-      return qe.apply(this, [e, t]);
+      return je.apply(this, [e, t]);
     }
   }, {
     key: "off",
     value: function off(e, t) {
-      return Ke.apply(this, [e, t]);
+      return Be.apply(this, [e, t]);
     }
   }, {
     key: "callFunction",
     value: function callFunction(e, t) {
-      return gt.apply(this, [e, t]);
+      return _t.apply(this, [e, t]);
     }
   }, {
     key: "deleteFile",
     value: function deleteFile(e, t) {
-      return dt.apply(this, [e, t]);
+      return gt.apply(this, [e, t]);
     }
   }, {
     key: "getTempFileURL",
     value: function getTempFileURL(e, t) {
-      return pt.apply(this, [e, t]);
+      return mt.apply(this, [e, t]);
     }
   }, {
     key: "downloadFile",
     value: function downloadFile(e, t) {
-      return ft.apply(this, [e, t]);
+      return yt.apply(this, [e, t]);
     }
   }, {
     key: "uploadFile",
     value: function uploadFile(e, t) {
-      return ht.apply(this, [e, t]);
+      return pt.apply(this, [e, t]);
     }
   }, {
     key: "getUploadMetadata",
     value: function getUploadMetadata(e, t) {
-      return lt.apply(this, [e, t]);
+      return ft.apply(this, [e, t]);
     }
   }, {
     key: "registerExtension",
     value: function registerExtension(e) {
-      _t[e.name] = e;
+      vt[e.name] = e;
     }
   }, {
     key: "invokeExtension",
@@ -4919,12 +4858,12 @@ var wt = /*#__PURE__*/function () {
           while (1) {
             switch (_context42.prev = _context42.next) {
               case 0:
-                n = _t[e];
+                n = vt[e];
                 if (n) {
                   _context42.next = 3;
                   break;
                 }
-                throw new te({
+                throw new re({
                   message: "\u6269\u5C55".concat(e, " \u5FC5\u987B\u5148\u6CE8\u518C")
                 });
               case 3:
@@ -4947,16 +4886,16 @@ var wt = /*#__PURE__*/function () {
   }, {
     key: "useAdapters",
     value: function useAdapters(e) {
-      var _ref16 = ke(e) || {},
+      var _ref16 = Oe(e) || {},
         t = _ref16.adapter,
         n = _ref16.runtime;
-      t && (Ae.adapter = t), n && (Ae.runtime = n);
+      t && (Ee.adapter = t), n && (Ee.runtime = n);
     }
   }]);
-  return wt;
+  return It;
 }();
-var It = new wt();
-function vt(e, t, n) {
+var St = new It();
+function bt(e, t, n) {
   void 0 === n && (n = {});
   var s = /\?/.test(t),
     r = "";
@@ -4965,11 +4904,11 @@ function vt(e, t, n) {
   }
   return /^http(s)?:\/\//.test(t += r) ? t : "" + e + t;
 }
-var St = /*#__PURE__*/function () {
-  function St() {
-    (0, _classCallCheck2.default)(this, St);
+var kt = /*#__PURE__*/function () {
+  function kt() {
+    (0, _classCallCheck2.default)(this, kt);
   }
-  (0, _createClass2.default)(St, [{
+  (0, _createClass2.default)(kt, [{
     key: "get",
     value: function get(e) {
       var t = e.url,
@@ -4977,8 +4916,8 @@ var St = /*#__PURE__*/function () {
         s = e.headers,
         r = e.timeout;
       return new Promise(function (e, i) {
-        ne.request({
-          url: vt("https:", t),
+        ie.request({
+          url: bt("https:", t),
           data: n,
           method: "GET",
           header: s,
@@ -5000,8 +4939,8 @@ var St = /*#__PURE__*/function () {
         s = e.headers,
         r = e.timeout;
       return new Promise(function (e, i) {
-        ne.request({
-          url: vt("https:", t),
+        ie.request({
+          url: bt("https:", t),
           data: n,
           method: "POST",
           header: s,
@@ -5024,8 +4963,8 @@ var St = /*#__PURE__*/function () {
           i = e.data,
           o = e.headers,
           a = e.fileType,
-          c = ne.uploadFile({
-            url: vt("https:", s),
+          c = ie.uploadFile({
+            url: bt("https:", s),
             name: "file",
             formData: Object.assign({}, i),
             filePath: r,
@@ -5051,28 +4990,28 @@ var St = /*#__PURE__*/function () {
       });
     }
   }]);
-  return St;
+  return kt;
 }();
-var Tt = {
+var At = {
   setItem: function setItem(e, t) {
-    ne.setStorageSync(e, t);
+    ie.setStorageSync(e, t);
   },
   getItem: function getItem(e) {
-    return ne.getStorageSync(e);
+    return ie.getStorageSync(e);
   },
   removeItem: function removeItem(e) {
-    ne.removeStorageSync(e);
+    ie.removeStorageSync(e);
   },
   clear: function clear() {
-    ne.clearStorageSync();
+    ie.clearStorageSync();
   }
 };
-var bt = {
+var Tt = {
   genAdapter: function genAdapter() {
     return {
       root: {},
-      reqClass: St,
-      localStorage: Tt,
+      reqClass: kt,
+      localStorage: At,
       primaryStorage: "local"
     };
   },
@@ -5081,12 +5020,12 @@ var bt = {
   },
   runtime: "uni_app"
 };
-It.useAdapters(bt);
-var Et = It,
-  kt = Et.init;
-Et.init = function (e) {
+St.useAdapters(Tt);
+var Ct = St,
+  Pt = Ct.init;
+Ct.init = function (e) {
   e.env = e.spaceId;
-  var t = kt.call(this, e);
+  var t = Pt.call(this, e);
   t.config.provider = "tencent", t.config.spaceId = e.spaceId;
   var n = t.auth;
   return t.auth = function (e) {
@@ -5095,10 +5034,10 @@ Et.init = function (e) {
       var n;
       t[e] = (n = t[e], function (e) {
         e = e || {};
-        var _ee = ee(e),
-          t = _ee.success,
-          s = _ee.fail,
-          r = _ee.complete;
+        var _se = se(e),
+          t = _se.success,
+          s = _se.fail,
+          r = _se.complete;
         if (!(t || s || r)) return n.call(this, e);
         n.call(this, e).then(function (e) {
           t && t(e), r && r(e);
@@ -5109,12 +5048,12 @@ Et.init = function (e) {
     }), t;
   }, t.customAuth = t.auth, t;
 };
-var At = Et;
-function Pt(_x37, _x38) {
-  return _Pt.apply(this, arguments);
+var Ot = Ct;
+function Et(_x37, _x38) {
+  return _Et.apply(this, arguments);
 }
-function _Pt() {
-  _Pt = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee68(e, t) {
+function _Et() {
+  _Et = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee68(e, t) {
     var n, _e31, s;
     return _regenerator.default.wrap(function _callee68$(_context68) {
       while (1) {
@@ -5127,7 +5066,7 @@ function _Pt() {
               url: n,
               timeout: 500
             }, new Promise(function (e, t) {
-              ne.request(_objectSpread(_objectSpread({}, s), {}, {
+              ie.request(_objectSpread(_objectSpread({}, s), {}, {
                 success: function success(t) {
                   e(t);
                 },
@@ -5150,14 +5089,14 @@ function _Pt() {
       }
     }, _callee68, null, [[1, 8]]);
   }));
-  return _Pt.apply(this, arguments);
+  return _Et.apply(this, arguments);
 }
-function Ct(_x39, _x40) {
-  return _Ct.apply(this, arguments);
+function xt(_x39, _x40) {
+  return _xt.apply(this, arguments);
 }
-function _Ct() {
-  _Ct = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee69(e, t) {
-    var n, s, _r10;
+function _xt() {
+  _xt = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee69(e, t) {
+    var n, s, _r11;
     return _regenerator.default.wrap(function _callee69$(_context69) {
       while (1) {
         switch (_context69.prev = _context69.next) {
@@ -5168,15 +5107,15 @@ function _Ct() {
               _context69.next = 11;
               break;
             }
-            _r10 = e[s];
+            _r11 = e[s];
             _context69.next = 5;
-            return Pt(_r10, t);
+            return Et(_r11, t);
           case 5:
             if (!_context69.sent) {
               _context69.next = 8;
               break;
             }
-            n = _r10;
+            n = _r11;
             return _context69.abrupt("break", 11);
           case 8:
             s++;
@@ -5194,23 +5133,23 @@ function _Ct() {
       }
     }, _callee69);
   }));
-  return _Ct.apply(this, arguments);
+  return _xt.apply(this, arguments);
 }
-var Ot = {
+var Lt = {
   "serverless.file.resource.generateProximalSign": "storage/generate-proximal-sign",
   "serverless.file.resource.report": "storage/report",
   "serverless.file.resource.delete": "storage/delete",
   "serverless.file.resource.getTempFileURL": "storage/get-temp-file-url"
 };
-var xt = /*#__PURE__*/function () {
-  function xt(e) {
-    (0, _classCallCheck2.default)(this, xt);
+var Ut = /*#__PURE__*/function () {
+  function Ut(e) {
+    (0, _classCallCheck2.default)(this, Ut);
     if (["spaceId", "clientSecret"].forEach(function (t) {
       if (!Object.prototype.hasOwnProperty.call(e, t)) throw new Error("".concat(t, " required"));
     }), !e.endpoint) throw new Error("集群空间未配置ApiEndpoint，配置后需要重新关联服务空间后生效");
-    this.config = Object.assign({}, e), this.config.provider = "dcloud", this.config.requestUrl = this.config.endpoint + "/client", this.config.envType = this.config.envType || "public", this.adapter = ne;
+    this.config = Object.assign({}, e), this.config.provider = "dcloud", this.config.requestUrl = this.config.endpoint + "/client", this.config.envType = this.config.envType || "public", this.adapter = ie;
   }
-  (0, _createClass2.default)(xt, [{
+  (0, _createClass2.default)(Ut, [{
     key: "request",
     value: function () {
       var _request4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee43(e) {
@@ -5223,7 +5162,7 @@ var xt = /*#__PURE__*/function () {
             switch (_context43.prev = _context43.next) {
               case 0:
                 t = _args43.length > 1 && _args43[1] !== undefined ? _args43[1] : !0;
-                n = b && t;
+                n = S && t;
                 if (!n) {
                   _context43.next = 8;
                   break;
@@ -5239,7 +5178,7 @@ var xt = /*#__PURE__*/function () {
               case 9:
                 e = _context43.t0;
                 return _context43.abrupt("return", Promise.resolve().then(function () {
-                  return n ? _this15.requestLocal(e) : le.wrappedRequest(e, _this15.adapter.request);
+                  return n ? _this15.requestLocal(e) : fe.wrappedRequest(e, _this15.adapter.request);
                 }));
               case 11:
               case "end":
@@ -5263,7 +5202,7 @@ var xt = /*#__PURE__*/function () {
             if (e || (e = {}), !e.statusCode || e.statusCode >= 400) {
               var _t11 = e.data && e.data.code || "SYS_ERR",
                 _s12 = e.data && e.data.message || "request:fail";
-              return n(new te({
+              return n(new re({
                 code: _t11,
                 message: _s12
               }));
@@ -5286,11 +5225,11 @@ var xt = /*#__PURE__*/function () {
         n = {
           "Content-Type": "application/json"
         };
-      n["x-serverless-sign"] = le.sign(t, this.config.clientSecret);
-      var s = he();
+      n["x-serverless-sign"] = fe.sign(t, this.config.clientSecret);
+      var s = pe();
       n["x-client-info"] = encodeURIComponent(JSON.stringify(s));
-      var _se = se(),
-        r = _se.token;
+      var _oe = oe(),
+        r = _oe.token;
       return n["x-client-token"] = r, {
         url: this.config.requestUrl,
         method: "POST",
@@ -5303,14 +5242,14 @@ var xt = /*#__PURE__*/function () {
     key: "setupLocalRequest",
     value: function () {
       var _setupLocalRequest = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee44(e) {
-        var t, _se2, n, s, _ref17, r, i, _yield$Ct, o;
+        var t, _oe2, n, s, _ref17, r, i, _yield$xt, o;
         return _regenerator.default.wrap(function _callee44$(_context44) {
           while (1) {
             switch (_context44.prev = _context44.next) {
               case 0:
-                t = he();
-                _se2 = se();
-                n = _se2.token;
+                t = pe();
+                _oe2 = oe();
+                n = _oe2.token;
                 s = Object.assign({}, e, {
                   spaceId: this.config.spaceId,
                   timestamp: Date.now(),
@@ -5321,12 +5260,12 @@ var xt = /*#__PURE__*/function () {
                 r = _ref17.address;
                 i = _ref17.servePort;
                 _context44.next = 9;
-                return Ct(r, i);
+                return xt(r, i);
               case 9:
-                _yield$Ct = _context44.sent;
-                o = _yield$Ct.address;
+                _yield$xt = _context44.sent;
+                o = _yield$xt.address;
                 return _context44.abrupt("return", {
-                  url: "http://".concat(o, ":").concat(i, "/").concat(Ot[e.method]),
+                  url: "http://".concat(o, ":").concat(i, "/").concat(Lt[e.method]),
                   method: "POST",
                   data: s,
                   dataType: "json",
@@ -5385,7 +5324,7 @@ var xt = /*#__PURE__*/function () {
         _ref18$fileType = _ref18.fileType,
         n = _ref18$fileType === void 0 ? "image" : _ref18$fileType,
         s = _ref18.onUploadProgress;
-      if (!t) throw new te({
+      if (!t) throw new re({
         code: "CLOUDPATH_REQUIRED",
         message: "cloudPath不可为空"
       });
@@ -5405,13 +5344,13 @@ var xt = /*#__PURE__*/function () {
             filePath: e,
             fileType: n,
             success: function success(e) {
-              e && e.statusCode < 400 ? t(e) : r(new te({
+              e && e.statusCode < 400 ? t(e) : r(new re({
                 code: "UPLOAD_FAILED",
                 message: "文件上传失败"
               }));
             },
             fail: function fail(e) {
-              r(new te({
+              r(new re({
                 code: e.code || "UPLOAD_FAILED",
                 message: e.message || e.errMsg || "文件上传失败"
               }));
@@ -5434,7 +5373,7 @@ var xt = /*#__PURE__*/function () {
             success: !0,
             filePath: e,
             fileID: r
-          }) : s(new te({
+          }) : s(new re({
             code: "UPLOAD_FAILED",
             message: "文件上传失败"
           }));
@@ -5453,7 +5392,7 @@ var xt = /*#__PURE__*/function () {
       };
       return this.request(t).then(function (e) {
         if (e.success) return e.result;
-        throw new te({
+        throw new re({
           code: "DELETE_FILE_FAILED",
           message: "删除文件失败"
         });
@@ -5465,7 +5404,7 @@ var xt = /*#__PURE__*/function () {
       var _ref20 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
         e = _ref20.fileList,
         t = _ref20.maxAge;
-      if (!Array.isArray(e) || 0 === e.length) throw new te({
+      if (!Array.isArray(e) || 0 === e.length) throw new re({
         code: "INVALID_PARAM",
         message: "fileList的元素必须是非空的字符串"
       });
@@ -5485,18 +5424,18 @@ var xt = /*#__PURE__*/function () {
             };
           })
         };
-        throw new te({
+        throw new re({
           code: "GET_TEMP_FILE_URL_FAILED",
           message: "获取临时文件链接失败"
         });
       });
     }
   }]);
-  return xt;
+  return Ut;
 }();
-var Nt = {
+var Rt = {
     init: function init(e) {
-      var t = new xt(e),
+      var t = new Ut(e),
         n = {
           signInAnonymously: function signInAnonymously() {
             return Promise.resolve();
@@ -5510,16 +5449,16 @@ var Nt = {
       }, t.customAuth = t.auth, t;
     }
   },
-  Rt = n(function (e, t) {
+  Nt = n(function (e, t) {
     e.exports = r.enc.Hex;
   });
-function Lt() {
+function Dt() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (e) {
     var t = 16 * Math.random() | 0;
     return ("x" === e ? t : 3 & t | 8).toString(16);
   });
 }
-function Ut() {
+function Mt() {
   var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
   var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var n = t.data,
@@ -5530,8 +5469,8 @@ function Ut() {
     o = _t$signHeaderKeys === void 0 ? [] : _t$signHeaderKeys,
     a = t.config,
     c = String(Date.now()),
-    u = Lt(),
-    h = Object.assign({}, i, {
+    u = Dt(),
+    l = Object.assign({}, i, {
       "x-from-app-id": a.spaceAppId,
       "x-from-env-id": a.spaceId,
       "x-to-env-id": a.spaceId,
@@ -5543,7 +5482,7 @@ function Ut() {
       "x-alipay-callid": u,
       "x-trace-id": u
     }),
-    l = ["x-from-app-id", "x-from-env-id", "x-to-env-id", "x-from-instance-id", "x-from-function-name", "x-client-timestamp"].concat(o),
+    h = ["x-from-app-id", "x-from-env-id", "x-to-env-id", "x-from-instance-id", "x-from-function-name", "x-client-timestamp"].concat(o),
     _ref21 = e.split("?") || [],
     _ref22 = (0, _slicedToArray2.default)(_ref21, 2),
     _ref22$ = _ref22[0],
@@ -5551,36 +5490,35 @@ function Ut() {
     _ref22$2 = _ref22[1],
     p = _ref22$2 === void 0 ? "" : _ref22$2,
     f = function (e) {
-      var t = "HMAC-SHA256",
-        n = e.signedHeaders.join(";"),
-        s = e.signedHeaders.map(function (t) {
+      var t = e.signedHeaders.join(";"),
+        n = e.signedHeaders.map(function (t) {
           return "".concat(t.toLowerCase(), ":").concat(e.headers[t], "\n");
         }).join(""),
-        r = _e(e.body).toString(Rt),
-        i = "".concat(e.method.toUpperCase(), "\n").concat(e.path, "\n").concat(e.query, "\n").concat(s, "\n").concat(n, "\n").concat(r, "\n"),
-        o = _e(i).toString(Rt),
-        a = "".concat(t, "\n").concat(e.timestamp, "\n").concat(o, "\n"),
-        c = we(a, e.secretKey).toString(Rt);
-      return "".concat(t, " Credential=").concat(e.secretId, ", SignedHeaders=").concat(n, ", Signature=").concat(c);
+        s = Ie(e.body).toString(Nt),
+        r = "".concat(e.method.toUpperCase(), "\n").concat(e.path, "\n").concat(e.query, "\n").concat(n, "\n").concat(t, "\n").concat(s, "\n"),
+        i = Ie(r).toString(Nt),
+        o = "HMAC-SHA256\n".concat(e.timestamp, "\n").concat(i, "\n"),
+        a = Se(o, e.secretKey).toString(Nt);
+      return "HMAC-SHA256 Credential=".concat(e.secretId, ", SignedHeaders=").concat(t, ", Signature=").concat(a);
     }({
       path: d,
       query: p,
       method: r,
-      headers: h,
+      headers: l,
       timestamp: c,
       body: JSON.stringify(n),
       secretId: a.accessKey,
       secretKey: a.secretKey,
-      signedHeaders: l.sort()
+      signedHeaders: h.sort()
     });
   return {
     url: "".concat(a.endpoint).concat(e),
-    headers: Object.assign({}, h, {
+    headers: Object.assign({}, l, {
       Authorization: f
     })
   };
 }
-function Dt(_ref23) {
+function qt(_ref23) {
   var e = _ref23.url,
     t = _ref23.data,
     _ref23$method = _ref23.method,
@@ -5589,7 +5527,7 @@ function Dt(_ref23) {
     s = _ref23$headers === void 0 ? {} : _ref23$headers,
     r = _ref23.timeout;
   return new Promise(function (i, o) {
-    ne.request({
+    ie.request({
       url: e,
       method: n,
       data: "object" == (0, _typeof2.default)(t) ? JSON.stringify(t) : t,
@@ -5601,13 +5539,13 @@ function Dt(_ref23) {
         var t = s["x-trace-id"] || "";
         if (!e.statusCode || e.statusCode >= 400) {
           var _ref24 = e.data || {},
-            _n9 = _ref24.message,
+            _n8 = _ref24.message,
             _s13 = _ref24.errMsg,
-            _r4 = _ref24.trace_id;
-          return o(new te({
+            _r5 = _ref24.trace_id;
+          return o(new re({
             code: "SYS_ERR",
-            message: _n9 || _s13 || "request:fail",
-            requestId: _r4 || t
+            message: _n8 || _s13 || "request:fail",
+            requestId: _r5 || t
           }));
         }
         i({
@@ -5620,12 +5558,12 @@ function Dt(_ref23) {
     });
   });
 }
-function Mt(e, t) {
+function Ft(e, t) {
   var n = e.path,
     s = e.data,
     _e$method = e.method,
     r = _e$method === void 0 ? "GET" : _e$method,
-    _Ut = Ut(n, {
+    _Mt = Mt(n, {
       functionName: "",
       data: s,
       method: r,
@@ -5637,34 +5575,34 @@ function Mt(e, t) {
       signHeaderKeys: ["x-data-api-type", "x-expire-timestamp"],
       config: t
     }),
-    i = _Ut.url,
-    o = _Ut.headers;
-  return Dt({
+    i = _Mt.url,
+    o = _Mt.headers;
+  return qt({
     url: i,
     data: s,
     method: r,
     headers: o
   }).then(function (e) {
     var t = e.data || {};
-    if (!t.success) throw new te({
+    if (!t.success) throw new re({
       code: e.errCode,
       message: e.errMsg,
       requestId: e.requestId
     });
     return t.data || {};
   }).catch(function (e) {
-    throw new te({
+    throw new re({
       code: e.errCode,
       message: e.errMsg,
       requestId: e.requestId
     });
   });
 }
-function qt() {
+function Kt() {
   var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
   var t = e.trim().replace(/^cloud:\/\//, ""),
     n = t.indexOf("/");
-  if (n <= 0) throw new te({
+  if (n <= 0) throw new re({
     code: "INVALID_PARAM",
     message: "fileID不合法"
   });
@@ -5672,16 +5610,16 @@ function qt() {
     r = t.substring(n + 1);
   return s !== this.config.spaceId && console.warn("file ".concat(e, " does not belong to env ").concat(this.config.spaceId)), r;
 }
-function Ft() {
+function jt() {
   var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
   return "cloud://".concat(this.config.spaceId, "/").concat(e.replace(/^\/+/, ""));
 }
-var Kt = /*#__PURE__*/function () {
-  function Kt(e) {
-    (0, _classCallCheck2.default)(this, Kt);
+var $t = /*#__PURE__*/function () {
+  function $t(e) {
+    (0, _classCallCheck2.default)(this, $t);
     this.config = e;
   }
-  (0, _createClass2.default)(Kt, [{
+  (0, _createClass2.default)($t, [{
     key: "signedURL",
     value: function signedURL(e) {
       var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -5689,25 +5627,55 @@ var Kt = /*#__PURE__*/function () {
         s = this.config.wsEndpoint.replace(/^ws(s)?:\/\//, ""),
         r = Object.assign({}, t, {
           accessKeyId: this.config.accessKey,
-          signatureNonce: Lt(),
+          signatureNonce: Dt(),
           timestamp: "" + Date.now()
         }),
         i = [n, ["accessKeyId", "authorization", "signatureNonce", "timestamp"].sort().map(function (e) {
           return r[e] ? "".concat(e, "=").concat(r[e]) : null;
         }).filter(Boolean).join("&"), "host:".concat(s)].join("\n"),
-        o = ["HMAC-SHA256", _e(i).toString(Rt)].join("\n"),
-        a = we(o, this.config.secretKey).toString(Rt),
+        o = ["HMAC-SHA256", Ie(i).toString(Nt)].join("\n"),
+        a = Se(o, this.config.secretKey).toString(Nt),
         c = Object.keys(r).map(function (e) {
           return "".concat(e, "=").concat(encodeURIComponent(r[e]));
         }).join("&");
       return "".concat(this.config.wsEndpoint).concat(n, "?").concat(c, "&signature=").concat(a);
     }
   }]);
-  return Kt;
+  return $t;
 }();
-var jt = /*#__PURE__*/function () {
-  function jt(e) {
-    (0, _classCallCheck2.default)(this, jt);
+var Bt = /*#__PURE__*/function () {
+  function Bt(e) {
+    (0, _classCallCheck2.default)(this, Bt);
+    this.config = e;
+  }
+  (0, _createClass2.default)(Bt, [{
+    key: "signedURL",
+    value: function signedURL(e) {
+      var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var n = "/ws/sse/function/".concat(e),
+        s = this.config.endpoint.replace(/^http(s)?:\/\//, ""),
+        r = Object.assign({}, t, {
+          accessKeyId: this.config.accessKey,
+          signatureNonce: Dt(),
+          timestamp: "" + Date.now()
+        }),
+        i = ["accessKeyId", "authorization", "signatureNonce", "timestamp"].sort().map(function (e) {
+          return r[e] ? "".concat(e, "=").concat(r[e]) : null;
+        }).filter(Boolean).join("&"),
+        o = [n.replace("/ws", ""), i, "host:".concat(s)].join("\n"),
+        a = ["HMAC-SHA256", Ie(o).toString(Nt)].join("\n"),
+        c = Se(a, this.config.secretKey).toString(Nt),
+        u = Object.keys(r).map(function (e) {
+          return "".concat(e, "=").concat(encodeURIComponent(r[e]));
+        }).join("&");
+      return "".concat(this.config.endpoint).concat(n, "?").concat(u, "&signature=").concat(c);
+    }
+  }]);
+  return Bt;
+}();
+var Wt = /*#__PURE__*/function () {
+  function Wt(e) {
+    (0, _classCallCheck2.default)(this, Wt);
     if (["spaceId", "spaceAppId", "accessKey", "secretKey"].forEach(function (t) {
       if (!Object.prototype.hasOwnProperty.call(e, t)) throw new Error("".concat(t, " required"));
     }), e.endpoint) {
@@ -5718,9 +5686,9 @@ var jt = /*#__PURE__*/function () {
     this.config = Object.assign({}, e, {
       endpoint: e.endpoint || "https://".concat(e.spaceId, ".api-hz.cloudbasefunction.cn"),
       wsEndpoint: e.wsEndpoint || "wss://".concat(e.spaceId, ".api-hz.cloudbasefunction.cn")
-    }), this._websocket = new Kt(this.config);
+    }), this._websocket = new $t(this.config), this._sse = new Bt(this.config);
   }
-  (0, _createClass2.default)(jt, [{
+  (0, _createClass2.default)(Wt, [{
     key: "callFunction",
     value: function callFunction(e) {
       return function (e, t) {
@@ -5734,7 +5702,7 @@ var jt = /*#__PURE__*/function () {
             "x-to-function-name": n
           };
         r && (a["x-function-invoke-type"] = "async");
-        var _Ut2 = Ut("/functions/invokeFunction", {
+        var _Mt2 = Mt("/functions/invokeFunction", {
             functionName: n,
             data: s,
             method: o,
@@ -5742,9 +5710,9 @@ var jt = /*#__PURE__*/function () {
             signHeaderKeys: ["x-to-function-name"],
             config: t
           }),
-          c = _Ut2.url,
-          u = _Ut2.headers;
-        return Dt({
+          c = _Mt2.url,
+          u = _Mt2.headers;
+        return qt({
           url: c,
           data: s,
           method: o,
@@ -5753,10 +5721,10 @@ var jt = /*#__PURE__*/function () {
         }).then(function (e) {
           var t = 0;
           if (r) {
-            var _n10 = e.data || {};
-            t = "200" === _n10.errCode ? 0 : _n10.errCode, e.data = _n10.data || {}, e.errMsg = _n10.errMsg;
+            var _n9 = e.data || {};
+            t = "200" === _n9.errCode ? 0 : _n9.errCode, e.data = _n9.data || {}, e.errMsg = _n9.errMsg;
           }
-          if (0 !== t) throw new te({
+          if (0 !== t) throw new re({
             code: t,
             message: e.errMsg,
             requestId: e.requestId
@@ -5768,7 +5736,7 @@ var jt = /*#__PURE__*/function () {
             result: e.data
           };
         }).catch(function (e) {
-          throw new te({
+          throw new re({
             code: e.errCode,
             message: e.errMsg,
             requestId: e.requestId
@@ -5785,20 +5753,20 @@ var jt = /*#__PURE__*/function () {
         s = _ref25.formData,
         r = _ref25.onUploadProgress;
       return new Promise(function (i, o) {
-        var a = ne.uploadFile({
+        var a = ie.uploadFile({
           url: e,
           filePath: t,
           fileType: n,
           formData: s,
           name: "file",
           success: function success(e) {
-            e && e.statusCode < 400 ? i(e) : o(new te({
+            e && e.statusCode < 400 ? i(e) : o(new re({
               code: "UPLOAD_FAILED",
               message: "文件上传失败"
             }));
           },
           fail: function fail(e) {
-            o(new te({
+            o(new re({
               code: e.code || "UPLOAD_FAILED",
               message: e.message || e.errMsg || "文件上传失败"
             }));
@@ -5822,11 +5790,11 @@ var jt = /*#__PURE__*/function () {
             switch (_context45.prev = _context45.next) {
               case 0:
                 e = _ref26.filePath, _ref26$cloudPath = _ref26.cloudPath, t = _ref26$cloudPath === void 0 ? "" : _ref26$cloudPath, _ref26$fileType = _ref26.fileType, n = _ref26$fileType === void 0 ? "image" : _ref26$fileType, s = _ref26.onUploadProgress;
-                if (!("string" !== g(t))) {
+                if (!("string" !== f(t))) {
                   _context45.next = 3;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "cloudPath必须为字符串类型"
                 });
@@ -5835,7 +5803,7 @@ var jt = /*#__PURE__*/function () {
                   _context45.next = 5;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "cloudPath不可为空"
                 });
@@ -5844,13 +5812,13 @@ var jt = /*#__PURE__*/function () {
                   _context45.next = 7;
                   break;
                 }
-                throw new te({
+                throw new re({
                   code: "INVALID_PARAM",
                   message: "cloudPath不合法"
                 });
               case 7:
                 _context45.next = 9;
-                return Mt({
+                return Ft({
                   path: "/".concat(t.replace(/^\//, ""), "?post_url")
                 }, this.config);
               case 9:
@@ -5908,19 +5876,19 @@ var jt = /*#__PURE__*/function () {
                     _step5;
                   try {
                     for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-                      var _n11 = _step5.value;
-                      var _e18 = void 0;
-                      "string" !== g(_n11) && t({
+                      var _n10 = _step5.value;
+                      var _e16 = void 0;
+                      "string" !== f(_n10) && t({
                         code: "INVALID_PARAM",
                         message: "fileList的元素必须是非空的字符串"
                       });
                       try {
-                        _e18 = qt.call(_this18, _n11);
+                        _e16 = Kt.call(_this18, _n10);
                       } catch (t) {
-                        console.warn(t.errCode, t.errMsg), _e18 = _n11;
+                        console.warn(t.errCode, t.errMsg), _e16 = _n10;
                       }
                       s.push({
-                        file_id: _e18,
+                        file_id: _e16,
                         expire: 600
                       });
                     }
@@ -5929,7 +5897,7 @@ var jt = /*#__PURE__*/function () {
                   } finally {
                     _iterator5.f();
                   }
-                  Mt({
+                  Ft({
                     path: "/?download_url",
                     data: {
                       file_list: s
@@ -5941,7 +5909,7 @@ var jt = /*#__PURE__*/function () {
                     t({
                       fileList: n.map(function (e) {
                         return {
-                          fileID: Ft.call(_this18, e.file_id),
+                          fileID: jt.call(_this18, e.file_id),
                           tempFileURL: e.download_url
                         };
                       })
@@ -5972,7 +5940,7 @@ var jt = /*#__PURE__*/function () {
             switch (_context47.prev = _context47.next) {
               case 0:
                 t = e.name, n = e.query;
-                return _context47.abrupt("return", ne.connectSocket({
+                return _context47.abrupt("return", ie.connectSocket({
                   url: this._websocket.signedURL(t, n),
                   complete: function complete() {}
                 }));
@@ -5988,13 +5956,28 @@ var jt = /*#__PURE__*/function () {
       }
       return connectWebSocket;
     }()
+  }, {
+    key: "requestSSE",
+    value: function requestSSE(e) {
+      var t = e.name,
+        n = e.data;
+      return ie.request({
+        method: "POST",
+        url: this._sse.signedURL(t),
+        data: n,
+        header: {
+          "content-type": "application/json"
+        },
+        dataType: "json"
+      });
+    }
   }]);
-  return jt;
+  return Wt;
 }();
-var $t = {
+var Ht = {
   init: function init(e) {
     e.provider = "alipay";
-    var t = new jt(e);
+    var t = new Wt(e);
     return t.auth = function () {
       return {
         signInAnonymously: function signInAnonymously() {
@@ -6007,25 +5990,147 @@ var $t = {
     }, t;
   }
 };
-function Bt(_ref28) {
+function Jt(_ref28) {
   var e = _ref28.data;
   var t;
-  t = he();
+  t = pe();
   var n = JSON.parse(JSON.stringify(e || {}));
   if (Object.assign(n, {
     clientInfo: t
   }), !n.uniIdToken) {
-    var _se3 = se(),
-      _e19 = _se3.token;
-    _e19 && (n.uniIdToken = _e19);
+    var _oe3 = oe(),
+      _e17 = _oe3.token;
+    _e17 && (n.uniIdToken = _e17);
   }
   return n;
 }
-function Wt() {
-  return _Wt.apply(this, arguments);
+var zt = {
+  enable: !1,
+  interval: 0,
+  space: {}
+};
+var Vt = null,
+  Gt = 0,
+  Qt = !1;
+function Yt() {
+  return Array.isArray(P) && P.length ? P[0] : {};
 }
-function _Wt() {
-  _Wt = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee70() {
+function Xt(e) {
+  return "".concat(e, "_").concat(Yt().spaceId || "default");
+}
+function Zt() {
+  if (Vt) return Vt;
+  try {
+    var e = ie.getStorageSync(Xt("UNICLOUD_FAILOVER_CONFIG"));
+    if (g(e)) return Vt = e, e;
+  } catch (e) {}
+  return null;
+}
+function en(e) {
+  Gt = e;
+  try {
+    ie.setStorageSync(Xt("UNICLOUD_FAILOVER_LAST_REQUEST"), e);
+  } catch (e) {}
+}
+function tn(e) {
+  if (null === e || e < 0) return !1;
+  if (0 === e) return !0;
+  var t = function () {
+    if (Gt) return Gt;
+    try {
+      var _e18 = ie.getStorageSync(Xt("UNICLOUD_FAILOVER_LAST_REQUEST"));
+      if (_e18 && "number" == typeof _e18) return Gt = _e18, _e18;
+    } catch (e) {}
+    return 0;
+  }();
+  if (!t) return !0;
+  return Date.now() - t >= e;
+}
+function nn() {
+  return _nn.apply(this, arguments);
+}
+function _nn() {
+  _nn = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee70() {
+    var e, t, _e32, n, s, _s$enable, _r12, _s$interval, _i5, _s$space, _o4, _a3, _c3, _u;
+    return _regenerator.default.wrap(function _callee70$(_context70) {
+      while (1) {
+        switch (_context70.prev = _context70.next) {
+          case 0:
+            e = Yt(), t = e.failoverEndpoint;
+            if (t) {
+              _context70.next = 3;
+              break;
+            }
+            return _context70.abrupt("return", null);
+          case 3:
+            if (!Qt) {
+              _context70.next = 5;
+              break;
+            }
+            return _context70.abrupt("return", Zt());
+          case 5:
+            Qt = !0;
+            _context70.prev = 6;
+            _e32 = "".concat(t, "/.unicloud/failover-cfg.json");
+            _context70.next = 10;
+            return ie.request({
+              url: _e32,
+              method: "GET",
+              dataType: "json",
+              timeout: 5e3
+            });
+          case 10:
+            n = _context70.sent;
+            if (!(en(Date.now()), 200 !== n.statusCode || !g(n.data))) {
+              _context70.next = 13;
+              break;
+            }
+            return _context70.abrupt("return", null);
+          case 13:
+            s = _objectSpread(_objectSpread({}, zt), n.data), _s$enable = s.enable, _r12 = _s$enable === void 0 ? !1 : _s$enable, _s$interval = s.interval, _i5 = _s$interval === void 0 ? 0 : _s$interval, _s$space = s.space, _o4 = _s$space === void 0 ? {} : _s$space, _a3 = Zt(), _c3 = _a3 && _a3.enable, _u = function (e, t) {
+              if (!e) return t.enable;
+              if (e.enable !== t.enable) return !0;
+              if (e.interval !== t.interval) return !0;
+              if (t._lastModifiedAt && e._lastModifiedAt !== t._lastModifiedAt) return !0;
+              if (JSON.stringify(e.space) !== JSON.stringify(t.space)) return !0;
+              return !1;
+            }(_a3, s);
+            return _context70.abrupt("return", (function (e) {
+              try {
+                Vt = e, e && e.enable ? ie.setStorageSync(Xt("UNICLOUD_FAILOVER_CONFIG"), e) : (ie.removeStorageSync(Xt("UNICLOUD_FAILOVER_CONFIG")), ie.removeStorageSync(Xt("UNICLOUD_FAILOVER_LAST_REQUEST")));
+              } catch (e) {}
+            }({
+              enable: _r12,
+              interval: _i5,
+              space: _o4,
+              _lastModifiedAt: n.data._lastModifiedAt || Date.now()
+            }), _u && Z(J, {
+              isEnabled: _r12,
+              hasStatusChanged: _c3 !== _r12,
+              failoverSpace: _o4
+            }), s));
+          case 17:
+            _context70.prev = 17;
+            _context70.t0 = _context70["catch"](6);
+            return _context70.abrupt("return", Zt());
+          case 20:
+            _context70.prev = 20;
+            Qt = !1;
+            return _context70.finish(20);
+          case 23:
+          case "end":
+            return _context70.stop();
+        }
+      }
+    }, _callee70, null, [[6, 17, 20, 23]]);
+  }));
+  return _nn.apply(this, arguments);
+}
+function sn() {
+  return _sn.apply(this, arguments);
+}
+function _sn() {
+  _sn = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee71() {
     var _this31 = this;
     var e,
       _this$__dev__,
@@ -6035,30 +6140,31 @@ function _Wt() {
       r,
       i,
       o,
-      _args9 = arguments;
-    return _regenerator.default.wrap(function _callee70$(_context70) {
+      a,
+      _args10 = arguments;
+    return _regenerator.default.wrap(function _callee71$(_context71) {
       while (1) {
-        switch (_context70.prev = _context70.next) {
+        switch (_context71.prev = _context71.next) {
           case 0:
-            e = _args9.length > 0 && _args9[0] !== undefined ? _args9[0] : {};
-            _context70.next = 3;
+            e = _args10.length > 0 && _args10[0] !== undefined ? _args10[0] : {};
+            _context71.next = 3;
             return this.__dev__.initLocalNetwork();
           case 3:
-            _this$__dev__ = this.__dev__, t = _this$__dev__.localAddress, n = _this$__dev__.localPort, s = {
+            _this$__dev__ = this.__dev__, t = _this$__dev__.localAddress, n = _this$__dev__.localPort, s = Yt(), r = {
               aliyun: "aliyun",
               tencent: "tcb",
               alipay: "alipay",
               dcloud: "dcloud"
-            }[this.config.provider], r = this.config.spaceId, i = "http://".concat(t, ":").concat(n, "/system/check-function"), o = "http://".concat(t, ":").concat(n, "/cloudfunctions/").concat(e.name);
-            return _context70.abrupt("return", new Promise(function (t, n) {
-              ne.request({
+            }[s.provider], i = s.spaceId, o = "http://".concat(t, ":").concat(n, "/system/check-function"), a = "http://".concat(t, ":").concat(n, "/cloudfunctions/").concat(e.name);
+            return _context71.abrupt("return", new Promise(function (t, n) {
+              ie.request({
                 method: "POST",
-                url: i,
+                url: o,
                 data: {
                   name: e.name,
-                  platform: P,
-                  provider: s,
-                  spaceId: r
+                  platform: T,
+                  provider: r,
+                  spaceId: i
                 },
                 timeout: 3e3,
                 success: function success(e) {
@@ -6074,18 +6180,18 @@ function _Wt() {
                 }
               });
             }).then(function () {
-              var _ref66 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-                e = _ref66.data;
-              var _ref67 = e || {},
-                t = _ref67.code,
-                n = _ref67.message;
+              var _ref68 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                e = _ref68.data;
+              var _ref69 = e || {},
+                t = _ref69.code,
+                n = _ref69.message;
               return {
                 code: 0 === t ? 0 : t || "SYS_ERR",
                 message: n || "SYS_ERR"
               };
-            }).then(function (_ref68) {
-              var t = _ref68.code,
-                n = _ref68.message;
+            }).then(function (_ref70) {
+              var t = _ref70.code,
+                n = _ref70.message;
               if (0 !== t) {
                 switch (t) {
                   case "MODULE_ENCRYPTED":
@@ -6104,30 +6210,30 @@ function _Wt() {
                     break;
                   default:
                     {
-                      var _e32 = "\u68C0\u6D4B\u672C\u5730\u8C03\u8BD5\u670D\u52A1\u51FA\u73B0\u9519\u8BEF\uFF1A".concat(n, "\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u73AF\u5883\u6216\u91CD\u542F\u5BA2\u6237\u7AEF\u518D\u8BD5");
-                      throw console.error(_e32), new Error(_e32);
+                      var _e33 = "\u68C0\u6D4B\u672C\u5730\u8C03\u8BD5\u670D\u52A1\u51FA\u73B0\u9519\u8BEF\uFF1A".concat(n, "\uFF0C\u8BF7\u68C0\u67E5\u7F51\u7EDC\u73AF\u5883\u6216\u91CD\u542F\u5BA2\u6237\u7AEF\u518D\u8BD5");
+                      throw console.error(_e33), new Error(_e33);
                     }
                 }
                 return _this31._callCloudFunction(e);
               }
               return new Promise(function (t, n) {
-                var r = Bt.call(_this31, {
+                var s = Jt.call(_this31, {
                   data: e.data
                 });
-                ne.request({
+                ie.request({
                   method: "POST",
-                  url: o,
+                  url: a,
                   data: {
-                    provider: s,
-                    platform: P,
-                    param: r
+                    provider: r,
+                    platform: T,
+                    param: s
                   },
                   timeout: e.timeout,
                   success: function success() {
-                    var _ref69 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-                      e = _ref69.statusCode,
-                      s = _ref69.data;
-                    return !e || e >= 400 ? n(new te({
+                    var _ref71 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                      e = _ref71.statusCode,
+                      s = _ref71.data;
+                    return !e || e >= 400 ? n(new re({
                       code: s.code || "SYS_ERR",
                       message: s.message || "request:fail"
                     })) : t({
@@ -6135,7 +6241,7 @@ function _Wt() {
                     });
                   },
                   fail: function fail(e) {
-                    n(new te({
+                    n(new re({
                       code: e.code || e.errCode || "SYS_ERR",
                       message: e.message || e.errMsg || "request:fail"
                     }));
@@ -6145,54 +6251,47 @@ function _Wt() {
             }));
           case 5:
           case "end":
-            return _context70.stop();
+            return _context71.stop();
         }
       }
-    }, _callee70, this);
+    }, _callee71, this);
   }));
-  return _Wt.apply(this, arguments);
+  return _sn.apply(this, arguments);
 }
-var Ht = [{
+var rn = [{
   rule: /fc_function_not_found|FUNCTION_NOT_FOUND/,
   content: "，云函数[{functionName}]在云端不存在，请检查此云函数名称是否正确以及该云函数是否已上传到服务空间",
   mode: "append"
 }];
-var Jt = /[\\^$.*+?()[\]{}|]/g,
-  zt = RegExp(Jt.source);
-function Vt(e, t, n) {
-  return e.replace(new RegExp((s = t) && zt.test(s) ? s.replace(Jt, "\\$&") : s, "g"), n);
+var on = /[\\^$.*+?()[\]{}|]/g,
+  an = RegExp(on.source);
+function cn(e, t, n) {
+  return e.replace(new RegExp((s = t) && an.test(s) ? s.replace(on, "\\$&") : s, "g"), n);
   var s;
 }
-var Gt = {
-    NONE: "none",
-    REQUEST: "request",
-    RESPONSE: "response",
-    BOTH: "both"
+var un = "none",
+  ln = "request",
+  hn = "response",
+  dn = "both",
+  pn = {
+    code: 2e4,
+    message: "System error"
   },
-  Yt = "_globalUniCloudStatus",
-  Qt = "_globalUniCloudSecureNetworkCache__{spaceId}",
-  Xt = "uni-secure-network",
-  Zt = {
-    SYSTEM_ERROR: {
-      code: 2e4,
-      message: "System error"
-    },
-    APP_INFO_INVALID: {
-      code: 20101,
-      message: "Invalid client"
-    },
-    GET_ENCRYPT_KEY_FAILED: {
-      code: 20102,
-      message: "Get encrypt key failed"
-    }
+  fn = {
+    code: 20101,
+    message: "Invalid client"
   },
-  en = {
+  gn = {
+    code: 20102,
+    message: "Get encrypt key failed"
+  },
+  mn = {
     10001: "Secure network is not supported on current playground or unimpsdk",
     10003: "Config missing in current app. If the problem pesist, please contact DCloud.",
     10009: "Encrypt payload failed",
     10010: "Decrypt response failed"
   };
-function tn(e) {
+function yn(e) {
   var _ref29 = e || {},
     t = _ref29.errSubject,
     n = _ref29.subject,
@@ -6201,30 +6300,30 @@ function tn(e) {
     i = _ref29.code,
     o = _ref29.message,
     a = _ref29.cause;
-  return new te({
-    subject: t || n || Xt,
-    code: s || i || Zt.SYSTEM_ERROR.code,
+  return new re({
+    subject: t || n || "uni-secure-network",
+    code: s || i || pn.code,
     message: r || o,
     cause: a
   });
 }
-var nn = /*#__PURE__*/function () {
-  function nn() {
+var _n = /*#__PURE__*/function () {
+  function _n() {
     var _ref30 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       e = _ref30.secretType,
       t = _ref30.uniCloudIns;
-    (0, _classCallCheck2.default)(this, nn);
-    this.clientType = "", this.secretType = e || Gt.NONE, this.uniCloudIns = t;
+    (0, _classCallCheck2.default)(this, _n);
+    this.clientType = "", this.secretType = e || un, this.uniCloudIns = t;
     var _this$uniCloudIns$con = this.uniCloudIns.config,
       n = _this$uniCloudIns$con.provider,
       s = _this$uniCloudIns$con.spaceId;
     var r;
-    this.provider = n, this.spaceId = s, this.scopedGlobalCache = (r = this.uniCloudIns, U(Qt.replace("{spaceId}", r.config.spaceId)));
+    this.provider = n, this.spaceId = s, this.scopedGlobalCache = (r = this.uniCloudIns, U("_globalUniCloudSecureNetworkCache__{spaceId}".replace("{spaceId}", r.config.spaceId)));
   }
-  (0, _createClass2.default)(nn, [{
+  (0, _createClass2.default)(_n, [{
     key: "getSystemInfo",
     value: function getSystemInfo() {
-      return this._systemInfo || (this._systemInfo = ae()), this._systemInfo;
+      return this._systemInfo || (this._systemInfo = le()), this._systemInfo;
     }
   }, {
     key: "appId",
@@ -6244,7 +6343,7 @@ var nn = /*#__PURE__*/function () {
           while (1) {
             switch (_context48.prev = _context48.next) {
               case 0:
-                return _context48.abrupt("return", this.secretType === Gt.NONE ? e : this.platformEncryptData(e));
+                return _context48.abrupt("return", this.secretType === un ? e : this.platformEncryptData(e));
               case 1:
               case "end":
                 return _context48.stop();
@@ -6266,14 +6365,14 @@ var nn = /*#__PURE__*/function () {
           while (1) {
             switch (_context49.prev = _context49.next) {
               case 0:
-                if (!(this.secretType === Gt.NONE)) {
+                if (!(this.secretType === un)) {
                   _context49.next = 2;
                   break;
                 }
                 return _context49.abrupt("return", e);
               case 2:
                 _ref31 = e || {}, t = _ref31.errCode, n = _ref31.errMsg, s = _ref31.content;
-                return _context49.abrupt("return", t || !s ? e : this.secretType === Gt.REQUEST ? s : this.platformDecryptResult(e));
+                return _context49.abrupt("return", t || !s ? e : this.secretType === ln ? s : this.platformDecryptResult(e));
               case 4:
               case "end":
                 return _context49.stop();
@@ -6358,7 +6457,7 @@ var nn = /*#__PURE__*/function () {
           s,
           r,
           i,
-          _r5,
+          _r6,
           _args51 = arguments;
         return _regenerator.default.wrap(function _callee51$(_context51) {
           while (1) {
@@ -6391,11 +6490,11 @@ var nn = /*#__PURE__*/function () {
                 _context51.next = 14;
                 return t.encryptData(s);
               case 14:
-                _r5 = _context51.sent;
+                _r6 = _context51.sent;
                 _context51.next = 17;
                 return e({
                   name: n,
-                  data: _r5
+                  data: _r6
                 });
               case 17:
                 i = _context51.sent;
@@ -6414,36 +6513,36 @@ var nn = /*#__PURE__*/function () {
       }));
     }
   }]);
-  return nn;
+  return _n;
 }();
 /*! MIT License. Copyright 2015-2018 Richard Moore <me@ricmoo.com>. See LICENSE.txt. */
-function sn(e) {
+function wn(e) {
   return parseInt(e) === e;
 }
-function rn(e) {
-  if (!sn(e.length)) return !1;
+function vn(e) {
+  if (!wn(e.length)) return !1;
   for (var t = 0; t < e.length; t++) {
-    if (!sn(e[t]) || e[t] < 0 || e[t] > 255) return !1;
+    if (!wn(e[t]) || e[t] < 0 || e[t] > 255) return !1;
   }
   return !0;
 }
-function on(e, t) {
+function In(e, t) {
   if (e.buffer && "Uint8Array" === e.name) return t && (e = e.slice ? e.slice() : Array.prototype.slice.call(e)), e;
   if (Array.isArray(e)) {
-    if (!rn(e)) throw new Error("Array contains invalid value: " + e);
+    if (!vn(e)) throw new Error("Array contains invalid value: " + e);
     return new Uint8Array(e);
   }
-  if (sn(e.length) && rn(e)) return new Uint8Array(e);
+  if (wn(e.length) && vn(e)) return new Uint8Array(e);
   throw new Error("unsupported array-like object");
 }
-function an(e) {
+function Sn(e) {
   return new Uint8Array(e);
 }
-function cn(e, t, n, s, r) {
+function bn(e, t, n, s, r) {
   null == s && null == r || (e = e.slice ? e.slice(s, r) : Array.prototype.slice.call(e, s, r)), t.set(e, n);
 }
-var un,
-  hn = {
+var kn,
+  An = {
     toBytes: function toBytes(e) {
       var t = [],
         n = 0;
@@ -6451,7 +6550,7 @@ var un,
         var s = e.charCodeAt(n++);
         37 === s ? (t.push(parseInt(e.substr(n, 2), 16)), n += 2) : t.push(s);
       }
-      return on(t);
+      return In(t);
     },
     fromBytes: function fromBytes(e) {
       for (var t = [], n = 0; n < e.length;) {
@@ -6461,7 +6560,7 @@ var un,
       return t.join("");
     }
   },
-  ln = (un = "0123456789abcdef", {
+  Tn = (kn = "0123456789abcdef", {
     toBytes: function toBytes(e) {
       for (var t = [], n = 0; n < e.length; n += 2) {
         t.push(parseInt(e.substr(n, 2), 16));
@@ -6471,49 +6570,49 @@ var un,
     fromBytes: function fromBytes(e) {
       for (var t = [], n = 0; n < e.length; n++) {
         var s = e[n];
-        t.push(un[(240 & s) >> 4] + un[15 & s]);
+        t.push(kn[(240 & s) >> 4] + kn[15 & s]);
       }
       return t.join("");
     }
   }),
-  dn = {
+  Cn = {
     16: 10,
     24: 12,
     32: 14
   },
-  pn = [1, 2, 4, 8, 16, 32, 64, 128, 27, 54, 108, 216, 171, 77, 154, 47, 94, 188, 99, 198, 151, 53, 106, 212, 179, 125, 250, 239, 197, 145],
-  fn = [99, 124, 119, 123, 242, 107, 111, 197, 48, 1, 103, 43, 254, 215, 171, 118, 202, 130, 201, 125, 250, 89, 71, 240, 173, 212, 162, 175, 156, 164, 114, 192, 183, 253, 147, 38, 54, 63, 247, 204, 52, 165, 229, 241, 113, 216, 49, 21, 4, 199, 35, 195, 24, 150, 5, 154, 7, 18, 128, 226, 235, 39, 178, 117, 9, 131, 44, 26, 27, 110, 90, 160, 82, 59, 214, 179, 41, 227, 47, 132, 83, 209, 0, 237, 32, 252, 177, 91, 106, 203, 190, 57, 74, 76, 88, 207, 208, 239, 170, 251, 67, 77, 51, 133, 69, 249, 2, 127, 80, 60, 159, 168, 81, 163, 64, 143, 146, 157, 56, 245, 188, 182, 218, 33, 16, 255, 243, 210, 205, 12, 19, 236, 95, 151, 68, 23, 196, 167, 126, 61, 100, 93, 25, 115, 96, 129, 79, 220, 34, 42, 144, 136, 70, 238, 184, 20, 222, 94, 11, 219, 224, 50, 58, 10, 73, 6, 36, 92, 194, 211, 172, 98, 145, 149, 228, 121, 231, 200, 55, 109, 141, 213, 78, 169, 108, 86, 244, 234, 101, 122, 174, 8, 186, 120, 37, 46, 28, 166, 180, 198, 232, 221, 116, 31, 75, 189, 139, 138, 112, 62, 181, 102, 72, 3, 246, 14, 97, 53, 87, 185, 134, 193, 29, 158, 225, 248, 152, 17, 105, 217, 142, 148, 155, 30, 135, 233, 206, 85, 40, 223, 140, 161, 137, 13, 191, 230, 66, 104, 65, 153, 45, 15, 176, 84, 187, 22],
-  gn = [82, 9, 106, 213, 48, 54, 165, 56, 191, 64, 163, 158, 129, 243, 215, 251, 124, 227, 57, 130, 155, 47, 255, 135, 52, 142, 67, 68, 196, 222, 233, 203, 84, 123, 148, 50, 166, 194, 35, 61, 238, 76, 149, 11, 66, 250, 195, 78, 8, 46, 161, 102, 40, 217, 36, 178, 118, 91, 162, 73, 109, 139, 209, 37, 114, 248, 246, 100, 134, 104, 152, 22, 212, 164, 92, 204, 93, 101, 182, 146, 108, 112, 72, 80, 253, 237, 185, 218, 94, 21, 70, 87, 167, 141, 157, 132, 144, 216, 171, 0, 140, 188, 211, 10, 247, 228, 88, 5, 184, 179, 69, 6, 208, 44, 30, 143, 202, 63, 15, 2, 193, 175, 189, 3, 1, 19, 138, 107, 58, 145, 17, 65, 79, 103, 220, 234, 151, 242, 207, 206, 240, 180, 230, 115, 150, 172, 116, 34, 231, 173, 53, 133, 226, 249, 55, 232, 28, 117, 223, 110, 71, 241, 26, 113, 29, 41, 197, 137, 111, 183, 98, 14, 170, 24, 190, 27, 252, 86, 62, 75, 198, 210, 121, 32, 154, 219, 192, 254, 120, 205, 90, 244, 31, 221, 168, 51, 136, 7, 199, 49, 177, 18, 16, 89, 39, 128, 236, 95, 96, 81, 127, 169, 25, 181, 74, 13, 45, 229, 122, 159, 147, 201, 156, 239, 160, 224, 59, 77, 174, 42, 245, 176, 200, 235, 187, 60, 131, 83, 153, 97, 23, 43, 4, 126, 186, 119, 214, 38, 225, 105, 20, 99, 85, 33, 12, 125],
-  mn = [3328402341, 4168907908, 4000806809, 4135287693, 4294111757, 3597364157, 3731845041, 2445657428, 1613770832, 33620227, 3462883241, 1445669757, 3892248089, 3050821474, 1303096294, 3967186586, 2412431941, 528646813, 2311702848, 4202528135, 4026202645, 2992200171, 2387036105, 4226871307, 1101901292, 3017069671, 1604494077, 1169141738, 597466303, 1403299063, 3832705686, 2613100635, 1974974402, 3791519004, 1033081774, 1277568618, 1815492186, 2118074177, 4126668546, 2211236943, 1748251740, 1369810420, 3521504564, 4193382664, 3799085459, 2883115123, 1647391059, 706024767, 134480908, 2512897874, 1176707941, 2646852446, 806885416, 932615841, 168101135, 798661301, 235341577, 605164086, 461406363, 3756188221, 3454790438, 1311188841, 2142417613, 3933566367, 302582043, 495158174, 1479289972, 874125870, 907746093, 3698224818, 3025820398, 1537253627, 2756858614, 1983593293, 3084310113, 2108928974, 1378429307, 3722699582, 1580150641, 327451799, 2790478837, 3117535592, 0, 3253595436, 1075847264, 3825007647, 2041688520, 3059440621, 3563743934, 2378943302, 1740553945, 1916352843, 2487896798, 2555137236, 2958579944, 2244988746, 3151024235, 3320835882, 1336584933, 3992714006, 2252555205, 2588757463, 1714631509, 293963156, 2319795663, 3925473552, 67240454, 4269768577, 2689618160, 2017213508, 631218106, 1269344483, 2723238387, 1571005438, 2151694528, 93294474, 1066570413, 563977660, 1882732616, 4059428100, 1673313503, 2008463041, 2950355573, 1109467491, 537923632, 3858759450, 4260623118, 3218264685, 2177748300, 403442708, 638784309, 3287084079, 3193921505, 899127202, 2286175436, 773265209, 2479146071, 1437050866, 4236148354, 2050833735, 3362022572, 3126681063, 840505643, 3866325909, 3227541664, 427917720, 2655997905, 2749160575, 1143087718, 1412049534, 999329963, 193497219, 2353415882, 3354324521, 1807268051, 672404540, 2816401017, 3160301282, 369822493, 2916866934, 3688947771, 1681011286, 1949973070, 336202270, 2454276571, 201721354, 1210328172, 3093060836, 2680341085, 3184776046, 1135389935, 3294782118, 965841320, 831886756, 3554993207, 4068047243, 3588745010, 2345191491, 1849112409, 3664604599, 26054028, 2983581028, 2622377682, 1235855840, 3630984372, 2891339514, 4092916743, 3488279077, 3395642799, 4101667470, 1202630377, 268961816, 1874508501, 4034427016, 1243948399, 1546530418, 941366308, 1470539505, 1941222599, 2546386513, 3421038627, 2715671932, 3899946140, 1042226977, 2521517021, 1639824860, 227249030, 260737669, 3765465232, 2084453954, 1907733956, 3429263018, 2420656344, 100860677, 4160157185, 470683154, 3261161891, 1781871967, 2924959737, 1773779408, 394692241, 2579611992, 974986535, 664706745, 3655459128, 3958962195, 731420851, 571543859, 3530123707, 2849626480, 126783113, 865375399, 765172662, 1008606754, 361203602, 3387549984, 2278477385, 2857719295, 1344809080, 2782912378, 59542671, 1503764984, 160008576, 437062935, 1707065306, 3622233649, 2218934982, 3496503480, 2185314755, 697932208, 1512910199, 504303377, 2075177163, 2824099068, 1841019862, 739644986],
-  yn = [2781242211, 2230877308, 2582542199, 2381740923, 234877682, 3184946027, 2984144751, 1418839493, 1348481072, 50462977, 2848876391, 2102799147, 434634494, 1656084439, 3863849899, 2599188086, 1167051466, 2636087938, 1082771913, 2281340285, 368048890, 3954334041, 3381544775, 201060592, 3963727277, 1739838676, 4250903202, 3930435503, 3206782108, 4149453988, 2531553906, 1536934080, 3262494647, 484572669, 2923271059, 1783375398, 1517041206, 1098792767, 49674231, 1334037708, 1550332980, 4098991525, 886171109, 150598129, 2481090929, 1940642008, 1398944049, 1059722517, 201851908, 1385547719, 1699095331, 1587397571, 674240536, 2704774806, 252314885, 3039795866, 151914247, 908333586, 2602270848, 1038082786, 651029483, 1766729511, 3447698098, 2682942837, 454166793, 2652734339, 1951935532, 775166490, 758520603, 3000790638, 4004797018, 4217086112, 4137964114, 1299594043, 1639438038, 3464344499, 2068982057, 1054729187, 1901997871, 2534638724, 4121318227, 1757008337, 0, 750906861, 1614815264, 535035132, 3363418545, 3988151131, 3201591914, 1183697867, 3647454910, 1265776953, 3734260298, 3566750796, 3903871064, 1250283471, 1807470800, 717615087, 3847203498, 384695291, 3313910595, 3617213773, 1432761139, 2484176261, 3481945413, 283769337, 100925954, 2180939647, 4037038160, 1148730428, 3123027871, 3813386408, 4087501137, 4267549603, 3229630528, 2315620239, 2906624658, 3156319645, 1215313976, 82966005, 3747855548, 3245848246, 1974459098, 1665278241, 807407632, 451280895, 251524083, 1841287890, 1283575245, 337120268, 891687699, 801369324, 3787349855, 2721421207, 3431482436, 959321879, 1469301956, 4065699751, 2197585534, 1199193405, 2898814052, 3887750493, 724703513, 2514908019, 2696962144, 2551808385, 3516813135, 2141445340, 1715741218, 2119445034, 2872807568, 2198571144, 3398190662, 700968686, 3547052216, 1009259540, 2041044702, 3803995742, 487983883, 1991105499, 1004265696, 1449407026, 1316239930, 504629770, 3683797321, 168560134, 1816667172, 3837287516, 1570751170, 1857934291, 4014189740, 2797888098, 2822345105, 2754712981, 936633572, 2347923833, 852879335, 1133234376, 1500395319, 3084545389, 2348912013, 1689376213, 3533459022, 3762923945, 3034082412, 4205598294, 133428468, 634383082, 2949277029, 2398386810, 3913789102, 403703816, 3580869306, 2297460856, 1867130149, 1918643758, 607656988, 4049053350, 3346248884, 1368901318, 600565992, 2090982877, 2632479860, 557719327, 3717614411, 3697393085, 2249034635, 2232388234, 2430627952, 1115438654, 3295786421, 2865522278, 3633334344, 84280067, 33027830, 303828494, 2747425121, 1600795957, 4188952407, 3496589753, 2434238086, 1486471617, 658119965, 3106381470, 953803233, 334231800, 3005978776, 857870609, 3151128937, 1890179545, 2298973838, 2805175444, 3056442267, 574365214, 2450884487, 550103529, 1233637070, 4289353045, 2018519080, 2057691103, 2399374476, 4166623649, 2148108681, 387583245, 3664101311, 836232934, 3330556482, 3100665960, 3280093505, 2955516313, 2002398509, 287182607, 3413881008, 4238890068, 3597515707, 975967766],
-  _n = [1671808611, 2089089148, 2006576759, 2072901243, 4061003762, 1807603307, 1873927791, 3310653893, 810573872, 16974337, 1739181671, 729634347, 4263110654, 3613570519, 2883997099, 1989864566, 3393556426, 2191335298, 3376449993, 2106063485, 4195741690, 1508618841, 1204391495, 4027317232, 2917941677, 3563566036, 2734514082, 2951366063, 2629772188, 2767672228, 1922491506, 3227229120, 3082974647, 4246528509, 2477669779, 644500518, 911895606, 1061256767, 4144166391, 3427763148, 878471220, 2784252325, 3845444069, 4043897329, 1905517169, 3631459288, 827548209, 356461077, 67897348, 3344078279, 593839651, 3277757891, 405286936, 2527147926, 84871685, 2595565466, 118033927, 305538066, 2157648768, 3795705826, 3945188843, 661212711, 2999812018, 1973414517, 152769033, 2208177539, 745822252, 439235610, 455947803, 1857215598, 1525593178, 2700827552, 1391895634, 994932283, 3596728278, 3016654259, 695947817, 3812548067, 795958831, 2224493444, 1408607827, 3513301457, 0, 3979133421, 543178784, 4229948412, 2982705585, 1542305371, 1790891114, 3410398667, 3201918910, 961245753, 1256100938, 1289001036, 1491644504, 3477767631, 3496721360, 4012557807, 2867154858, 4212583931, 1137018435, 1305975373, 861234739, 2241073541, 1171229253, 4178635257, 33948674, 2139225727, 1357946960, 1011120188, 2679776671, 2833468328, 1374921297, 2751356323, 1086357568, 2408187279, 2460827538, 2646352285, 944271416, 4110742005, 3168756668, 3066132406, 3665145818, 560153121, 271589392, 4279952895, 4077846003, 3530407890, 3444343245, 202643468, 322250259, 3962553324, 1608629855, 2543990167, 1154254916, 389623319, 3294073796, 2817676711, 2122513534, 1028094525, 1689045092, 1575467613, 422261273, 1939203699, 1621147744, 2174228865, 1339137615, 3699352540, 577127458, 712922154, 2427141008, 2290289544, 1187679302, 3995715566, 3100863416, 339486740, 3732514782, 1591917662, 186455563, 3681988059, 3762019296, 844522546, 978220090, 169743370, 1239126601, 101321734, 611076132, 1558493276, 3260915650, 3547250131, 2901361580, 1655096418, 2443721105, 2510565781, 3828863972, 2039214713, 3878868455, 3359869896, 928607799, 1840765549, 2374762893, 3580146133, 1322425422, 2850048425, 1823791212, 1459268694, 4094161908, 3928346602, 1706019429, 2056189050, 2934523822, 135794696, 3134549946, 2022240376, 628050469, 779246638, 472135708, 2800834470, 3032970164, 3327236038, 3894660072, 3715932637, 1956440180, 522272287, 1272813131, 3185336765, 2340818315, 2323976074, 1888542832, 1044544574, 3049550261, 1722469478, 1222152264, 50660867, 4127324150, 236067854, 1638122081, 895445557, 1475980887, 3117443513, 2257655686, 3243809217, 489110045, 2662934430, 3778599393, 4162055160, 2561878936, 288563729, 1773916777, 3648039385, 2391345038, 2493985684, 2612407707, 505560094, 2274497927, 3911240169, 3460925390, 1442818645, 678973480, 3749357023, 2358182796, 2717407649, 2306869641, 219617805, 3218761151, 3862026214, 1120306242, 1756942440, 1103331905, 2578459033, 762796589, 252780047, 2966125488, 1425844308, 3151392187, 372911126],
-  wn = [1667474886, 2088535288, 2004326894, 2071694838, 4075949567, 1802223062, 1869591006, 3318043793, 808472672, 16843522, 1734846926, 724270422, 4278065639, 3621216949, 2880169549, 1987484396, 3402253711, 2189597983, 3385409673, 2105378810, 4210693615, 1499065266, 1195886990, 4042263547, 2913856577, 3570689971, 2728590687, 2947541573, 2627518243, 2762274643, 1920112356, 3233831835, 3082273397, 4261223649, 2475929149, 640051788, 909531756, 1061110142, 4160160501, 3435941763, 875846760, 2779116625, 3857003729, 4059105529, 1903268834, 3638064043, 825316194, 353713962, 67374088, 3351728789, 589522246, 3284360861, 404236336, 2526454071, 84217610, 2593830191, 117901582, 303183396, 2155911963, 3806477791, 3958056653, 656894286, 2998062463, 1970642922, 151591698, 2206440989, 741110872, 437923380, 454765878, 1852748508, 1515908788, 2694904667, 1381168804, 993742198, 3604373943, 3014905469, 690584402, 3823320797, 791638366, 2223281939, 1398011302, 3520161977, 0, 3991743681, 538992704, 4244381667, 2981218425, 1532751286, 1785380564, 3419096717, 3200178535, 960056178, 1246420628, 1280103576, 1482221744, 3486468741, 3503319995, 4025428677, 2863326543, 4227536621, 1128514950, 1296947098, 859002214, 2240123921, 1162203018, 4193849577, 33687044, 2139062782, 1347481760, 1010582648, 2678045221, 2829640523, 1364325282, 2745433693, 1077985408, 2408548869, 2459086143, 2644360225, 943212656, 4126475505, 3166494563, 3065430391, 3671750063, 555836226, 269496352, 4294908645, 4092792573, 3537006015, 3452783745, 202118168, 320025894, 3974901699, 1600119230, 2543297077, 1145359496, 387397934, 3301201811, 2812801621, 2122220284, 1027426170, 1684319432, 1566435258, 421079858, 1936954854, 1616945344, 2172753945, 1330631070, 3705438115, 572679748, 707427924, 2425400123, 2290647819, 1179044492, 4008585671, 3099120491, 336870440, 3739122087, 1583276732, 185277718, 3688593069, 3772791771, 842159716, 976899700, 168435220, 1229577106, 101059084, 606366792, 1549591736, 3267517855, 3553849021, 2897014595, 1650632388, 2442242105, 2509612081, 3840161747, 2038008818, 3890688725, 3368567691, 926374254, 1835907034, 2374863873, 3587531953, 1313788572, 2846482505, 1819063512, 1448540844, 4109633523, 3941213647, 1701162954, 2054852340, 2930698567, 134748176, 3132806511, 2021165296, 623210314, 774795868, 471606328, 2795958615, 3031746419, 3334885783, 3907527627, 3722280097, 1953799400, 522133822, 1263263126, 3183336545, 2341176845, 2324333839, 1886425312, 1044267644, 3048588401, 1718004428, 1212733584, 50529542, 4143317495, 235803164, 1633788866, 892690282, 1465383342, 3115962473, 2256965911, 3250673817, 488449850, 2661202215, 3789633753, 4177007595, 2560144171, 286339874, 1768537042, 3654906025, 2391705863, 2492770099, 2610673197, 505291324, 2273808917, 3924369609, 3469625735, 1431699370, 673740880, 3755965093, 2358021891, 2711746649, 2307489801, 218961690, 3217021541, 3873845719, 1111672452, 1751693520, 1094828930, 2576986153, 757954394, 252645662, 2964376443, 1414855848, 3149649517, 370555436],
-  In = [1374988112, 2118214995, 437757123, 975658646, 1001089995, 530400753, 2902087851, 1273168787, 540080725, 2910219766, 2295101073, 4110568485, 1340463100, 3307916247, 641025152, 3043140495, 3736164937, 632953703, 1172967064, 1576976609, 3274667266, 2169303058, 2370213795, 1809054150, 59727847, 361929877, 3211623147, 2505202138, 3569255213, 1484005843, 1239443753, 2395588676, 1975683434, 4102977912, 2572697195, 666464733, 3202437046, 4035489047, 3374361702, 2110667444, 1675577880, 3843699074, 2538681184, 1649639237, 2976151520, 3144396420, 4269907996, 4178062228, 1883793496, 2403728665, 2497604743, 1383856311, 2876494627, 1917518562, 3810496343, 1716890410, 3001755655, 800440835, 2261089178, 3543599269, 807962610, 599762354, 33778362, 3977675356, 2328828971, 2809771154, 4077384432, 1315562145, 1708848333, 101039829, 3509871135, 3299278474, 875451293, 2733856160, 92987698, 2767645557, 193195065, 1080094634, 1584504582, 3178106961, 1042385657, 2531067453, 3711829422, 1306967366, 2438237621, 1908694277, 67556463, 1615861247, 429456164, 3602770327, 2302690252, 1742315127, 2968011453, 126454664, 3877198648, 2043211483, 2709260871, 2084704233, 4169408201, 0, 159417987, 841739592, 504459436, 1817866830, 4245618683, 260388950, 1034867998, 908933415, 168810852, 1750902305, 2606453969, 607530554, 202008497, 2472011535, 3035535058, 463180190, 2160117071, 1641816226, 1517767529, 470948374, 3801332234, 3231722213, 1008918595, 303765277, 235474187, 4069246893, 766945465, 337553864, 1475418501, 2943682380, 4003061179, 2743034109, 4144047775, 1551037884, 1147550661, 1543208500, 2336434550, 3408119516, 3069049960, 3102011747, 3610369226, 1113818384, 328671808, 2227573024, 2236228733, 3535486456, 2935566865, 3341394285, 496906059, 3702665459, 226906860, 2009195472, 733156972, 2842737049, 294930682, 1206477858, 2835123396, 2700099354, 1451044056, 573804783, 2269728455, 3644379585, 2362090238, 2564033334, 2801107407, 2776292904, 3669462566, 1068351396, 742039012, 1350078989, 1784663195, 1417561698, 4136440770, 2430122216, 775550814, 2193862645, 2673705150, 1775276924, 1876241833, 3475313331, 3366754619, 270040487, 3902563182, 3678124923, 3441850377, 1851332852, 3969562369, 2203032232, 3868552805, 2868897406, 566021896, 4011190502, 3135740889, 1248802510, 3936291284, 699432150, 832877231, 708780849, 3332740144, 899835584, 1951317047, 4236429990, 3767586992, 866637845, 4043610186, 1106041591, 2144161806, 395441711, 1984812685, 1139781709, 3433712980, 3835036895, 2664543715, 1282050075, 3240894392, 1181045119, 2640243204, 25965917, 4203181171, 4211818798, 3009879386, 2463879762, 3910161971, 1842759443, 2597806476, 933301370, 1509430414, 3943906441, 3467192302, 3076639029, 3776767469, 2051518780, 2631065433, 1441952575, 404016761, 1942435775, 1408749034, 1610459739, 3745345300, 2017778566, 3400528769, 3110650942, 941896748, 3265478751, 371049330, 3168937228, 675039627, 4279080257, 967311729, 135050206, 3635733660, 1683407248, 2076935265, 3576870512, 1215061108, 3501741890],
-  vn = [1347548327, 1400783205, 3273267108, 2520393566, 3409685355, 4045380933, 2880240216, 2471224067, 1428173050, 4138563181, 2441661558, 636813900, 4233094615, 3620022987, 2149987652, 2411029155, 1239331162, 1730525723, 2554718734, 3781033664, 46346101, 310463728, 2743944855, 3328955385, 3875770207, 2501218972, 3955191162, 3667219033, 768917123, 3545789473, 692707433, 1150208456, 1786102409, 2029293177, 1805211710, 3710368113, 3065962831, 401639597, 1724457132, 3028143674, 409198410, 2196052529, 1620529459, 1164071807, 3769721975, 2226875310, 486441376, 2499348523, 1483753576, 428819965, 2274680428, 3075636216, 598438867, 3799141122, 1474502543, 711349675, 129166120, 53458370, 2592523643, 2782082824, 4063242375, 2988687269, 3120694122, 1559041666, 730517276, 2460449204, 4042459122, 2706270690, 3446004468, 3573941694, 533804130, 2328143614, 2637442643, 2695033685, 839224033, 1973745387, 957055980, 2856345839, 106852767, 1371368976, 4181598602, 1033297158, 2933734917, 1179510461, 3046200461, 91341917, 1862534868, 4284502037, 605657339, 2547432937, 3431546947, 2003294622, 3182487618, 2282195339, 954669403, 3682191598, 1201765386, 3917234703, 3388507166, 0, 2198438022, 1211247597, 2887651696, 1315723890, 4227665663, 1443857720, 507358933, 657861945, 1678381017, 560487590, 3516619604, 975451694, 2970356327, 261314535, 3535072918, 2652609425, 1333838021, 2724322336, 1767536459, 370938394, 182621114, 3854606378, 1128014560, 487725847, 185469197, 2918353863, 3106780840, 3356761769, 2237133081, 1286567175, 3152976349, 4255350624, 2683765030, 3160175349, 3309594171, 878443390, 1988838185, 3704300486, 1756818940, 1673061617, 3403100636, 272786309, 1075025698, 545572369, 2105887268, 4174560061, 296679730, 1841768865, 1260232239, 4091327024, 3960309330, 3497509347, 1814803222, 2578018489, 4195456072, 575138148, 3299409036, 446754879, 3629546796, 4011996048, 3347532110, 3252238545, 4270639778, 915985419, 3483825537, 681933534, 651868046, 2755636671, 3828103837, 223377554, 2607439820, 1649704518, 3270937875, 3901806776, 1580087799, 4118987695, 3198115200, 2087309459, 2842678573, 3016697106, 1003007129, 2802849917, 1860738147, 2077965243, 164439672, 4100872472, 32283319, 2827177882, 1709610350, 2125135846, 136428751, 3874428392, 3652904859, 3460984630, 3572145929, 3593056380, 2939266226, 824852259, 818324884, 3224740454, 930369212, 2801566410, 2967507152, 355706840, 1257309336, 4148292826, 243256656, 790073846, 2373340630, 1296297904, 1422699085, 3756299780, 3818836405, 457992840, 3099667487, 2135319889, 77422314, 1560382517, 1945798516, 788204353, 1521706781, 1385356242, 870912086, 325965383, 2358957921, 2050466060, 2388260884, 2313884476, 4006521127, 901210569, 3990953189, 1014646705, 1503449823, 1062597235, 2031621326, 3212035895, 3931371469, 1533017514, 350174575, 2256028891, 2177544179, 1052338372, 741876788, 1606591296, 1914052035, 213705253, 2334669897, 1107234197, 1899603969, 3725069491, 2631447780, 2422494913, 1635502980, 1893020342, 1950903388, 1120974935],
-  Sn = [2807058932, 1699970625, 2764249623, 1586903591, 1808481195, 1173430173, 1487645946, 59984867, 4199882800, 1844882806, 1989249228, 1277555970, 3623636965, 3419915562, 1149249077, 2744104290, 1514790577, 459744698, 244860394, 3235995134, 1963115311, 4027744588, 2544078150, 4190530515, 1608975247, 2627016082, 2062270317, 1507497298, 2200818878, 567498868, 1764313568, 3359936201, 2305455554, 2037970062, 1047239e3, 1910319033, 1337376481, 2904027272, 2892417312, 984907214, 1243112415, 830661914, 861968209, 2135253587, 2011214180, 2927934315, 2686254721, 731183368, 1750626376, 4246310725, 1820824798, 4172763771, 3542330227, 48394827, 2404901663, 2871682645, 671593195, 3254988725, 2073724613, 145085239, 2280796200, 2779915199, 1790575107, 2187128086, 472615631, 3029510009, 4075877127, 3802222185, 4107101658, 3201631749, 1646252340, 4270507174, 1402811438, 1436590835, 3778151818, 3950355702, 3963161475, 4020912224, 2667994737, 273792366, 2331590177, 104699613, 95345982, 3175501286, 2377486676, 1560637892, 3564045318, 369057872, 4213447064, 3919042237, 1137477952, 2658625497, 1119727848, 2340947849, 1530455833, 4007360968, 172466556, 266959938, 516552836, 0, 2256734592, 3980931627, 1890328081, 1917742170, 4294704398, 945164165, 3575528878, 958871085, 3647212047, 2787207260, 1423022939, 775562294, 1739656202, 3876557655, 2530391278, 2443058075, 3310321856, 547512796, 1265195639, 437656594, 3121275539, 719700128, 3762502690, 387781147, 218828297, 3350065803, 2830708150, 2848461854, 428169201, 122466165, 3720081049, 1627235199, 648017665, 4122762354, 1002783846, 2117360635, 695634755, 3336358691, 4234721005, 4049844452, 3704280881, 2232435299, 574624663, 287343814, 612205898, 1039717051, 840019705, 2708326185, 793451934, 821288114, 1391201670, 3822090177, 376187827, 3113855344, 1224348052, 1679968233, 2361698556, 1058709744, 752375421, 2431590963, 1321699145, 3519142200, 2734591178, 188127444, 2177869557, 3727205754, 2384911031, 3215212461, 2648976442, 2450346104, 3432737375, 1180849278, 331544205, 3102249176, 4150144569, 2952102595, 2159976285, 2474404304, 766078933, 313773861, 2570832044, 2108100632, 1668212892, 3145456443, 2013908262, 418672217, 3070356634, 2594734927, 1852171925, 3867060991, 3473416636, 3907448597, 2614737639, 919489135, 164948639, 2094410160, 2997825956, 590424639, 2486224549, 1723872674, 3157750862, 3399941250, 3501252752, 3625268135, 2555048196, 3673637356, 1343127501, 4130281361, 3599595085, 2957853679, 1297403050, 81781910, 3051593425, 2283490410, 532201772, 1367295589, 3926170974, 895287692, 1953757831, 1093597963, 492483431, 3528626907, 1446242576, 1192455638, 1636604631, 209336225, 344873464, 1015671571, 669961897, 3375740769, 3857572124, 2973530695, 3747192018, 1933530610, 3464042516, 935293895, 3454686199, 2858115069, 1863638845, 3683022916, 4085369519, 3292445032, 875313188, 1080017571, 3279033885, 621591778, 1233856572, 2504130317, 24197544, 3017672716, 3835484340, 3247465558, 2220981195, 3060847922, 1551124588, 1463996600],
-  Tn = [4104605777, 1097159550, 396673818, 660510266, 2875968315, 2638606623, 4200115116, 3808662347, 821712160, 1986918061, 3430322568, 38544885, 3856137295, 718002117, 893681702, 1654886325, 2975484382, 3122358053, 3926825029, 4274053469, 796197571, 1290801793, 1184342925, 3556361835, 2405426947, 2459735317, 1836772287, 1381620373, 3196267988, 1948373848, 3764988233, 3385345166, 3263785589, 2390325492, 1480485785, 3111247143, 3780097726, 2293045232, 548169417, 3459953789, 3746175075, 439452389, 1362321559, 1400849762, 1685577905, 1806599355, 2174754046, 137073913, 1214797936, 1174215055, 3731654548, 2079897426, 1943217067, 1258480242, 529487843, 1437280870, 3945269170, 3049390895, 3313212038, 923313619, 679998e3, 3215307299, 57326082, 377642221, 3474729866, 2041877159, 133361907, 1776460110, 3673476453, 96392454, 878845905, 2801699524, 777231668, 4082475170, 2330014213, 4142626212, 2213296395, 1626319424, 1906247262, 1846563261, 562755902, 3708173718, 1040559837, 3871163981, 1418573201, 3294430577, 114585348, 1343618912, 2566595609, 3186202582, 1078185097, 3651041127, 3896688048, 2307622919, 425408743, 3371096953, 2081048481, 1108339068, 2216610296, 0, 2156299017, 736970802, 292596766, 1517440620, 251657213, 2235061775, 2933202493, 758720310, 265905162, 1554391400, 1532285339, 908999204, 174567692, 1474760595, 4002861748, 2610011675, 3234156416, 3693126241, 2001430874, 303699484, 2478443234, 2687165888, 585122620, 454499602, 151849742, 2345119218, 3064510765, 514443284, 4044981591, 1963412655, 2581445614, 2137062819, 19308535, 1928707164, 1715193156, 4219352155, 1126790795, 600235211, 3992742070, 3841024952, 836553431, 1669664834, 2535604243, 3323011204, 1243905413, 3141400786, 4180808110, 698445255, 2653899549, 2989552604, 2253581325, 3252932727, 3004591147, 1891211689, 2487810577, 3915653703, 4237083816, 4030667424, 2100090966, 865136418, 1229899655, 953270745, 3399679628, 3557504664, 4118925222, 2061379749, 3079546586, 2915017791, 983426092, 2022837584, 1607244650, 2118541908, 2366882550, 3635996816, 972512814, 3283088770, 1568718495, 3499326569, 3576539503, 621982671, 2895723464, 410887952, 2623762152, 1002142683, 645401037, 1494807662, 2595684844, 1335535747, 2507040230, 4293295786, 3167684641, 367585007, 3885750714, 1865862730, 2668221674, 2960971305, 2763173681, 1059270954, 2777952454, 2724642869, 1320957812, 2194319100, 2429595872, 2815956275, 77089521, 3973773121, 3444575871, 2448830231, 1305906550, 4021308739, 2857194700, 2516901860, 3518358430, 1787304780, 740276417, 1699839814, 1592394909, 2352307457, 2272556026, 188821243, 1729977011, 3687994002, 274084841, 3594982253, 3613494426, 2701949495, 4162096729, 322734571, 2837966542, 1640576439, 484830689, 1202797690, 3537852828, 4067639125, 349075736, 3342319475, 4157467219, 4255800159, 1030690015, 1155237496, 2951971274, 1757691577, 607398968, 2738905026, 499347990, 3794078908, 1011452712, 227885567, 2818666809, 213114376, 3034881240, 1455525988, 3414450555, 850817237, 1817998408, 3092726480],
-  bn = [0, 235474187, 470948374, 303765277, 941896748, 908933415, 607530554, 708780849, 1883793496, 2118214995, 1817866830, 1649639237, 1215061108, 1181045119, 1417561698, 1517767529, 3767586992, 4003061179, 4236429990, 4069246893, 3635733660, 3602770327, 3299278474, 3400528769, 2430122216, 2664543715, 2362090238, 2193862645, 2835123396, 2801107407, 3035535058, 3135740889, 3678124923, 3576870512, 3341394285, 3374361702, 3810496343, 3977675356, 4279080257, 4043610186, 2876494627, 2776292904, 3076639029, 3110650942, 2472011535, 2640243204, 2403728665, 2169303058, 1001089995, 899835584, 666464733, 699432150, 59727847, 226906860, 530400753, 294930682, 1273168787, 1172967064, 1475418501, 1509430414, 1942435775, 2110667444, 1876241833, 1641816226, 2910219766, 2743034109, 2976151520, 3211623147, 2505202138, 2606453969, 2302690252, 2269728455, 3711829422, 3543599269, 3240894392, 3475313331, 3843699074, 3943906441, 4178062228, 4144047775, 1306967366, 1139781709, 1374988112, 1610459739, 1975683434, 2076935265, 1775276924, 1742315127, 1034867998, 866637845, 566021896, 800440835, 92987698, 193195065, 429456164, 395441711, 1984812685, 2017778566, 1784663195, 1683407248, 1315562145, 1080094634, 1383856311, 1551037884, 101039829, 135050206, 437757123, 337553864, 1042385657, 807962610, 573804783, 742039012, 2531067453, 2564033334, 2328828971, 2227573024, 2935566865, 2700099354, 3001755655, 3168937228, 3868552805, 3902563182, 4203181171, 4102977912, 3736164937, 3501741890, 3265478751, 3433712980, 1106041591, 1340463100, 1576976609, 1408749034, 2043211483, 2009195472, 1708848333, 1809054150, 832877231, 1068351396, 766945465, 599762354, 159417987, 126454664, 361929877, 463180190, 2709260871, 2943682380, 3178106961, 3009879386, 2572697195, 2538681184, 2236228733, 2336434550, 3509871135, 3745345300, 3441850377, 3274667266, 3910161971, 3877198648, 4110568485, 4211818798, 2597806476, 2497604743, 2261089178, 2295101073, 2733856160, 2902087851, 3202437046, 2968011453, 3936291284, 3835036895, 4136440770, 4169408201, 3535486456, 3702665459, 3467192302, 3231722213, 2051518780, 1951317047, 1716890410, 1750902305, 1113818384, 1282050075, 1584504582, 1350078989, 168810852, 67556463, 371049330, 404016761, 841739592, 1008918595, 775550814, 540080725, 3969562369, 3801332234, 4035489047, 4269907996, 3569255213, 3669462566, 3366754619, 3332740144, 2631065433, 2463879762, 2160117071, 2395588676, 2767645557, 2868897406, 3102011747, 3069049960, 202008497, 33778362, 270040487, 504459436, 875451293, 975658646, 675039627, 641025152, 2084704233, 1917518562, 1615861247, 1851332852, 1147550661, 1248802510, 1484005843, 1451044056, 933301370, 967311729, 733156972, 632953703, 260388950, 25965917, 328671808, 496906059, 1206477858, 1239443753, 1543208500, 1441952575, 2144161806, 1908694277, 1675577880, 1842759443, 3610369226, 3644379585, 3408119516, 3307916247, 4011190502, 3776767469, 4077384432, 4245618683, 2809771154, 2842737049, 3144396420, 3043140495, 2673705150, 2438237621, 2203032232, 2370213795],
-  En = [0, 185469197, 370938394, 487725847, 741876788, 657861945, 975451694, 824852259, 1483753576, 1400783205, 1315723890, 1164071807, 1950903388, 2135319889, 1649704518, 1767536459, 2967507152, 3152976349, 2801566410, 2918353863, 2631447780, 2547432937, 2328143614, 2177544179, 3901806776, 3818836405, 4270639778, 4118987695, 3299409036, 3483825537, 3535072918, 3652904859, 2077965243, 1893020342, 1841768865, 1724457132, 1474502543, 1559041666, 1107234197, 1257309336, 598438867, 681933534, 901210569, 1052338372, 261314535, 77422314, 428819965, 310463728, 3409685355, 3224740454, 3710368113, 3593056380, 3875770207, 3960309330, 4045380933, 4195456072, 2471224067, 2554718734, 2237133081, 2388260884, 3212035895, 3028143674, 2842678573, 2724322336, 4138563181, 4255350624, 3769721975, 3955191162, 3667219033, 3516619604, 3431546947, 3347532110, 2933734917, 2782082824, 3099667487, 3016697106, 2196052529, 2313884476, 2499348523, 2683765030, 1179510461, 1296297904, 1347548327, 1533017514, 1786102409, 1635502980, 2087309459, 2003294622, 507358933, 355706840, 136428751, 53458370, 839224033, 957055980, 605657339, 790073846, 2373340630, 2256028891, 2607439820, 2422494913, 2706270690, 2856345839, 3075636216, 3160175349, 3573941694, 3725069491, 3273267108, 3356761769, 4181598602, 4063242375, 4011996048, 3828103837, 1033297158, 915985419, 730517276, 545572369, 296679730, 446754879, 129166120, 213705253, 1709610350, 1860738147, 1945798516, 2029293177, 1239331162, 1120974935, 1606591296, 1422699085, 4148292826, 4233094615, 3781033664, 3931371469, 3682191598, 3497509347, 3446004468, 3328955385, 2939266226, 2755636671, 3106780840, 2988687269, 2198438022, 2282195339, 2501218972, 2652609425, 1201765386, 1286567175, 1371368976, 1521706781, 1805211710, 1620529459, 2105887268, 1988838185, 533804130, 350174575, 164439672, 46346101, 870912086, 954669403, 636813900, 788204353, 2358957921, 2274680428, 2592523643, 2441661558, 2695033685, 2880240216, 3065962831, 3182487618, 3572145929, 3756299780, 3270937875, 3388507166, 4174560061, 4091327024, 4006521127, 3854606378, 1014646705, 930369212, 711349675, 560487590, 272786309, 457992840, 106852767, 223377554, 1678381017, 1862534868, 1914052035, 2031621326, 1211247597, 1128014560, 1580087799, 1428173050, 32283319, 182621114, 401639597, 486441376, 768917123, 651868046, 1003007129, 818324884, 1503449823, 1385356242, 1333838021, 1150208456, 1973745387, 2125135846, 1673061617, 1756818940, 2970356327, 3120694122, 2802849917, 2887651696, 2637442643, 2520393566, 2334669897, 2149987652, 3917234703, 3799141122, 4284502037, 4100872472, 3309594171, 3460984630, 3545789473, 3629546796, 2050466060, 1899603969, 1814803222, 1730525723, 1443857720, 1560382517, 1075025698, 1260232239, 575138148, 692707433, 878443390, 1062597235, 243256656, 91341917, 409198410, 325965383, 3403100636, 3252238545, 3704300486, 3620022987, 3874428392, 3990953189, 4042459122, 4227665663, 2460449204, 2578018489, 2226875310, 2411029155, 3198115200, 3046200461, 2827177882, 2743944855],
-  kn = [0, 218828297, 437656594, 387781147, 875313188, 958871085, 775562294, 590424639, 1750626376, 1699970625, 1917742170, 2135253587, 1551124588, 1367295589, 1180849278, 1265195639, 3501252752, 3720081049, 3399941250, 3350065803, 3835484340, 3919042237, 4270507174, 4085369519, 3102249176, 3051593425, 2734591178, 2952102595, 2361698556, 2177869557, 2530391278, 2614737639, 3145456443, 3060847922, 2708326185, 2892417312, 2404901663, 2187128086, 2504130317, 2555048196, 3542330227, 3727205754, 3375740769, 3292445032, 3876557655, 3926170974, 4246310725, 4027744588, 1808481195, 1723872674, 1910319033, 2094410160, 1608975247, 1391201670, 1173430173, 1224348052, 59984867, 244860394, 428169201, 344873464, 935293895, 984907214, 766078933, 547512796, 1844882806, 1627235199, 2011214180, 2062270317, 1507497298, 1423022939, 1137477952, 1321699145, 95345982, 145085239, 532201772, 313773861, 830661914, 1015671571, 731183368, 648017665, 3175501286, 2957853679, 2807058932, 2858115069, 2305455554, 2220981195, 2474404304, 2658625497, 3575528878, 3625268135, 3473416636, 3254988725, 3778151818, 3963161475, 4213447064, 4130281361, 3599595085, 3683022916, 3432737375, 3247465558, 3802222185, 4020912224, 4172763771, 4122762354, 3201631749, 3017672716, 2764249623, 2848461854, 2331590177, 2280796200, 2431590963, 2648976442, 104699613, 188127444, 472615631, 287343814, 840019705, 1058709744, 671593195, 621591778, 1852171925, 1668212892, 1953757831, 2037970062, 1514790577, 1463996600, 1080017571, 1297403050, 3673637356, 3623636965, 3235995134, 3454686199, 4007360968, 3822090177, 4107101658, 4190530515, 2997825956, 3215212461, 2830708150, 2779915199, 2256734592, 2340947849, 2627016082, 2443058075, 172466556, 122466165, 273792366, 492483431, 1047239e3, 861968209, 612205898, 695634755, 1646252340, 1863638845, 2013908262, 1963115311, 1446242576, 1530455833, 1277555970, 1093597963, 1636604631, 1820824798, 2073724613, 1989249228, 1436590835, 1487645946, 1337376481, 1119727848, 164948639, 81781910, 331544205, 516552836, 1039717051, 821288114, 669961897, 719700128, 2973530695, 3157750862, 2871682645, 2787207260, 2232435299, 2283490410, 2667994737, 2450346104, 3647212047, 3564045318, 3279033885, 3464042516, 3980931627, 3762502690, 4150144569, 4199882800, 3070356634, 3121275539, 2904027272, 2686254721, 2200818878, 2384911031, 2570832044, 2486224549, 3747192018, 3528626907, 3310321856, 3359936201, 3950355702, 3867060991, 4049844452, 4234721005, 1739656202, 1790575107, 2108100632, 1890328081, 1402811438, 1586903591, 1233856572, 1149249077, 266959938, 48394827, 369057872, 418672217, 1002783846, 919489135, 567498868, 752375421, 209336225, 24197544, 376187827, 459744698, 945164165, 895287692, 574624663, 793451934, 1679968233, 1764313568, 2117360635, 1933530610, 1343127501, 1560637892, 1243112415, 1192455638, 3704280881, 3519142200, 3336358691, 3419915562, 3907448597, 3857572124, 4075877127, 4294704398, 3029510009, 3113855344, 2927934315, 2744104290, 2159976285, 2377486676, 2594734927, 2544078150],
-  An = [0, 151849742, 303699484, 454499602, 607398968, 758720310, 908999204, 1059270954, 1214797936, 1097159550, 1517440620, 1400849762, 1817998408, 1699839814, 2118541908, 2001430874, 2429595872, 2581445614, 2194319100, 2345119218, 3034881240, 3186202582, 2801699524, 2951971274, 3635996816, 3518358430, 3399679628, 3283088770, 4237083816, 4118925222, 4002861748, 3885750714, 1002142683, 850817237, 698445255, 548169417, 529487843, 377642221, 227885567, 77089521, 1943217067, 2061379749, 1640576439, 1757691577, 1474760595, 1592394909, 1174215055, 1290801793, 2875968315, 2724642869, 3111247143, 2960971305, 2405426947, 2253581325, 2638606623, 2487810577, 3808662347, 3926825029, 4044981591, 4162096729, 3342319475, 3459953789, 3576539503, 3693126241, 1986918061, 2137062819, 1685577905, 1836772287, 1381620373, 1532285339, 1078185097, 1229899655, 1040559837, 923313619, 740276417, 621982671, 439452389, 322734571, 137073913, 19308535, 3871163981, 4021308739, 4104605777, 4255800159, 3263785589, 3414450555, 3499326569, 3651041127, 2933202493, 2815956275, 3167684641, 3049390895, 2330014213, 2213296395, 2566595609, 2448830231, 1305906550, 1155237496, 1607244650, 1455525988, 1776460110, 1626319424, 2079897426, 1928707164, 96392454, 213114376, 396673818, 514443284, 562755902, 679998e3, 865136418, 983426092, 3708173718, 3557504664, 3474729866, 3323011204, 4180808110, 4030667424, 3945269170, 3794078908, 2507040230, 2623762152, 2272556026, 2390325492, 2975484382, 3092726480, 2738905026, 2857194700, 3973773121, 3856137295, 4274053469, 4157467219, 3371096953, 3252932727, 3673476453, 3556361835, 2763173681, 2915017791, 3064510765, 3215307299, 2156299017, 2307622919, 2459735317, 2610011675, 2081048481, 1963412655, 1846563261, 1729977011, 1480485785, 1362321559, 1243905413, 1126790795, 878845905, 1030690015, 645401037, 796197571, 274084841, 425408743, 38544885, 188821243, 3613494426, 3731654548, 3313212038, 3430322568, 4082475170, 4200115116, 3780097726, 3896688048, 2668221674, 2516901860, 2366882550, 2216610296, 3141400786, 2989552604, 2837966542, 2687165888, 1202797690, 1320957812, 1437280870, 1554391400, 1669664834, 1787304780, 1906247262, 2022837584, 265905162, 114585348, 499347990, 349075736, 736970802, 585122620, 972512814, 821712160, 2595684844, 2478443234, 2293045232, 2174754046, 3196267988, 3079546586, 2895723464, 2777952454, 3537852828, 3687994002, 3234156416, 3385345166, 4142626212, 4293295786, 3841024952, 3992742070, 174567692, 57326082, 410887952, 292596766, 777231668, 660510266, 1011452712, 893681702, 1108339068, 1258480242, 1343618912, 1494807662, 1715193156, 1865862730, 1948373848, 2100090966, 2701949495, 2818666809, 3004591147, 3122358053, 2235061775, 2352307457, 2535604243, 2653899549, 3915653703, 3764988233, 4219352155, 4067639125, 3444575871, 3294430577, 3746175075, 3594982253, 836553431, 953270745, 600235211, 718002117, 367585007, 484830689, 133361907, 251657213, 2041877159, 1891211689, 1806599355, 1654886325, 1568718495, 1418573201, 1335535747, 1184342925];
-function Pn(e) {
+  Pn = [1, 2, 4, 8, 16, 32, 64, 128, 27, 54, 108, 216, 171, 77, 154, 47, 94, 188, 99, 198, 151, 53, 106, 212, 179, 125, 250, 239, 197, 145],
+  On = [99, 124, 119, 123, 242, 107, 111, 197, 48, 1, 103, 43, 254, 215, 171, 118, 202, 130, 201, 125, 250, 89, 71, 240, 173, 212, 162, 175, 156, 164, 114, 192, 183, 253, 147, 38, 54, 63, 247, 204, 52, 165, 229, 241, 113, 216, 49, 21, 4, 199, 35, 195, 24, 150, 5, 154, 7, 18, 128, 226, 235, 39, 178, 117, 9, 131, 44, 26, 27, 110, 90, 160, 82, 59, 214, 179, 41, 227, 47, 132, 83, 209, 0, 237, 32, 252, 177, 91, 106, 203, 190, 57, 74, 76, 88, 207, 208, 239, 170, 251, 67, 77, 51, 133, 69, 249, 2, 127, 80, 60, 159, 168, 81, 163, 64, 143, 146, 157, 56, 245, 188, 182, 218, 33, 16, 255, 243, 210, 205, 12, 19, 236, 95, 151, 68, 23, 196, 167, 126, 61, 100, 93, 25, 115, 96, 129, 79, 220, 34, 42, 144, 136, 70, 238, 184, 20, 222, 94, 11, 219, 224, 50, 58, 10, 73, 6, 36, 92, 194, 211, 172, 98, 145, 149, 228, 121, 231, 200, 55, 109, 141, 213, 78, 169, 108, 86, 244, 234, 101, 122, 174, 8, 186, 120, 37, 46, 28, 166, 180, 198, 232, 221, 116, 31, 75, 189, 139, 138, 112, 62, 181, 102, 72, 3, 246, 14, 97, 53, 87, 185, 134, 193, 29, 158, 225, 248, 152, 17, 105, 217, 142, 148, 155, 30, 135, 233, 206, 85, 40, 223, 140, 161, 137, 13, 191, 230, 66, 104, 65, 153, 45, 15, 176, 84, 187, 22],
+  En = [82, 9, 106, 213, 48, 54, 165, 56, 191, 64, 163, 158, 129, 243, 215, 251, 124, 227, 57, 130, 155, 47, 255, 135, 52, 142, 67, 68, 196, 222, 233, 203, 84, 123, 148, 50, 166, 194, 35, 61, 238, 76, 149, 11, 66, 250, 195, 78, 8, 46, 161, 102, 40, 217, 36, 178, 118, 91, 162, 73, 109, 139, 209, 37, 114, 248, 246, 100, 134, 104, 152, 22, 212, 164, 92, 204, 93, 101, 182, 146, 108, 112, 72, 80, 253, 237, 185, 218, 94, 21, 70, 87, 167, 141, 157, 132, 144, 216, 171, 0, 140, 188, 211, 10, 247, 228, 88, 5, 184, 179, 69, 6, 208, 44, 30, 143, 202, 63, 15, 2, 193, 175, 189, 3, 1, 19, 138, 107, 58, 145, 17, 65, 79, 103, 220, 234, 151, 242, 207, 206, 240, 180, 230, 115, 150, 172, 116, 34, 231, 173, 53, 133, 226, 249, 55, 232, 28, 117, 223, 110, 71, 241, 26, 113, 29, 41, 197, 137, 111, 183, 98, 14, 170, 24, 190, 27, 252, 86, 62, 75, 198, 210, 121, 32, 154, 219, 192, 254, 120, 205, 90, 244, 31, 221, 168, 51, 136, 7, 199, 49, 177, 18, 16, 89, 39, 128, 236, 95, 96, 81, 127, 169, 25, 181, 74, 13, 45, 229, 122, 159, 147, 201, 156, 239, 160, 224, 59, 77, 174, 42, 245, 176, 200, 235, 187, 60, 131, 83, 153, 97, 23, 43, 4, 126, 186, 119, 214, 38, 225, 105, 20, 99, 85, 33, 12, 125],
+  xn = [3328402341, 4168907908, 4000806809, 4135287693, 4294111757, 3597364157, 3731845041, 2445657428, 1613770832, 33620227, 3462883241, 1445669757, 3892248089, 3050821474, 1303096294, 3967186586, 2412431941, 528646813, 2311702848, 4202528135, 4026202645, 2992200171, 2387036105, 4226871307, 1101901292, 3017069671, 1604494077, 1169141738, 597466303, 1403299063, 3832705686, 2613100635, 1974974402, 3791519004, 1033081774, 1277568618, 1815492186, 2118074177, 4126668546, 2211236943, 1748251740, 1369810420, 3521504564, 4193382664, 3799085459, 2883115123, 1647391059, 706024767, 134480908, 2512897874, 1176707941, 2646852446, 806885416, 932615841, 168101135, 798661301, 235341577, 605164086, 461406363, 3756188221, 3454790438, 1311188841, 2142417613, 3933566367, 302582043, 495158174, 1479289972, 874125870, 907746093, 3698224818, 3025820398, 1537253627, 2756858614, 1983593293, 3084310113, 2108928974, 1378429307, 3722699582, 1580150641, 327451799, 2790478837, 3117535592, 0, 3253595436, 1075847264, 3825007647, 2041688520, 3059440621, 3563743934, 2378943302, 1740553945, 1916352843, 2487896798, 2555137236, 2958579944, 2244988746, 3151024235, 3320835882, 1336584933, 3992714006, 2252555205, 2588757463, 1714631509, 293963156, 2319795663, 3925473552, 67240454, 4269768577, 2689618160, 2017213508, 631218106, 1269344483, 2723238387, 1571005438, 2151694528, 93294474, 1066570413, 563977660, 1882732616, 4059428100, 1673313503, 2008463041, 2950355573, 1109467491, 537923632, 3858759450, 4260623118, 3218264685, 2177748300, 403442708, 638784309, 3287084079, 3193921505, 899127202, 2286175436, 773265209, 2479146071, 1437050866, 4236148354, 2050833735, 3362022572, 3126681063, 840505643, 3866325909, 3227541664, 427917720, 2655997905, 2749160575, 1143087718, 1412049534, 999329963, 193497219, 2353415882, 3354324521, 1807268051, 672404540, 2816401017, 3160301282, 369822493, 2916866934, 3688947771, 1681011286, 1949973070, 336202270, 2454276571, 201721354, 1210328172, 3093060836, 2680341085, 3184776046, 1135389935, 3294782118, 965841320, 831886756, 3554993207, 4068047243, 3588745010, 2345191491, 1849112409, 3664604599, 26054028, 2983581028, 2622377682, 1235855840, 3630984372, 2891339514, 4092916743, 3488279077, 3395642799, 4101667470, 1202630377, 268961816, 1874508501, 4034427016, 1243948399, 1546530418, 941366308, 1470539505, 1941222599, 2546386513, 3421038627, 2715671932, 3899946140, 1042226977, 2521517021, 1639824860, 227249030, 260737669, 3765465232, 2084453954, 1907733956, 3429263018, 2420656344, 100860677, 4160157185, 470683154, 3261161891, 1781871967, 2924959737, 1773779408, 394692241, 2579611992, 974986535, 664706745, 3655459128, 3958962195, 731420851, 571543859, 3530123707, 2849626480, 126783113, 865375399, 765172662, 1008606754, 361203602, 3387549984, 2278477385, 2857719295, 1344809080, 2782912378, 59542671, 1503764984, 160008576, 437062935, 1707065306, 3622233649, 2218934982, 3496503480, 2185314755, 697932208, 1512910199, 504303377, 2075177163, 2824099068, 1841019862, 739644986],
+  Ln = [2781242211, 2230877308, 2582542199, 2381740923, 234877682, 3184946027, 2984144751, 1418839493, 1348481072, 50462977, 2848876391, 2102799147, 434634494, 1656084439, 3863849899, 2599188086, 1167051466, 2636087938, 1082771913, 2281340285, 368048890, 3954334041, 3381544775, 201060592, 3963727277, 1739838676, 4250903202, 3930435503, 3206782108, 4149453988, 2531553906, 1536934080, 3262494647, 484572669, 2923271059, 1783375398, 1517041206, 1098792767, 49674231, 1334037708, 1550332980, 4098991525, 886171109, 150598129, 2481090929, 1940642008, 1398944049, 1059722517, 201851908, 1385547719, 1699095331, 1587397571, 674240536, 2704774806, 252314885, 3039795866, 151914247, 908333586, 2602270848, 1038082786, 651029483, 1766729511, 3447698098, 2682942837, 454166793, 2652734339, 1951935532, 775166490, 758520603, 3000790638, 4004797018, 4217086112, 4137964114, 1299594043, 1639438038, 3464344499, 2068982057, 1054729187, 1901997871, 2534638724, 4121318227, 1757008337, 0, 750906861, 1614815264, 535035132, 3363418545, 3988151131, 3201591914, 1183697867, 3647454910, 1265776953, 3734260298, 3566750796, 3903871064, 1250283471, 1807470800, 717615087, 3847203498, 384695291, 3313910595, 3617213773, 1432761139, 2484176261, 3481945413, 283769337, 100925954, 2180939647, 4037038160, 1148730428, 3123027871, 3813386408, 4087501137, 4267549603, 3229630528, 2315620239, 2906624658, 3156319645, 1215313976, 82966005, 3747855548, 3245848246, 1974459098, 1665278241, 807407632, 451280895, 251524083, 1841287890, 1283575245, 337120268, 891687699, 801369324, 3787349855, 2721421207, 3431482436, 959321879, 1469301956, 4065699751, 2197585534, 1199193405, 2898814052, 3887750493, 724703513, 2514908019, 2696962144, 2551808385, 3516813135, 2141445340, 1715741218, 2119445034, 2872807568, 2198571144, 3398190662, 700968686, 3547052216, 1009259540, 2041044702, 3803995742, 487983883, 1991105499, 1004265696, 1449407026, 1316239930, 504629770, 3683797321, 168560134, 1816667172, 3837287516, 1570751170, 1857934291, 4014189740, 2797888098, 2822345105, 2754712981, 936633572, 2347923833, 852879335, 1133234376, 1500395319, 3084545389, 2348912013, 1689376213, 3533459022, 3762923945, 3034082412, 4205598294, 133428468, 634383082, 2949277029, 2398386810, 3913789102, 403703816, 3580869306, 2297460856, 1867130149, 1918643758, 607656988, 4049053350, 3346248884, 1368901318, 600565992, 2090982877, 2632479860, 557719327, 3717614411, 3697393085, 2249034635, 2232388234, 2430627952, 1115438654, 3295786421, 2865522278, 3633334344, 84280067, 33027830, 303828494, 2747425121, 1600795957, 4188952407, 3496589753, 2434238086, 1486471617, 658119965, 3106381470, 953803233, 334231800, 3005978776, 857870609, 3151128937, 1890179545, 2298973838, 2805175444, 3056442267, 574365214, 2450884487, 550103529, 1233637070, 4289353045, 2018519080, 2057691103, 2399374476, 4166623649, 2148108681, 387583245, 3664101311, 836232934, 3330556482, 3100665960, 3280093505, 2955516313, 2002398509, 287182607, 3413881008, 4238890068, 3597515707, 975967766],
+  Un = [1671808611, 2089089148, 2006576759, 2072901243, 4061003762, 1807603307, 1873927791, 3310653893, 810573872, 16974337, 1739181671, 729634347, 4263110654, 3613570519, 2883997099, 1989864566, 3393556426, 2191335298, 3376449993, 2106063485, 4195741690, 1508618841, 1204391495, 4027317232, 2917941677, 3563566036, 2734514082, 2951366063, 2629772188, 2767672228, 1922491506, 3227229120, 3082974647, 4246528509, 2477669779, 644500518, 911895606, 1061256767, 4144166391, 3427763148, 878471220, 2784252325, 3845444069, 4043897329, 1905517169, 3631459288, 827548209, 356461077, 67897348, 3344078279, 593839651, 3277757891, 405286936, 2527147926, 84871685, 2595565466, 118033927, 305538066, 2157648768, 3795705826, 3945188843, 661212711, 2999812018, 1973414517, 152769033, 2208177539, 745822252, 439235610, 455947803, 1857215598, 1525593178, 2700827552, 1391895634, 994932283, 3596728278, 3016654259, 695947817, 3812548067, 795958831, 2224493444, 1408607827, 3513301457, 0, 3979133421, 543178784, 4229948412, 2982705585, 1542305371, 1790891114, 3410398667, 3201918910, 961245753, 1256100938, 1289001036, 1491644504, 3477767631, 3496721360, 4012557807, 2867154858, 4212583931, 1137018435, 1305975373, 861234739, 2241073541, 1171229253, 4178635257, 33948674, 2139225727, 1357946960, 1011120188, 2679776671, 2833468328, 1374921297, 2751356323, 1086357568, 2408187279, 2460827538, 2646352285, 944271416, 4110742005, 3168756668, 3066132406, 3665145818, 560153121, 271589392, 4279952895, 4077846003, 3530407890, 3444343245, 202643468, 322250259, 3962553324, 1608629855, 2543990167, 1154254916, 389623319, 3294073796, 2817676711, 2122513534, 1028094525, 1689045092, 1575467613, 422261273, 1939203699, 1621147744, 2174228865, 1339137615, 3699352540, 577127458, 712922154, 2427141008, 2290289544, 1187679302, 3995715566, 3100863416, 339486740, 3732514782, 1591917662, 186455563, 3681988059, 3762019296, 844522546, 978220090, 169743370, 1239126601, 101321734, 611076132, 1558493276, 3260915650, 3547250131, 2901361580, 1655096418, 2443721105, 2510565781, 3828863972, 2039214713, 3878868455, 3359869896, 928607799, 1840765549, 2374762893, 3580146133, 1322425422, 2850048425, 1823791212, 1459268694, 4094161908, 3928346602, 1706019429, 2056189050, 2934523822, 135794696, 3134549946, 2022240376, 628050469, 779246638, 472135708, 2800834470, 3032970164, 3327236038, 3894660072, 3715932637, 1956440180, 522272287, 1272813131, 3185336765, 2340818315, 2323976074, 1888542832, 1044544574, 3049550261, 1722469478, 1222152264, 50660867, 4127324150, 236067854, 1638122081, 895445557, 1475980887, 3117443513, 2257655686, 3243809217, 489110045, 2662934430, 3778599393, 4162055160, 2561878936, 288563729, 1773916777, 3648039385, 2391345038, 2493985684, 2612407707, 505560094, 2274497927, 3911240169, 3460925390, 1442818645, 678973480, 3749357023, 2358182796, 2717407649, 2306869641, 219617805, 3218761151, 3862026214, 1120306242, 1756942440, 1103331905, 2578459033, 762796589, 252780047, 2966125488, 1425844308, 3151392187, 372911126],
+  Rn = [1667474886, 2088535288, 2004326894, 2071694838, 4075949567, 1802223062, 1869591006, 3318043793, 808472672, 16843522, 1734846926, 724270422, 4278065639, 3621216949, 2880169549, 1987484396, 3402253711, 2189597983, 3385409673, 2105378810, 4210693615, 1499065266, 1195886990, 4042263547, 2913856577, 3570689971, 2728590687, 2947541573, 2627518243, 2762274643, 1920112356, 3233831835, 3082273397, 4261223649, 2475929149, 640051788, 909531756, 1061110142, 4160160501, 3435941763, 875846760, 2779116625, 3857003729, 4059105529, 1903268834, 3638064043, 825316194, 353713962, 67374088, 3351728789, 589522246, 3284360861, 404236336, 2526454071, 84217610, 2593830191, 117901582, 303183396, 2155911963, 3806477791, 3958056653, 656894286, 2998062463, 1970642922, 151591698, 2206440989, 741110872, 437923380, 454765878, 1852748508, 1515908788, 2694904667, 1381168804, 993742198, 3604373943, 3014905469, 690584402, 3823320797, 791638366, 2223281939, 1398011302, 3520161977, 0, 3991743681, 538992704, 4244381667, 2981218425, 1532751286, 1785380564, 3419096717, 3200178535, 960056178, 1246420628, 1280103576, 1482221744, 3486468741, 3503319995, 4025428677, 2863326543, 4227536621, 1128514950, 1296947098, 859002214, 2240123921, 1162203018, 4193849577, 33687044, 2139062782, 1347481760, 1010582648, 2678045221, 2829640523, 1364325282, 2745433693, 1077985408, 2408548869, 2459086143, 2644360225, 943212656, 4126475505, 3166494563, 3065430391, 3671750063, 555836226, 269496352, 4294908645, 4092792573, 3537006015, 3452783745, 202118168, 320025894, 3974901699, 1600119230, 2543297077, 1145359496, 387397934, 3301201811, 2812801621, 2122220284, 1027426170, 1684319432, 1566435258, 421079858, 1936954854, 1616945344, 2172753945, 1330631070, 3705438115, 572679748, 707427924, 2425400123, 2290647819, 1179044492, 4008585671, 3099120491, 336870440, 3739122087, 1583276732, 185277718, 3688593069, 3772791771, 842159716, 976899700, 168435220, 1229577106, 101059084, 606366792, 1549591736, 3267517855, 3553849021, 2897014595, 1650632388, 2442242105, 2509612081, 3840161747, 2038008818, 3890688725, 3368567691, 926374254, 1835907034, 2374863873, 3587531953, 1313788572, 2846482505, 1819063512, 1448540844, 4109633523, 3941213647, 1701162954, 2054852340, 2930698567, 134748176, 3132806511, 2021165296, 623210314, 774795868, 471606328, 2795958615, 3031746419, 3334885783, 3907527627, 3722280097, 1953799400, 522133822, 1263263126, 3183336545, 2341176845, 2324333839, 1886425312, 1044267644, 3048588401, 1718004428, 1212733584, 50529542, 4143317495, 235803164, 1633788866, 892690282, 1465383342, 3115962473, 2256965911, 3250673817, 488449850, 2661202215, 3789633753, 4177007595, 2560144171, 286339874, 1768537042, 3654906025, 2391705863, 2492770099, 2610673197, 505291324, 2273808917, 3924369609, 3469625735, 1431699370, 673740880, 3755965093, 2358021891, 2711746649, 2307489801, 218961690, 3217021541, 3873845719, 1111672452, 1751693520, 1094828930, 2576986153, 757954394, 252645662, 2964376443, 1414855848, 3149649517, 370555436],
+  Nn = [1374988112, 2118214995, 437757123, 975658646, 1001089995, 530400753, 2902087851, 1273168787, 540080725, 2910219766, 2295101073, 4110568485, 1340463100, 3307916247, 641025152, 3043140495, 3736164937, 632953703, 1172967064, 1576976609, 3274667266, 2169303058, 2370213795, 1809054150, 59727847, 361929877, 3211623147, 2505202138, 3569255213, 1484005843, 1239443753, 2395588676, 1975683434, 4102977912, 2572697195, 666464733, 3202437046, 4035489047, 3374361702, 2110667444, 1675577880, 3843699074, 2538681184, 1649639237, 2976151520, 3144396420, 4269907996, 4178062228, 1883793496, 2403728665, 2497604743, 1383856311, 2876494627, 1917518562, 3810496343, 1716890410, 3001755655, 800440835, 2261089178, 3543599269, 807962610, 599762354, 33778362, 3977675356, 2328828971, 2809771154, 4077384432, 1315562145, 1708848333, 101039829, 3509871135, 3299278474, 875451293, 2733856160, 92987698, 2767645557, 193195065, 1080094634, 1584504582, 3178106961, 1042385657, 2531067453, 3711829422, 1306967366, 2438237621, 1908694277, 67556463, 1615861247, 429456164, 3602770327, 2302690252, 1742315127, 2968011453, 126454664, 3877198648, 2043211483, 2709260871, 2084704233, 4169408201, 0, 159417987, 841739592, 504459436, 1817866830, 4245618683, 260388950, 1034867998, 908933415, 168810852, 1750902305, 2606453969, 607530554, 202008497, 2472011535, 3035535058, 463180190, 2160117071, 1641816226, 1517767529, 470948374, 3801332234, 3231722213, 1008918595, 303765277, 235474187, 4069246893, 766945465, 337553864, 1475418501, 2943682380, 4003061179, 2743034109, 4144047775, 1551037884, 1147550661, 1543208500, 2336434550, 3408119516, 3069049960, 3102011747, 3610369226, 1113818384, 328671808, 2227573024, 2236228733, 3535486456, 2935566865, 3341394285, 496906059, 3702665459, 226906860, 2009195472, 733156972, 2842737049, 294930682, 1206477858, 2835123396, 2700099354, 1451044056, 573804783, 2269728455, 3644379585, 2362090238, 2564033334, 2801107407, 2776292904, 3669462566, 1068351396, 742039012, 1350078989, 1784663195, 1417561698, 4136440770, 2430122216, 775550814, 2193862645, 2673705150, 1775276924, 1876241833, 3475313331, 3366754619, 270040487, 3902563182, 3678124923, 3441850377, 1851332852, 3969562369, 2203032232, 3868552805, 2868897406, 566021896, 4011190502, 3135740889, 1248802510, 3936291284, 699432150, 832877231, 708780849, 3332740144, 899835584, 1951317047, 4236429990, 3767586992, 866637845, 4043610186, 1106041591, 2144161806, 395441711, 1984812685, 1139781709, 3433712980, 3835036895, 2664543715, 1282050075, 3240894392, 1181045119, 2640243204, 25965917, 4203181171, 4211818798, 3009879386, 2463879762, 3910161971, 1842759443, 2597806476, 933301370, 1509430414, 3943906441, 3467192302, 3076639029, 3776767469, 2051518780, 2631065433, 1441952575, 404016761, 1942435775, 1408749034, 1610459739, 3745345300, 2017778566, 3400528769, 3110650942, 941896748, 3265478751, 371049330, 3168937228, 675039627, 4279080257, 967311729, 135050206, 3635733660, 1683407248, 2076935265, 3576870512, 1215061108, 3501741890],
+  Dn = [1347548327, 1400783205, 3273267108, 2520393566, 3409685355, 4045380933, 2880240216, 2471224067, 1428173050, 4138563181, 2441661558, 636813900, 4233094615, 3620022987, 2149987652, 2411029155, 1239331162, 1730525723, 2554718734, 3781033664, 46346101, 310463728, 2743944855, 3328955385, 3875770207, 2501218972, 3955191162, 3667219033, 768917123, 3545789473, 692707433, 1150208456, 1786102409, 2029293177, 1805211710, 3710368113, 3065962831, 401639597, 1724457132, 3028143674, 409198410, 2196052529, 1620529459, 1164071807, 3769721975, 2226875310, 486441376, 2499348523, 1483753576, 428819965, 2274680428, 3075636216, 598438867, 3799141122, 1474502543, 711349675, 129166120, 53458370, 2592523643, 2782082824, 4063242375, 2988687269, 3120694122, 1559041666, 730517276, 2460449204, 4042459122, 2706270690, 3446004468, 3573941694, 533804130, 2328143614, 2637442643, 2695033685, 839224033, 1973745387, 957055980, 2856345839, 106852767, 1371368976, 4181598602, 1033297158, 2933734917, 1179510461, 3046200461, 91341917, 1862534868, 4284502037, 605657339, 2547432937, 3431546947, 2003294622, 3182487618, 2282195339, 954669403, 3682191598, 1201765386, 3917234703, 3388507166, 0, 2198438022, 1211247597, 2887651696, 1315723890, 4227665663, 1443857720, 507358933, 657861945, 1678381017, 560487590, 3516619604, 975451694, 2970356327, 261314535, 3535072918, 2652609425, 1333838021, 2724322336, 1767536459, 370938394, 182621114, 3854606378, 1128014560, 487725847, 185469197, 2918353863, 3106780840, 3356761769, 2237133081, 1286567175, 3152976349, 4255350624, 2683765030, 3160175349, 3309594171, 878443390, 1988838185, 3704300486, 1756818940, 1673061617, 3403100636, 272786309, 1075025698, 545572369, 2105887268, 4174560061, 296679730, 1841768865, 1260232239, 4091327024, 3960309330, 3497509347, 1814803222, 2578018489, 4195456072, 575138148, 3299409036, 446754879, 3629546796, 4011996048, 3347532110, 3252238545, 4270639778, 915985419, 3483825537, 681933534, 651868046, 2755636671, 3828103837, 223377554, 2607439820, 1649704518, 3270937875, 3901806776, 1580087799, 4118987695, 3198115200, 2087309459, 2842678573, 3016697106, 1003007129, 2802849917, 1860738147, 2077965243, 164439672, 4100872472, 32283319, 2827177882, 1709610350, 2125135846, 136428751, 3874428392, 3652904859, 3460984630, 3572145929, 3593056380, 2939266226, 824852259, 818324884, 3224740454, 930369212, 2801566410, 2967507152, 355706840, 1257309336, 4148292826, 243256656, 790073846, 2373340630, 1296297904, 1422699085, 3756299780, 3818836405, 457992840, 3099667487, 2135319889, 77422314, 1560382517, 1945798516, 788204353, 1521706781, 1385356242, 870912086, 325965383, 2358957921, 2050466060, 2388260884, 2313884476, 4006521127, 901210569, 3990953189, 1014646705, 1503449823, 1062597235, 2031621326, 3212035895, 3931371469, 1533017514, 350174575, 2256028891, 2177544179, 1052338372, 741876788, 1606591296, 1914052035, 213705253, 2334669897, 1107234197, 1899603969, 3725069491, 2631447780, 2422494913, 1635502980, 1893020342, 1950903388, 1120974935],
+  Mn = [2807058932, 1699970625, 2764249623, 1586903591, 1808481195, 1173430173, 1487645946, 59984867, 4199882800, 1844882806, 1989249228, 1277555970, 3623636965, 3419915562, 1149249077, 2744104290, 1514790577, 459744698, 244860394, 3235995134, 1963115311, 4027744588, 2544078150, 4190530515, 1608975247, 2627016082, 2062270317, 1507497298, 2200818878, 567498868, 1764313568, 3359936201, 2305455554, 2037970062, 1047239e3, 1910319033, 1337376481, 2904027272, 2892417312, 984907214, 1243112415, 830661914, 861968209, 2135253587, 2011214180, 2927934315, 2686254721, 731183368, 1750626376, 4246310725, 1820824798, 4172763771, 3542330227, 48394827, 2404901663, 2871682645, 671593195, 3254988725, 2073724613, 145085239, 2280796200, 2779915199, 1790575107, 2187128086, 472615631, 3029510009, 4075877127, 3802222185, 4107101658, 3201631749, 1646252340, 4270507174, 1402811438, 1436590835, 3778151818, 3950355702, 3963161475, 4020912224, 2667994737, 273792366, 2331590177, 104699613, 95345982, 3175501286, 2377486676, 1560637892, 3564045318, 369057872, 4213447064, 3919042237, 1137477952, 2658625497, 1119727848, 2340947849, 1530455833, 4007360968, 172466556, 266959938, 516552836, 0, 2256734592, 3980931627, 1890328081, 1917742170, 4294704398, 945164165, 3575528878, 958871085, 3647212047, 2787207260, 1423022939, 775562294, 1739656202, 3876557655, 2530391278, 2443058075, 3310321856, 547512796, 1265195639, 437656594, 3121275539, 719700128, 3762502690, 387781147, 218828297, 3350065803, 2830708150, 2848461854, 428169201, 122466165, 3720081049, 1627235199, 648017665, 4122762354, 1002783846, 2117360635, 695634755, 3336358691, 4234721005, 4049844452, 3704280881, 2232435299, 574624663, 287343814, 612205898, 1039717051, 840019705, 2708326185, 793451934, 821288114, 1391201670, 3822090177, 376187827, 3113855344, 1224348052, 1679968233, 2361698556, 1058709744, 752375421, 2431590963, 1321699145, 3519142200, 2734591178, 188127444, 2177869557, 3727205754, 2384911031, 3215212461, 2648976442, 2450346104, 3432737375, 1180849278, 331544205, 3102249176, 4150144569, 2952102595, 2159976285, 2474404304, 766078933, 313773861, 2570832044, 2108100632, 1668212892, 3145456443, 2013908262, 418672217, 3070356634, 2594734927, 1852171925, 3867060991, 3473416636, 3907448597, 2614737639, 919489135, 164948639, 2094410160, 2997825956, 590424639, 2486224549, 1723872674, 3157750862, 3399941250, 3501252752, 3625268135, 2555048196, 3673637356, 1343127501, 4130281361, 3599595085, 2957853679, 1297403050, 81781910, 3051593425, 2283490410, 532201772, 1367295589, 3926170974, 895287692, 1953757831, 1093597963, 492483431, 3528626907, 1446242576, 1192455638, 1636604631, 209336225, 344873464, 1015671571, 669961897, 3375740769, 3857572124, 2973530695, 3747192018, 1933530610, 3464042516, 935293895, 3454686199, 2858115069, 1863638845, 3683022916, 4085369519, 3292445032, 875313188, 1080017571, 3279033885, 621591778, 1233856572, 2504130317, 24197544, 3017672716, 3835484340, 3247465558, 2220981195, 3060847922, 1551124588, 1463996600],
+  qn = [4104605777, 1097159550, 396673818, 660510266, 2875968315, 2638606623, 4200115116, 3808662347, 821712160, 1986918061, 3430322568, 38544885, 3856137295, 718002117, 893681702, 1654886325, 2975484382, 3122358053, 3926825029, 4274053469, 796197571, 1290801793, 1184342925, 3556361835, 2405426947, 2459735317, 1836772287, 1381620373, 3196267988, 1948373848, 3764988233, 3385345166, 3263785589, 2390325492, 1480485785, 3111247143, 3780097726, 2293045232, 548169417, 3459953789, 3746175075, 439452389, 1362321559, 1400849762, 1685577905, 1806599355, 2174754046, 137073913, 1214797936, 1174215055, 3731654548, 2079897426, 1943217067, 1258480242, 529487843, 1437280870, 3945269170, 3049390895, 3313212038, 923313619, 679998e3, 3215307299, 57326082, 377642221, 3474729866, 2041877159, 133361907, 1776460110, 3673476453, 96392454, 878845905, 2801699524, 777231668, 4082475170, 2330014213, 4142626212, 2213296395, 1626319424, 1906247262, 1846563261, 562755902, 3708173718, 1040559837, 3871163981, 1418573201, 3294430577, 114585348, 1343618912, 2566595609, 3186202582, 1078185097, 3651041127, 3896688048, 2307622919, 425408743, 3371096953, 2081048481, 1108339068, 2216610296, 0, 2156299017, 736970802, 292596766, 1517440620, 251657213, 2235061775, 2933202493, 758720310, 265905162, 1554391400, 1532285339, 908999204, 174567692, 1474760595, 4002861748, 2610011675, 3234156416, 3693126241, 2001430874, 303699484, 2478443234, 2687165888, 585122620, 454499602, 151849742, 2345119218, 3064510765, 514443284, 4044981591, 1963412655, 2581445614, 2137062819, 19308535, 1928707164, 1715193156, 4219352155, 1126790795, 600235211, 3992742070, 3841024952, 836553431, 1669664834, 2535604243, 3323011204, 1243905413, 3141400786, 4180808110, 698445255, 2653899549, 2989552604, 2253581325, 3252932727, 3004591147, 1891211689, 2487810577, 3915653703, 4237083816, 4030667424, 2100090966, 865136418, 1229899655, 953270745, 3399679628, 3557504664, 4118925222, 2061379749, 3079546586, 2915017791, 983426092, 2022837584, 1607244650, 2118541908, 2366882550, 3635996816, 972512814, 3283088770, 1568718495, 3499326569, 3576539503, 621982671, 2895723464, 410887952, 2623762152, 1002142683, 645401037, 1494807662, 2595684844, 1335535747, 2507040230, 4293295786, 3167684641, 367585007, 3885750714, 1865862730, 2668221674, 2960971305, 2763173681, 1059270954, 2777952454, 2724642869, 1320957812, 2194319100, 2429595872, 2815956275, 77089521, 3973773121, 3444575871, 2448830231, 1305906550, 4021308739, 2857194700, 2516901860, 3518358430, 1787304780, 740276417, 1699839814, 1592394909, 2352307457, 2272556026, 188821243, 1729977011, 3687994002, 274084841, 3594982253, 3613494426, 2701949495, 4162096729, 322734571, 2837966542, 1640576439, 484830689, 1202797690, 3537852828, 4067639125, 349075736, 3342319475, 4157467219, 4255800159, 1030690015, 1155237496, 2951971274, 1757691577, 607398968, 2738905026, 499347990, 3794078908, 1011452712, 227885567, 2818666809, 213114376, 3034881240, 1455525988, 3414450555, 850817237, 1817998408, 3092726480],
+  Fn = [0, 235474187, 470948374, 303765277, 941896748, 908933415, 607530554, 708780849, 1883793496, 2118214995, 1817866830, 1649639237, 1215061108, 1181045119, 1417561698, 1517767529, 3767586992, 4003061179, 4236429990, 4069246893, 3635733660, 3602770327, 3299278474, 3400528769, 2430122216, 2664543715, 2362090238, 2193862645, 2835123396, 2801107407, 3035535058, 3135740889, 3678124923, 3576870512, 3341394285, 3374361702, 3810496343, 3977675356, 4279080257, 4043610186, 2876494627, 2776292904, 3076639029, 3110650942, 2472011535, 2640243204, 2403728665, 2169303058, 1001089995, 899835584, 666464733, 699432150, 59727847, 226906860, 530400753, 294930682, 1273168787, 1172967064, 1475418501, 1509430414, 1942435775, 2110667444, 1876241833, 1641816226, 2910219766, 2743034109, 2976151520, 3211623147, 2505202138, 2606453969, 2302690252, 2269728455, 3711829422, 3543599269, 3240894392, 3475313331, 3843699074, 3943906441, 4178062228, 4144047775, 1306967366, 1139781709, 1374988112, 1610459739, 1975683434, 2076935265, 1775276924, 1742315127, 1034867998, 866637845, 566021896, 800440835, 92987698, 193195065, 429456164, 395441711, 1984812685, 2017778566, 1784663195, 1683407248, 1315562145, 1080094634, 1383856311, 1551037884, 101039829, 135050206, 437757123, 337553864, 1042385657, 807962610, 573804783, 742039012, 2531067453, 2564033334, 2328828971, 2227573024, 2935566865, 2700099354, 3001755655, 3168937228, 3868552805, 3902563182, 4203181171, 4102977912, 3736164937, 3501741890, 3265478751, 3433712980, 1106041591, 1340463100, 1576976609, 1408749034, 2043211483, 2009195472, 1708848333, 1809054150, 832877231, 1068351396, 766945465, 599762354, 159417987, 126454664, 361929877, 463180190, 2709260871, 2943682380, 3178106961, 3009879386, 2572697195, 2538681184, 2236228733, 2336434550, 3509871135, 3745345300, 3441850377, 3274667266, 3910161971, 3877198648, 4110568485, 4211818798, 2597806476, 2497604743, 2261089178, 2295101073, 2733856160, 2902087851, 3202437046, 2968011453, 3936291284, 3835036895, 4136440770, 4169408201, 3535486456, 3702665459, 3467192302, 3231722213, 2051518780, 1951317047, 1716890410, 1750902305, 1113818384, 1282050075, 1584504582, 1350078989, 168810852, 67556463, 371049330, 404016761, 841739592, 1008918595, 775550814, 540080725, 3969562369, 3801332234, 4035489047, 4269907996, 3569255213, 3669462566, 3366754619, 3332740144, 2631065433, 2463879762, 2160117071, 2395588676, 2767645557, 2868897406, 3102011747, 3069049960, 202008497, 33778362, 270040487, 504459436, 875451293, 975658646, 675039627, 641025152, 2084704233, 1917518562, 1615861247, 1851332852, 1147550661, 1248802510, 1484005843, 1451044056, 933301370, 967311729, 733156972, 632953703, 260388950, 25965917, 328671808, 496906059, 1206477858, 1239443753, 1543208500, 1441952575, 2144161806, 1908694277, 1675577880, 1842759443, 3610369226, 3644379585, 3408119516, 3307916247, 4011190502, 3776767469, 4077384432, 4245618683, 2809771154, 2842737049, 3144396420, 3043140495, 2673705150, 2438237621, 2203032232, 2370213795],
+  Kn = [0, 185469197, 370938394, 487725847, 741876788, 657861945, 975451694, 824852259, 1483753576, 1400783205, 1315723890, 1164071807, 1950903388, 2135319889, 1649704518, 1767536459, 2967507152, 3152976349, 2801566410, 2918353863, 2631447780, 2547432937, 2328143614, 2177544179, 3901806776, 3818836405, 4270639778, 4118987695, 3299409036, 3483825537, 3535072918, 3652904859, 2077965243, 1893020342, 1841768865, 1724457132, 1474502543, 1559041666, 1107234197, 1257309336, 598438867, 681933534, 901210569, 1052338372, 261314535, 77422314, 428819965, 310463728, 3409685355, 3224740454, 3710368113, 3593056380, 3875770207, 3960309330, 4045380933, 4195456072, 2471224067, 2554718734, 2237133081, 2388260884, 3212035895, 3028143674, 2842678573, 2724322336, 4138563181, 4255350624, 3769721975, 3955191162, 3667219033, 3516619604, 3431546947, 3347532110, 2933734917, 2782082824, 3099667487, 3016697106, 2196052529, 2313884476, 2499348523, 2683765030, 1179510461, 1296297904, 1347548327, 1533017514, 1786102409, 1635502980, 2087309459, 2003294622, 507358933, 355706840, 136428751, 53458370, 839224033, 957055980, 605657339, 790073846, 2373340630, 2256028891, 2607439820, 2422494913, 2706270690, 2856345839, 3075636216, 3160175349, 3573941694, 3725069491, 3273267108, 3356761769, 4181598602, 4063242375, 4011996048, 3828103837, 1033297158, 915985419, 730517276, 545572369, 296679730, 446754879, 129166120, 213705253, 1709610350, 1860738147, 1945798516, 2029293177, 1239331162, 1120974935, 1606591296, 1422699085, 4148292826, 4233094615, 3781033664, 3931371469, 3682191598, 3497509347, 3446004468, 3328955385, 2939266226, 2755636671, 3106780840, 2988687269, 2198438022, 2282195339, 2501218972, 2652609425, 1201765386, 1286567175, 1371368976, 1521706781, 1805211710, 1620529459, 2105887268, 1988838185, 533804130, 350174575, 164439672, 46346101, 870912086, 954669403, 636813900, 788204353, 2358957921, 2274680428, 2592523643, 2441661558, 2695033685, 2880240216, 3065962831, 3182487618, 3572145929, 3756299780, 3270937875, 3388507166, 4174560061, 4091327024, 4006521127, 3854606378, 1014646705, 930369212, 711349675, 560487590, 272786309, 457992840, 106852767, 223377554, 1678381017, 1862534868, 1914052035, 2031621326, 1211247597, 1128014560, 1580087799, 1428173050, 32283319, 182621114, 401639597, 486441376, 768917123, 651868046, 1003007129, 818324884, 1503449823, 1385356242, 1333838021, 1150208456, 1973745387, 2125135846, 1673061617, 1756818940, 2970356327, 3120694122, 2802849917, 2887651696, 2637442643, 2520393566, 2334669897, 2149987652, 3917234703, 3799141122, 4284502037, 4100872472, 3309594171, 3460984630, 3545789473, 3629546796, 2050466060, 1899603969, 1814803222, 1730525723, 1443857720, 1560382517, 1075025698, 1260232239, 575138148, 692707433, 878443390, 1062597235, 243256656, 91341917, 409198410, 325965383, 3403100636, 3252238545, 3704300486, 3620022987, 3874428392, 3990953189, 4042459122, 4227665663, 2460449204, 2578018489, 2226875310, 2411029155, 3198115200, 3046200461, 2827177882, 2743944855],
+  jn = [0, 218828297, 437656594, 387781147, 875313188, 958871085, 775562294, 590424639, 1750626376, 1699970625, 1917742170, 2135253587, 1551124588, 1367295589, 1180849278, 1265195639, 3501252752, 3720081049, 3399941250, 3350065803, 3835484340, 3919042237, 4270507174, 4085369519, 3102249176, 3051593425, 2734591178, 2952102595, 2361698556, 2177869557, 2530391278, 2614737639, 3145456443, 3060847922, 2708326185, 2892417312, 2404901663, 2187128086, 2504130317, 2555048196, 3542330227, 3727205754, 3375740769, 3292445032, 3876557655, 3926170974, 4246310725, 4027744588, 1808481195, 1723872674, 1910319033, 2094410160, 1608975247, 1391201670, 1173430173, 1224348052, 59984867, 244860394, 428169201, 344873464, 935293895, 984907214, 766078933, 547512796, 1844882806, 1627235199, 2011214180, 2062270317, 1507497298, 1423022939, 1137477952, 1321699145, 95345982, 145085239, 532201772, 313773861, 830661914, 1015671571, 731183368, 648017665, 3175501286, 2957853679, 2807058932, 2858115069, 2305455554, 2220981195, 2474404304, 2658625497, 3575528878, 3625268135, 3473416636, 3254988725, 3778151818, 3963161475, 4213447064, 4130281361, 3599595085, 3683022916, 3432737375, 3247465558, 3802222185, 4020912224, 4172763771, 4122762354, 3201631749, 3017672716, 2764249623, 2848461854, 2331590177, 2280796200, 2431590963, 2648976442, 104699613, 188127444, 472615631, 287343814, 840019705, 1058709744, 671593195, 621591778, 1852171925, 1668212892, 1953757831, 2037970062, 1514790577, 1463996600, 1080017571, 1297403050, 3673637356, 3623636965, 3235995134, 3454686199, 4007360968, 3822090177, 4107101658, 4190530515, 2997825956, 3215212461, 2830708150, 2779915199, 2256734592, 2340947849, 2627016082, 2443058075, 172466556, 122466165, 273792366, 492483431, 1047239e3, 861968209, 612205898, 695634755, 1646252340, 1863638845, 2013908262, 1963115311, 1446242576, 1530455833, 1277555970, 1093597963, 1636604631, 1820824798, 2073724613, 1989249228, 1436590835, 1487645946, 1337376481, 1119727848, 164948639, 81781910, 331544205, 516552836, 1039717051, 821288114, 669961897, 719700128, 2973530695, 3157750862, 2871682645, 2787207260, 2232435299, 2283490410, 2667994737, 2450346104, 3647212047, 3564045318, 3279033885, 3464042516, 3980931627, 3762502690, 4150144569, 4199882800, 3070356634, 3121275539, 2904027272, 2686254721, 2200818878, 2384911031, 2570832044, 2486224549, 3747192018, 3528626907, 3310321856, 3359936201, 3950355702, 3867060991, 4049844452, 4234721005, 1739656202, 1790575107, 2108100632, 1890328081, 1402811438, 1586903591, 1233856572, 1149249077, 266959938, 48394827, 369057872, 418672217, 1002783846, 919489135, 567498868, 752375421, 209336225, 24197544, 376187827, 459744698, 945164165, 895287692, 574624663, 793451934, 1679968233, 1764313568, 2117360635, 1933530610, 1343127501, 1560637892, 1243112415, 1192455638, 3704280881, 3519142200, 3336358691, 3419915562, 3907448597, 3857572124, 4075877127, 4294704398, 3029510009, 3113855344, 2927934315, 2744104290, 2159976285, 2377486676, 2594734927, 2544078150],
+  $n = [0, 151849742, 303699484, 454499602, 607398968, 758720310, 908999204, 1059270954, 1214797936, 1097159550, 1517440620, 1400849762, 1817998408, 1699839814, 2118541908, 2001430874, 2429595872, 2581445614, 2194319100, 2345119218, 3034881240, 3186202582, 2801699524, 2951971274, 3635996816, 3518358430, 3399679628, 3283088770, 4237083816, 4118925222, 4002861748, 3885750714, 1002142683, 850817237, 698445255, 548169417, 529487843, 377642221, 227885567, 77089521, 1943217067, 2061379749, 1640576439, 1757691577, 1474760595, 1592394909, 1174215055, 1290801793, 2875968315, 2724642869, 3111247143, 2960971305, 2405426947, 2253581325, 2638606623, 2487810577, 3808662347, 3926825029, 4044981591, 4162096729, 3342319475, 3459953789, 3576539503, 3693126241, 1986918061, 2137062819, 1685577905, 1836772287, 1381620373, 1532285339, 1078185097, 1229899655, 1040559837, 923313619, 740276417, 621982671, 439452389, 322734571, 137073913, 19308535, 3871163981, 4021308739, 4104605777, 4255800159, 3263785589, 3414450555, 3499326569, 3651041127, 2933202493, 2815956275, 3167684641, 3049390895, 2330014213, 2213296395, 2566595609, 2448830231, 1305906550, 1155237496, 1607244650, 1455525988, 1776460110, 1626319424, 2079897426, 1928707164, 96392454, 213114376, 396673818, 514443284, 562755902, 679998e3, 865136418, 983426092, 3708173718, 3557504664, 3474729866, 3323011204, 4180808110, 4030667424, 3945269170, 3794078908, 2507040230, 2623762152, 2272556026, 2390325492, 2975484382, 3092726480, 2738905026, 2857194700, 3973773121, 3856137295, 4274053469, 4157467219, 3371096953, 3252932727, 3673476453, 3556361835, 2763173681, 2915017791, 3064510765, 3215307299, 2156299017, 2307622919, 2459735317, 2610011675, 2081048481, 1963412655, 1846563261, 1729977011, 1480485785, 1362321559, 1243905413, 1126790795, 878845905, 1030690015, 645401037, 796197571, 274084841, 425408743, 38544885, 188821243, 3613494426, 3731654548, 3313212038, 3430322568, 4082475170, 4200115116, 3780097726, 3896688048, 2668221674, 2516901860, 2366882550, 2216610296, 3141400786, 2989552604, 2837966542, 2687165888, 1202797690, 1320957812, 1437280870, 1554391400, 1669664834, 1787304780, 1906247262, 2022837584, 265905162, 114585348, 499347990, 349075736, 736970802, 585122620, 972512814, 821712160, 2595684844, 2478443234, 2293045232, 2174754046, 3196267988, 3079546586, 2895723464, 2777952454, 3537852828, 3687994002, 3234156416, 3385345166, 4142626212, 4293295786, 3841024952, 3992742070, 174567692, 57326082, 410887952, 292596766, 777231668, 660510266, 1011452712, 893681702, 1108339068, 1258480242, 1343618912, 1494807662, 1715193156, 1865862730, 1948373848, 2100090966, 2701949495, 2818666809, 3004591147, 3122358053, 2235061775, 2352307457, 2535604243, 2653899549, 3915653703, 3764988233, 4219352155, 4067639125, 3444575871, 3294430577, 3746175075, 3594982253, 836553431, 953270745, 600235211, 718002117, 367585007, 484830689, 133361907, 251657213, 2041877159, 1891211689, 1806599355, 1654886325, 1568718495, 1418573201, 1335535747, 1184342925];
+function Bn(e) {
   for (var t = [], n = 0; n < e.length; n += 4) {
     t.push(e[n] << 24 | e[n + 1] << 16 | e[n + 2] << 8 | e[n + 3]);
   }
   return t;
 }
-var Cn = /*#__PURE__*/function () {
-  function Cn(e) {
-    (0, _classCallCheck2.default)(this, Cn);
-    if (!(this instanceof Cn)) throw Error("AES must be instanitated with `new`");
+var Wn = /*#__PURE__*/function () {
+  function Wn(e) {
+    (0, _classCallCheck2.default)(this, Wn);
+    if (!(this instanceof Wn)) throw Error("AES must be instanitated with `new`");
     Object.defineProperty(this, "key", {
-      value: on(e, !0)
+      value: In(e, !0)
     }), this._prepare();
   }
-  (0, _createClass2.default)(Cn, [{
+  (0, _createClass2.default)(Wn, [{
     key: "_prepare",
     value: function _prepare() {
-      var e = dn[this.key.length];
+      var e = Cn[this.key.length];
       if (null == e) throw new Error("invalid key size (must be 16, 24 or 32 bytes)");
       this._Ke = [], this._Kd = [];
       for (var t = 0; t <= e; t++) {
@@ -6522,29 +6621,29 @@ var Cn = /*#__PURE__*/function () {
       var n,
         s = 4 * (e + 1),
         r = this.key.length / 4,
-        i = Pn(this.key);
+        i = Bn(this.key);
       for (t = 0; t < r; t++) {
         n = t >> 2, this._Ke[n][t % 4] = i[t], this._Kd[e - n][t % 4] = i[t];
       }
       for (var o, a = 0, c = r; c < s;) {
-        if (o = i[r - 1], i[0] ^= fn[o >> 16 & 255] << 24 ^ fn[o >> 8 & 255] << 16 ^ fn[255 & o] << 8 ^ fn[o >> 24 & 255] ^ pn[a] << 24, a += 1, 8 != r) for (t = 1; t < r; t++) {
+        if (o = i[r - 1], i[0] ^= On[o >> 16 & 255] << 24 ^ On[o >> 8 & 255] << 16 ^ On[255 & o] << 8 ^ On[o >> 24 & 255] ^ Pn[a] << 24, a += 1, 8 != r) for (t = 1; t < r; t++) {
           i[t] ^= i[t - 1];
         } else {
           for (t = 1; t < r / 2; t++) {
             i[t] ^= i[t - 1];
           }
-          o = i[r / 2 - 1], i[r / 2] ^= fn[255 & o] ^ fn[o >> 8 & 255] << 8 ^ fn[o >> 16 & 255] << 16 ^ fn[o >> 24 & 255] << 24;
+          o = i[r / 2 - 1], i[r / 2] ^= On[255 & o] ^ On[o >> 8 & 255] << 8 ^ On[o >> 16 & 255] << 16 ^ On[o >> 24 & 255] << 24;
           for (t = r / 2 + 1; t < r; t++) {
             i[t] ^= i[t - 1];
           }
         }
         for (t = 0; t < r && c < s;) {
-          u = c >> 2, h = c % 4, this._Ke[u][h] = i[t], this._Kd[e - u][h] = i[t++], c++;
+          u = c >> 2, l = c % 4, this._Ke[u][l] = i[t], this._Kd[e - u][l] = i[t++], c++;
         }
       }
       for (var u = 1; u < e; u++) {
-        for (var h = 0; h < 4; h++) {
-          o = this._Kd[u][h], this._Kd[u][h] = bn[o >> 24 & 255] ^ En[o >> 16 & 255] ^ kn[o >> 8 & 255] ^ An[255 & o];
+        for (var l = 0; l < 4; l++) {
+          o = this._Kd[u][l], this._Kd[u][l] = Fn[o >> 24 & 255] ^ Kn[o >> 16 & 255] ^ jn[o >> 8 & 255] ^ $n[255 & o];
         }
       }
     }
@@ -6552,19 +6651,19 @@ var Cn = /*#__PURE__*/function () {
     key: "encrypt",
     value: function encrypt(e) {
       if (16 != e.length) throw new Error("invalid plaintext size (must be 16 bytes)");
-      for (var t = this._Ke.length - 1, n = [0, 0, 0, 0], s = Pn(e), r = 0; r < 4; r++) {
+      for (var t = this._Ke.length - 1, n = [0, 0, 0, 0], s = Bn(e), r = 0; r < 4; r++) {
         s[r] ^= this._Ke[0][r];
       }
       for (var i = 1; i < t; i++) {
         for (r = 0; r < 4; r++) {
-          n[r] = mn[s[r] >> 24 & 255] ^ yn[s[(r + 1) % 4] >> 16 & 255] ^ _n[s[(r + 2) % 4] >> 8 & 255] ^ wn[255 & s[(r + 3) % 4]] ^ this._Ke[i][r];
+          n[r] = xn[s[r] >> 24 & 255] ^ Ln[s[(r + 1) % 4] >> 16 & 255] ^ Un[s[(r + 2) % 4] >> 8 & 255] ^ Rn[255 & s[(r + 3) % 4]] ^ this._Ke[i][r];
         }
         s = n.slice();
       }
       var o,
-        a = an(16);
+        a = Sn(16);
       for (r = 0; r < 4; r++) {
-        o = this._Ke[t][r], a[4 * r] = 255 & (fn[s[r] >> 24 & 255] ^ o >> 24), a[4 * r + 1] = 255 & (fn[s[(r + 1) % 4] >> 16 & 255] ^ o >> 16), a[4 * r + 2] = 255 & (fn[s[(r + 2) % 4] >> 8 & 255] ^ o >> 8), a[4 * r + 3] = 255 & (fn[255 & s[(r + 3) % 4]] ^ o);
+        o = this._Ke[t][r], a[4 * r] = 255 & (On[s[r] >> 24 & 255] ^ o >> 24), a[4 * r + 1] = 255 & (On[s[(r + 1) % 4] >> 16 & 255] ^ o >> 16), a[4 * r + 2] = 255 & (On[s[(r + 2) % 4] >> 8 & 255] ^ o >> 8), a[4 * r + 3] = 255 & (On[255 & s[(r + 3) % 4]] ^ o);
       }
       return a;
     }
@@ -6572,109 +6671,109 @@ var Cn = /*#__PURE__*/function () {
     key: "decrypt",
     value: function decrypt(e) {
       if (16 != e.length) throw new Error("invalid ciphertext size (must be 16 bytes)");
-      for (var t = this._Kd.length - 1, n = [0, 0, 0, 0], s = Pn(e), r = 0; r < 4; r++) {
+      for (var t = this._Kd.length - 1, n = [0, 0, 0, 0], s = Bn(e), r = 0; r < 4; r++) {
         s[r] ^= this._Kd[0][r];
       }
       for (var i = 1; i < t; i++) {
         for (r = 0; r < 4; r++) {
-          n[r] = In[s[r] >> 24 & 255] ^ vn[s[(r + 3) % 4] >> 16 & 255] ^ Sn[s[(r + 2) % 4] >> 8 & 255] ^ Tn[255 & s[(r + 1) % 4]] ^ this._Kd[i][r];
+          n[r] = Nn[s[r] >> 24 & 255] ^ Dn[s[(r + 3) % 4] >> 16 & 255] ^ Mn[s[(r + 2) % 4] >> 8 & 255] ^ qn[255 & s[(r + 1) % 4]] ^ this._Kd[i][r];
         }
         s = n.slice();
       }
       var o,
-        a = an(16);
+        a = Sn(16);
       for (r = 0; r < 4; r++) {
-        o = this._Kd[t][r], a[4 * r] = 255 & (gn[s[r] >> 24 & 255] ^ o >> 24), a[4 * r + 1] = 255 & (gn[s[(r + 3) % 4] >> 16 & 255] ^ o >> 16), a[4 * r + 2] = 255 & (gn[s[(r + 2) % 4] >> 8 & 255] ^ o >> 8), a[4 * r + 3] = 255 & (gn[255 & s[(r + 1) % 4]] ^ o);
+        o = this._Kd[t][r], a[4 * r] = 255 & (En[s[r] >> 24 & 255] ^ o >> 24), a[4 * r + 1] = 255 & (En[s[(r + 3) % 4] >> 16 & 255] ^ o >> 16), a[4 * r + 2] = 255 & (En[s[(r + 2) % 4] >> 8 & 255] ^ o >> 8), a[4 * r + 3] = 255 & (En[255 & s[(r + 1) % 4]] ^ o);
       }
       return a;
     }
   }]);
-  return Cn;
+  return Wn;
 }();
-var On = /*#__PURE__*/function () {
-  function On(e) {
-    (0, _classCallCheck2.default)(this, On);
-    if (!(this instanceof On)) throw Error("AES must be instanitated with `new`");
-    this.description = "Electronic Code Block", this.name = "ecb", this._aes = new Cn(e);
+var Hn = /*#__PURE__*/function () {
+  function Hn(e) {
+    (0, _classCallCheck2.default)(this, Hn);
+    if (!(this instanceof Hn)) throw Error("AES must be instanitated with `new`");
+    this.description = "Electronic Code Block", this.name = "ecb", this._aes = new Wn(e);
   }
-  (0, _createClass2.default)(On, [{
+  (0, _createClass2.default)(Hn, [{
     key: "encrypt",
     value: function encrypt(e) {
-      if ((e = on(e)).length % 16 != 0) throw new Error("invalid plaintext size (must be multiple of 16 bytes)");
-      for (var t = an(e.length), n = an(16), s = 0; s < e.length; s += 16) {
-        cn(e, n, 0, s, s + 16), cn(n = this._aes.encrypt(n), t, s);
+      if ((e = In(e)).length % 16 != 0) throw new Error("invalid plaintext size (must be multiple of 16 bytes)");
+      for (var t = Sn(e.length), n = Sn(16), s = 0; s < e.length; s += 16) {
+        bn(e, n, 0, s, s + 16), bn(n = this._aes.encrypt(n), t, s);
       }
       return t;
     }
   }, {
     key: "decrypt",
     value: function decrypt(e) {
-      if ((e = on(e)).length % 16 != 0) throw new Error("invalid ciphertext size (must be multiple of 16 bytes)");
-      for (var t = an(e.length), n = an(16), s = 0; s < e.length; s += 16) {
-        cn(e, n, 0, s, s + 16), cn(n = this._aes.decrypt(n), t, s);
+      if ((e = In(e)).length % 16 != 0) throw new Error("invalid ciphertext size (must be multiple of 16 bytes)");
+      for (var t = Sn(e.length), n = Sn(16), s = 0; s < e.length; s += 16) {
+        bn(e, n, 0, s, s + 16), bn(n = this._aes.decrypt(n), t, s);
       }
       return t;
     }
   }]);
-  return On;
+  return Hn;
 }();
-var xn = /*#__PURE__*/function () {
-  function xn(e, t) {
-    (0, _classCallCheck2.default)(this, xn);
-    if (!(this instanceof xn)) throw Error("AES must be instanitated with `new`");
+var Jn = /*#__PURE__*/function () {
+  function Jn(e, t) {
+    (0, _classCallCheck2.default)(this, Jn);
+    if (!(this instanceof Jn)) throw Error("AES must be instanitated with `new`");
     if (this.description = "Cipher Block Chaining", this.name = "cbc", t) {
       if (16 != t.length) throw new Error("invalid initialation vector size (must be 16 bytes)");
-    } else t = an(16);
-    this._lastCipherblock = on(t, !0), this._aes = new Cn(e);
+    } else t = Sn(16);
+    this._lastCipherblock = In(t, !0), this._aes = new Wn(e);
   }
-  (0, _createClass2.default)(xn, [{
+  (0, _createClass2.default)(Jn, [{
     key: "encrypt",
     value: function encrypt(e) {
-      if ((e = on(e)).length % 16 != 0) throw new Error("invalid plaintext size (must be multiple of 16 bytes)");
-      for (var t = an(e.length), n = an(16), s = 0; s < e.length; s += 16) {
-        cn(e, n, 0, s, s + 16);
+      if ((e = In(e)).length % 16 != 0) throw new Error("invalid plaintext size (must be multiple of 16 bytes)");
+      for (var t = Sn(e.length), n = Sn(16), s = 0; s < e.length; s += 16) {
+        bn(e, n, 0, s, s + 16);
         for (var r = 0; r < 16; r++) {
           n[r] ^= this._lastCipherblock[r];
         }
-        this._lastCipherblock = this._aes.encrypt(n), cn(this._lastCipherblock, t, s);
+        this._lastCipherblock = this._aes.encrypt(n), bn(this._lastCipherblock, t, s);
       }
       return t;
     }
   }, {
     key: "decrypt",
     value: function decrypt(e) {
-      if ((e = on(e)).length % 16 != 0) throw new Error("invalid ciphertext size (must be multiple of 16 bytes)");
-      for (var t = an(e.length), n = an(16), s = 0; s < e.length; s += 16) {
-        cn(e, n, 0, s, s + 16), n = this._aes.decrypt(n);
+      if ((e = In(e)).length % 16 != 0) throw new Error("invalid ciphertext size (must be multiple of 16 bytes)");
+      for (var t = Sn(e.length), n = Sn(16), s = 0; s < e.length; s += 16) {
+        bn(e, n, 0, s, s + 16), n = this._aes.decrypt(n);
         for (var r = 0; r < 16; r++) {
           t[s + r] = n[r] ^ this._lastCipherblock[r];
         }
-        cn(e, this._lastCipherblock, 0, s, s + 16);
+        bn(e, this._lastCipherblock, 0, s, s + 16);
       }
       return t;
     }
   }]);
-  return xn;
+  return Jn;
 }();
-var Nn = /*#__PURE__*/function () {
-  function Nn(e, t, n) {
-    (0, _classCallCheck2.default)(this, Nn);
-    if (!(this instanceof Nn)) throw Error("AES must be instanitated with `new`");
+var zn = /*#__PURE__*/function () {
+  function zn(e, t, n) {
+    (0, _classCallCheck2.default)(this, zn);
+    if (!(this instanceof zn)) throw Error("AES must be instanitated with `new`");
     if (this.description = "Cipher Feedback", this.name = "cfb", t) {
       if (16 != t.length) throw new Error("invalid initialation vector size (must be 16 size)");
-    } else t = an(16);
-    n || (n = 1), this.segmentSize = n, this._shiftRegister = on(t, !0), this._aes = new Cn(e);
+    } else t = Sn(16);
+    n || (n = 1), this.segmentSize = n, this._shiftRegister = In(t, !0), this._aes = new Wn(e);
   }
-  (0, _createClass2.default)(Nn, [{
+  (0, _createClass2.default)(zn, [{
     key: "encrypt",
     value: function encrypt(e) {
       if (e.length % this.segmentSize != 0) throw new Error("invalid plaintext size (must be segmentSize bytes)");
-      for (var t, n = on(e, !0), s = 0; s < n.length; s += this.segmentSize) {
+      for (var t, n = In(e, !0), s = 0; s < n.length; s += this.segmentSize) {
         t = this._aes.encrypt(this._shiftRegister);
         for (var r = 0; r < this.segmentSize; r++) {
           n[s + r] ^= t[r];
         }
-        cn(this._shiftRegister, this._shiftRegister, 0, this.segmentSize), cn(n, this._shiftRegister, 16 - this.segmentSize, s, s + this.segmentSize);
+        bn(this._shiftRegister, this._shiftRegister, 0, this.segmentSize), bn(n, this._shiftRegister, 16 - this.segmentSize, s, s + this.segmentSize);
       }
       return n;
     }
@@ -6682,31 +6781,31 @@ var Nn = /*#__PURE__*/function () {
     key: "decrypt",
     value: function decrypt(e) {
       if (e.length % this.segmentSize != 0) throw new Error("invalid ciphertext size (must be segmentSize bytes)");
-      for (var t, n = on(e, !0), s = 0; s < n.length; s += this.segmentSize) {
+      for (var t, n = In(e, !0), s = 0; s < n.length; s += this.segmentSize) {
         t = this._aes.encrypt(this._shiftRegister);
         for (var r = 0; r < this.segmentSize; r++) {
           n[s + r] ^= t[r];
         }
-        cn(this._shiftRegister, this._shiftRegister, 0, this.segmentSize), cn(e, this._shiftRegister, 16 - this.segmentSize, s, s + this.segmentSize);
+        bn(this._shiftRegister, this._shiftRegister, 0, this.segmentSize), bn(e, this._shiftRegister, 16 - this.segmentSize, s, s + this.segmentSize);
       }
       return n;
     }
   }]);
-  return Nn;
+  return zn;
 }();
-var Rn = /*#__PURE__*/function () {
-  function Rn(e, t) {
-    (0, _classCallCheck2.default)(this, Rn);
-    if (!(this instanceof Rn)) throw Error("AES must be instanitated with `new`");
+var Vn = /*#__PURE__*/function () {
+  function Vn(e, t) {
+    (0, _classCallCheck2.default)(this, Vn);
+    if (!(this instanceof Vn)) throw Error("AES must be instanitated with `new`");
     if (this.description = "Output Feedback", this.name = "ofb", t) {
       if (16 != t.length) throw new Error("invalid initialation vector size (must be 16 bytes)");
-    } else t = an(16);
-    this._lastPrecipher = on(t, !0), this._lastPrecipherIndex = 16, this._aes = new Cn(e);
+    } else t = Sn(16);
+    this._lastPrecipher = In(t, !0), this._lastPrecipherIndex = 16, this._aes = new Wn(e);
   }
-  (0, _createClass2.default)(Rn, [{
+  (0, _createClass2.default)(Vn, [{
     key: "encrypt",
     value: function encrypt(e) {
-      for (var t = on(e, !0), n = 0; n < t.length; n++) {
+      for (var t = In(e, !0), n = 0; n < t.length; n++) {
         16 === this._lastPrecipherIndex && (this._lastPrecipher = this._aes.encrypt(this._lastPrecipher), this._lastPrecipherIndex = 0), t[n] ^= this._lastPrecipher[this._lastPrecipherIndex++];
       }
       return t;
@@ -6717,15 +6816,15 @@ var Rn = /*#__PURE__*/function () {
       return this.encrypt(e);
     }
   }]);
-  return Rn;
+  return Vn;
 }();
-var Ln = /*#__PURE__*/function () {
-  function Ln(e) {
-    (0, _classCallCheck2.default)(this, Ln);
-    if (!(this instanceof Ln)) throw Error("Counter must be instanitated with `new`");
-    0 === e || e || (e = 1), "number" == typeof e ? (this._counter = an(16), this.setValue(e)) : this.setBytes(e);
+var Gn = /*#__PURE__*/function () {
+  function Gn(e) {
+    (0, _classCallCheck2.default)(this, Gn);
+    if (!(this instanceof Gn)) throw Error("Counter must be instanitated with `new`");
+    0 === e || e || (e = 1), "number" == typeof e ? (this._counter = Sn(16), this.setValue(e)) : this.setBytes(e);
   }
-  (0, _createClass2.default)(Ln, [{
+  (0, _createClass2.default)(Gn, [{
     key: "setValue",
     value: function setValue(e) {
       if ("number" != typeof e || parseInt(e) != e) throw new Error("invalid counter value (must be an integer)");
@@ -6737,7 +6836,7 @@ var Ln = /*#__PURE__*/function () {
   }, {
     key: "setBytes",
     value: function setBytes(e) {
-      if (16 != (e = on(e, !0)).length) throw new Error("invalid counter bytes size (must be 16 bytes)");
+      if (16 != (e = In(e, !0)).length) throw new Error("invalid counter bytes size (must be 16 bytes)");
       this._counter = e;
     }
   }, {
@@ -6752,18 +6851,18 @@ var Ln = /*#__PURE__*/function () {
       }
     }
   }]);
-  return Ln;
+  return Gn;
 }();
-var Un = /*#__PURE__*/function () {
-  function Un(e, t) {
-    (0, _classCallCheck2.default)(this, Un);
-    if (!(this instanceof Un)) throw Error("AES must be instanitated with `new`");
-    this.description = "Counter", this.name = "ctr", t instanceof Ln || (t = new Ln(t)), this._counter = t, this._remainingCounter = null, this._remainingCounterIndex = 16, this._aes = new Cn(e);
+var Qn = /*#__PURE__*/function () {
+  function Qn(e, t) {
+    (0, _classCallCheck2.default)(this, Qn);
+    if (!(this instanceof Qn)) throw Error("AES must be instanitated with `new`");
+    this.description = "Counter", this.name = "ctr", t instanceof Gn || (t = new Gn(t)), this._counter = t, this._remainingCounter = null, this._remainingCounterIndex = 16, this._aes = new Wn(e);
   }
-  (0, _createClass2.default)(Un, [{
+  (0, _createClass2.default)(Qn, [{
     key: "encrypt",
     value: function encrypt(e) {
-      for (var t = on(e, !0), n = 0; n < t.length; n++) {
+      for (var t = In(e, !0), n = 0; n < t.length; n++) {
         16 === this._remainingCounterIndex && (this._remainingCounter = this._aes.encrypt(this._counter._counter), this._remainingCounterIndex = 0, this._counter.increment()), t[n] ^= this._remainingCounter[this._remainingCounterIndex++];
       }
       return t;
@@ -6774,73 +6873,73 @@ var Un = /*#__PURE__*/function () {
       return this.encrypt(e);
     }
   }]);
-  return Un;
+  return Qn;
 }();
-var Dn = {
-  AES: Cn,
-  Counter: Ln,
+var Yn = {
+  AES: Wn,
+  Counter: Gn,
   ModeOfOperation: {
-    ecb: On,
-    cbc: xn,
-    cfb: Nn,
-    ofb: Rn,
-    ctr: Un
+    ecb: Hn,
+    cbc: Jn,
+    cfb: zn,
+    ofb: Vn,
+    ctr: Qn
   },
   utils: {
-    hex: ln,
-    utf8: hn
+    hex: Tn,
+    utf8: An
   },
   padding: {
     pkcs7: {
       pad: function pad(e) {
-        var t = 16 - (e = on(e, !0)).length % 16,
-          n = an(e.length + t);
-        cn(e, n);
+        var t = 16 - (e = In(e, !0)).length % 16,
+          n = Sn(e.length + t);
+        bn(e, n);
         for (var s = e.length; s < n.length; s++) {
           n[s] = t;
         }
         return n;
       },
       strip: function strip(e) {
-        if ((e = on(e, !0)).length < 16) throw new Error("PKCS#7 invalid length");
+        if ((e = In(e, !0)).length < 16) throw new Error("PKCS#7 invalid length");
         var t = e[e.length - 1];
         if (t > 16) throw new Error("PKCS#7 padding byte out of range");
         for (var n = e.length - t, s = 0; s < t; s++) {
           if (e[n + s] !== t) throw new Error("PKCS#7 invalid padding byte");
         }
-        var r = an(n);
-        return cn(e, r, 0, 0, n), r;
+        var r = Sn(n);
+        return bn(e, r, 0, 0, n), r;
       }
     }
   },
   _arrayTest: {
-    coerceArray: on,
-    createArray: an,
-    copyArray: cn
+    coerceArray: In,
+    createArray: Sn,
+    copyArray: bn
   }
 };
-function Mn(e, t, n) {
+function Xn(e, t, n) {
   var s = new Uint8Array(uni.base64ToArrayBuffer(t)),
-    r = Dn.utils.utf8.toBytes(n),
-    i = Dn.utils.utf8.toBytes(e),
-    o = new Dn.ModeOfOperation.cbc(s, r),
-    a = Dn.padding.pkcs7.pad(i),
+    r = Yn.utils.utf8.toBytes(n),
+    i = Yn.utils.utf8.toBytes(e),
+    o = new Yn.ModeOfOperation.cbc(s, r),
+    a = Yn.padding.pkcs7.pad(i),
     c = o.encrypt(a);
   return uni.arrayBufferToBase64(c);
 }
-var qn,
-  Fn,
-  Kn = null;
-var jn = /*#__PURE__*/function (_nn) {
-  (0, _inherits2.default)(jn, _nn);
-  var _super8 = _createSuper(jn);
-  function jn(e) {
+var Zn,
+  es,
+  ts = null;
+var ns = /*#__PURE__*/function (_n11) {
+  (0, _inherits2.default)(ns, _n11);
+  var _super8 = _createSuper(ns);
+  function ns(e) {
     var _this19;
-    (0, _classCallCheck2.default)(this, jn);
+    (0, _classCallCheck2.default)(this, ns);
     _this19 = _super8.call(this, e), _this19.clientType = "mp-weixin", _this19.userEncryptKey = null;
     return _this19;
   }
-  (0, _createClass2.default)(jn, [{
+  (0, _createClass2.default)(ns, [{
     key: "isLogin",
     value: function isLogin() {
       return !!this.scopedGlobalCache.mpWeixinCode || !!this.scopedGlobalCache.mpWeixinOpenid;
@@ -6899,24 +6998,24 @@ var jn = /*#__PURE__*/function (_nn) {
                 }
                 return _context53.abrupt("return", this.userEncryptKey);
               case 2:
-                if (!(Kn && Kn.expireTime)) {
+                if (!(ts && ts.expireTime)) {
                   _context53.next = 6;
                   break;
                 }
                 e = Date.now();
-                if (!(Kn.expireTime - e > 0)) {
+                if (!(ts.expireTime - e > 0)) {
                   _context53.next = 6;
                   break;
                 }
-                return _context53.abrupt("return", (this.userEncryptKey = Kn, this.userEncryptKey));
+                return _context53.abrupt("return", (this.userEncryptKey = ts, this.userEncryptKey));
               case 6:
                 return _context53.abrupt("return", new Promise(function (e, t) {
                   uni.getUserCryptoManager().getLatestUserKey({
                     success: function success(t) {
-                      Kn = t, _this20.userEncryptKey = t, e(_this20.userEncryptKey);
+                      ts = t, _this20.userEncryptKey = t, e(_this20.userEncryptKey);
                     },
                     fail: function fail(e) {
-                      t(tn(_objectSpread(_objectSpread({}, Zt.GET_ENCRYPT_KEY_FAILED), {}, {
+                      t(yn(_objectSpread(_objectSpread({}, gn), {}, {
                         cause: e
                       })));
                     }
@@ -6956,12 +7055,12 @@ var jn = /*#__PURE__*/function (_nn) {
                 t = _yield$this$getUserEn.iv;
                 n = _yield$this$getUserEn.version;
                 return _context54.abrupt("return", {
-                  verifyClientSign: Mn(JSON.stringify({
+                  verifyClientSign: Xn(JSON.stringify({
                     data: JSON.stringify({}),
                     appId: this.appId,
                     deviceId: this.deviceId,
                     wxAppId: this.getWxAppId(),
-                    simulator: "devtools" === ae().platform,
+                    simulator: "devtools" === le().platform,
                     timestamp: Date.now()
                   }), e, t),
                   encryptKeyId: n,
@@ -7002,16 +7101,16 @@ var jn = /*#__PURE__*/function (_nn) {
                   mpWeixinCode: this.scopedGlobalCache.mpWeixinCode,
                   mpWeixinOpenid: this.scopedGlobalCache.mpWeixinOpenid
                 };
-                return _context55.abrupt("return", this.secretType === Gt.RESPONSE ? {
+                return _context55.abrupt("return", this.secretType === hn ? {
                   content: e,
                   _uniCloudOptions: r
                 } : {
-                  content: Mn(JSON.stringify({
+                  content: Xn(JSON.stringify({
                     data: JSON.stringify(e),
                     appId: this.appId,
                     deviceId: this.deviceId,
                     wxAppId: this.getWxAppId(),
-                    simulator: "devtools" === ae().platform,
+                    simulator: "devtools" === le().platform,
                     timestamp: Date.now()
                   }), t, n),
                   _uniCloudOptions: r
@@ -7047,10 +7146,10 @@ var jn = /*#__PURE__*/function (_nn) {
                 return _context56.abrupt("return", JSON.parse(function (e, t, n) {
                   var s = new Uint8Array(uni.base64ToArrayBuffer(e)),
                     r = new Uint8Array(uni.base64ToArrayBuffer(t)),
-                    i = Dn.utils.utf8.toBytes(n),
-                    o = new Dn.ModeOfOperation.cbc(r, i),
-                    a = Dn.padding.pkcs7.strip(o.decrypt(s));
-                  return Dn.utils.utf8.fromBytes(a);
+                    i = Yn.utils.utf8.toBytes(n),
+                    o = new Yn.ModeOfOperation.cbc(r, i),
+                    a = Yn.padding.pkcs7.strip(o.decrypt(s));
+                  return Yn.utils.utf8.fromBytes(a);
                 }(t, n, s)));
               case 7:
               case "end":
@@ -7070,16 +7169,16 @@ var jn = /*#__PURE__*/function (_nn) {
       return !1;
     }
   }]);
-  return jn;
-}(nn);
-function $n(e) {
+  return ns;
+}(_n);
+function ss(e) {
   var t = ["hasClientKey", "encryptGetClientKeyPayload", "setClientKey", "encrypt", "decrypt"],
     n = {};
   var _loop = function _loop(_s14) {
     var r = t[_s14];
     n[r] = function () {
-      for (var _len2 = arguments.length, t = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        t[_key2] = arguments[_key2];
+      for (var _len = arguments.length, t = new Array(_len), _key = 0; _key < _len; _key++) {
+        t[_key] = arguments[_key];
       }
       return new Promise(function (n, s) {
         "function" == typeof e[r] ? e[r].apply(e, t.concat([function () {
@@ -7090,12 +7189,12 @@ function $n(e) {
             i = _ref36.errMsg,
             o = _ref36.errSubject,
             a = _ref36.message;
-          "success" === e ? n(t) : s(tn({
+          "success" === e ? n(t) : s(yn({
             errCode: r,
-            errMsg: en[r] || i || a,
+            errMsg: mn[r] || i || a,
             errSubject: o
           }));
-        }])) : s(tn({
+        }])) : s(yn({
           message: "请检查manifest.json内是否开启安全网络模块，另外注意标准基座不支持安全网络模块"
         }));
       });
@@ -7106,16 +7205,16 @@ function $n(e) {
   }
   return n;
 }
-var Bn = /*#__PURE__*/function (_nn2) {
-  (0, _inherits2.default)(Bn, _nn2);
-  var _super9 = _createSuper(Bn);
-  function Bn(e) {
+var rs = /*#__PURE__*/function (_n12) {
+  (0, _inherits2.default)(rs, _n12);
+  var _super9 = _createSuper(rs);
+  function rs(e) {
     var _this21;
-    (0, _classCallCheck2.default)(this, Bn);
-    _this21 = _super9.call(this, e), _this21.clientType = "app", _this21.appUtils = _objectSpread({}, $n(uni.requireNativePlugin("plus"))), _this21.systemInfo = qn || (qn = ae());
+    (0, _classCallCheck2.default)(this, rs);
+    _this21 = _super9.call(this, e), _this21.clientType = "app", _this21.appUtils = _objectSpread({}, ss(uni.requireNativePlugin("plus"))), _this21.systemInfo = Zn || (Zn = le());
     return _this21;
   }
-  (0, _createClass2.default)(Bn, [{
+  (0, _createClass2.default)(rs, [{
     key: "hasClientKey",
     value: function () {
       var _hasClientKey = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee57() {
@@ -7184,10 +7283,10 @@ var Bn = /*#__PURE__*/function (_nn2) {
                   break;
                 }
                 throw function (e) {
-                  return new te({
-                    subject: e.errSubject || Xt,
-                    code: e.errCode || e.code || Zt.SYSTEM_ERROR.code,
-                    message: e.errMsg || e.message || Zt.SYSTEM_ERROR.message
+                  return new re({
+                    subject: e.errSubject || "uni-secure-network",
+                    code: e.errCode || e.code || pn.code,
+                    message: e.errMsg || e.message || pn.message
                   });
                 }(n);
               case 13:
@@ -7241,11 +7340,11 @@ var Bn = /*#__PURE__*/function (_nn2) {
                   _context59.next = 10;
                   break;
                 }
-                return _context59.abrupt("return", (e && this.scopedGlobalCache.initPromise && this.scopedGlobalCache.initStatus === d || !e && this.scopedGlobalCache.initPromise && this.scopedGlobalCache.initStatus !== f || (this.scopedGlobalCache.initPromise = this.getAppClientKey(), this.scopedGlobalCache.initPromise.then(function (e) {
-                  _this22.scopedGlobalCache.initStatus = p;
+                return _context59.abrupt("return", (e && this.scopedGlobalCache.initPromise && this.scopedGlobalCache.initStatus === h || !e && this.scopedGlobalCache.initPromise && this.scopedGlobalCache.initStatus !== p || (this.scopedGlobalCache.initPromise = this.getAppClientKey(), this.scopedGlobalCache.initPromise.then(function (e) {
+                  _this22.scopedGlobalCache.initStatus = d;
                 }).catch(function (e) {
-                  throw _this22.scopedGlobalCache.initStatus = f, e;
-                }), this.scopedGlobalCache.initStatus = d), this.scopedGlobalCache.initPromise));
+                  throw _this22.scopedGlobalCache.initStatus = p, e;
+                }), this.scopedGlobalCache.initStatus = h), this.scopedGlobalCache.initPromise));
               case 10:
               case "end":
                 return _context59.stop();
@@ -7345,7 +7444,7 @@ var Bn = /*#__PURE__*/function (_nn2) {
                   secretType: this.secretType,
                   encryptKeyId: n
                 };
-                return _context62.abrupt("return", this.secretType === Gt.RESPONSE ? {
+                return _context62.abrupt("return", this.secretType === hn ? {
                   content: e,
                   _uniCloudOptions: s
                 } : {
@@ -7404,32 +7503,32 @@ var Bn = /*#__PURE__*/function (_nn2) {
     value: function isClientKeyNotFound() {
       var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
       var t = e.result || {};
-      return 70009 === t.errCode && t.errSubject === Xt;
+      return 70009 === t.errCode && "uni-secure-network" === t.errSubject;
     }
   }]);
-  return Bn;
-}(nn);
-function Wn() {
+  return rs;
+}(_n);
+function is() {
   var _ref39 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     e = _ref39.secretType;
-  return e === Gt.REQUEST || e === Gt.RESPONSE || e === Gt.BOTH;
+  return e === ln || e === hn || e === dn;
 }
-function Hn() {
+function os() {
   var _ref40 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     e = _ref40.name,
     _ref40$data = _ref40.data,
     t = _ref40$data === void 0 ? {} : _ref40$data;
-  return "app" === P && "DCloud-clientDB" === e && "encryption" === t.redirectTo && "getAppClientKey" === t.action;
+  return "app" === T && "DCloud-clientDB" === e && "encryption" === t.redirectTo && "getAppClientKey" === t.action;
 }
-function Jn() {
+function as() {
   var _ref41 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     e = _ref41.provider,
     t = _ref41.spaceId,
     n = _ref41.functionName;
-  var _ae = ae(),
-    s = _ae.appId,
-    r = _ae.uniPlatform,
-    i = _ae.osName;
+  var _le = le(),
+    s = _le.appId,
+    r = _le.uniPlatform,
+    i = _le.osName;
   var o = r;
   "app" === r && (o = i);
   var a = function () {
@@ -7453,7 +7552,7 @@ function Jn() {
   var c = a.accessControl.function || {},
     u = Object.keys(c);
   if (0 === u.length) return !0;
-  var h = function (e, t) {
+  var l = function (e, t) {
     var n, s, r;
     for (var _i2 = 0; _i2 < e.length; _i2++) {
       var _o2 = e[_i2];
@@ -7463,18 +7562,18 @@ function Jn() {
     }
     return n || s || r;
   }(u, n);
-  if (!h) return !1;
-  if ((c[h] || []).find(function () {
+  if (!l) return !1;
+  if ((c[l] || []).find(function () {
     var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     return e.appId === s && (e.platform || "").toLowerCase() === o.toLowerCase();
   })) return !0;
-  throw console.error("\u6B64\u5E94\u7528[appId: ".concat(s, ", platform: ").concat(o, "]\u4E0D\u5728\u4E91\u7AEF\u914D\u7F6E\u7684\u5141\u8BB8\u8BBF\u95EE\u7684\u5E94\u7528\u5217\u8868\u5185\uFF0C\u53C2\u8003\uFF1Ahttps://uniapp.dcloud.net.cn/uniCloud/secure-network.html#verify-client")), tn(Zt.APP_INFO_INVALID);
+  throw console.error("\u6B64\u5E94\u7528[appId: ".concat(s, ", platform: ").concat(o, "]\u4E0D\u5728\u4E91\u7AEF\u914D\u7F6E\u7684\u5141\u8BB8\u8BBF\u95EE\u7684\u5E94\u7528\u5217\u8868\u5185\uFF0C\u53C2\u8003\uFF1Ahttps://uniapp.dcloud.net.cn/uniCloud/secure-network.html#verify-client")), yn(fn);
 }
-function zn(_ref43) {
+function cs(_ref43) {
   var e = _ref43.functionName,
     t = _ref43.result,
     n = _ref43.logPvd;
-  if (b && this.__dev__.debugLog && t && t.requestId) {
+  if (S && this.__dev__.debugLog && t && t.requestId) {
     var _s15 = JSON.stringify({
       spaceId: this.config.spaceId,
       functionName: e,
@@ -7483,13 +7582,13 @@ function zn(_ref43) {
     console.log("[".concat(n, "-request]").concat(_s15, "[/").concat(n, "-request]"));
   }
 }
-function Vn(e) {
+function us(e) {
   var t = e.callFunction,
-    n = function n(_n12) {
+    n = function n(_n13) {
       var _this23 = this;
-      var s = _n12.name;
-      _n12.data = Bt.call(e, {
-        data: _n12.data
+      var s = _n13.name;
+      _n13.data = Jt.call(e, {
+        data: _n13.data
       });
       var r = {
           aliyun: "aliyun",
@@ -7498,17 +7597,17 @@ function Vn(e) {
           alipay: "alipay",
           dcloud: "dcloud"
         }[this.config.provider],
-        i = Wn(_n12),
-        o = Hn(_n12),
+        i = is(_n13),
+        o = os(_n13),
         a = i || o;
-      return t.call(this, _n12).then(function (e) {
-        return e.errCode = 0, !a && zn.call(_this23, {
+      return t.call(this, _n13).then(function (e) {
+        return e.errCode = 0, !a && cs.call(_this23, {
           functionName: s,
           result: e,
           logPvd: r
         }), Promise.resolve(e);
       }, function (e) {
-        return !a && zn.call(_this23, {
+        return !a && cs.call(_this23, {
           functionName: s,
           result: e,
           logPvd: r
@@ -7522,24 +7621,24 @@ function Vn(e) {
             n = _ref44$formatter === void 0 ? [] : _ref44$formatter;
           for (var _s16 = 0; _s16 < n.length; _s16++) {
             var _n$_s = n[_s16],
-              _r6 = _n$_s.rule,
+              _r7 = _n$_s.rule,
               _i3 = _n$_s.content,
               _o3 = _n$_s.mode,
-              _a2 = e.match(_r6);
+              _a2 = e.match(_r7);
             if (!_a2) continue;
             var _c2 = _i3;
-            for (var _e20 = 1; _e20 < _a2.length; _e20++) {
-              _c2 = Vt(_c2, "{$".concat(_e20, "}"), _a2[_e20]);
+            for (var _e19 = 1; _e19 < _a2.length; _e19++) {
+              _c2 = cn(_c2, "{$".concat(_e19, "}"), _a2[_e19]);
             }
-            for (var _e21 in t) {
-              _c2 = Vt(_c2, "{".concat(_e21, "}"), t[_e21]);
+            for (var _e20 in t) {
+              _c2 = cn(_c2, "{".concat(_e20, "}"), t[_e20]);
             }
             return "replace" === _o3 ? _c2 : e + _c2;
           }
           return e;
         }({
-          message: "[".concat(_n12.name, "]: ").concat(e.message),
-          formatter: Ht,
+          message: "[".concat(_n13.name, "]: ").concat(e.message),
+          formatter: rn,
           extraInfo: {
             functionName: s
           }
@@ -7552,22 +7651,22 @@ function Vn(e) {
       r = _e$config.spaceId,
       i = t.name;
     var o, a;
-    if (t.data = t.data || {}, b && e.__dev__.debugInfo && !e.__dev__.debugInfo.forceRemote && O ? (e._callCloudFunction || (e._callCloudFunction = n, e._callLocalFunction = Wt), o = Wt) : o = n, o = o.bind(e), Hn(t)) a = n.call(e, t);else if (function (_ref45) {
+    if (t.data = t.data || {}, S && e.__dev__.debugInfo && !e.__dev__.debugInfo.forceRemote && P ? (e._callCloudFunction || (e._callCloudFunction = n, e._callLocalFunction = sn), o = sn) : o = n, o = o.bind(e), os(t)) a = n.call(e, t);else if (function (_ref45) {
       var e = _ref45.name,
         _ref45$data = _ref45.data,
         t = _ref45$data === void 0 ? {} : _ref45$data;
-      return "mp-weixin" === P && "uni-id-co" === e && "secureNetworkHandshakeByWeixin" === t.method;
-    }(t)) a = o.call(e, t);else if (Wn(t)) {
-      a = new Fn({
+      return "mp-weixin" === T && "uni-id-co" === e && "secureNetworkHandshakeByWeixin" === t.method;
+    }(t)) a = o.call(e, t);else if (is(t)) {
+      a = new es({
         secretType: t.secretType,
         uniCloudIns: e
       }).wrapEncryptDataCallFunction(n.bind(e))(t);
-    } else if (Jn({
+    } else if (as({
       provider: s,
       spaceId: r,
       functionName: i
     })) {
-      a = new Fn({
+      a = new es({
         secretType: t.secretType,
         uniCloudIns: e
       }).wrapVerifyClientCallFunction(n.bind(e))(t);
@@ -7581,26 +7680,26 @@ function Vn(e) {
     });
   };
 }
-Fn = "mp-weixin" !== P && "app" !== P ? /*#__PURE__*/function () {
+es = "mp-weixin" !== T && "app" !== T ? /*#__PURE__*/function () {
   function _class2() {
     (0, _classCallCheck2.default)(this, _class2);
-    throw tn({
-      message: "Platform ".concat(P, " is not supported by secure network")
+    throw yn({
+      message: "Platform ".concat(T, " is not supported by secure network")
     });
   }
   return (0, _createClass2.default)(_class2);
-}() : k ? "mp-weixin" === P ? jn : Bn : /*#__PURE__*/function () {
+}() : k ? "mp-weixin" === T ? ns : rs : /*#__PURE__*/function () {
   function _class3() {
     (0, _classCallCheck2.default)(this, _class3);
-    throw tn({
-      message: "Platform ".concat(P, " is not enabled, please check whether secure network module is enabled in your manifest.json")
+    throw yn({
+      message: "Platform ".concat(T, " is not enabled, please check whether secure network module is enabled in your manifest.json")
     });
   }
   return (0, _createClass2.default)(_class3);
 }();
-var Gn = Symbol("CLIENT_DB_INTERNAL");
-function Yn(e, t) {
-  return e.then = "DoNotReturnProxyWithAFunctionNamedThen", e._internalType = Gn, e.inspect = null, e.__ob__ = void 0, new Proxy(e, {
+var ls = Symbol("CLIENT_DB_INTERNAL");
+function hs(e, t) {
+  return e.then = "DoNotReturnProxyWithAFunctionNamedThen", e._internalType = ls, e.inspect = null, e.__ob__ = void 0, new Proxy(e, {
     get: function get(e, n, s) {
       if ("_uniClient" === n) return null;
       if ("symbol" == (0, _typeof2.default)(n)) return e[n];
@@ -7612,7 +7711,7 @@ function Yn(e, t) {
     }
   });
 }
-function Qn(e) {
+function ds(e) {
   return {
     on: function on(t, n) {
       e[t] = e[t] || [], e[t].indexOf(n) > -1 || e[t].push(n);
@@ -7624,19 +7723,19 @@ function Qn(e) {
     }
   };
 }
-var Xn = ["db.Geo", "db.command", "command.aggregate"];
-function Zn(e, t) {
-  return Xn.indexOf("".concat(e, ".").concat(t)) > -1;
+var ps = ["db.Geo", "db.command", "command.aggregate"];
+function fs(e, t) {
+  return ps.indexOf("".concat(e, ".").concat(t)) > -1;
 }
-function es(e) {
-  switch (g(e)) {
+function gs(e) {
+  switch (f(e)) {
     case "array":
       return e.map(function (e) {
-        return es(e);
+        return gs(e);
       });
     case "object":
-      return e._internalType === Gn || Object.keys(e).forEach(function (t) {
-        e[t] = es(e[t]);
+      return e._internalType === ls || Object.keys(e).forEach(function (t) {
+        e[t] = gs(e[t]);
       }), e;
     case "regexp":
       return {
@@ -7653,15 +7752,15 @@ function es(e) {
       return e;
   }
 }
-function ts(e) {
+function ms(e) {
   return e && e.content && e.content.$method;
 }
-var ns = /*#__PURE__*/function () {
-  function ns(e, t, n) {
-    (0, _classCallCheck2.default)(this, ns);
+var ys = /*#__PURE__*/function () {
+  function ys(e, t, n) {
+    (0, _classCallCheck2.default)(this, ys);
     this.content = e, this.prevStage = t || null, this.udb = null, this._database = n;
   }
-  (0, _createClass2.default)(ns, [{
+  (0, _createClass2.default)(ys, [{
     key: "toJSON",
     value: function toJSON() {
       var e = this;
@@ -7673,7 +7772,7 @@ var ns = /*#__PURE__*/function () {
         $db: t.reverse().map(function (e) {
           return {
             $method: e.$method,
-            $param: es(e.$param)
+            $param: gs(e.$param)
           };
         })
       };
@@ -7705,9 +7804,9 @@ var ns = /*#__PURE__*/function () {
     get: function get() {
       var e = this;
       for (; e;) {
-        var t = ts(e),
-          _n13 = ts(e.prevStage);
-        if ("aggregate" === t && "collection" === _n13 || "pipeline" === t) return !0;
+        var t = ms(e),
+          _n14 = ms(e.prevStage);
+        if ("aggregate" === t && "collection" === _n14 || "pipeline" === t) return !0;
         e = e.prevStage;
       }
       return !1;
@@ -7717,7 +7816,7 @@ var ns = /*#__PURE__*/function () {
     get: function get() {
       var e = this;
       for (; e;) {
-        if ("command" === ts(e)) return !0;
+        if ("command" === ms(e)) return !0;
         e = e.prevStage;
       }
       return !1;
@@ -7727,9 +7826,9 @@ var ns = /*#__PURE__*/function () {
     get: function get() {
       var e = this;
       for (; e;) {
-        var t = ts(e),
-          _n14 = ts(e.prevStage);
-        if ("aggregate" === t && "command" === _n14) return !0;
+        var t = ms(e),
+          _n15 = ms(e.prevStage);
+        if ("aggregate" === t && "command" === _n15) return !0;
         e = e.prevStage;
       }
       return !1;
@@ -7739,9 +7838,9 @@ var ns = /*#__PURE__*/function () {
     value: function getNextStageFn(e) {
       var t = this;
       return function () {
-        return ss({
+        return _s({
           $method: e,
-          $param: es(Array.from(arguments))
+          $param: gs(Array.from(arguments))
         }, t, t._database);
       };
     }
@@ -7795,13 +7894,13 @@ var ns = /*#__PURE__*/function () {
         s = this.getCommand();
       if (s.$db.push({
         $method: e,
-        $param: es(t)
-      }), b) {
-        var _e22 = s.$db.find(function (e) {
+        $param: gs(t)
+      }), S) {
+        var _e21 = s.$db.find(function (e) {
             return "collection" === e.$method;
           }),
-          _t13 = _e22 && _e22.$param;
-        _t13 && 1 === _t13.length && "string" == typeof _e22.$param[0] && _e22.$param[0].indexOf(",") > -1 && console.warn("检测到使用JQL语法联表查询时，未使用getTemp先过滤主表数据，在主表数据量大的情况下可能会查询缓慢。\n- 如何优化请参考此文档：https://uniapp.dcloud.net.cn/uniCloud/jql?id=lookup-with-temp \n- 如果主表数据量很小请忽略此信息，项目发行时不会出现此提示。");
+          _t13 = _e21 && _e21.$param;
+        _t13 && 1 === _t13.length && "string" == typeof _e21.$param[0] && _e21.$param[0].indexOf(",") > -1 && console.warn("检测到使用JQL语法联表查询时，未使用getTemp先过滤主表数据，在主表数据量大的情况下可能会查询缓慢。\n- 如何优化请参考此文档：https://uniapp.dcloud.net.cn/uniCloud/jql?id=lookup-with-temp \n- 如果主表数据量很小请忽略此信息，项目发行时不会出现此提示。");
       }
       return this._database._callCloudFunction({
         action: n,
@@ -7809,24 +7908,24 @@ var ns = /*#__PURE__*/function () {
       });
     }
   }]);
-  return ns;
+  return ys;
 }();
-function ss(e, t, n) {
-  return Yn(new ns(e, t, n), {
+function _s(e, t, n) {
+  return hs(new ys(e, t, n), {
     get: function get(e, t) {
       var s = "db";
-      return e && e.content && (s = e.content.$method), Zn(s, t) ? ss({
+      return e && e.content && (s = e.content.$method), fs(s, t) ? _s({
         $method: t
       }, e, n) : function () {
-        return ss({
+        return _s({
           $method: t,
-          $param: es(Array.from(arguments))
+          $param: gs(Array.from(arguments))
         }, e, n);
       };
     }
   });
 }
-function rs(_ref46) {
+function ws(_ref46) {
   var e = _ref46.path,
     t = _ref46.method;
   return /*#__PURE__*/function () {
@@ -7857,36 +7956,187 @@ function rs(_ref46) {
     return _class4;
   }();
 }
-var is = /*#__PURE__*/function () {
-  function is() {
-    var _ref47 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref47$uniClient = _ref47.uniClient,
-      e = _ref47$uniClient === void 0 ? {} : _ref47$uniClient,
-      _ref47$isJQL = _ref47.isJQL,
-      t = _ref47$isJQL === void 0 ? !1 : _ref47$isJQL;
-    (0, _classCallCheck2.default)(this, is);
-    this._uniClient = e, this._authCallBacks = {}, this._dbCallBacks = {}, e._isDefault && (this._dbCallBacks = U("_globalUniCloudDatabaseCallback")), t || (this.auth = Qn(this._authCallBacks)), this._isJQL = t, Object.assign(this, Qn(this._dbCallBacks)), this.env = Yn({}, {
+function vs(e) {
+  var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  return hs(new e(t), {
+    get: function get(e, t) {
+      return fs("db", t) ? _s({
+        $method: t
+      }, null, e) : function () {
+        return _s({
+          $method: t,
+          $param: gs(Array.from(arguments))
+        }, null, e);
+      };
+    }
+  });
+}
+var Is = /*#__PURE__*/function (_ref47) {
+  (0, _inherits2.default)(Is, _ref47);
+  var _super10 = _createSuper(Is);
+  function Is() {
+    (0, _classCallCheck2.default)(this, Is);
+    return _super10.apply(this, arguments);
+  }
+  (0, _createClass2.default)(Is, [{
+    key: "_parseResult",
+    value: function _parseResult(e) {
+      return this._isJQL ? e.result : e;
+    }
+  }, {
+    key: "_callCloudFunction",
+    value: function _callCloudFunction(_ref48) {
+      var _this24 = this;
+      var e = _ref48.action,
+        t = _ref48.command,
+        n = _ref48.multiCommand,
+        s = _ref48.queryList;
+      function r(e, t) {
+        if (n && s) for (var _n16 = 0; _n16 < s.length; _n16++) {
+          var _r8 = s[_n16];
+          _r8.udb && "function" == typeof _r8.udb.setResult && (t ? _r8.udb.setResult(t) : _r8.udb.setResult(e.result.dataList[_n16]));
+        }
+      }
+      var i = this,
+        o = this._isJQL ? "databaseForJQL" : "database";
+      function a(e) {
+        return i._callback("error", [e]), F(K(o, "fail"), e).then(function () {
+          return F(K(o, "complete"), e);
+        }).then(function () {
+          return r(null, e), Z(B, {
+            type: z,
+            content: e
+          }), Promise.reject(e);
+        });
+      }
+      var c = F(K(o, "invoke")),
+        u = this._uniClient;
+      return c.then(function () {
+        return u.callFunction({
+          name: "DCloud-clientDB",
+          type: l,
+          data: {
+            action: e,
+            command: t,
+            multiCommand: n
+          }
+        });
+      }).then(function (e) {
+        var _e$result = e.result,
+          t = _e$result.code,
+          n = _e$result.message,
+          s = _e$result.token,
+          c = _e$result.tokenExpired,
+          _e$result$systemInfo = _e$result.systemInfo,
+          u = _e$result$systemInfo === void 0 ? [] : _e$result$systemInfo;
+        if (u) for (var _e22 = 0; _e22 < u.length; _e22++) {
+          var _u$_e = u[_e22],
+            _t14 = _u$_e.level,
+            _n17 = _u$_e.message,
+            _s17 = _u$_e.detail,
+            _r9 = console["app" === T && "warn" === _t14 ? "error" : _t14] || console.log;
+          var _i4 = "[System Info]" + _n17;
+          _s17 && (_i4 = "".concat(_i4, "\n\u8BE6\u7EC6\u4FE1\u606F\uFF1A").concat(_s17)), _r9(_i4);
+        }
+        if (t) {
+          return a(new re({
+            code: t,
+            message: n,
+            requestId: e.requestId
+          }));
+        }
+        e.result.errCode = e.result.errCode || e.result.code, e.result.errMsg = e.result.errMsg || e.result.message, s && c && (ae({
+          token: s,
+          tokenExpired: c
+        }), _this24._callbackAuth("refreshToken", [{
+          token: s,
+          tokenExpired: c
+        }]), _this24._callback("refreshToken", [{
+          token: s,
+          tokenExpired: c
+        }]), Z(H, {
+          token: s,
+          tokenExpired: c
+        }));
+        var l = [{
+          prop: "affectedDocs",
+          tips: "affectedDocs不再推荐使用，请使用inserted/deleted/updated/data.length替代"
+        }, {
+          prop: "code",
+          tips: "code不再推荐使用，请使用errCode替代"
+        }, {
+          prop: "message",
+          tips: "message不再推荐使用，请使用errMsg替代"
+        }];
+        var _loop2 = function _loop2(_t15) {
+          var _l$_t = l[_t15],
+            n = _l$_t.prop,
+            s = _l$_t.tips;
+          if (n in e.result) {
+            var _t16 = e.result[n];
+            Object.defineProperty(e.result, n, {
+              get: function get() {
+                return console.warn(s), _t16;
+              }
+            });
+          }
+        };
+        for (var _t15 = 0; _t15 < l.length; _t15++) {
+          _loop2(_t15);
+        }
+        return function (e) {
+          return F(K(o, "success"), e).then(function () {
+            return F(K(o, "complete"), e);
+          }).then(function () {
+            r(e, null);
+            var t = i._parseResult(e);
+            return Z(B, {
+              type: z,
+              content: t
+            }), Promise.resolve(t);
+          });
+        }(e);
+      }, function (e) {
+        /fc_function_not_found|FUNCTION_NOT_FOUND/g.test(e.message) && console.warn("clientDB未初始化，请在web控制台保存一次schema以开启clientDB");
+        return a(new re({
+          code: e.code || "SYSTEM_ERROR",
+          message: e.message,
+          requestId: e.requestId
+        }));
+      });
+    }
+  }]);
+  return Is;
+}( /*#__PURE__*/function () {
+  function _class5() {
+    var _ref49 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref49$uniClient = _ref49.uniClient,
+      e = _ref49$uniClient === void 0 ? {} : _ref49$uniClient,
+      _ref49$isJQL = _ref49.isJQL,
+      t = _ref49$isJQL === void 0 ? !1 : _ref49$isJQL;
+    (0, _classCallCheck2.default)(this, _class5);
+    this._uniClient = e, this._authCallBacks = {}, this._dbCallBacks = {}, e._isDefault && (this._dbCallBacks = U("_globalUniCloudDatabaseCallback")), t || (this.auth = ds(this._authCallBacks)), this._isJQL = t, Object.assign(this, ds(this._dbCallBacks)), this.env = hs({}, {
       get: function get(e, t) {
         return {
           $env: t
         };
       }
-    }), this.Geo = Yn({}, {
+    }), this.Geo = hs({}, {
       get: function get(e, t) {
-        return rs({
+        return ws({
           path: ["Geo"],
           method: t
         });
       }
-    }), this.serverDate = rs({
+    }), this.serverDate = ws({
       path: [],
       method: "serverDate"
-    }), this.RegExp = rs({
+    }), this.RegExp = ws({
       path: [],
       method: "RegExp"
     });
   }
-  (0, _createClass2.default)(is, [{
+  (0, _createClass2.default)(_class5, [{
     key: "getCloudEnv",
     value: function getCloudEnv(e) {
       if ("string" != typeof e || !e.trim()) throw new Error("getCloudEnv参数错误");
@@ -7928,198 +8178,62 @@ var is = /*#__PURE__*/function () {
         queryList: e
       });
     }
-  }]);
-  return is;
-}();
-function os(e) {
-  var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  return Yn(new e(t), {
-    get: function get(e, t) {
-      return Zn("db", t) ? ss({
-        $method: t
-      }, null, e) : function () {
-        return ss({
-          $method: t,
-          $param: es(Array.from(arguments))
-        }, null, e);
-      };
-    }
-  });
-}
-var as = /*#__PURE__*/function (_is) {
-  (0, _inherits2.default)(as, _is);
-  var _super10 = _createSuper(as);
-  function as() {
-    (0, _classCallCheck2.default)(this, as);
-    return _super10.apply(this, arguments);
-  }
-  (0, _createClass2.default)(as, [{
-    key: "_parseResult",
-    value: function _parseResult(e) {
-      return this._isJQL ? e.result : e;
+  }, {
+    key: "startTransaction",
+    value: function startTransaction() {
+      throw new Error("JQL 事务仅支持在云端使用");
     }
   }, {
-    key: "_callCloudFunction",
-    value: function _callCloudFunction(_ref48) {
-      var _this24 = this;
-      var e = _ref48.action,
-        t = _ref48.command,
-        n = _ref48.multiCommand,
-        s = _ref48.queryList;
-      function r(e, t) {
-        if (n && s) for (var _n15 = 0; _n15 < s.length; _n15++) {
-          var _r7 = s[_n15];
-          _r7.udb && "function" == typeof _r7.udb.setResult && (t ? _r7.udb.setResult(t) : _r7.udb.setResult(e.result.dataList[_n15]));
-        }
-      }
-      var i = this,
-        o = this._isJQL ? "databaseForJQL" : "database";
-      function a(e) {
-        return i._callback("error", [e]), j($(o, "fail"), e).then(function () {
-          return j($(o, "complete"), e);
-        }).then(function () {
-          return r(null, e), Y(H.RESPONSE, {
-            type: J.CLIENT_DB,
-            content: e
-          }), Promise.reject(e);
-        });
-      }
-      var c = j($(o, "invoke")),
-        u = this._uniClient;
-      return c.then(function () {
-        return u.callFunction({
-          name: "DCloud-clientDB",
-          type: l.CLIENT_DB,
-          data: {
-            action: e,
-            command: t,
-            multiCommand: n
-          }
-        });
-      }).then(function (e) {
-        var _e$result = e.result,
-          t = _e$result.code,
-          n = _e$result.message,
-          s = _e$result.token,
-          c = _e$result.tokenExpired,
-          _e$result$systemInfo = _e$result.systemInfo,
-          u = _e$result$systemInfo === void 0 ? [] : _e$result$systemInfo;
-        if (u) for (var _e23 = 0; _e23 < u.length; _e23++) {
-          var _u$_e = u[_e23],
-            _t14 = _u$_e.level,
-            _n16 = _u$_e.message,
-            _s17 = _u$_e.detail;
-          var _r8 = "[System Info]" + _n16;
-          _s17 && (_r8 = "".concat(_r8, "\n\u8BE6\u7EC6\u4FE1\u606F\uFF1A").concat(_s17)), (console["app" === P && "warn" === _t14 ? "error" : _t14] || console.log)(_r8);
-        }
-        if (t) {
-          return a(new te({
-            code: t,
-            message: n,
-            requestId: e.requestId
-          }));
-        }
-        e.result.errCode = e.result.errCode || e.result.code, e.result.errMsg = e.result.errMsg || e.result.message, s && c && (re({
-          token: s,
-          tokenExpired: c
-        }), _this24._callbackAuth("refreshToken", [{
-          token: s,
-          tokenExpired: c
-        }]), _this24._callback("refreshToken", [{
-          token: s,
-          tokenExpired: c
-        }]), Y(H.REFRESH_TOKEN, {
-          token: s,
-          tokenExpired: c
-        }));
-        var h = [{
-          prop: "affectedDocs",
-          tips: "affectedDocs不再推荐使用，请使用inserted/deleted/updated/data.length替代"
-        }, {
-          prop: "code",
-          tips: "code不再推荐使用，请使用errCode替代"
-        }, {
-          prop: "message",
-          tips: "message不再推荐使用，请使用errMsg替代"
-        }];
-        var _loop2 = function _loop2(_t15) {
-          var _h$_t = h[_t15],
-            n = _h$_t.prop,
-            s = _h$_t.tips;
-          if (n in e.result) {
-            var _t16 = e.result[n];
-            Object.defineProperty(e.result, n, {
-              get: function get() {
-                return console.warn(s), _t16;
-              }
-            });
-          }
-        };
-        for (var _t15 = 0; _t15 < h.length; _t15++) {
-          _loop2(_t15);
-        }
-        return function (e) {
-          return j($(o, "success"), e).then(function () {
-            return j($(o, "complete"), e);
-          }).then(function () {
-            r(e, null);
-            var t = i._parseResult(e);
-            return Y(H.RESPONSE, {
-              type: J.CLIENT_DB,
-              content: t
-            }), Promise.resolve(t);
-          });
-        }(e);
-      }, function (e) {
-        /fc_function_not_found|FUNCTION_NOT_FOUND/g.test(e.message) && console.warn("clientDB未初始化，请在web控制台保存一次schema以开启clientDB");
-        return a(new te({
-          code: e.code || "SYSTEM_ERROR",
-          message: e.message,
-          requestId: e.requestId
-        }));
-      });
+    key: "commit",
+    value: function commit() {
+      throw new Error("JQL 事务仅支持在云端使用");
+    }
+  }, {
+    key: "rollback",
+    value: function rollback() {
+      throw new Error("JQL 事务仅支持在云端使用");
     }
   }]);
-  return as;
-}(is);
-var cs = "token无效，跳转登录页面",
-  us = "token过期，跳转登录页面",
-  hs = {
-    TOKEN_INVALID_TOKEN_EXPIRED: us,
-    TOKEN_INVALID_INVALID_CLIENTID: cs,
-    TOKEN_INVALID: cs,
-    TOKEN_INVALID_WRONG_TOKEN: cs,
-    TOKEN_INVALID_ANONYMOUS_USER: cs
+  return _class5;
+}());
+var Ss = "token无效，跳转登录页面",
+  bs = "token过期，跳转登录页面",
+  ks = {
+    TOKEN_INVALID_TOKEN_EXPIRED: bs,
+    TOKEN_INVALID_INVALID_CLIENTID: Ss,
+    TOKEN_INVALID: Ss,
+    TOKEN_INVALID_WRONG_TOKEN: Ss,
+    TOKEN_INVALID_ANONYMOUS_USER: Ss
   },
-  ls = {
-    "uni-id-token-expired": us,
-    "uni-id-check-token-failed": cs,
-    "uni-id-token-not-exist": cs,
-    "uni-id-check-device-feature-failed": cs
+  As = {
+    "uni-id-token-expired": bs,
+    "uni-id-check-token-failed": Ss,
+    "uni-id-token-not-exist": Ss,
+    "uni-id-check-device-feature-failed": Ss
   },
-  ds = _objectSpread(_objectSpread(_objectSpread({}, hs), ls), {}, {
+  Ts = _objectSpread(_objectSpread(_objectSpread({}, ks), As), {}, {
     default: "用户未登录或登录状态过期，自动跳转登录页面"
   });
-function ps(e, t) {
+function Cs(e, t) {
   var n = "";
   return n = e ? "".concat(e, "/").concat(t) : t, n.replace(/^\//, "");
 }
-function fs() {
+function Ps() {
   var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
   var n = [],
     s = [];
   return e.forEach(function (e) {
-    !0 === e.needLogin ? n.push(ps(t, e.path)) : !1 === e.needLogin && s.push(ps(t, e.path));
+    !0 === e.needLogin ? n.push(Cs(t, e.path)) : !1 === e.needLogin && s.push(Cs(t, e.path));
   }), {
     needLoginPage: n,
     notNeedLoginPage: s
   };
 }
-function gs(e) {
+function Os(e) {
   return e.split("?")[0].replace(/^\//, "");
 }
-function ms() {
+function Es() {
   return function (e) {
     var t = e && e.$page && e.$page.fullPath;
     return t ? ("/" !== t.charAt(0) && (t = "/" + t), t) : "";
@@ -8128,22 +8242,22 @@ function ms() {
     return e[e.length - 1];
   }());
 }
-function ys() {
-  return gs(ms());
+function xs() {
+  return Os(Es());
 }
-function _s() {
+function Ls() {
   var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
   var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   if (!e) return !1;
   if (!(t && t.list && t.list.length)) return !1;
   var n = t.list,
-    s = gs(e);
+    s = Os(e);
   return n.some(function (e) {
     return e.pagePath === s;
   });
 }
-var ws = !!_pages.default.uniIdRouter;
-var _ref49 = function () {
+var Us = !!_pages.default.uniIdRouter;
+var _ref50 = function () {
     var _ref8 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _pages.default,
       _ref8$pages = _ref8.pages,
       t = _ref8$pages === void 0 ? [] : _ref8$pages,
@@ -8158,9 +8272,9 @@ var _ref49 = function () {
       o = _s$needLogin === void 0 ? [] : _s$needLogin,
       _s$resToLogin = s.resToLogin,
       a = _s$resToLogin === void 0 ? !0 : _s$resToLogin,
-      _fs = fs(t),
-      c = _fs.needLoginPage,
-      u = _fs.notNeedLoginPage,
+      _Ps = Ps(t),
+      c = _Ps.needLoginPage,
+      u = _Ps.notNeedLoginPage,
       _ref9 = function () {
         var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
         var t = [],
@@ -8169,35 +8283,35 @@ var _ref49 = function () {
           var s = e.root,
             _e$pages = e.pages,
             r = _e$pages === void 0 ? [] : _e$pages,
-            _fs2 = fs(r, s),
-            i = _fs2.needLoginPage,
-            o = _fs2.notNeedLoginPage;
+            _Ps2 = Ps(r, s),
+            i = _Ps2.needLoginPage,
+            o = _Ps2.notNeedLoginPage;
           t.push.apply(t, (0, _toConsumableArray2.default)(i)), n.push.apply(n, (0, _toConsumableArray2.default)(o));
         }), {
           needLoginPage: t,
           notNeedLoginPage: n
         };
       }(n),
-      h = _ref9.needLoginPage,
-      l = _ref9.notNeedLoginPage;
+      l = _ref9.needLoginPage,
+      h = _ref9.notNeedLoginPage;
     return {
       loginPage: i,
       routerNeedLogin: o,
       resToLogin: a,
-      needLoginPage: [].concat((0, _toConsumableArray2.default)(c), (0, _toConsumableArray2.default)(h)),
-      notNeedLoginPage: [].concat((0, _toConsumableArray2.default)(u), (0, _toConsumableArray2.default)(l)),
-      loginPageInTabBar: _s(i, r)
+      needLoginPage: [].concat((0, _toConsumableArray2.default)(c), (0, _toConsumableArray2.default)(l)),
+      notNeedLoginPage: [].concat((0, _toConsumableArray2.default)(u), (0, _toConsumableArray2.default)(h)),
+      loginPageInTabBar: Ls(i, r)
     };
   }(),
-  Is = _ref49.loginPage,
-  vs = _ref49.routerNeedLogin,
-  Ss = _ref49.resToLogin,
-  Ts = _ref49.needLoginPage,
-  bs = _ref49.notNeedLoginPage,
-  Es = _ref49.loginPageInTabBar;
-if (Ts.indexOf(Is) > -1) throw new Error("Login page [".concat(Is, "] should not be \"needLogin\", please check your pages.json"));
-function ks(e) {
-  var t = ys();
+  Rs = _ref50.loginPage,
+  Ns = _ref50.routerNeedLogin,
+  Ds = _ref50.resToLogin,
+  Ms = _ref50.needLoginPage,
+  qs = _ref50.notNeedLoginPage,
+  Fs = _ref50.loginPageInTabBar;
+if (Ms.indexOf(Rs) > -1) throw new Error("Login page [".concat(Rs, "] should not be \"needLogin\", please check your pages.json"));
+function Ks(e) {
+  var t = xs();
   if ("/" === e.charAt(0)) return e;
   var _e$split = e.split("?"),
     _e$split2 = (0, _slicedToArray2.default)(_e$split, 2),
@@ -8206,37 +8320,32 @@ function ks(e) {
     r = n.replace(/^\//, "").split("/"),
     i = t.split("/");
   i.pop();
-  for (var _e24 = 0; _e24 < r.length; _e24++) {
-    var _t17 = r[_e24];
+  for (var _e23 = 0; _e23 < r.length; _e23++) {
+    var _t17 = r[_e23];
     ".." === _t17 ? i.pop() : "." !== _t17 && i.push(_t17);
   }
   return "" === i[0] && i.shift(), "/" + i.join("/") + (s ? "?" + s : "");
 }
-function As(e) {
-  var t = gs(ks(e));
-  return !(bs.indexOf(t) > -1) && (Ts.indexOf(t) > -1 || vs.some(function (t) {
-    return function (e, t) {
-      return new RegExp(t).test(e);
-    }(e, t);
-  }));
+function js(e, t) {
+  return new RegExp(t).test(e);
 }
-function Ps(_ref32) {
+function $s(_ref32) {
   var e = _ref32.redirect;
-  var t = gs(e),
-    n = gs(Is);
-  return ys() !== n && t !== n;
+  var t = Os(e),
+    n = Os(Rs);
+  return xs() !== n && t !== n;
 }
-function Cs() {
+function Bs() {
   var _ref34 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
     e = _ref34.api,
     t = _ref34.redirect;
-  if (!t || !Ps({
+  if (!t || !$s({
     redirect: t
   })) return;
   var n = function (e, t) {
     return "/" !== e.charAt(0) && (e = "/" + e), t ? e.indexOf("?") > -1 ? e + "&uniIdRedirectUrl=".concat(encodeURIComponent(t)) : e + "?uniIdRedirectUrl=".concat(encodeURIComponent(t)) : e;
-  }(Is, t);
-  Es ? "navigateTo" !== e && "redirectTo" !== e || (e = "switchTab") : "switchTab" === e && (e = "navigateTo");
+  }(Rs, t);
+  Fs ? "navigateTo" !== e && "redirectTo" !== e || (e = "switchTab") : "switchTab" === e && (e = "navigateTo");
   var s = {
     navigateTo: uni.navigateTo,
     redirectTo: uni.redirectTo,
@@ -8249,79 +8358,89 @@ function Cs() {
     });
   }, 0);
 }
-function Os() {
-  var _ref50 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    e = _ref50.url;
+function Ws() {
+  var _ref51 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    e = _ref51.url;
   var t = {
       abortLoginPageJump: !1,
       autoToLoginPage: !1
     },
     n = function () {
-      var _se4 = se(),
-        e = _se4.token,
-        t = _se4.tokenExpired;
+      var _oe4 = oe(),
+        e = _oe4.token,
+        t = _oe4.tokenExpired;
       var n;
       if (e) {
         if (t < Date.now()) {
-          var _e25 = "uni-id-token-expired";
+          var _e24 = "uni-id-token-expired";
           n = {
-            errCode: _e25,
-            errMsg: ds[_e25]
+            errCode: _e24,
+            errMsg: Ts[_e24]
           };
         }
       } else {
-        var _e26 = "uni-id-check-token-failed";
+        var _e25 = "uni-id-check-token-failed";
         n = {
-          errCode: _e26,
-          errMsg: ds[_e26]
+          errCode: _e25,
+          errMsg: Ts[_e25]
         };
       }
       return n;
     }();
-  if (As(e) && n) {
+  if (function (e) {
+    var t = Os(Ks(e));
+    return !(qs.indexOf(t) > -1) && (Ms.indexOf(t) > -1 || Ns.some(function (n) {
+      return js(t, n) || js(e, n);
+    }));
+  }(e) && n) {
     n.uniIdRedirectUrl = e;
-    if (z(H.NEED_LOGIN).length > 0) return setTimeout(function () {
-      Y(H.NEED_LOGIN, n);
+    if (Q(W).length > 0) return setTimeout(function () {
+      Z(W, n);
     }, 0), t.abortLoginPageJump = !0, t;
     t.autoToLoginPage = !0;
   }
   return t;
 }
-function xs() {
-  !function () {
-    var e = ms(),
-      _Os = Os({
-        url: e
-      }),
-      t = _Os.abortLoginPageJump,
-      n = _Os.autoToLoginPage;
-    t || n && Cs({
-      api: "redirectTo",
-      redirect: e
-    });
-  }();
+function Hs() {
+  var e = Es(),
+    _Ws = Ws({
+      url: e
+    }),
+    t = _Ws.abortLoginPageJump,
+    n = _Ws.autoToLoginPage;
+  t || n && Bs({
+    api: "redirectTo",
+    redirect: e
+  });
+}
+function Js() {
+  Hs();
   var e = ["navigateTo", "redirectTo", "reLaunch", "switchTab"];
   var _loop3 = function _loop3(_t18) {
     var n = e[_t18];
     uni.addInterceptor(n, {
       invoke: function invoke(e) {
-        var _Os2 = Os({
+        var _Ws2 = Ws({
             url: e.url
           }),
-          t = _Os2.abortLoginPageJump,
-          s = _Os2.autoToLoginPage;
-        return t ? e : s ? (Cs({
+          t = _Ws2.abortLoginPageJump,
+          s = _Ws2.autoToLoginPage;
+        return t ? e : s ? (Bs({
           api: n,
-          redirect: ks(e.url)
+          redirect: Ks(e.url)
         }), !1) : e;
       }
+    }), "web" === T && window.addEventListener("popstate", function () {
+      (0 === getCurrentPages().length ? (te = !1, ee = null, ne()) : Promise.resolve()).then(function () {
+        Hs();
+      });
     });
   };
   for (var _t18 = 0; _t18 < e.length; _t18++) {
     _loop3(_t18);
   }
 }
-function Ns() {
+function zs() {
   this.onResponse(function (e) {
     var t = e.type,
       n = e.content;
@@ -8330,29 +8449,29 @@ function Ns() {
       case "cloudobject":
         s = function (e) {
           if ("object" != (0, _typeof2.default)(e)) return !1;
-          var _ref51 = e || {},
-            t = _ref51.errCode;
-          return t in ds;
+          var _ref52 = e || {},
+            t = _ref52.errCode;
+          return t in Ts;
         }(n);
         break;
       case "clientdb":
         s = function (e) {
           if ("object" != (0, _typeof2.default)(e)) return !1;
-          var _ref52 = e || {},
-            t = _ref52.errCode;
-          return t in hs;
+          var _ref53 = e || {},
+            t = _ref53.errCode;
+          return t in ks;
         }(n);
     }
     s && function () {
       var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var t = z(H.NEED_LOGIN);
-      Z().then(function () {
-        var n = ms();
-        if (n && Ps({
+      var t = Q(W);
+      ne().then(function () {
+        var n = Es();
+        if (n && $s({
           redirect: n
-        })) return t.length > 0 ? Y(H.NEED_LOGIN, Object.assign({
+        })) return t.length > 0 ? Z(W, Object.assign({
           uniIdRedirectUrl: n
-        }, e)) : void (Is && Cs({
+        }, e)) : void (Rs && Bs({
           api: "navigateTo",
           redirect: n
         }));
@@ -8360,34 +8479,63 @@ function Ns() {
     }(n);
   });
 }
-function Rs(e) {
+function Vs(e) {
+  e.onNeedLogin = function (e) {
+    Y(W, e);
+  }, e.offNeedLogin = function (e) {
+    X(W, e);
+  }, Us && (U("_globalUniCloudStatus").needLoginInit || (U("_globalUniCloudStatus").needLoginInit = !0, ne().then(function () {
+    Js.call(e);
+  }), Ds && zs.call(e)));
+}
+function Gs(e) {
+  e.onFailover = function (e) {
+    Y(J, e);
+  }, e.offFailover = function (e) {
+    X(J, e);
+  }, e.refreshFailoverConfig = function () {
+    return e.config, en(0), nn();
+  }, e.clearFailoverConfig = function () {
+    !function () {
+      Vt = null, Gt = 0;
+      try {
+        ie.removeStorageSync(Xt("UNICLOUD_FAILOVER_CONFIG")), ie.removeStorageSync(Xt("UNICLOUD_FAILOVER_LAST_REQUEST"));
+      } catch (e) {}
+    }();
+  };
+}
+function Qs(e) {
   !function (e) {
     e.onResponse = function (e) {
-      V(H.RESPONSE, e);
+      Y(B, e);
     }, e.offResponse = function (e) {
-      G(H.RESPONSE, e);
+      X(B, e);
     };
-  }(e), function (e) {
-    e.onNeedLogin = function (e) {
-      V(H.NEED_LOGIN, e);
-    }, e.offNeedLogin = function (e) {
-      G(H.NEED_LOGIN, e);
-    }, ws && (U(Yt).needLoginInit || (U(Yt).needLoginInit = !0, Z().then(function () {
-      xs.call(e);
-    }), Ss && Ns.call(e)));
-  }(e), function (e) {
+  }(e), Vs(e), function (e) {
     e.onRefreshToken = function (e) {
-      V(H.REFRESH_TOKEN, e);
+      Y(H, e);
     }, e.offRefreshToken = function (e) {
-      G(H.REFRESH_TOKEN, e);
+      X(H, e);
     };
-  }(e);
+  }(e), Gs(e);
 }
-var Ls;
-var Us = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
-  Ds = /^(?:[A-Za-z\d+/]{4})*?(?:[A-Za-z\d+/]{2}(?:==)?|[A-Za-z\d+/]{3}=?)?$/;
-function Ms() {
-  var e = se().token || "",
+var Ys = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
+  Xs = /^(?:[A-Za-z\d+/]{4})*?(?:[A-Za-z\d+/]{2}(?:==)?|[A-Za-z\d+/]{3}=?)?$/;
+function Zs(e) {
+  return decodeURIComponent(function (e) {
+    if (e = String(e).replace(/[\t\n\f\r ]+/g, ""), !Xs.test(e)) throw new Error("Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.");
+    var t;
+    e += "==".slice(2 - (3 & e.length));
+    for (var n, s, r = "", i = 0; i < e.length;) {
+      t = Ys.indexOf(e.charAt(i++)) << 18 | Ys.indexOf(e.charAt(i++)) << 12 | (n = Ys.indexOf(e.charAt(i++))) << 6 | (s = Ys.indexOf(e.charAt(i++))), r += 64 === n ? String.fromCharCode(t >> 16 & 255) : 64 === s ? String.fromCharCode(t >> 16 & 255, t >> 8 & 255) : String.fromCharCode(t >> 16 & 255, t >> 8 & 255, 255 & t);
+    }
+    return r;
+  }(e).split("").map(function (e) {
+    return "%" + ("00" + e.charCodeAt(0).toString(16)).slice(-2);
+  }).join(""));
+}
+function er() {
+  var e = oe().token || "",
     t = e.split(".");
   if (!e || 3 !== t.length) return {
     uid: null,
@@ -8397,25 +8545,13 @@ function Ms() {
   };
   var n;
   try {
-    n = JSON.parse((s = t[1], decodeURIComponent(Ls(s).split("").map(function (e) {
-      return "%" + ("00" + e.charCodeAt(0).toString(16)).slice(-2);
-    }).join(""))));
+    n = JSON.parse(Zs(t[1]));
   } catch (e) {
     throw new Error("获取当前用户信息出错，详细错误信息为：" + e.message);
   }
-  var s;
   return n.tokenExpired = 1e3 * n.exp, delete n.exp, delete n.iat, n;
 }
-Ls = "function" != typeof atob ? function (e) {
-  if (e = String(e).replace(/[\t\n\f\r ]+/g, ""), !Ds.test(e)) throw new Error("Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.");
-  var t;
-  e += "==".slice(2 - (3 & e.length));
-  for (var n, s, r = "", i = 0; i < e.length;) {
-    t = Us.indexOf(e.charAt(i++)) << 18 | Us.indexOf(e.charAt(i++)) << 12 | (n = Us.indexOf(e.charAt(i++))) << 6 | (s = Us.indexOf(e.charAt(i++))), r += 64 === n ? String.fromCharCode(t >> 16 & 255) : 64 === s ? String.fromCharCode(t >> 16 & 255, t >> 8 & 255) : String.fromCharCode(t >> 16 & 255, t >> 8 & 255, 255 & t);
-  }
-  return r;
-} : atob;
-var qs = n(function (e, t) {
+var tr = n(function (e, t) {
     Object.defineProperty(t, "__esModule", {
       value: !0
     });
@@ -8428,9 +8564,9 @@ var qs = n(function (e, t) {
         return e.path;
       })), e;
     }
-    function i(e, t, _ref53) {
-      var s = _ref53.onChooseFile,
-        r = _ref53.onUploadProgress;
+    function i(e, t, _ref54) {
+      var s = _ref54.onChooseFile,
+        r = _ref54.onUploadProgress;
       return t.then(function (e) {
         if (s) {
           var _t19 = s(e);
@@ -8576,13 +8712,9 @@ var qs = n(function (e, t) {
       };
     };
   }),
-  Fs = t(qs);
-var Ks = {
-  auto: "auto",
-  onready: "onready",
-  manual: "manual"
-};
-function js(e) {
+  nr = t(tr);
+var sr = "manual";
+function rr(e) {
   return {
     props: {
       localdata: {
@@ -8702,11 +8834,11 @@ function js(e) {
           e.push(_this25[t]);
         }), e;
       }, function (e, t) {
-        if (_this25.loadtime === Ks.manual) return;
+        if (_this25.loadtime === sr) return;
         var n = !1;
         var s = [];
-        for (var _r9 = 2; _r9 < e.length; _r9++) {
-          e[_r9] !== t[_r9] && (s.push(e[_r9]), n = !0);
+        for (var _r10 = 2; _r10 < e.length; _r10++) {
+          e[_r10] !== t[_r10] && (s.push(e[_r10]), n = !0);
         }
         e[0] !== t[0] && (_this25.mixinDatacomPage.current = _this25.pageCurrent), _this25.mixinDatacomPage.size = _this25.pageSize, _this25.onMixinDatacomPropsChange(n, s);
       });
@@ -8715,11 +8847,11 @@ function js(e) {
       onMixinDatacomPropsChange: function onMixinDatacomPropsChange(e, t) {},
       mixinDatacomEasyGet: function mixinDatacomEasyGet() {
         var _this26 = this;
-        var _ref54 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-          _ref54$getone = _ref54.getone,
-          e = _ref54$getone === void 0 ? !1 : _ref54$getone,
-          t = _ref54.success,
-          n = _ref54.fail;
+        var _ref55 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+          _ref55$getone = _ref55.getone,
+          e = _ref55$getone === void 0 ? !1 : _ref55$getone,
+          t = _ref55.success,
+          n = _ref55.fail;
         this.mixinDatacomLoading || (this.mixinDatacomLoading = !0, this.mixinDatacomErrorMessage = "", this.mixinDatacomError = null, this.mixinDatacomGet().then(function (n) {
           _this26.mixinDatacomLoading = !1;
           var _n$result = n.result,
@@ -8733,14 +8865,14 @@ function js(e) {
         }));
       },
       mixinDatacomGet: function mixinDatacomGet() {
-        var _n17;
+        var _n18;
         var t = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var n;
         t = t || {}, n = "undefined" != typeof __uniX && __uniX ? e.databaseForJQL(this.spaceInfo) : e.database(this.spaceInfo);
         var s = t.action || this.action;
         s && (n = n.action(s));
         var r = t.collection || this.collection;
-        n = Array.isArray(r) ? (_n17 = n).collection.apply(_n17, (0, _toConsumableArray2.default)(r)) : n.collection(r);
+        n = Array.isArray(r) ? (_n18 = n).collection.apply(_n18, (0, _toConsumableArray2.default)(r)) : n.collection(r);
         var i = t.where || this.where;
         i && Object.keys(i).length && (n = n.where(i));
         var o = t.field || this.field;
@@ -8752,9 +8884,9 @@ function js(e) {
         var u = t.groupField || this.groupField;
         u && (n = n.groupField(u));
         !0 === (void 0 !== t.distinct ? t.distinct : this.distinct) && (n = n.distinct());
-        var h = t.orderby || this.orderby;
-        h && (n = n.orderBy(h));
-        var l = void 0 !== t.pageCurrent ? t.pageCurrent : this.mixinDatacomPage.current,
+        var l = t.orderby || this.orderby;
+        l && (n = n.orderBy(l));
+        var h = void 0 !== t.pageCurrent ? t.pageCurrent : this.mixinDatacomPage.current,
           d = void 0 !== t.pageSize ? t.pageSize : this.mixinDatacomPage.size,
           p = void 0 !== t.getcount ? t.getcount : this.getcount,
           f = void 0 !== t.gettree ? t.gettree : this.gettree,
@@ -8766,12 +8898,12 @@ function js(e) {
             limitLevel: void 0 !== t.limitlevel ? t.limitlevel : this.limitlevel,
             startWith: void 0 !== t.startwith ? t.startwith : this.startwith
           };
-        return f && (m.getTree = y), g && (m.getTreePath = y), n = n.skip(d * (l - 1)).limit(d).get(m), n;
+        return f && (m.getTree = y), g && (m.getTreePath = y), n = n.skip(d * (h - 1)).limit(d).get(m), n;
       }
     }
   };
 }
-function $s(e) {
+function ir(e) {
   return function (t) {
     var n = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     n = function (e) {
@@ -8788,11 +8920,11 @@ function $s(e) {
         retry: !1
       }
     }, n);
-    var _n18 = n,
-      s = _n18.customUI,
-      r = _n18.loadingOptions,
-      i = _n18.errorOptions,
-      o = _n18.parseSystemError,
+    var _n19 = n,
+      s = _n19.customUI,
+      r = _n19.loadingOptions,
+      i = _n19.errorOptions,
+      o = _n19.parseSystemError,
       a = !s;
     return new Proxy({}, {
       get: function get(s, c) {
@@ -8803,14 +8935,14 @@ function $s(e) {
             return {};
         }
         return function () {
-          var _ref55 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-            e = _ref55.fn,
-            t = _ref55.interceptorName,
-            n = _ref55.getCallbackArgs;
+          var _ref56 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            e = _ref56.fn,
+            t = _ref56.interceptorName,
+            n = _ref56.getCallbackArgs;
           return /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee64() {
-            var _len3,
+            var _len2,
               s,
-              _key3,
+              _key2,
               r,
               i,
               o,
@@ -8819,22 +8951,22 @@ function $s(e) {
               while (1) {
                 switch (_context64.prev = _context64.next) {
                   case 0:
-                    for (_len3 = _args.length, s = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-                      s[_key3] = _args[_key3];
+                    for (_len2 = _args.length, s = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                      s[_key2] = _args[_key2];
                     }
                     r = n ? n({
                       params: s
                     }) : {};
                     _context64.prev = 2;
                     _context64.next = 5;
-                    return j($(t, "invoke"), _objectSpread({}, r));
+                    return F(K(t, "invoke"), _objectSpread({}, r));
                   case 5:
                     _context64.next = 7;
                     return e.apply(void 0, s);
                   case 7:
                     i = _context64.sent;
                     _context64.next = 10;
-                    return j($(t, "success"), _objectSpread(_objectSpread({}, r), {}, {
+                    return F(K(t, "success"), _objectSpread(_objectSpread({}, r), {}, {
                       result: i
                     }));
                   case 10:
@@ -8844,7 +8976,7 @@ function $s(e) {
                     _context64.t0 = _context64["catch"](2);
                     o = _context64.t0;
                     _context64.next = 18;
-                    return j($(t, "fail"), _objectSpread(_objectSpread({}, r), {}, {
+                    return F(K(t, "fail"), _objectSpread(_objectSpread({}, r), {}, {
                       error: o
                     }));
                   case 18:
@@ -8852,7 +8984,7 @@ function $s(e) {
                   case 19:
                     _context64.prev = 19;
                     _context64.next = 22;
-                    return j($(t, "complete"), o ? _objectSpread(_objectSpread({}, r), {}, {
+                    return F(K(t, "complete"), o ? _objectSpread(_objectSpread({}, r), {}, {
                       error: o
                     }) : _objectSpread(_objectSpread({}, r), {}, {
                       result: i
@@ -8870,20 +9002,20 @@ function $s(e) {
           fn: function () {
             var _s18 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee66() {
               var h,
-                _len4,
-                u,
-                _key4,
+                _len3,
+                l,
+                _key3,
                 d,
                 p,
-                _ref57,
+                _ref58,
                 f,
                 g,
                 m,
                 y,
-                _e27,
+                _e26,
                 _yield,
                 _t20,
-                _n19,
+                _n20,
                 _args4 = arguments;
               return _regenerator.default.wrap(function _callee66$(_context66) {
                 while (1) {
@@ -8893,15 +9025,15 @@ function $s(e) {
                         title: r.title,
                         mask: r.mask
                       });
-                      for (_len4 = _args4.length, u = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-                        u[_key4] = _args4[_key4];
+                      for (_len3 = _args4.length, l = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+                        l[_key3] = _args4[_key3];
                       }
                       d = {
                         name: t,
-                        type: l.OBJECT,
+                        type: u,
                         data: {
                           method: c,
-                          params: u
+                          params: l
                         }
                       };
                       "object" == (0, _typeof2.default)(n.secretMethods) && function (e, t) {
@@ -8922,15 +9054,15 @@ function $s(e) {
                       _context66.prev = 11;
                       _context66.t0 = _context66["catch"](5);
                       p = !0, h = {
-                        result: new te(_context66.t0)
+                        result: new re(_context66.t0)
                       };
                     case 14:
-                      _ref57 = h.result || {}, f = _ref57.errSubject, g = _ref57.errCode, m = _ref57.errMsg, y = _ref57.newToken;
-                      if (!(a && uni.hideLoading(), y && y.token && y.tokenExpired && (re(y), Y(H.REFRESH_TOKEN, _objectSpread({}, y))), g)) {
+                      _ref58 = h.result || {}, f = _ref58.errSubject, g = _ref58.errCode, m = _ref58.errMsg, y = _ref58.newToken;
+                      if (!(a && uni.hideLoading(), y && y.token && y.tokenExpired && (ae(y), Z(H, _objectSpread({}, y))), g)) {
                         _context66.next = 39;
                         break;
                       }
-                      _e27 = m;
+                      _e26 = m;
                       if (!(p && o)) {
                         _context66.next = 24;
                         break;
@@ -8939,7 +9071,7 @@ function $s(e) {
                       return o({
                         objectName: t,
                         methodName: c,
-                        params: u,
+                        params: l,
                         errSubject: f,
                         errCode: g,
                         errMsg: m
@@ -8952,7 +9084,7 @@ function $s(e) {
                       }
                       _context66.t1 = m;
                     case 23:
-                      _e27 = _context66.t1;
+                      _e26 = _context66.t1;
                     case 24:
                       if (!a) {
                         _context66.next = 37;
@@ -8963,7 +9095,7 @@ function $s(e) {
                         break;
                       }
                       uni.showToast({
-                        title: _e27,
+                        title: _e26,
                         icon: "none"
                       });
                       _context66.next = 37;
@@ -8977,7 +9109,7 @@ function $s(e) {
                     case 31:
                       _context66.next = 33;
                       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee65() {
-                        var _ref59,
+                        var _ref60,
                           e,
                           t,
                           n,
@@ -8988,7 +9120,7 @@ function $s(e) {
                           while (1) {
                             switch (_context65.prev = _context65.next) {
                               case 0:
-                                _ref59 = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : {}, e = _ref59.title, t = _ref59.content, n = _ref59.showCancel, s = _ref59.cancelText, r = _ref59.confirmText;
+                                _ref60 = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : {}, e = _ref60.title, t = _ref60.content, n = _ref60.showCancel, s = _ref60.cancelText, r = _ref60.confirmText;
                                 return _context65.abrupt("return", new Promise(function (i, o) {
                                   uni.showModal({
                                     title: e,
@@ -9015,7 +9147,7 @@ function $s(e) {
                         }, _callee65);
                       }))({
                         title: "提示",
-                        content: _e27,
+                        content: _e26,
                         showCancel: i.retry,
                         cancelText: "取消",
                         confirmText: i.retry ? "重试" : "确定"
@@ -9027,21 +9159,21 @@ function $s(e) {
                         _context66.next = 37;
                         break;
                       }
-                      return _context66.abrupt("return", s.apply(void 0, u));
+                      return _context66.abrupt("return", s.apply(void 0, l));
                     case 37:
-                      _n19 = new te({
+                      _n20 = new re({
                         subject: f,
                         code: g,
                         message: m,
                         requestId: h.requestId
                       });
-                      throw _n19.detail = h.result, Y(H.RESPONSE, {
-                        type: J.CLOUD_OBJECT,
-                        content: _n19
-                      }), _n19;
+                      throw _n20.detail = h.result, Z(B, {
+                        type: G,
+                        content: _n20
+                      }), _n20;
                     case 39:
-                      return _context66.abrupt("return", (Y(H.RESPONSE, {
-                        type: J.CLOUD_OBJECT,
+                      return _context66.abrupt("return", (Z(B, {
+                        type: G,
                         content: h.result
                       }), h.result));
                     case 40:
@@ -9058,8 +9190,8 @@ function $s(e) {
           }(),
           interceptorName: "callObject",
           getCallbackArgs: function getCallbackArgs() {
-            var _ref60 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-              e = _ref60.params;
+            var _ref61 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+              e = _ref61.params;
             return {
               objectName: t,
               methodName: c,
@@ -9071,47 +9203,47 @@ function $s(e) {
     });
   };
 }
-function Bs(e) {
-  return U(Qt.replace("{spaceId}", e.config.spaceId));
+function or(e) {
+  return U("_globalUniCloudSecureNetworkCache__{spaceId}".replace("{spaceId}", e.config.spaceId));
 }
-function Ws() {
-  return _Ws.apply(this, arguments);
+function ar() {
+  return _ar.apply(this, arguments);
 }
-function _Ws() {
-  _Ws = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee71() {
-    var _ref70,
+function _ar() {
+  _ar = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee72() {
+    var _ref72,
       e,
-      _ref70$callLoginByWei,
+      _ref72$callLoginByWei,
       t,
       n,
       s,
       r,
-      _args10 = arguments;
-    return _regenerator.default.wrap(function _callee71$(_context71) {
+      _args11 = arguments;
+    return _regenerator.default.wrap(function _callee72$(_context72) {
       while (1) {
-        switch (_context71.prev = _context71.next) {
+        switch (_context72.prev = _context72.next) {
           case 0:
-            _ref70 = _args10.length > 0 && _args10[0] !== undefined ? _args10[0] : {}, e = _ref70.openid, _ref70$callLoginByWei = _ref70.callLoginByWeixin, t = _ref70$callLoginByWei === void 0 ? !1 : _ref70$callLoginByWei;
-            n = Bs(this);
-            if (!("mp-weixin" !== P)) {
-              _context71.next = 4;
+            _ref72 = _args11.length > 0 && _args11[0] !== undefined ? _args11[0] : {}, e = _ref72.openid, _ref72$callLoginByWei = _ref72.callLoginByWeixin, t = _ref72$callLoginByWei === void 0 ? !1 : _ref72$callLoginByWei;
+            n = or(this);
+            if (!("mp-weixin" !== T)) {
+              _context72.next = 4;
               break;
             }
-            throw new Error("[SecureNetwork] API `initSecureNetworkByWeixin` is not supported on platform `".concat(P, "`"));
+            throw new Error("[SecureNetwork] API `initSecureNetworkByWeixin` is not supported on platform `".concat(T, "`"));
           case 4:
             if (!(e && t)) {
-              _context71.next = 6;
+              _context72.next = 6;
               break;
             }
             throw new Error("[SecureNetwork] openid and callLoginByWeixin cannot be passed at the same time");
           case 6:
             if (!e) {
-              _context71.next = 8;
+              _context72.next = 8;
               break;
             }
-            return _context71.abrupt("return", (n.mpWeixinOpenid = e, {}));
+            return _context72.abrupt("return", (n.mpWeixinOpenid = e, {}));
           case 8:
-            _context71.next = 10;
+            _context72.next = 10;
             return new Promise(function (e, t) {
               uni.login({
                 success: function success(t) {
@@ -9123,73 +9255,73 @@ function _Ws() {
               });
             });
           case 10:
-            s = _context71.sent;
+            s = _context72.sent;
             r = this.importObject("uni-id-co", {
               customUI: !0
             });
-            _context71.next = 14;
+            _context72.next = 14;
             return r.secureNetworkHandshakeByWeixin({
               code: s,
               callLoginByWeixin: t
             });
           case 14:
             n.mpWeixinCode = s;
-            return _context71.abrupt("return", {
+            return _context72.abrupt("return", {
               code: s
             });
           case 16:
-          case "end":
-            return _context71.stop();
-        }
-      }
-    }, _callee71, this);
-  }));
-  return _Ws.apply(this, arguments);
-}
-function Hs(_x52) {
-  return _Hs.apply(this, arguments);
-}
-function _Hs() {
-  _Hs = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee72(e) {
-    var t;
-    return _regenerator.default.wrap(function _callee72$(_context72) {
-      while (1) {
-        switch (_context72.prev = _context72.next) {
-          case 0:
-            t = Bs(this);
-            return _context72.abrupt("return", (t.initPromise || (t.initPromise = Ws.call(this, e).then(function (e) {
-              return e;
-            }).catch(function (e) {
-              throw delete t.initPromise, e;
-            })), t.initPromise));
-          case 2:
           case "end":
             return _context72.stop();
         }
       }
     }, _callee72, this);
   }));
-  return _Hs.apply(this, arguments);
+  return _ar.apply(this, arguments);
 }
-function Js(e) {
+function cr(_x52) {
+  return _cr.apply(this, arguments);
+}
+function _cr() {
+  _cr = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee73(e) {
+    var t;
+    return _regenerator.default.wrap(function _callee73$(_context73) {
+      while (1) {
+        switch (_context73.prev = _context73.next) {
+          case 0:
+            t = or(this);
+            return _context73.abrupt("return", (t.initPromise || (t.initPromise = ar.call(this, e).then(function (e) {
+              return e;
+            }).catch(function (e) {
+              throw delete t.initPromise, e;
+            })), t.initPromise));
+          case 2:
+          case "end":
+            return _context73.stop();
+        }
+      }
+    }, _callee73, this);
+  }));
+  return _cr.apply(this, arguments);
+}
+function ur(e) {
   return function () {
-    var _ref61 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      t = _ref61.openid,
-      _ref61$callLoginByWei = _ref61.callLoginByWeixin,
-      n = _ref61$callLoginByWei === void 0 ? !1 : _ref61$callLoginByWei;
-    return Hs.call(e, {
+    var _ref62 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      t = _ref62.openid,
+      _ref62$callLoginByWei = _ref62.callLoginByWeixin,
+      n = _ref62$callLoginByWei === void 0 ? !1 : _ref62$callLoginByWei;
+    return cr.call(e, {
       openid: t,
       callLoginByWeixin: n
     });
   };
 }
-function zs(e) {
+function lr(e) {
   !function (e) {
-    ue = e;
+    de = e;
   }(e);
 }
-function Vs(e) {
-  var t = "mp-weixin" === P && wx.canIUse("getAppBaseInfo"),
+function hr(e) {
+  var t = "mp-weixin" === T && wx.canIUse("getAppBaseInfo"),
     n = {
       getAppBaseInfo: t ? uni.getAppBaseInfo : uni.getSystemInfo,
       getPushClientId: uni.getPushClientId
@@ -9207,28 +9339,28 @@ function Vs(e) {
     });
   };
 }
-var Gs = /*#__PURE__*/function (_S) {
-  (0, _inherits2.default)(Gs, _S);
-  var _super11 = _createSuper(Gs);
-  function Gs() {
+var dr = /*#__PURE__*/function (_ref63) {
+  (0, _inherits2.default)(dr, _ref63);
+  var _super11 = _createSuper(dr);
+  function dr() {
     var _this27;
-    (0, _classCallCheck2.default)(this, Gs);
+    (0, _classCallCheck2.default)(this, dr);
     _this27 = _super11.call(this), _this27._uniPushMessageCallback = _this27._receivePushMessage.bind((0, _assertThisInitialized2.default)(_this27)), _this27._currentMessageId = -1, _this27._payloadQueue = [];
     return _this27;
   }
-  (0, _createClass2.default)(Gs, [{
+  (0, _createClass2.default)(dr, [{
     key: "init",
     value: function init() {
       var _this28 = this;
-      return Promise.all([Vs("getAppBaseInfo")(), Vs("getPushClientId")()]).then(function () {
-        var _ref62 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [],
-          _ref63 = (0, _slicedToArray2.default)(_ref62, 2),
-          _ref63$ = _ref63[0];
-        _ref63$ = _ref63$ === void 0 ? {} : _ref63$;
-        var e = _ref63$.appId,
-          _ref63$2 = _ref63[1];
-        _ref63$2 = _ref63$2 === void 0 ? {} : _ref63$2;
-        var t = _ref63$2.cid;
+      return Promise.all([hr("getAppBaseInfo")(), hr("getPushClientId")()]).then(function () {
+        var _ref64 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [],
+          _ref65 = (0, _slicedToArray2.default)(_ref64, 2),
+          _ref65$ = _ref65[0];
+        _ref65$ = _ref65$ === void 0 ? {} : _ref65$;
+        var e = _ref65$.appId,
+          _ref65$2 = _ref65[1];
+        _ref65$2 = _ref65$2 === void 0 ? {} : _ref65$2;
+        var t = _ref65$2.cid;
         if (!e) throw new Error("Invalid appId, please check the manifest.json file");
         if (!t) throw new Error("Invalid push client id");
         _this28._appId = e, _this28._pushClientId = t, _this28._seqId = Date.now() + "-" + Math.floor(9e5 * Math.random() + 1e5), _this28.emit("open"), _this28._initMessageListener();
@@ -9283,11 +9415,11 @@ var Gs = /*#__PURE__*/function (_S) {
     value: function _consumMessage() {
       var _this29 = this;
       for (;;) {
-        var _e28 = this._payloadQueue.find(function (e) {
+        var _e27 = this._payloadQueue.find(function (e) {
           return e.messageId === _this29._currentMessageId + 1;
         });
-        if (!_e28) break;
-        this._currentMessageId++, this._parseMessagePayload(_e28);
+        if (!_e27) break;
+        this._currentMessageId++, this._parseMessagePayload(_e27);
       }
     }
   }, {
@@ -9307,17 +9439,17 @@ var Gs = /*#__PURE__*/function (_S) {
   }, {
     key: "_appendMessage",
     value: function _appendMessage() {
-      var _ref64 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        e = _ref64.messageId,
-        t = _ref64.message;
+      var _ref66 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        e = _ref66.messageId,
+        t = _ref66.message;
       this.emit("message", t);
     }
   }, {
     key: "_end",
     value: function _end() {
-      var _ref65 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        e = _ref65.messageId,
-        t = _ref65.message;
+      var _ref67 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        e = _ref67.messageId,
+        t = _ref67.message;
       this.emit("end", t), this.close();
     }
   }, {
@@ -9345,27 +9477,79 @@ var Gs = /*#__PURE__*/function (_S) {
       this._destroy(), this.emit("close");
     }
   }]);
-  return Gs;
-}(S);
-function Ys(_x53) {
-  return _Ys.apply(this, arguments);
+  return dr;
+}( /*#__PURE__*/function () {
+  function _class6() {
+    (0, _classCallCheck2.default)(this, _class6);
+    this._callback = {};
+  }
+  (0, _createClass2.default)(_class6, [{
+    key: "addListener",
+    value: function addListener(e, t) {
+      this._callback[e] || (this._callback[e] = []), this._callback[e].push(t);
+    }
+  }, {
+    key: "on",
+    value: function on(e, t) {
+      return this.addListener(e, t);
+    }
+  }, {
+    key: "removeListener",
+    value: function removeListener(e, t) {
+      if (!t) throw new Error('The "listener" argument must be of type function. Received undefined');
+      var n = this._callback[e];
+      if (!n) return;
+      var s = function (e, t) {
+        for (var _n21 = e.length - 1; _n21 >= 0; _n21--) {
+          if (e[_n21] === t) return _n21;
+        }
+        return -1;
+      }(n, t);
+      n.splice(s, 1);
+    }
+  }, {
+    key: "off",
+    value: function off(e, t) {
+      return this.removeListener(e, t);
+    }
+  }, {
+    key: "removeAllListener",
+    value: function removeAllListener(e) {
+      delete this._callback[e];
+    }
+  }, {
+    key: "emit",
+    value: function emit(e) {
+      var n = this._callback[e];
+      for (var _len4 = arguments.length, t = new Array(_len4 > 1 ? _len4 - 1 : 0), _key4 = 1; _key4 < _len4; _key4++) {
+        t[_key4 - 1] = arguments[_key4];
+      }
+      if (n) for (var _e28 = 0; _e28 < n.length; _e28++) {
+        n[_e28].apply(n, t);
+      }
+    }
+  }]);
+  return _class6;
+}());
+function pr(_x53) {
+  return _pr.apply(this, arguments);
 }
-function _Ys() {
-  _Ys = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee73(e) {
-    var _ae2, _e33, _t22, t, _t$debugInfo, n, s, _yield$Ct2, r, i, o;
-    return _regenerator.default.wrap(function _callee73$(_context73) {
+function _pr() {
+  _pr = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee74(e) {
+    var _le2, _e34, _t22, t, _t$debugInfo, n, s, _yield$xt2, r, i, o;
+    return _regenerator.default.wrap(function _callee74$(_context74) {
       while (1) {
-        switch (_context73.prev = _context73.next) {
+        switch (_context74.prev = _context74.next) {
           case 0:
-            if (b) {
-              _context73.next = 2;
+            if (S) {
+              _context74.next = 2;
               break;
             }
-            return _context73.abrupt("return", Promise.resolve());
+            return _context74.abrupt("return", Promise.resolve());
           case 2:
-            if ("app" === P) {
-              _ae2 = ae(), _e33 = _ae2.osName, _t22 = _ae2.osVersion;
-              "ios" === _e33 && function (e) {
+            if ("app" === T) {
+              _le2 = le(), _e34 = _le2.osName, _t22 = _le2.osVersion;
+              "ios" === _e34 && function (e) {
                 if (!e || "string" != typeof e) return 0;
                 var t = e.match(/^(\d+)./);
                 return t && t[1] ? parseInt(t[1]) : 0;
@@ -9373,29 +9557,29 @@ function _Ys() {
             }
             t = e.__dev__;
             if (t.debugInfo) {
-              _context73.next = 6;
+              _context74.next = 6;
               break;
             }
-            return _context73.abrupt("return");
+            return _context74.abrupt("return");
           case 6:
             _t$debugInfo = t.debugInfo;
             n = _t$debugInfo.address;
             s = _t$debugInfo.servePort;
-            _context73.next = 11;
-            return Ct(n, s);
+            _context74.next = 11;
+            return xt(n, s);
           case 11:
-            _yield$Ct2 = _context73.sent;
-            r = _yield$Ct2.address;
+            _yield$xt2 = _context74.sent;
+            r = _yield$xt2.address;
             if (!r) {
-              _context73.next = 15;
+              _context74.next = 15;
               break;
             }
-            return _context73.abrupt("return", (t.localAddress = r, void (t.localPort = s)));
+            return _context74.abrupt("return", (t.localAddress = r, void (t.localPort = s)));
           case 15:
-            i = console["app" === P ? "error" : "warn"];
+            i = console["app" === T ? "error" : "warn"];
             o = "";
-            if (!("remote" === t.debugInfo.initialLaunchType ? (t.debugInfo.forceRemote = !0, o = "当前客户端和HBuilderX不在同一局域网下（或其他网络原因无法连接HBuilderX），uniCloud本地调试服务不对当前客户端生效。\n- 如果不使用uniCloud本地调试服务，请直接忽略此信息。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。") : o = "无法连接uniCloud本地调试服务，请检查当前客户端是否与主机在同一局域网下。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。", o += "\n- 如果在HBuilderX开启的状态下切换过网络环境，请重启HBuilderX后再试\n- 检查系统防火墙是否拦截了HBuilderX自带的nodejs\n- 检查是否错误的使用拦截器修改uni.request方法的参数", "web" === P && (o += "\n- 部分浏览器开启节流模式之后访问本地地址受限，请检查是否启用了节流模式"), 0 === P.indexOf("mp-") && (o += "\n- 小程序中如何使用uniCloud，请参考：https://uniapp.dcloud.net.cn/uniCloud/publish.html#useinmp"), !t.debugInfo.forceRemote)) {
-              _context73.next = 19;
+            if (!("remote" === t.debugInfo.initialLaunchType ? (t.debugInfo.forceRemote = !0, o = "当前客户端和HBuilderX不在同一局域网下（或其他网络原因无法连接HBuilderX），uniCloud本地调试服务不对当前客户端生效。\n- 如果不使用uniCloud本地调试服务，请直接忽略此信息。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。") : o = "无法连接uniCloud本地调试服务，请检查当前客户端是否与主机在同一局域网下。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。", o += "\n- 如果在HBuilderX开启的状态下切换过网络环境，请重启HBuilderX后再试\n- 检查系统防火墙是否拦截了HBuilderX自带的nodejs\n- 检查是否错误的使用拦截器修改uni.request方法的参数", "web" === T && (o += "\n- 部分浏览器开启节流模式之后访问本地地址受限，请检查是否启用了节流模式"), 0 === T.indexOf("mp-") && (o += "\n- 小程序中如何使用uniCloud，请参考：https://uniapp.dcloud.net.cn/uniCloud/publish.html#useinmp"), !t.debugInfo.forceRemote)) {
+              _context74.next = 19;
               break;
             }
             throw new Error(o);
@@ -9403,14 +9587,14 @@ function _Ys() {
             i(o);
           case 20:
           case "end":
-            return _context73.stop();
+            return _context74.stop();
         }
       }
-    }, _callee73);
+    }, _callee74);
   }));
-  return _Ys.apply(this, arguments);
+  return _pr.apply(this, arguments);
 }
-function Qs(e) {
+function fr(e) {
   e._initPromiseHub || (e._initPromiseHub = new v({
     createPromise: function createPromise() {
       var t = Promise.resolve();
@@ -9429,39 +9613,39 @@ function Qs(e) {
     }
   }));
 }
-var Xs = {
-  tcb: At,
-  tencent: At,
-  aliyun: pe,
-  private: Nt,
-  dcloud: Nt,
-  alipay: $t
+var gr = {
+  tcb: Ot,
+  tencent: Ot,
+  aliyun: me,
+  private: Rt,
+  dcloud: Rt,
+  alipay: Ht
 };
-var Zs = new ( /*#__PURE__*/function () {
-  function _class5() {
-    (0, _classCallCheck2.default)(this, _class5);
+var mr = new ( /*#__PURE__*/function () {
+  function _class7() {
+    (0, _classCallCheck2.default)(this, _class7);
   }
-  (0, _createClass2.default)(_class5, [{
+  (0, _createClass2.default)(_class7, [{
     key: "init",
     value: function init(e) {
       var t = {};
-      var n = Xs[e.provider];
+      var n = gr[e.provider];
       if (!n) throw new Error("未提供正确的provider参数");
-      t = n.init(e), b && function (e) {
-        if (!b) return;
+      t = n.init(e), S && function (e) {
+        if (!S) return;
         var t = {};
-        e.__dev__ = t, t.debugLog = b && ("web" === P && navigator.userAgent.indexOf("HBuilderX") > 0 || "app" === P || "mp-harmony" === P);
+        e.__dev__ = t, t.debugLog = S && ("web" === T && navigator.userAgent.indexOf("HBuilderX") > 0 || "app" === T || "mp-harmony" === T);
         var n = C;
         n && !n.code && (t.debugInfo = n);
         var s = new v({
           createPromise: function createPromise() {
-            return Ys(e);
+            return pr(e);
           }
         });
         t.initLocalNetwork = function () {
           return s.exec();
         };
-      }(t), Qs(t), Vn(t), function (e) {
+      }(t), fr(t), us(t), function (e) {
         var t = e.uploadFile;
         e.uploadFile = function (e) {
           return t.call(this, e);
@@ -9470,25 +9654,25 @@ var Zs = new ( /*#__PURE__*/function () {
         e.database = function (t) {
           if (t && Object.keys(t).length > 0) return e.init(t).database();
           if (this._database) return this._database;
-          var n = os(as, {
+          var n = vs(Is, {
             uniClient: e
           });
           return this._database = n, n;
         }, e.databaseForJQL = function (t) {
           if (t && Object.keys(t).length > 0) return e.init(t).databaseForJQL();
           if (this._databaseForJQL) return this._databaseForJQL;
-          var n = os(as, {
+          var n = vs(Is, {
             uniClient: e,
             isJQL: !0
           });
           return this._databaseForJQL = n, n;
         };
       }(t), function (e) {
-        e.getCurrentUserInfo = Ms, e.chooseAndUploadFile = Fs.initChooseAndUploadFile(e), Object.assign(e, {
+        e.getCurrentUserInfo = er, e.chooseAndUploadFile = nr.initChooseAndUploadFile(e), Object.assign(e, {
           get mixinDatacom() {
-            return js(e);
+            return rr(e);
           }
-        }), e.SSEChannel = Gs, e.initSecureNetworkByWeixin = Js(e), e.setCustomClientInfo = zs, e.importObject = $s(e);
+        }), e.SSEChannel = dr, e.initSecureNetworkByWeixin = ur(e), e.setCustomClientInfo = lr, e.importObject = ir(e);
       }(t);
       return ["callFunction", "uploadFile", "deleteFile", "getTempFileURL", "downloadFile", "chooseAndUploadFile"].forEach(function (e) {
         if (!t[e]) return;
@@ -9500,48 +9684,48 @@ var Zs = new ( /*#__PURE__*/function () {
             var _this30 = this;
             var s = !1;
             if ("callFunction" === t) {
-              var _e29 = n && n.type || l.DEFAULT;
-              s = _e29 !== l.DEFAULT;
+              var _e29 = n && n.type || c;
+              s = _e29 !== c;
             }
             var r = "callFunction" === t && !s,
               i = this._initPromiseHub.exec();
             n = n || {};
-            var _ee2 = ee(n),
-              o = _ee2.success,
-              a = _ee2.fail,
-              c = _ee2.complete,
-              u = i.then(function () {
-                return s ? Promise.resolve() : j($(t, "invoke"), n);
+            var _se2 = se(n),
+              o = _se2.success,
+              a = _se2.fail,
+              u = _se2.complete,
+              l = i.then(function () {
+                return s ? Promise.resolve() : F(K(t, "invoke"), n);
               }).then(function () {
                 return e.call(_this30, n);
               }).then(function (e) {
-                return s ? Promise.resolve(e) : j($(t, "success"), e).then(function () {
-                  return j($(t, "complete"), e);
+                return s ? Promise.resolve(e) : F(K(t, "success"), e).then(function () {
+                  return F(K(t, "complete"), e);
                 }).then(function () {
-                  return r && Y(H.RESPONSE, {
-                    type: J.CLOUD_FUNCTION,
+                  return r && Z(B, {
+                    type: V,
                     content: e
                   }), Promise.resolve(e);
                 });
               }, function (e) {
-                return s ? Promise.reject(e) : j($(t, "fail"), e).then(function () {
-                  return j($(t, "complete"), e);
+                return s ? Promise.reject(e) : F(K(t, "fail"), e).then(function () {
+                  return F(K(t, "complete"), e);
                 }).then(function () {
-                  return Y(H.RESPONSE, {
-                    type: J.CLOUD_FUNCTION,
+                  return Z(B, {
+                    type: V,
                     content: e
                   }), Promise.reject(e);
                 });
               });
-            if (!(o || a || c)) return u;
-            u.then(function (e) {
-              o && o(e), c && c(e), r && Y(H.RESPONSE, {
-                type: J.CLOUD_FUNCTION,
+            if (!(o || a || u)) return l;
+            l.then(function (e) {
+              o && o(e), u && u(e), r && Z(B, {
+                type: V,
                 content: e
               });
             }, function (e) {
-              a && a(e), c && c(e), r && Y(H.RESPONSE, {
-                type: J.CLOUD_FUNCTION,
+              a && a(e), u && u(e), r && Z(B, {
+                type: V,
                 content: e
               });
             });
@@ -9550,37 +9734,57 @@ var Zs = new ( /*#__PURE__*/function () {
       }), t.init = this.init, t;
     }
   }]);
-  return _class5;
+  return _class7;
 }())();
-exports.uniCloud = Zs;
+exports.uniCloud = mr;
 (function () {
-  var e = O;
-  var t = {};
-  if (e && 1 === e.length) t = e[0], exports.uniCloud = Zs = Zs.init(t), Zs._isDefault = !0;else {
-    var _t21 = ["auth", "callFunction", "uploadFile", "deleteFile", "getTempFileURL", "downloadFile"],
-      _n20 = ["database", "getCurrentUserInfo", "importObject"];
-    var _s19;
-    _s19 = e && e.length > 0 ? "应用有多个服务空间，请通过uniCloud.init方法指定要使用的服务空间" : x ? "应用未关联服务空间，请在uniCloud目录右键关联服务空间" : "uni-app cli项目内使用uniCloud需要使用HBuilderX的运行菜单运行项目，且需要在uniCloud目录关联服务空间", [].concat(_t21, _n20).forEach(function (e) {
-      Zs[e] = function () {
-        if (console.error(_s19), -1 === _n20.indexOf(e)) return Promise.reject(new te({
+  var e = Array.isArray(P) ? P.length : 0,
+    t = function () {
+      var e = Yt(),
+        t = Zt();
+      return t && t.enable && g(t.space) ? t.space : e;
+    }();
+  if (1 === e) exports.uniCloud = mr = mr.init(t), mr._isDefault = !0;else {
+    var _t21 = ["database", "getCurrentUserInfo", "importObject"];
+    var _n22;
+    _n22 = e > 0 ? "应用有多个服务空间，请通过uniCloud.init方法指定要使用的服务空间" : O ? "应用未关联服务空间，请在uniCloud目录右键关联服务空间" : "uni-app cli项目内使用uniCloud需要使用HBuilderX的运行菜单运行项目，且需要在uniCloud目录关联服务空间", ["auth", "callFunction", "uploadFile", "deleteFile", "getTempFileURL", "downloadFile"].concat(_t21).forEach(function (e) {
+      mr[e] = function () {
+        if (console.error(_n22), -1 === _t21.indexOf(e)) return Promise.reject(new re({
           code: "SYS_ERR",
-          message: _s19
+          message: _n22
         }));
-        console.error(_s19);
+        console.error(_n22);
       };
     });
   }
-  if (Object.assign(Zs, {
+  if (Object.assign(mr, {
     get mixinDatacom() {
-      return js(Zs);
+      return rr(mr);
     }
-  }), Rs(Zs), Zs.addInterceptor = F, Zs.removeInterceptor = K, Zs.interceptObject = B, b && "web" === P && (window.uniCloud = Zs), "app" === P && (uni.__uniCloud = Zs), "app" === P || "web" === P) {
-    var _e30 = D();
-    _e30.uniCloud = Zs, _e30.UniCloudError = te;
+  }), Qs(mr), mr.addInterceptor = M, mr.removeInterceptor = q, mr.interceptObject = j, S && "web" === T && (window.uniCloud = mr), "app" === T && (uni.__uniCloud = mr), "app" === T || "web" === T) {
+    var _e30 = R();
+    _e30.uniCloud = mr, _e30.UniCloudError = re;
   }
+  !function () {
+    var _Yt = Yt(),
+      e = _Yt.failoverEndpoint;
+    if (!e) return;
+    nn().catch(function (e) {
+      console.error("请求故障切换配置失败：", e);
+    });
+    var t = {
+      fail: function fail() {
+        var e = Zt();
+        tn(e && e.interval || 0) && nn().catch(function (e) {
+          console.error("请求故障切换配置失败：", e);
+        });
+      }
+    };
+    M("callFunction", t), M("database", t), M("uploadFile", t);
+  }();
 })();
-var er = Zs;
-exports.default = er;
+var yr = mr;
+exports.default = yr;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 38), __webpack_require__(/*! @dcloudio/uni-mp-weixin/dist/mp.js */ 39)["default"]))
 
 /***/ }),
@@ -11749,7 +11953,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  "appid": "__UNI__800FF13"
+  "appid": "__UNI__30883AF"
 };
 exports.default = _default;
 
@@ -11784,7 +11988,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _D_H
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("/* WEBPACK VAR INJECTION */(function(__f__) {\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 1);\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _area_province = _interopRequireDefault(__webpack_require__(/*! ./json/area_province.js */ 71));\nvar _area_city = _interopRequireDefault(__webpack_require__(/*! ./json/area_city.js */ 72));\nvar _area_district = _interopRequireDefault(__webpack_require__(/*! ./json/area_district.js */ 73));\nvar _default = {\n  globalData: {\n    // serverUrl: \"http://192.168.18.165:8088\",\t\t// 开发环境\n    serverUrl: \"http://106.54.6.213:8088\",\n    // 生产环境\n\n    provinceList: _area_province.default,\n    cityList: _area_city.default,\n    districtList: _area_district.default\n  },\n  onLaunch: function onLaunch() {\n    __f__(\"log\", \"onLaunch...测试调试信息的打印\", \" at App.vue:17\");\n    var me = this;\n    uni.onTabBarMidButtonTap(function () {\n      // 未登录不能发布视频\n      var myUserInfo = getApp().getUserInfoSession();\n      if (myUserInfo == null) {\n        uni.showToast({\n          duration: 3000,\n          title: \"请登录~\",\n          icon: \"none\"\n        });\n        uni.navigateTo({\n          url: \"../loginRegist/loginRegist\",\n          animationType: \"slide-in-bottom\",\n          success: function success() {\n            me.loginWords = \"请登录\";\n          }\n        });\n        return;\n      }\n\n      // console.log('onTabBarMidButtonTap');\n      uni.switchTab({\n        url: \"../me/me\"\n      });\n      // 上传视频源: 1.相册 album 2.摄像头 具体详见api文档\n      uni.chooseVideo({\n        sourceType: ['album', 'camera'],\n        success: function success(e) {\n          uni.navigateTo({\n            url: \"/pages/publish/publish?fileObjectEvent=\" + JSON.stringify(e)\n          });\n\n          /**\n           * 或者采用uniCloud，在客户端完成上传，减少链路，因为文件大，通信链路和耗时是双倍的\n           */\n          var times = new Date().getTime();\n        }\n      });\n    });\n  },\n  onShow: function onShow() {},\n  onHide: function onHide() {},\n  methods: {\n    getDefaultVlogList: function getDefaultVlogList() {\n      var list = [{\n        vlogId: \"251130HG1TFNC568\",\n        vlogerId: \"251127HS7G8RTT2W\",\n        vlogerFace: \"/static/face/face-arrow-2.jpg\",\n        vlogerName: \"脆脆鲨同学\",\n        content: \"牛\",\n        url: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4',\n        cover: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto',\n        isLike: 1,\n        play: false\n      }, {\n        vlogId: \"251130HHM713MW00\",\n        vlogerId: \"251127HS7G8RTT2W\",\n        vlogerFace: \"/static/face/face-cat.png\",\n        vlogerName: \"脆脆鲨同学\",\n        content: \"狗\",\n        url: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4',\n        cover: 'https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4?x-oss-process=video/snapshot,t_1,f_jpg',\n        isLike: 1,\n        play: false\n      }];\n      return list;\n    },\n    graceNumber: function graceNumber(number) {\n      if (number == 0) {\n        return \"0\";\n      } else if (number > 999 && number <= 9999) {\n        return (number / 1000).toFixed(1) + 'K';\n      } else if (number > 9999 && number <= 999999) {\n        return (number / 10000).toFixed(1) + '万';\n      } else if (number > 999999) {\n        return \"100W+\";\n      }\n      return number;\n    },\n    // 时间格式化时间为：多少分钟前、多少天前\n    // time 2020-09-10 20:20:20\n    getDateBeforeNow: function getDateBeforeNow(stringTime) {\n      // console.log(stringTime);\n      stringTime = new Date(stringTime.replace(/-/g, '/'));\n      var minute = 1000 * 60;\n      var hour = minute * 60;\n      var day = hour * 24;\n      var week = day * 7;\n      var month = day * 30;\n      var time1 = new Date().getTime(); //当前的时间戳\n      // console.log(time1);\n      // console.log(new Date(stringTime));\n      var time2 = Date.parse(new Date(stringTime)); //指定时间的时间戳\n      // console.log(time2);\n      var time = time1 - time2;\n      var result = null;\n      if (time < 0) {\n        // alert(\"设置的时间不能早于当前时间！\");\n        result = stringTime;\n      } else if (time / month >= 1) {\n        result = parseInt(time / month) + \"月前\";\n      } else if (time / week >= 1) {\n        result = parseInt(time / week) + \"周前\";\n      } else if (time / day >= 1) {\n        result = parseInt(time / day) + \"天前\";\n      } else if (time / hour >= 1) {\n        result = parseInt(time / hour) + \"小时前\";\n      } else if (time / minute >= 1) {\n        result = parseInt(time / minute) + \"分钟前\";\n      } else {\n        result = \"刚刚\";\n      }\n      // console.log(result);\n      return result;\n    },\n    // 判断是否为空\n    isStrEmpty: function isStrEmpty(str) {\n      if (str == null || str == undefined || str == \"\") {\n        return true;\n      } else {\n        return false;\n      }\n    },\n    // 判断用户是否登录\n    userIsLogin: function userIsLogin() {\n      var userToken = this.getUserSessionToken();\n      var userInfo = this.getUserInfoSession();\n      // console.log(\"userInfo=\" + userInfo);\n      // console.log(\"userToken=\" + userToken);\n      if (!this.isStrEmpty(userToken) && !this.isStrEmpty(userInfo)) {\n        return true;\n      } else {\n        return false;\n      }\n    },\n    // 用户登录以后的session存取，token和userInfo\n    setUserSessionToken: function setUserSessionToken(token) {\n      uni.setStorageSync(\"userToken\", token);\n    },\n    getUserSessionToken: function getUserSessionToken() {\n      var token = uni.getStorageSync(\"userToken\");\n      if (this.isStrEmpty(token)) {\n        return \"\";\n      }\n      return token;\n    },\n    setUserInfoSession: function setUserInfoSession(user) {\n      uni.setStorageSync(\"userInfo\", JSON.stringify(user));\n    },\n    getUserInfoSession: function getUserInfoSession() {\n      var user = uni.getStorageSync(\"userInfo\");\n      if (this.isStrEmpty(user)) {\n        return null;\n      }\n      return JSON.parse(user);\n    },\n    clearUserInfo: function clearUserInfo() {\n      uni.removeStorageSync(\"userInfo\");\n      uni.removeStorageSync(\"userToken\");\n    },\n    // let date = new Date()\n    // dateFormat(\"YYYY-mm-dd HH:MM\", date)\n    dateFormat: function dateFormat(fmt, date) {\n      var ret;\n      var opt = {\n        \"Y+\": date.getFullYear().toString(),\n        // 年\n        \"m+\": (date.getMonth() + 1).toString(),\n        // 月\n        \"d+\": date.getDate().toString(),\n        // 日\n        \"H+\": date.getHours().toString(),\n        // 时\n        \"M+\": date.getMinutes().toString(),\n        // 分\n        \"S+\": date.getSeconds().toString() // 秒\n        // 有其他格式化字符需求可以继续添加，必须转化成字符串\n      };\n\n      for (var k in opt) {\n        ret = new RegExp(\"(\" + k + \")\").exec(fmt);\n        if (ret) {\n          fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, \"0\"));\n        }\n        ;\n      }\n      ;\n      return fmt;\n    },\n    // 获得星座\n    getAstro: function getAstro(m, d) {\n      return \"魔羯水瓶双鱼牡羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯\".substr(m * 2 - (d < \"102223444433\".charAt(m - 1) - -19) * 2, 2);\n    },\n    //下面写一个测试函数\n    testAstro: function testAstro(month, day) {\n      __f__(\"log\", month + \"月\" + day + \"日: \" + this.getAstro(month, day), \" at App.vue:222\");\n    },\n    // 获得生肖\n    getAnimal: function getAnimal(year) {\n      year = year % 12;\n      var animal = \"\";\n      switch (year) {\n        case 1:\n          animal = '鸡';\n          break;\n        case 2:\n          animal = '狗';\n          break;\n        case 3:\n          animal = '猪';\n          break;\n        case 4:\n          animal = '鼠';\n          break;\n        case 5:\n          animal = '牛';\n          break;\n        case 6:\n          animal = '虎';\n          break;\n        case 7:\n          animal = '兔';\n          break;\n        case 8:\n          animal = '龙';\n          break;\n        case 9:\n          animal = '蛇';\n          break;\n        case 10:\n          animal = '马';\n          break;\n        case 11:\n          animal = '羊';\n          break;\n        case 0:\n          animal = '猴';\n          break;\n      }\n      ;\n      return animal;\n    }\n  }\n};\nexports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 70)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vQXBwLnZ1ZSJdLCJuYW1lcyI6WyJnbG9iYWxEYXRhIiwic2VydmVyVXJsIiwicHJvdmluY2VMaXN0IiwiY2l0eUxpc3QiLCJkaXN0cmljdExpc3QiLCJvbkxhdW5jaCIsIm1lIiwidW5pIiwib25UYWJCYXJNaWRCdXR0b25UYXAiLCJteVVzZXJJbmZvIiwiZ2V0QXBwIiwiZ2V0VXNlckluZm9TZXNzaW9uIiwic2hvd1RvYXN0IiwiZHVyYXRpb24iLCJ0aXRsZSIsImljb24iLCJuYXZpZ2F0ZVRvIiwidXJsIiwiYW5pbWF0aW9uVHlwZSIsInN1Y2Nlc3MiLCJsb2dpbldvcmRzIiwic3dpdGNoVGFiIiwiY2hvb3NlVmlkZW8iLCJzb3VyY2VUeXBlIiwiZSIsIkpTT04iLCJzdHJpbmdpZnkiLCJ0aW1lcyIsIkRhdGUiLCJnZXRUaW1lIiwib25TaG93Iiwib25IaWRlIiwibWV0aG9kcyIsImdldERlZmF1bHRWbG9nTGlzdCIsImxpc3QiLCJ2bG9nSWQiLCJ2bG9nZXJJZCIsInZsb2dlckZhY2UiLCJ2bG9nZXJOYW1lIiwiY29udGVudCIsImNvdmVyIiwiaXNMaWtlIiwicGxheSIsImdyYWNlTnVtYmVyIiwibnVtYmVyIiwidG9GaXhlZCIsImdldERhdGVCZWZvcmVOb3ciLCJzdHJpbmdUaW1lIiwicmVwbGFjZSIsIm1pbnV0ZSIsImhvdXIiLCJkYXkiLCJ3ZWVrIiwibW9udGgiLCJ0aW1lMSIsInRpbWUyIiwicGFyc2UiLCJ0aW1lIiwicmVzdWx0IiwicGFyc2VJbnQiLCJpc1N0ckVtcHR5Iiwic3RyIiwidW5kZWZpbmVkIiwidXNlcklzTG9naW4iLCJ1c2VyVG9rZW4iLCJnZXRVc2VyU2Vzc2lvblRva2VuIiwidXNlckluZm8iLCJzZXRVc2VyU2Vzc2lvblRva2VuIiwidG9rZW4iLCJzZXRTdG9yYWdlU3luYyIsImdldFN0b3JhZ2VTeW5jIiwic2V0VXNlckluZm9TZXNzaW9uIiwidXNlciIsImNsZWFyVXNlckluZm8iLCJyZW1vdmVTdG9yYWdlU3luYyIsImRhdGVGb3JtYXQiLCJmbXQiLCJkYXRlIiwicmV0Iiwib3B0IiwiZ2V0RnVsbFllYXIiLCJ0b1N0cmluZyIsImdldE1vbnRoIiwiZ2V0RGF0ZSIsImdldEhvdXJzIiwiZ2V0TWludXRlcyIsImdldFNlY29uZHMiLCJrIiwiUmVnRXhwIiwiZXhlYyIsImxlbmd0aCIsInBhZFN0YXJ0IiwiZ2V0QXN0cm8iLCJtIiwiZCIsInN1YnN0ciIsImNoYXJBdCIsInRlc3RBc3RybyIsImdldEFuaW1hbCIsInllYXIiLCJhbmltYWwiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFBbUQsZUFDcEM7RUFDZEEsVUFBVSxFQUFFO0lBQ1g7SUFDQUMsU0FBUyxFQUFFLDBCQUEwQjtJQUFJOztJQUV6Q0MsWUFBWSxFQUFFQSxzQkFBWTtJQUMxQkMsUUFBUSxFQUFFQSxrQkFBUTtJQUNsQkMsWUFBWSxFQUFFQTtFQUNmLENBQUM7RUFFREMsUUFBUSxFQUFFLG9CQUFXO0lBRXBCLGFBQVksc0JBQXNCO0lBR2xDLElBQUlDLEVBQUUsR0FBRyxJQUFJO0lBQ2JDLEdBQUcsQ0FBQ0Msb0JBQW9CLENBQUMsWUFBSTtNQUU1QjtNQUNBLElBQUlDLFVBQVUsR0FBR0MsTUFBTSxFQUFFLENBQUNDLGtCQUFrQixFQUFFO01BQzlDLElBQUlGLFVBQVUsSUFBSSxJQUFJLEVBQUU7UUFDdkJGLEdBQUcsQ0FBQ0ssU0FBUyxDQUFDO1VBQ2JDLFFBQVEsRUFBRSxJQUFJO1VBQ2RDLEtBQUssRUFBRSxNQUFNO1VBQ2JDLElBQUksRUFBRTtRQUNQLENBQUMsQ0FBQztRQUNGUixHQUFHLENBQUNTLFVBQVUsQ0FBQztVQUNkQyxHQUFHLEVBQUUsNEJBQTRCO1VBQ2pDQyxhQUFhLEVBQUUsaUJBQWlCO1VBQ2hDQyxPQUFPLHFCQUFHO1lBQ1RiLEVBQUUsQ0FBQ2MsVUFBVSxHQUFHLEtBQUs7VUFDdEI7UUFDRCxDQUFDLENBQUM7UUFDRjtNQUNEOztNQUVBO01BQ0FiLEdBQUcsQ0FBQ2MsU0FBUyxDQUFDO1FB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TSxHQUFHLEdBQUc7VUFBQztRQUNiLEtBQUssQ0FBQztVQUNOQSxNQUFNLEdBQUcsR0FBRztVQUFDO1FBQ2IsS0FBSyxDQUFDO1VBQ05BLE1BQU0sR0FBRyxHQUFHO1VBQUM7UUFDYixLQUFLLEVBQUU7VUFDUEEsTUFBTSxHQUFHLEdBQUc7VUFBQztRQUNiLEtBQUssRUFBRTtVQUNQQSxNQUFNLEdBQUcsR0FBRztVQUFDO1FBQ2IsS0FBSyxDQUFDO1VBQ05BLE1BQU0sR0FBRyxHQUFHO1VBQUM7TUFBTTtNQUNuQjtNQUNELE9BQU9BLE1BQU07SUFDZDtFQUNEO0FBRUQsQ0FBQztBQUFBLDJCIiwiZmlsZSI6IjY5LmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG5pbXBvcnQgcHJvdmluY2VMaXN0IGZyb20gJy4vanNvbi9hcmVhX3Byb3ZpbmNlLmpzJztcbmltcG9ydCBjaXR5TGlzdCBmcm9tICcuL2pzb24vYXJlYV9jaXR5LmpzJztcbmltcG9ydCBkaXN0cmljdExpc3QgZnJvbSAnLi9qc29uL2FyZWFfZGlzdHJpY3QuanMnO1xuZXhwb3J0IGRlZmF1bHQge1xuXHRnbG9iYWxEYXRhOiB7ICBcblx0XHQvLyBzZXJ2ZXJVcmw6IFwiaHR0cDovLzE5Mi4xNjguMTguMTY1OjgwODhcIixcdFx0Ly8g5byA5Y+R546v5aKDXG5cdFx0c2VydmVyVXJsOiBcImh0dHA6Ly8xMDYuNTQuNi4yMTM6ODA4OFwiLFx0XHRcdC8vIOeUn+S6p+eOr+Wig1xuXHRcdFxuXHRcdHByb3ZpbmNlTGlzdDogcHJvdmluY2VMaXN0LFxuXHRcdGNpdHlMaXN0OiBjaXR5TGlzdCxcblx0XHRkaXN0cmljdExpc3Q6IGRpc3RyaWN0TGlzdCxcblx0fSxcblx0XG5cdG9uTGF1bmNoOiBmdW5jdGlvbigpIHtcblx0XHRcblx0XHRjb25zb2xlLmxvZyhcIm9uTGF1bmNoLi4u5rWL6K+V6LCD6K+V5L+h5oGv55qE5omT5Y2wXCIpO1xuXHRcdFxuXHRcdFxuXHRcdHZhciBtZSA9IHRoaXM7XG5cdFx0dW5pLm9uVGFiQmFyTWlkQnV0dG9uVGFwKCgpPT57XG5cdFx0XHRcblx0XHRcdC8vIOacqueZu+W9leS4jeiDveWPkeW4g+inhumikVxuXHRcdFx0dmFyIG15VXNlckluZm8gPSBnZXRBcHAoKS5nZXRVc2VySW5mb1Nlc3Npb24oKTtcblx0XHRcdGlmIChteVVzZXJJbmZvID09IG51bGwpIHtcblx0XHRcdFx0dW5pLnNob3dUb2FzdCh7XG5cdFx0XHRcdFx0ZHVyYXRpb246IDMwMDAsXG5cdFx0XHRcdFx0dGl0bGU6IFwi6K+355m75b2VflwiLFxuXHRcdFx0XHRcdGljb246IFwibm9uZVwiXG5cdFx0XHRcdH0pO1xuXHRcdFx0XHR1bmkubmF2aWdhdGVUbyh7XG5cdFx0XHRcdFx0dXJsOiBcIi4uL2xvZ2luUmVnaXN0L2xvZ2luUmVnaXN0XCIsXG5cdFx0XHRcdFx0YW5pbWF0aW9uVHlwZTogXCJzbGlkZS1pbi1ib3R0b21cIixcblx0XHRcdFx0XHRzdWNjZXNzKCkge1xuXHRcdFx0XHRcdFx0bWUubG9naW5Xb3JkcyA9IFwi6K+355m75b2VXCJcblx0XHRcdFx0XHR9XG5cdFx0XHRcdH0pO1xuXHRcdFx0XHRyZXR1cm47XG5cdFx0XHR9XG5cdFx0XHRcblx0XHRcdC8vIGNvbnNvbGUubG9nKCdvblRhYkJhck1pZEJ1dHRvblRhcCcpO1xuXHRcdFx0dW5pLnN3aXRjaFRhYih7XG5cdFx0XHRcdHVybDogXCIuLi9tZS9tZVwiXG5cdFx0XHR9KTtcblx0XHRcdC8vIOS4iuS8oOinhumikea6kDogMS7nm7jlhowgYWxidW0gMi7mkYTlg4/lpLQg5YW35L2T6K+m6KeBYXBp5paH5qGjXG5cdFx0XHR1bmkuY2hvb3NlVmlkZW8oe1xuXHRcdFx0XHRzb3VyY2VUeXBlOiBbJ2FsYnVtJywgJ2NhbWVyYSddLFxuXHRcdFx0XHRzdWNjZXNzKGUpIHtcblx0XHRcdFx0XHRcblx0XHRcdFx0XHR1bmkubmF2aWdhdGVUbyh7XG5cdFx0XHRcdFx0XHR1cmw6IFwiL3BhZ2VzL3B1Ymxpc2gvcHVibGlzaD9maWxlT2JqZWN0RXZlbnQ9XCIgKyBKU09OLnN0cmluZ2lmeShlKVxuXHRcdFx0XHRcdH0pXG5cdFx0XHRcdFx0XG5cdFx0XHRcdFx0LyoqXG5cdFx0XHRcdFx0ICog5oiW6ICF6YeH55SodW5pQ2xvdWTvvIzlnKjlrqLmiLfnq6/lrozmiJDkuIrkvKDvvIzlh4/lsJHpk77ot6/vvIzlm6DkuLrmlofku7blpKfvvIzpgJrkv6Hpk77ot6/lkozogJfml7bmmK/lj4zlgI3nmoRcblx0XHRcdFx0XHQgKi9cblx0XHRcdFx0XHR2YXIgdGltZXMgPSBuZXcgRGF0ZSgpLmdldFRpbWUoKTtcblx0XHRcdFx0fVxuXHRcdFx0fSlcblx0XHRcdFxuXHRcdH0pO1xuXG5cdH0sXG5cdG9uU2hvdzogZnVuY3Rpb24oKSB7XG5cdH0sXG5cdG9uSGlkZTogZnVuY3Rpb24oKSB7XG5cdH0sXG5cdG1ldGhvZHM6IHtcblx0XHRnZXREZWZhdWx0VmxvZ0xpc3QoKSB7XG5cdFx0XHR2YXIgbGlzdCA9IFtcblx0XHRcdFx0e1xuXHRcdFx0XHRcdHZsb2dJZDogXCIyNTExMzBIRzFURk5DNTY4XCIsXG5cdFx0XHRcdFx0dmxvZ2VySWQ6IFwiMjUxMTI3SFM3RzhSVFQyV1wiLFxuXHRcdFx0XHRcdHZsb2dlckZhY2U6IFwiL3N0YXRpYy9mYWNlL2ZhY2UtYXJyb3ctMi5qcGdcIixcblx0XHRcdFx0XHR2bG9nZXJOYW1lOiBcIuiEhuiEhumyqOWQjOWtplwiLFxuXHRcdFx0XHRcdGNvbnRlbnQ6IFwi54mbXCIsXG5cdFx0XHRcdFx0dXJsOiAnaHR0cHM6Ly9tcC1lNmY4ODkxZS1iYzM0LTRkMzEtOGM2Ny02OTlkNjhiZTU1YjQuY2RuLmJzcGFwcC5jb20vY2xvdWRzdG9yYWdlL2E1OTRkZTkzLTE2ZWUtNDliNS04MzY2LWRiYzBkZmEyNTRhNS5tcDQnLFxuXHRcdFx0XHRcdGNvdmVyOiAnaHR0cHM6Ly9tcC1lNmY4ODkxZS1iYzM0LTRkMzEtOGM2Ny02OTlkNjhiZTU1YjQuY2RuLmJzcGFwcC5jb20vY2xvdWRzdG9yYWdlL2E1OTRkZTkzLTE2ZWUtNDliNS04MzY2LWRiYzBkZmEyNTRhNS5tcDQ/eC1vc3MtcHJvY2Vzcz12aWRlby9zbmFwc2hvdCx0XzEsZl9qcGcsYXJfYXV0bycsXG5cdFx0XHRcdFx0aXNMaWtlOiAxLFxuXHRcdFx0XHRcdHBsYXk6IGZhbHNlXG5cdFx0XHRcdH0sIHtcblx0XHRcdFx0XHR2bG9nSWQ6IFwiMjUxMTMwSEhNNzEzTVcwMFwiLFxuXHRcdFx0XHRcdHZsb2dlcklkOiBcIjI1MTEyN0hTN0c4UlRUMldcIixcblx0XHRcdFx0XHR2bG9nZXJGYWNlOiBcIi9zdGF0aWMvZmFjZS9mYWNlLWNhdC5wbmdcIixcblx0XHRcdFx0XHR2bG9nZXJOYW1lOiBcIuiEhuiEhumyqOWQjOWtplwiLFxuXHRcdFx0XHRcdGNvbnRlbnQ6IFwi54uXXCIsXG5cdFx0XHRcdFx0dXJsOiAnaHR0cHM6Ly9tcC1lNmY4ODkxZS1iYzM0LTRkMzEtOGM2Ny02OTlkNjhiZTU1YjQuY2RuLmJzcGFwcC5jb20vY2xvdWRzdG9yYWdlLzdkY2MyZjI3LWM5YWMtNGY5ZS1iYzMyLTJmZTM3NWI1NzYwNi5tcDQnLFxuXHRcdFx0XHRcdGNvdmVyOiAnaHR0cHM6Ly9tcC1lNmY4ODkxZS1iYzM0LTRkMzEtOGM2Ny02OTlkNjhiZTU1YjQuY2RuLmJzcGFwcC5jb20vY2xvdWRzdG9yYWdlLzdkY2MyZjI3LWM5YWMtNGY5ZS1iYzMyLTJmZTM3NWI1NzYwNi5tcDQ/eC1vc3MtcHJvY2Vzcz12aWRlby9zbmFwc2hvdCx0XzEsZl9qcGcnLFxuXHRcdFx0XHRcdGlzTGlrZTogMSxcblx0XHRcdFx0XHRwbGF5OiBmYWxzZVxuXHRcdFx0XHR9LFxuXHRcdFx0XTtcblx0XHRcdHJldHVybiBsaXN0O1xuXHRcdH0sXG5cdFx0Z3JhY2VOdW1iZXIobnVtYmVyKSB7XG5cdFx0XHRpZiAobnVtYmVyID09IDApIHtcblx0XHRcdFx0cmV0dXJuIFwiMFwiO1xuXHRcdFx0fSBlbHNlIGlmIChudW1iZXIgPiA5OTkgJiYgbnVtYmVyIDw9IDk5OTkpIHtcblx0XHRcdFx0cmV0dXJuIChudW1iZXIvMTAwMCkudG9GaXhlZCgxKSArICdLJztcblx0XHRcdH0gZWxzZSBpZiAobnVtYmVyID4gOTk5OSAmJiBudW1iZXIgPD0gOTk5OTk5KSB7XG5cdFx0XHRcdHJldHVybiAobnVtYmVyLzEwMDAwKS50b0ZpeGVkKDEpICsgJ+S4hyc7XG5cdFx0XHR9IGVsc2UgaWYgKG51bWJlciA+IDk5OTk5OSkge1xuXHRcdFx0XHRyZXR1cm4gXCIxMDBXK1wiO1xuXHRcdFx0fSBcblx0XHRcdHJldHVybiBudW1iZXI7XG5cdFx0fSxcblx0XHQvLyDml7bpl7TmoLzlvI/ljJbml7bpl7TkuLrvvJrlpJrlsJHliIbpkp/liY3jgIHlpJrlsJHlpKnliY1cblx0XHQvLyB0aW1lIDIwMjAtMDktMTAgMjA6MjA6MjBcblx0XHRnZXREYXRlQmVmb3JlTm93KHN0cmluZ1RpbWUpIHtcblx0XHRcdC8vIGNvbnNvbGUubG9nKHN0cmluZ1RpbWUpO1xuXHRcdFx0c3RyaW5nVGltZSA9IG5ldyBEYXRlKHN0cmluZ1RpbWUucmVwbGFjZSgvLS9nLCcvJykpXG5cdFx0XHRcblx0XHRcdHZhciBtaW51dGUgPSAxMDAwICogNjA7XG5cdFx0XHR2YXIgaG91ciA9IG1pbnV0ZSAqIDYwO1xuXHRcdFx0dmFyIGRheSA9IGhvdXIgKiAyNDtcblx0XHRcdHZhciB3ZWVrID0gZGF5ICogNztcblx0XHRcdHZhciBtb250aCA9IGRheSAqIDMwO1xuXHRcblx0XHRcdHZhciB0aW1lMSA9IG5ldyBEYXRlKCkuZ2V0VGltZSgpOyAvL+W9k+WJjeeahOaXtumXtOaIs1xuXHRcdFx0Ly8gY29uc29sZS5sb2codGltZTEpO1xuXHRcdFx0Ly8gY29uc29sZS5sb2cobmV3IERhdGUoc3RyaW5nVGltZSkpO1xuXHRcdFx0dmFyIHRpbWUyID0gRGF0ZS5wYXJzZShuZXcgRGF0ZShzdHJpbmdUaW1lKSk7IC8v5oyH5a6a5pe26Ze055qE5pe26Ze05oizXG5cdFx0XHQvLyBjb25zb2xlLmxvZyh0aW1lMik7XG5cdFx0XHR2YXIgdGltZSA9IHRpbWUxIC0gdGltZTI7XG5cdFxuXHRcdFx0dmFyIHJlc3VsdCA9IG51bGw7XG5cdFx0XHRpZih0aW1lIDwgMCkge1xuXHRcdFx0XHQvLyBhbGVydChcIuiuvue9rueahOaXtumXtOS4jeiDveaXqeS6juW9k+WJjeaXtumXtO+8gVwiKTtcblx0XHRcdFx0cmVzdWx0ID0gc3RyaW5nVGltZTtcblx0XHRcdH1lbHNlIGlmKHRpbWUvbW9udGggPj0gMSl7XG5cdFx0XHRcdHJlc3VsdCA9IHBhcnNlSW50KHRpbWUvbW9udGgpICsgXCLmnIjliY1cIjtcblx0XHRcdH1lbHNlIGlmKHRpbWUvd2VlayA+PSAxKXtcblx0XHRcdFx0cmVzdWx0ID0gcGFyc2VJbnQodGltZS93ZWVrKSArIFwi5ZGo5YmNXCI7XG5cdFx0XHR9ZWxzZSBpZih0aW1lL2RheSA+PSAxKXtcblx0XHRcdFx0cmVzdWx0ID0gcGFyc2VJbnQodGltZS9kYXkpICsgXCLlpKnliY1cIjtcblx0XHRcdH1lbHNlIGlmKHRpbWUvaG91ciA+PSAxKXtcblx0XHRcdFx0cmVzdWx0ID0gcGFyc2VJbnQodGltZS9ob3VyKSArIFwi5bCP5pe25YmNXCI7XG5cdFx0XHR9ZWxzZSBpZih0aW1lL21pbnV0ZSA+PSAxKXtcblx0XHRcdFx0cmVzdWx0ID0gcGFyc2VJbnQodGltZS9taW51dGUpICsgXCLliIbpkp/liY1cIjtcblx0XHRcdH1lbHNlIHtcblx0XHRcdFx0cmVzdWx0ID0gXCLliJrliJpcIjtcblx0XHRcdH1cblx0XHRcdC8vIGNvbnNvbGUubG9nKHJlc3VsdCk7XG5cdFx0XHRyZXR1cm4gcmVzdWx0O1xuXHRcdH0sXG5cdFx0XG5cdFx0Ly8g5Yik5pat5piv5ZCm5Li656m6XG5cdFx0aXNTdHJFbXB0eSAoc3RyKSB7XG5cdFx0XHRpZiAoc3RyID09IG51bGwgfHwgc3RyID09IHVuZGVmaW5lZCB8fCBzdHIgPT0gXCJcIikge1xuXHRcdFx0XHRyZXR1cm4gdHJ1ZTtcblx0XHRcdH0gZWxzZSB7XG5cdFx0XHRcdHJldHVybiBmYWxzZTtcblx0XHRcdH1cblx0XHRcdFxuXHRcdH0sXG5cdFx0Ly8g5Yik5pat55So5oi35piv5ZCm55m75b2VXG5cdFx0dXNlcklzTG9naW4oKSB7XG5cdFx0XHR2YXIgdXNlclRva2VuID0gdGhpcy5nZXRVc2VyU2Vzc2lvblRva2VuKCk7XG5cdFx0XHR2YXIgdXNlckluZm8gPSB0aGlzLmdldFVzZXJJbmZvU2Vzc2lvbigpO1xuXHRcdFx0Ly8gY29uc29sZS5sb2coXCJ1c2VySW5mbz1cIiArIHVzZXJJbmZvKTtcblx0XHRcdC8vIGNvbnNvbGUubG9nKFwidXNlclRva2VuPVwiICsgdXNlclRva2VuKTtcblx0XHRcdGlmICghdGhpcy5pc1N0ckVtcHR5KHVzZXJUb2tlbikgJiYgIXRoaXMuaXNTdHJFbXB0eSh1c2VySW5mbykpIHtcblx0XHRcdFx0cmV0dXJuIHRydWU7XG5cdFx0XHR9IGVsc2Uge1xuXHRcdFx0XHRyZXR1cm4gZmFsc2U7XG5cdFx0XHR9XG5cdFx0fSxcblx0XHQvLyDnlKjmiLfnmbvlvZXku6XlkI7nmoRzZXNzaW9u5a2Y5Y+W77yMdG9rZW7lkox1c2VySW5mb1xuXHRcdHNldFVzZXJTZXNzaW9uVG9rZW4odG9rZW4pe1xuXHRcdFx0dW5pLnNldFN0b3JhZ2VTeW5jKFwidXNlclRva2VuXCIsIHRva2VuKTtcblx0XHR9LFxuXHRcdGdldFVzZXJTZXNzaW9uVG9rZW4oKSB7XG5cdFx0XHR2YXIgdG9rZW4gPSB1bmkuZ2V0U3RvcmFnZVN5bmMoXCJ1c2VyVG9rZW5cIik7XG5cdFx0XHRpZiAodGhpcy5pc1N0ckVtcHR5KHRva2VuKSkge1xuXHRcdFx0XHRyZXR1cm4gXCJcIjtcblx0XHRcdH1cblx0XHRcdHJldHVybiB0b2tlbjtcblx0XHR9LFxuXHRcdHNldFVzZXJJbmZvU2Vzc2lvbih1c2VyKXtcblx0XHRcdHVuaS5zZXRTdG9yYWdlU3luYyhcInVzZXJJbmZvXCIsIEpTT04uc3RyaW5naWZ5KHVzZXIpKTtcblx0XHR9LFxuXHRcdGdldFVzZXJJbmZvU2Vzc2lvbigpIHtcblx0XHRcdHZhciB1c2VyID0gdW5pLmdldFN0b3JhZ2VTeW5jKFwidXNlckluZm9cIik7XG5cdFx0XHRpZiAodGhpcy5pc1N0ckVtcHR5KHVzZXIpKSB7XG5cdFx0XHRcdHJldHVybiBudWxsO1xuXHRcdFx0fVxuXHRcdFx0cmV0dXJuIEpTT04ucGFyc2UodXNlcik7XG5cdFx0fSxcblx0XHRjbGVhclVzZXJJbmZvICgpIHtcblx0XHRcdHVuaS5yZW1vdmVTdG9yYWdlU3luYyhcInVzZXJJbmZvXCIpO1xuXHRcdFx0dW5pLnJlbW92ZVN0b3JhZ2VTeW5jKFwidXNlclRva2VuXCIpO1xuXHRcdH0sXG5cdFx0XG5cdFx0Ly8gbGV0IGRhdGUgPSBuZXcgRGF0ZSgpXG5cdFx0Ly8gZGF0ZUZvcm1hdChcIllZWVktbW0tZGQgSEg6TU1cIiwgZGF0ZSlcblx0XHRkYXRlRm9ybWF0KGZtdCwgZGF0ZSkge1xuXHRcdCAgICBsZXQgcmV0O1xuXHRcdCAgICBjb25zdCBvcHQgPSB7XG5cdFx0ICAgICAgICBcIlkrXCI6IGRhdGUuZ2V0RnVsbFllYXIoKS50b1N0cmluZygpLCAgICAgICAgLy8g5bm0XG5cdFx0ICAgICAgICBcIm0rXCI6IChkYXRlLmdldE1vbnRoKCkgKyAxKS50b1N0cmluZygpLCAgICAgLy8g5pyIXG5cdFx0ICAgICAgICBcImQrXCI6IGRhdGUuZ2V0RGF0ZSgpLnRvU3RyaW5nKCksICAgICAgICAgICAgLy8g5pelXG5cdFx0ICAgICAgICBcIkgrXCI6IGRhdGUuZ2V0SG91cnMoKS50b1N0cmluZygpLCAgICAgICAgICAgLy8g5pe2XG5cdFx0ICAgICAgICBcIk0rXCI6IGRhdGUuZ2V0TWludXRlcygpLnRvU3RyaW5nKCksICAgICAgICAgLy8g5YiGXG5cdFx0ICAgICAgICBcIlMrXCI6IGRhdGUuZ2V0U2Vjb25kcygpLnRvU3RyaW5nKCkgICAgICAgICAgLy8g56eSXG5cdFx0ICAgICAgICAvLyDmnInlhbbku5bmoLzlvI/ljJblrZfnrKbpnIDmsYLlj6/ku6Xnu6fnu63mt7vliqDvvIzlv4XpobvovazljJbmiJDlrZfnrKbkuLJcblx0XHQgICAgfTtcblx0XHQgICAgZm9yIChsZXQgayBpbiBvcHQpIHtcblx0XHQgICAgICAgIHJldCA9IG5ldyBSZWdFeHAoXCIoXCIgKyBrICsgXCIpXCIpLmV4ZWMoZm10KTtcblx0XHQgICAgICAgIGlmIChyZXQpIHtcblx0XHQgICAgICAgICAgICBmbXQgPSBmbXQucmVwbGFjZShyZXRbMV0sIChyZXRbMV0ubGVuZ3RoID09IDEpID8gKG9wdFtrXSkgOiAob3B0W2tdLnBhZFN0YXJ0KHJldFsxXS5sZW5ndGgsIFwiMFwiKSkpXG5cdFx0ICAgICAgICB9O1xuXHRcdCAgICB9O1xuXHRcdCAgICByZXR1cm4gZm10O1xuXHRcdH0sXG5cdFx0XG5cdFx0Ly8g6I635b6X5pif5bqnXG5cdFx0Z2V0QXN0cm8obSwgZCl7XG5cdFx0XHRyZXR1cm4gXCLprZTnvq/msLTnk7blj4zpsbzniaHnvorph5HniZvlj4zlrZDlt6jon7nni67lrZDlpITlpbPlpKnnp6TlpKnonY7lsITmiYvprZTnvq9cIi5zdWJzdHIobSoyLShkPFwiMTAyMjIzNDQ0NDMzXCIuY2hhckF0KG0tMSktIC0xOSkqMiwyKTtcblx0XHR9LFxuXHRcdC8v5LiL6Z2i5YaZ5LiA5Liq5rWL6K+V5Ye95pWwXG5cdFx0dGVzdEFzdHJvKG1vbnRoLCBkYXkpe1xuXHRcdFx0Y29uc29sZS5sb2cobW9udGggKyBcIuaciFwiICsgZGF5ICsgXCLml6U6IFwiICsgdGhpcy5nZXRBc3Rybyhtb250aCwgZGF5KSk7XG5cdFx0fSxcblx0XHQvLyDojrflvpfnlJ/ogpZcblx0XHRnZXRBbmltYWwoeWVhcil7XG5cdFx0XHR5ZWFyID0geWVhciAlIDEyO1xuXHRcdFx0dmFyIGFuaW1hbCA9IFwiXCI7XG5cdFx0XHRzd2l0Y2goeWVhcil7XG5cdFx0XHRcdGNhc2UgMTpcblx0XHRcdFx0YW5pbWFsID0gJ+m4oSc7YnJlYWs7XG5cdFx0XHRcdGNhc2UgMjpcblx0XHRcdFx0YW5pbWFsID0gJ+eLlyc7YnJlYWs7XG5cdFx0XHRcdGNhc2UgMzpcblx0XHRcdFx0YW5pbWFsID0gJ+eMqic7YnJlYWs7XG5cdFx0XHRcdGNhc2UgNDpcblx0XHRcdFx0YW5pbWFsID0gJ+m8oCc7YnJlYWs7XG5cdFx0XHRcdGNhc2UgNTpcblx0XHRcdFx0YW5pbWFsID0gJ+eJmyc7YnJlYWs7XG5cdFx0XHRcdGNhc2UgNjpcblx0XHRcdFx0YW5pbWFsID0gJ+iZjic7YnJlYWs7XG5cdFx0XHRcdGNhc2UgNzpcblx0XHRcdFx0YW5pbWFsID0gJ+WFlCc7YnJlYWs7XG5cdFx0XHRcdGNhc2UgODpcblx0XHRcdFx0YW5pbWFsID0gJ+m+mSc7YnJlYWs7XG5cdFx0XHRcdGNhc2UgOTpcblx0XHRcdFx0YW5pbWFsID0gJ+ibhyc7YnJlYWs7XG5cdFx0XHRcdGNhc2UgMTA6XG5cdFx0XHRcdGFuaW1hbCA9ICfpqawnO2JyZWFrO1xuXHRcdFx0XHRjYXNlIDExOlxuXHRcdFx0XHRhbmltYWwgPSAn576KJzticmVhaztcblx0XHRcdFx0Y2FzZSAwOlxuXHRcdFx0XHRhbmltYWwgPSAn54y0JzticmVhaztcblx0XHRcdH07XG5cdFx0XHRyZXR1cm4gYW5pbWFsO1xuXHRcdH1cblx0fVxuXHRcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///69\n");
+eval("/* WEBPACK VAR INJECTION */(function(__f__) {\n\nvar _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 1);\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.default = void 0;\nvar _area_province = _interopRequireDefault(__webpack_require__(/*! ./json/area_province.js */ 71));\nvar _area_city = _interopRequireDefault(__webpack_require__(/*! ./json/area_city.js */ 72));\nvar _area_district = _interopRequireDefault(__webpack_require__(/*! ./json/area_district.js */ 73));\nvar _default = {\n  globalData: {\n    // serverUrl: \"http://192.168.18.165:8088\",\t\t// 开发环境\n    serverUrl: \"http://106.54.6.213:8088\",\n    // 生产环境\n\n    provinceList: _area_province.default,\n    cityList: _area_city.default,\n    districtList: _area_district.default\n  },\n  onLaunch: function onLaunch() {\n    __f__(\"log\", \"onLaunch...测试调试信息的打印\", \" at App.vue:16\");\n    var me = this;\n    uni.onTabBarMidButtonTap(function () {\n      // 未登录不能发布视频\n      var myUserInfo = getApp().getUserInfoSession();\n      if (myUserInfo == null) {\n        uni.showToast({\n          duration: 3000,\n          title: \"请登录~\",\n          icon: \"none\"\n        });\n        uni.navigateTo({\n          url: \"../loginRegist/loginRegist\",\n          animationType: \"slide-in-bottom\",\n          success: function success() {\n            me.loginWords = \"请登录\";\n          }\n        });\n        return;\n      }\n\n      // console.log('onTabBarMidButtonTap');\n      // 上传视频源: 1.相册 album 2.摄像头 具体详见api文档\n      uni.chooseVideo({\n        sourceType: [\"album\", \"camera\"],\n        success: function success(e) {\n          __f__(\"log\", \"选择视频成功:\", e, \" at App.vue:43\");\n          // 检查必要参数\n          if (!e || !e.tempFilePath) {\n            uni.showToast({\n              title: \"视频文件获取失败，请重试\",\n              icon: \"none\",\n              duration: 3000\n            });\n            return;\n          }\n          uni.navigateTo({\n            url: \"/pages/publish/publish?fileObjectEvent=\" + JSON.stringify(e),\n            success: function success() {\n              // 跳转成功后再切换tab（可选，根据需求决定）\n              // uni.switchTab({\n              // \turl: \"../me/me\"\n              // });\n            },\n            fail: function fail(err) {\n              __f__(\"error\", \"跳转发布页面失败:\", err, \" at App.vue:63\");\n              uni.showToast({\n                title: \"页面跳转失败，请重试\",\n                icon: \"none\",\n                duration: 3000\n              });\n            }\n          });\n\n          /**\n           * 或者采用uniCloud，在客户端完成上传，减少链路，因为文件大，通信链路和耗时是双倍的\n           */\n          var times = new Date().getTime();\n        },\n        fail: function fail(err) {\n          __f__(\"error\", \"选择视频失败:\", err, \" at App.vue:78\");\n          // 用户取消不提示错误\n          // 不同平台取消时的错误信息格式可能不同：\n          // 微信小程序: \"chooseVideo:fail cancel\"\n          // App: 可能是 \"cancel\" 或其他格式\n          var errMsg = err.errMsg || \"\";\n          var isCancel = false;\n\n          // 检查是否是用户取消操作（不区分大小写）\n          if (errMsg) {\n            errMsg = errMsg.toLowerCase();\n            isCancel = errMsg.indexOf(\"cancel\") !== -1 || errMsg.indexOf(\"取消\") !== -1 || errMsg.indexOf(\"user cancel\") !== -1;\n          }\n\n          // 如果不是用户取消，才显示错误提示\n          if (!isCancel) {\n            uni.showToast({\n              title: \"选择视频失败：\" + (err.errMsg || \"未知错误\"),\n              icon: \"none\",\n              duration: 3000\n            });\n          }\n        }\n      });\n    });\n  },\n  onShow: function onShow() {},\n  onHide: function onHide() {},\n  methods: {\n    getDefaultVlogList: function getDefaultVlogList() {\n      var list = [{\n        vlogId: \"251130HG1TFNC568\",\n        vlogerId: \"251127HS7G8RTT2W\",\n        vlogerFace: \"/static/face/face-arrow-2.jpg\",\n        vlogerName: \"脆脆鲨同学\",\n        content: \"牛\",\n        url: \"https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4\",\n        cover: \"https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/a594de93-16ee-49b5-8366-dbc0dfa254a5.mp4?x-oss-process=video/snapshot,t_1,f_jpg,ar_auto\",\n        isLike: 1,\n        play: false\n      }, {\n        vlogId: \"251130HHM713MW00\",\n        vlogerId: \"251127HS7G8RTT2W\",\n        vlogerFace: \"/static/face/face-cat.png\",\n        vlogerName: \"脆脆鲨同学\",\n        content: \"狗\",\n        url: \"https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4\",\n        cover: \"https://mp-e6f8891e-bc34-4d31-8c67-699d68be55b4.cdn.bspapp.com/cloudstorage/7dcc2f27-c9ac-4f9e-bc32-2fe375b57606.mp4?x-oss-process=video/snapshot,t_1,f_jpg\",\n        isLike: 1,\n        play: false\n      }];\n      return list;\n    },\n    graceNumber: function graceNumber(number) {\n      if (number == 0) {\n        return \"0\";\n      } else if (number > 999 && number <= 9999) {\n        return (number / 1000).toFixed(1) + \"K\";\n      } else if (number > 9999 && number <= 999999) {\n        return (number / 10000).toFixed(1) + \"万\";\n      } else if (number > 999999) {\n        return \"100W+\";\n      }\n      return number;\n    },\n    // 时间格式化时间为：多少分钟前、多少天前\n    // time 2020-09-10 20:20:20\n    getDateBeforeNow: function getDateBeforeNow(stringTime) {\n      // console.log(stringTime);\n      stringTime = new Date(stringTime.replace(/-/g, \"/\"));\n      var minute = 1000 * 60;\n      var hour = minute * 60;\n      var day = hour * 24;\n      var week = day * 7;\n      var month = day * 30;\n      var time1 = new Date().getTime(); //当前的时间戳\n      // console.log(time1);\n      // console.log(new Date(stringTime));\n      var time2 = Date.parse(new Date(stringTime)); //指定时间的时间戳\n      // console.log(time2);\n      var time = time1 - time2;\n      var result = null;\n      if (time < 0) {\n        // alert(\"设置的时间不能早于当前时间！\");\n        result = stringTime;\n      } else if (time / month >= 1) {\n        result = parseInt(time / month) + \"月前\";\n      } else if (time / week >= 1) {\n        result = parseInt(time / week) + \"周前\";\n      } else if (time / day >= 1) {\n        result = parseInt(time / day) + \"天前\";\n      } else if (time / hour >= 1) {\n        result = parseInt(time / hour) + \"小时前\";\n      } else if (time / minute >= 1) {\n        result = parseInt(time / minute) + \"分钟前\";\n      } else {\n        result = \"刚刚\";\n      }\n      // console.log(result);\n      return result;\n    },\n    // 判断是否为空\n    isStrEmpty: function isStrEmpty(str) {\n      if (str == null || str == undefined || str == \"\") {\n        return true;\n      } else {\n        return false;\n      }\n    },\n    // 判断用户是否登录\n    userIsLogin: function userIsLogin() {\n      var userToken = this.getUserSessionToken();\n      var userInfo = this.getUserInfoSession();\n      // console.log(\"userInfo=\" + userInfo);\n      // console.log(\"userToken=\" + userToken);\n      if (!this.isStrEmpty(userToken) && !this.isStrEmpty(userInfo)) {\n        return true;\n      } else {\n        return false;\n      }\n    },\n    // 用户登录以后的session存取，token和userInfo\n    setUserSessionToken: function setUserSessionToken(token) {\n      uni.setStorageSync(\"userToken\", token);\n    },\n    getUserSessionToken: function getUserSessionToken() {\n      var token = uni.getStorageSync(\"userToken\");\n      if (this.isStrEmpty(token)) {\n        return \"\";\n      }\n      return token;\n    },\n    setUserInfoSession: function setUserInfoSession(user) {\n      uni.setStorageSync(\"userInfo\", JSON.stringify(user));\n    },\n    getUserInfoSession: function getUserInfoSession() {\n      var user = uni.getStorageSync(\"userInfo\");\n      if (this.isStrEmpty(user)) {\n        return null;\n      }\n      return JSON.parse(user);\n    },\n    clearUserInfo: function clearUserInfo() {\n      uni.removeStorageSync(\"userInfo\");\n      uni.removeStorageSync(\"userToken\");\n    },\n    // let date = new Date()\n    // dateFormat(\"YYYY-mm-dd HH:MM\", date)\n    dateFormat: function dateFormat(fmt, date) {\n      var ret;\n      var opt = {\n        \"Y+\": date.getFullYear().toString(),\n        // 年\n        \"m+\": (date.getMonth() + 1).toString(),\n        // 月\n        \"d+\": date.getDate().toString(),\n        // 日\n        \"H+\": date.getHours().toString(),\n        // 时\n        \"M+\": date.getMinutes().toString(),\n        // 分\n        \"S+\": date.getSeconds().toString() // 秒\n        // 有其他格式化字符需求可以继续添加，必须转化成字符串\n      };\n\n      for (var k in opt) {\n        ret = new RegExp(\"(\" + k + \")\").exec(fmt);\n        if (ret) {\n          fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, \"0\"));\n        }\n      }\n      return fmt;\n    },\n    // 获得星座\n    getAstro: function getAstro(m, d) {\n      return \"摩羯水瓶双鱼牡羊金牛双子巨蟹狮子处女天秤天蝎射手摩羯\".substr(m * 2 - (d < \"102223444433\".charAt(m - 1) - -19) * 2, 2);\n    },\n    //下面写一个测试函数\n    testAstro: function testAstro(month, day) {\n      __f__(\"log\", month + \"月\" + day + \"日: \" + this.getAstro(month, day), \" at App.vue:271\");\n    },\n    // 获得生肖\n    getAnimal: function getAnimal(year) {\n      year = year % 12;\n      var animal = \"\";\n      switch (year) {\n        case 1:\n          animal = \"鸡\";\n          break;\n        case 2:\n          animal = \"狗\";\n          break;\n        case 3:\n          animal = \"猪\";\n          break;\n        case 4:\n          animal = \"鼠\";\n          break;\n        case 5:\n          animal = \"牛\";\n          break;\n        case 6:\n          animal = \"虎\";\n          break;\n        case 7:\n          animal = \"兔\";\n          break;\n        case 8:\n          animal = \"龙\";\n          break;\n        case 9:\n          animal = \"蛇\";\n          break;\n        case 10:\n          animal = \"马\";\n          break;\n        case 11:\n          animal = \"羊\";\n          break;\n        case 0:\n          animal = \"猴\";\n          break;\n      }\n      return animal;\n    }\n  }\n};\nexports.default = _default;\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/lib/format-log.js */ 70)[\"default\"]))//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInVuaS1hcHA6Ly8vQXBwLnZ1ZSJdLCJuYW1lcyI6WyJnbG9iYWxEYXRhIiwic2VydmVyVXJsIiwicHJvdmluY2VMaXN0IiwiY2l0eUxpc3QiLCJkaXN0cmljdExpc3QiLCJvbkxhdW5jaCIsIm1lIiwidW5pIiwib25UYWJCYXJNaWRCdXR0b25UYXAiLCJteVVzZXJJbmZvIiwiZ2V0QXBwIiwiZ2V0VXNlckluZm9TZXNzaW9uIiwic2hvd1RvYXN0IiwiZHVyYXRpb24iLCJ0aXRsZSIsImljb24iLCJuYXZpZ2F0ZVRvIiwidXJsIiwiYW5pbWF0aW9uVHlwZSIsInN1Y2Nlc3MiLCJsb2dpbldvcmRzIiwiY2hvb3NlVmlkZW8iLCJzb3VyY2VUeXBlIiwiZSIsInRlbXBGaWxlUGF0aCIsIkpTT04iLCJzdHJpbmdpZnkiLCJmYWlsIiwiZXJyIiwidGltZXMiLCJEYXRlIiwiZ2V0VGltZSIsImVyck1zZyIsImlzQ2FuY2VsIiwidG9Mb3dlckNhc2UiLCJpbmRleE9mIiwib25TaG93Iiwib25IaWRlIiwibWV0aG9kcyIsImdldERlZmF1bHRWbG9nTGlzdCIsImxpc3QiLCJ2bG9nSWQiLCJ2bG9nZXJJZCIsInZsb2dlckZhY2UiLCJ2bG9nZXJOYW1lIiwiY29udGVudCIsImNvdmVyIiwiaXNMaWtlIiwicGxheSIsImdyYWNlTnVtYmVyIiwibnVtYmVyIiwidG9GaXhlZCIsImdldERhdGVCZWZvcmVOb3ciLCJzdHJpbmdUaW1lIiwicmVwbGFjZSIsIm1pbnV0ZSIsImhvdXIiLCJkYXkiLCJ3ZWVrIiwibW9udGgiLCJ0aW1lMSIsInRpbWUyIiwicGFyc2UiLCJ0aW1lIiwicmVzdWx0IiwicGFyc2VJbnQiLCJpc1N0ckVtcHR5Iiwic3RyIiwidW5kZWZpbmVkIiwidXNlcklzTG9naW4iLCJ1c2VyVG9rZW4iLCJnZXRVc2VyU2Vzc2lvblRva2VuIiwidXNlckluZm8iLCJzZXRVc2VyU2Vzc2lvblRva2VuIiwidG9rZW4iLCJzZXRTdG9yYWdlU3luYyIsImdldFN0b3JhZ2VTeW5jIiwic2V0VXNlckluZm9TZXNzaW9uIiwidXNlciIsImNsZWFyVXNlckluZm8iLCJyZW1vdmVTdG9yYWdlU3luYyIsImRhdGVGb3JtYXQiLCJmbXQiLCJkYXRlIiwicmV0Iiwib3B0IiwiZ2V0RnVsbFllYXIiLCJ0b1N0cmluZyIsImdldE1vbnRoIiwiZ2V0RGF0ZSIsImdldEhvdXJzIiwiZ2V0TWludXRlcyIsImdldFNlY29uZHMiLCJrIiwiUmVnRXhwIiwiZXhlYyIsImxlbmd0aCIsInBhZFN0YXJ0IiwiZ2V0QXN0cm8iLCJtIiwiZCIsInN1YnN0ciIsImNoYXJBdCIsInRlc3RBc3RybyIsImdldEFuaW1hbCIsInllYXIiLCJhbmltYWwiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7QUFDQTtBQUNBO0FBQ0E7QUFBbUQsZUFDcEM7RUFDYkEsVUFBVSxFQUFFO0lBQ1Y7SUFDQUMsU0FBUyxFQUFFLDBCQUEwQjtJQUFFOztJQUV2Q0MsWUFBWSxFQUFFQSxzQkFBWTtJQUMxQkMsUUFBUSxFQUFFQSxrQkFBUTtJQUNsQkMsWUFBWSxFQUFFQTtFQUNoQixDQUFDO0VBRURDLFFBQVEsRUFBRSxvQkFBWTtJQUNwQixhQUFZLHNCQUFzQjtJQUVsQyxJQUFJQyxFQUFFLEdBQUcsSUFBSTtJQUNiQyxHQUFHLENBQUNDLG9CQUFvQixDQUFDLFlBQU07TUFDN0I7TUFDQSxJQUFJQyxVQUFVLEdBQUdDLE1BQU0sRUFBRSxDQUFDQyxrQkFBa0IsRUFBRTtNQUM5QyxJQUFJRixVQUFVLElBQUksSUFBSSxFQUFFO1FBQ3RCRixHQUFHLENBQUNLLFNBQVMsQ0FBQztVQUNaQyxRQUFRLEVBQUUsSUFBSTtVQUNkQyxLQUFLLEVBQUUsTUFBTTtVQUNiQyxJQUFJLEVBQUU7UUFDUixDQUFDLENBQUM7UUFDRlIsR0FBRyxDQUFDUyxVQUFVLENBQUM7VUFDYkMsR0FBRyxFQUFFLDRCQUE0QjtVQUNqQ0MsYUFBYSxFQUFFLGlCQUFpQjtVQUNoQ0MsT0FBTyxxQkFBRztZQUNSYixFQUFFLENBQUNjLFVBQVUsR0FBRyxLQUFLO1VBQ3ZC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SkEsTUFBTSxHQUFHLEdBQUc7VUFDWjtRQUNGLEtBQUssQ0FBQztVQUNKQSxNQUFNLEdBQUcsR0FBRztVQUNaO1FBQ0YsS0FBSyxDQUFDO1VBQ0pBLE1BQU0sR0FBRyxHQUFHO1VBQ1o7UUFDRixLQUFLLENBQUM7VUFDSkEsTUFBTSxHQUFHLEdBQUc7VUFDWjtRQUNGLEtBQUssQ0FBQztVQUNKQSxNQUFNLEdBQUcsR0FBRztVQUNaO1FBQ0YsS0FBSyxFQUFFO1VBQ0xBLE1BQU0sR0FBRyxHQUFHO1VBQ1o7UUFDRixLQUFLLEVBQUU7VUFDTEEsTUFBTSxHQUFHLEdBQUc7VUFDWjtRQUNGLEtBQUssQ0FBQztVQUNKQSxNQUFNLEdBQUcsR0FBRztVQUNaO01BQU07TUFFVixPQUFPQSxNQUFNO0lBQ2Y7RUFDRjtBQUNGLENBQUM7QUFBQSwyQiIsImZpbGUiOiI2OS5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuaW1wb3J0IHByb3ZpbmNlTGlzdCBmcm9tIFwiLi9qc29uL2FyZWFfcHJvdmluY2UuanNcIjtcbmltcG9ydCBjaXR5TGlzdCBmcm9tIFwiLi9qc29uL2FyZWFfY2l0eS5qc1wiO1xuaW1wb3J0IGRpc3RyaWN0TGlzdCBmcm9tIFwiLi9qc29uL2FyZWFfZGlzdHJpY3QuanNcIjtcbmV4cG9ydCBkZWZhdWx0IHtcbiAgZ2xvYmFsRGF0YToge1xuICAgIC8vIHNlcnZlclVybDogXCJodHRwOi8vMTkyLjE2OC4xOC4xNjU6ODA4OFwiLFx0XHQvLyDlvIDlj5Hnjq/looNcbiAgICBzZXJ2ZXJVcmw6IFwiaHR0cDovLzEwNi41NC42LjIxMzo4MDg4XCIsIC8vIOeUn+S6p+eOr+Wig1xuXG4gICAgcHJvdmluY2VMaXN0OiBwcm92aW5jZUxpc3QsXG4gICAgY2l0eUxpc3Q6IGNpdHlMaXN0LFxuICAgIGRpc3RyaWN0TGlzdDogZGlzdHJpY3RMaXN0LFxuICB9LFxuXG4gIG9uTGF1bmNoOiBmdW5jdGlvbiAoKSB7XG4gICAgY29uc29sZS5sb2coXCJvbkxhdW5jaC4uLua1i+ivleiwg+ivleS/oeaBr+eahOaJk+WNsFwiKTtcblxuICAgIHZhciBtZSA9IHRoaXM7XG4gICAgdW5pLm9uVGFiQmFyTWlkQnV0dG9uVGFwKCgpID0+IHtcbiAgICAgIC8vIOacqueZu+W9leS4jeiDveWPkeW4g+inhumikVxuICAgICAgdmFyIG15VXNlckluZm8gPSBnZXRBcHAoKS5nZXRVc2VySW5mb1Nlc3Npb24oKTtcbiAgICAgIGlmIChteVVzZXJJbmZvID09IG51bGwpIHtcbiAgICAgICAgdW5pLnNob3dUb2FzdCh7XG4gICAgICAgICAgZHVyYXRpb246IDMwMDAsXG4gICAgICAgICAgdGl0bGU6IFwi6K+355m75b2VflwiLFxuICAgICAgICAgIGljb246IFwibm9uZVwiLFxuICAgICAgICB9KTtcbiAgICAgICAgdW5pLm5hdmlnYXRlVG8oe1xuICAgICAgICAgIHVybDogXCIuLi9sb2dpblJlZ2lzdC9sb2dpblJlZ2lzdFwiLFxuICAgICAgICAgIGFuaW1hdGlvblR5cGU6IFwic2xpZGUtaW4tYm90dG9tXCIsXG4gICAgICAgICAgc3VjY2VzcygpIHtcbiAgICAgICAgICAgIG1lLmxvZ2luV29yZHMgPSBcIuivt+eZu+W9lVwiO1xuICAgICAgICAgIH0sXG4gICAgICAgIH0pO1xuICAgICAgICByZXR1cm47XG4gICAgICB9XG5cbiAgICAgIC8vIGNvbnNvbGUubG9nKCdvblRhYkJhck1pZEJ1dHRvblRhcCcpO1xuICAgICAgLy8g5LiK5Lyg6KeG6aKR5rqQOiAxLuebuOWGjCBhbGJ1bSAyLuaRhOWDj+WktCDlhbfkvZPor6bop4FhcGnmlofmoaNcbiAgICAgIHVuaS5jaG9vc2VWaWRlbyh7XG4gICAgICAgIHNvdXJjZVR5cGU6IFtcImFsYnVtXCIsIFwiY2FtZXJhXCJdLFxuICAgICAgICBzdWNjZXNzKGUpIHtcbiAgICAgICAgICBjb25zb2xlLmxvZyhcIumAieaLqeinhumikeaIkOWKnzpcIiwgZSk7XG4gICAgICAgICAgLy8g5qOA5p+l5b+F6KaB5Y+C5pWwXG4gICAgICAgICAgaWYgKCFlIHx8ICFlLnRlbXBGaWxlUGF0aCkge1xuICAgICAgICAgICAgdW5pLnNob3dUb2FzdCh7XG4gICAgICAgICAgICAgIHRpdGxlOiBcIuinhumikeaWh+S7tuiOt+WPluWksei0pe+8jOivt+mHjeivlVwiLFxuICAgICAgICAgICAgICBpY29uOiBcIm5vbmVcIixcbiAgICAgICAgICAgICAgZHVyYXRpb246IDMwMDAsXG4gICAgICAgICAgICB9KTtcbiAgICAgICAgICAgIHJldHVybjtcbiAgICAgICAgICB9XG5cbiAgICAgICAgICB1bmkubmF2aWdhdGVUbyh7XG4gICAgICAgICAgICB1cmw6IFwiL3BhZ2VzL3B1Ymxpc2gvcHVibGlzaD9maWxlT2JqZWN0RXZlbnQ9XCIgKyBKU09OLnN0cmluZ2lmeShlKSxcbiAgICAgICAgICAgIHN1Y2Nlc3MoKSB7XG4gICAgICAgICAgICAgIC8vIOi3s+i9rOaIkOWKn+WQjuWGjeWIh+aNonRhYu+8iOWPr+mAie+8jOagueaNrumcgOaxguWGs+Wumu+8iVxuICAgICAgICAgICAgICAvLyB1bmkuc3dpdGNoVGFiKHtcbiAgICAgICAgICAgICAgLy8gXHR1cmw6IFwiLi4vbWUvbWVcIlxuICAgICAgICAgICAgICAvLyB9KTtcbiAgICAgICAgICAgIH0sXG4gICAgICAgICAgICBmYWlsKGVycikge1xuICAgICAgICAgICAgICBjb25zb2xlLmVycm9yKFwi6Lez6L2s5Y+R5biD6aG16Z2i5aSx6LSlOlwiLCBlcnIpO1xuICAgICAgICAgICAgICB1bmkuc2hvd1RvYXN0KHtcbiAgICAgICAgICAgICAgICB0aXRsZTogXCLpobXpnaLot7PovazlpLHotKXvvIzor7fph43or5VcIixcbiAgICAgICAgICAgICAgICBpY29uOiBcIm5vbmVcIixcbiAgICAgICAgICAgICAgICBkdXJhdGlvbjogMzAwMCxcbiAgICAgICAgICAgICAgfSk7XG4gICAgICAgICAgICB9LFxuICAgICAgICAgIH0pO1xuXG4gICAgICAgICAgLyoqXG4gICAgICAgICAgICog5oiW6ICF6YeH55SodW5pQ2xvdWTvvIzlnKjlrqLmiLfnq6/lrozmiJDkuIrkvKDvvIzlh4/lsJHpk77ot6/vvIzlm6DkuLrmlofku7blpKfvvIzpgJrkv6Hpk77ot6/lkozogJfml7bmmK/lj4zlgI3nmoRcbiAgICAgICAgICAgKi9cbiAgICAgICAgICB2YXIgdGltZXMgPSBuZXcgRGF0ZSgpLmdldFRpbWUoKTtcbiAgICAgICAgfSxcbiAgICAgICAgZmFpbChlcnIpIHtcbiAgICAgICAgICBjb25zb2xlLmVycm9yKFwi6YCJ5oup6KeG6aKR5aSx6LSlOlwiLCBlcnIpO1xuICAgICAgICAgIC8vIOeUqOaIt+WPlua2iOS4jeaPkOekuumUmeivr1xuICAgICAgICAgIC8vIOS4jeWQjOW5s+WPsOWPlua2iOaXtueahOmUmeivr+S/oeaBr+agvOW8j+WPr+iDveS4jeWQjO+8mlxuICAgICAgICAgIC8vIOW+ruS/oeWwj+eoi+W6jzogXCJjaG9vc2VWaWRlbzpmYWlsIGNhbmNlbFwiXG4gICAgICAgICAgLy8gQXBwOiDlj6/og73mmK8gXCJjYW5jZWxcIiDmiJblhbbku5bmoLzlvI9cbiAgICAgICAgICB2YXIgZXJyTXNnID0gZXJyLmVyck1zZyB8fCBcIlwiO1xuICAgICAgICAgIHZhciBpc0NhbmNlbCA9IGZhbHNlO1xuXG4gICAgICAgICAgLy8g5qOA5p+l5piv5ZCm5piv55So5oi35Y+W5raI5pON5L2c77yI5LiN5Yy65YiG5aSn5bCP5YaZ77yJXG4gICAgICAgICAgaWYgKGVyck1zZykge1xuICAgICAgICAgICAgZXJyTXNnID0gZXJyTXNnLnRvTG93ZXJDYXNlKCk7XG4gICAgICAgICAgICBpc0NhbmNlbCA9XG4gICAgICAgICAgICAgIGVyck1zZy5pbmRleE9mKFwiY2FuY2VsXCIpICE9PSAtMSB8fFxuICAgICAgICAgICAgICBlcnJNc2cuaW5kZXhPZihcIuWPlua2iFwiKSAhPT0gLTEgfHxcbiAgICAgICAgICAgICAgZXJyTXNnLmluZGV4T2YoXCJ1c2VyIGNhbmNlbFwiKSAhPT0gLTE7XG4gICAgICAgICAgfVxuXG4gICAgICAgICAgLy8g5aaC5p6c5LiN5piv55So5oi35Y+W5raI77yM5omN5pi+56S66ZSZ6K+v5o+Q56S6XG4gICAgICAgICAgaWYgKCFpc0NhbmNlbCkge1xuICAgICAgICAgICAgdW5pLnNob3dUb2FzdCh7XG4gICAgICAgICAgICAgIHRpdGxlOiBcIumAieaLqeinhumikeWksei0pe+8mlwiICsgKGVyci5lcnJNc2cgfHwgXCLmnKrnn6XplJnor69cIiksXG4gICAgICAgICAgICAgIGljb246IFwibm9uZVwiLFxuICAgICAgICAgICAgICBkdXJhdGlvbjogMzAwMCxcbiAgICAgICAgICAgIH0pO1xuICAgICAgICAgIH1cbiAgICAgICAgfSxcbiAgICAgIH0pO1xuICAgIH0pO1xuICB9LFxuICBvblNob3c6IGZ1bmN0aW9uICgpIHt9LFxuICBvbkhpZGU6IGZ1bmN0aW9uICgpIHt9LFxuICBtZXRob2RzOiB7XG4gICAgZ2V0RGVmYXVsdFZsb2dMaXN0KCkge1xuICAgICAgdmFyIGxpc3QgPSBbXG4gICAgICAgIHtcbiAgICAgICAgICB2bG9nSWQ6IFwiMjUxMTMwSEcxVEZOQzU2OFwiLFxuICAgICAgICAgIHZsb2dlcklkOiBcIjI1MTEyN0hTN0c4UlRUMldcIixcbiAgICAgICAgICB2bG9nZXJGYWNlOiBcIi9zdGF0aWMvZmFjZS9mYWNlLWFycm93LTIuanBnXCIsXG4gICAgICAgICAgdmxvZ2VyTmFtZTogXCLohIbohIbpsqjlkIzlraZcIixcbiAgICAgICAgICBjb250ZW50OiBcIueJm1wiLFxuICAgICAgICAgIHVybDogXCJodHRwczovL21wLWU2Zjg4OTFlLWJjMzQtNGQzMS04YzY3LTY5OWQ2OGJlNTViNC5jZG4uYnNwYXBwLmNvbS9jbG91ZHN0b3JhZ2UvYTU5NGRlOTMtMTZlZS00OWI1LTgzNjYtZGJjMGRmYTI1NGE1Lm1wNFwiLFxuICAgICAgICAgIGNvdmVyOlxuICAgICAgICAgICAgXCJodHRwczovL21wLWU2Zjg4OTFlLWJjMzQtNGQzMS04YzY3LTY5OWQ2OGJlNTViNC5jZG4uYnNwYXBwLmNvbS9jbG91ZHN0b3JhZ2UvYTU5NGRlOTMtMTZlZS00OWI1LTgzNjYtZGJjMGRmYTI1NGE1Lm1wND94LW9zcy1wcm9jZXNzPXZpZGVvL3NuYXBzaG90LHRfMSxmX2pwZyxhcl9hdXRvXCIsXG4gICAgICAgICAgaXNMaWtlOiAxLFxuICAgICAgICAgIHBsYXk6IGZhbHNlLFxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgdmxvZ0lkOiBcIjI1MTEzMEhITTcxM01XMDBcIixcbiAgICAgICAgICB2bG9nZXJJZDogXCIyNTExMjdIUzdHOFJUVDJXXCIsXG4gICAgICAgICAgdmxvZ2VyRmFjZTogXCIvc3RhdGljL2ZhY2UvZmFjZS1jYXQucG5nXCIsXG4gICAgICAgICAgdmxvZ2VyTmFtZTogXCLohIbohIbpsqjlkIzlraZcIixcbiAgICAgICAgICBjb250ZW50OiBcIueLl1wiLFxuICAgICAgICAgIHVybDogXCJodHRwczovL21wLWU2Zjg4OTFlLWJjMzQtNGQzMS04YzY3LTY5OWQ2OGJlNTViNC5jZG4uYnNwYXBwLmNvbS9jbG91ZHN0b3JhZ2UvN2RjYzJmMjctYzlhYy00ZjllLWJjMzItMmZlMzc1YjU3NjA2Lm1wNFwiLFxuICAgICAgICAgIGNvdmVyOlxuICAgICAgICAgICAgXCJodHRwczovL21wLWU2Zjg4OTFlLWJjMzQtNGQzMS04YzY3LTY5OWQ2OGJlNTViNC5jZG4uYnNwYXBwLmNvbS9jbG91ZHN0b3JhZ2UvN2RjYzJmMjctYzlhYy00ZjllLWJjMzItMmZlMzc1YjU3NjA2Lm1wND94LW9zcy1wcm9jZXNzPXZpZGVvL3NuYXBzaG90LHRfMSxmX2pwZ1wiLFxuICAgICAgICAgIGlzTGlrZTogMSxcbiAgICAgICAgICBwbGF5OiBmYWxzZSxcbiAgICAgICAgfSxcbiAgICAgIF07XG4gICAgICByZXR1cm4gbGlzdDtcbiAgICB9LFxuICAgIGdyYWNlTnVtYmVyKG51bWJlcikge1xuICAgICAgaWYgKG51bWJlciA9PSAwKSB7XG4gICAgICAgIHJldHVybiBcIjBcIjtcbiAgICAgIH0gZWxzZSBpZiAobnVtYmVyID4gOTk5ICYmIG51bWJlciA8PSA5OTk5KSB7XG4gICAgICAgIHJldHVybiAobnVtYmVyIC8gMTAwMCkudG9GaXhlZCgxKSArIFwiS1wiO1xuICAgICAgfSBlbHNlIGlmIChudW1iZXIgPiA5OTk5ICYmIG51bWJlciA8PSA5OTk5OTkpIHtcbiAgICAgICAgcmV0dXJuIChudW1iZXIgLyAxMDAwMCkudG9GaXhlZCgxKSArIFwi5LiHXCI7XG4gICAgICB9IGVsc2UgaWYgKG51bWJlciA+IDk5OTk5OSkge1xuICAgICAgICByZXR1cm4gXCIxMDBXK1wiO1xuICAgICAgfVxuICAgICAgcmV0dXJuIG51bWJlcjtcbiAgICB9LFxuICAgIC8vIOaXtumXtOagvOW8j+WMluaXtumXtOS4uu+8muWkmuWwkeWIhumSn+WJjeOAgeWkmuWwkeWkqeWJjVxuICAgIC8vIHRpbWUgMjAyMC0wOS0xMCAyMDoyMDoyMFxuICAgIGdldERhdGVCZWZvcmVOb3coc3RyaW5nVGltZSkge1xuICAgICAgLy8gY29uc29sZS5sb2coc3RyaW5nVGltZSk7XG4gICAgICBzdHJpbmdUaW1lID0gbmV3IERhdGUoc3RyaW5nVGltZS5yZXBsYWNlKC8tL2csIFwiL1wiKSk7XG5cbiAgICAgIHZhciBtaW51dGUgPSAxMDAwICogNjA7XG4gICAgICB2YXIgaG91ciA9IG1pbnV0ZSAqIDYwO1xuICAgICAgdmFyIGRheSA9IGhvdXIgKiAyNDtcbiAgICAgIHZhciB3ZWVrID0gZGF5ICogNztcbiAgICAgIHZhciBtb250aCA9IGRheSAqIDMwO1xuXG4gICAgICB2YXIgdGltZTEgPSBuZXcgRGF0ZSgpLmdldFRpbWUoKTsgLy/lvZPliY3nmoTml7bpl7TmiLNcbiAgICAgIC8vIGNvbnNvbGUubG9nKHRpbWUxKTtcbiAgICAgIC8vIGNvbnNvbGUubG9nKG5ldyBEYXRlKHN0cmluZ1RpbWUpKTtcbiAgICAgIHZhciB0aW1lMiA9IERhdGUucGFyc2UobmV3IERhdGUoc3RyaW5nVGltZSkpOyAvL+aMh+WumuaXtumXtOeahOaXtumXtOaIs1xuICAgICAgLy8gY29uc29sZS5sb2codGltZTIpO1xuICAgICAgdmFyIHRpbWUgPSB0aW1lMSAtIHRpbWUyO1xuXG4gICAgICB2YXIgcmVzdWx0ID0gbnVsbDtcbiAgICAgIGlmICh0aW1lIDwgMCkge1xuICAgICAgICAvLyBhbGVydChcIuiuvue9rueahOaXtumXtOS4jeiDveaXqeS6juW9k+WJjeaXtumXtO+8gVwiKTtcbiAgICAgICAgcmVzdWx0ID0gc3RyaW5nVGltZTtcbiAgICAgIH0gZWxzZSBpZiAodGltZSAvIG1vbnRoID49IDEpIHtcbiAgICAgICAgcmVzdWx0ID0gcGFyc2VJbnQodGltZSAvIG1vbnRoKSArIFwi5pyI5YmNXCI7XG4gICAgICB9IGVsc2UgaWYgKHRpbWUgLyB3ZWVrID49IDEpIHtcbiAgICAgICAgcmVzdWx0ID0gcGFyc2VJbnQodGltZSAvIHdlZWspICsgXCLlkajliY1cIjtcbiAgICAgIH0gZWxzZSBpZiAodGltZSAvIGRheSA+PSAxKSB7XG4gICAgICAgIHJlc3VsdCA9IHBhcnNlSW50KHRpbWUgLyBkYXkpICsgXCLlpKnliY1cIjtcbiAgICAgIH0gZWxzZSBpZiAodGltZSAvIGhvdXIgPj0gMSkge1xuICAgICAgICByZXN1bHQgPSBwYXJzZUludCh0aW1lIC8gaG91cikgKyBcIuWwj+aXtuWJjVwiO1xuICAgICAgfSBlbHNlIGlmICh0aW1lIC8gbWludXRlID49IDEpIHtcbiAgICAgICAgcmVzdWx0ID0gcGFyc2VJbnQodGltZSAvIG1pbnV0ZSkgKyBcIuWIhumSn+WJjVwiO1xuICAgICAgfSBlbHNlIHtcbiAgICAgICAgcmVzdWx0ID0gXCLliJrliJpcIjtcbiAgICAgIH1cbiAgICAgIC8vIGNvbnNvbGUubG9nKHJlc3VsdCk7XG4gICAgICByZXR1cm4gcmVzdWx0O1xuICAgIH0sXG5cbiAgICAvLyDliKTmlq3mmK/lkKbkuLrnqbpcbiAgICBpc1N0ckVtcHR5KHN0cikge1xuICAgICAgaWYgKHN0ciA9PSBudWxsIHx8IHN0ciA9PSB1bmRlZmluZWQgfHwgc3RyID09IFwiXCIpIHtcbiAgICAgICAgcmV0dXJuIHRydWU7XG4gICAgICB9IGVsc2Uge1xuICAgICAgICByZXR1cm4gZmFsc2U7XG4gICAgICB9XG4gICAgfSxcbiAgICAvLyDliKTmlq3nlKjmiLfmmK/lkKbnmbvlvZVcbiAgICB1c2VySXNMb2dpbigpIHtcbiAgICAgIHZhciB1c2VyVG9rZW4gPSB0aGlzLmdldFVzZXJTZXNzaW9uVG9rZW4oKTtcbiAgICAgIHZhciB1c2VySW5mbyA9IHRoaXMuZ2V0VXNlckluZm9TZXNzaW9uKCk7XG4gICAgICAvLyBjb25zb2xlLmxvZyhcInVzZXJJbmZvPVwiICsgdXNlckluZm8pO1xuICAgICAgLy8gY29uc29sZS5sb2coXCJ1c2VyVG9rZW49XCIgKyB1c2VyVG9rZW4pO1xuICAgICAgaWYgKCF0aGlzLmlzU3RyRW1wdHkodXNlclRva2VuKSAmJiAhdGhpcy5pc1N0ckVtcHR5KHVzZXJJbmZvKSkge1xuICAgICAgICByZXR1cm4gdHJ1ZTtcbiAgICAgIH0gZWxzZSB7XG4gICAgICAgIHJldHVybiBmYWxzZTtcbiAgICAgIH1cbiAgICB9LFxuICAgIC8vIOeUqOaIt+eZu+W9leS7peWQjueahHNlc3Npb27lrZjlj5bvvIx0b2tlbuWSjHVzZXJJbmZvXG4gICAgc2V0VXNlclNlc3Npb25Ub2tlbih0b2tlbikge1xuICAgICAgdW5pLnNldFN0b3JhZ2VTeW5jKFwidXNlclRva2VuXCIsIHRva2VuKTtcbiAgICB9LFxuICAgIGdldFVzZXJTZXNzaW9uVG9rZW4oKSB7XG4gICAgICB2YXIgdG9rZW4gPSB1bmkuZ2V0U3RvcmFnZVN5bmMoXCJ1c2VyVG9rZW5cIik7XG4gICAgICBpZiAodGhpcy5pc1N0ckVtcHR5KHRva2VuKSkge1xuICAgICAgICByZXR1cm4gXCJcIjtcbiAgICAgIH1cbiAgICAgIHJldHVybiB0b2tlbjtcbiAgICB9LFxuICAgIHNldFVzZXJJbmZvU2Vzc2lvbih1c2VyKSB7XG4gICAgICB1bmkuc2V0U3RvcmFnZVN5bmMoXCJ1c2VySW5mb1wiLCBKU09OLnN0cmluZ2lmeSh1c2VyKSk7XG4gICAgfSxcbiAgICBnZXRVc2VySW5mb1Nlc3Npb24oKSB7XG4gICAgICB2YXIgdXNlciA9IHVuaS5nZXRTdG9yYWdlU3luYyhcInVzZXJJbmZvXCIpO1xuICAgICAgaWYgKHRoaXMuaXNTdHJFbXB0eSh1c2VyKSkge1xuICAgICAgICByZXR1cm4gbnVsbDtcbiAgICAgIH1cbiAgICAgIHJldHVybiBKU09OLnBhcnNlKHVzZXIpO1xuICAgIH0sXG4gICAgY2xlYXJVc2VySW5mbygpIHtcbiAgICAgIHVuaS5yZW1vdmVTdG9yYWdlU3luYyhcInVzZXJJbmZvXCIpO1xuICAgICAgdW5pLnJlbW92ZVN0b3JhZ2VTeW5jKFwidXNlclRva2VuXCIpO1xuICAgIH0sXG5cbiAgICAvLyBsZXQgZGF0ZSA9IG5ldyBEYXRlKClcbiAgICAvLyBkYXRlRm9ybWF0KFwiWVlZWS1tbS1kZCBISDpNTVwiLCBkYXRlKVxuICAgIGRhdGVGb3JtYXQoZm10LCBkYXRlKSB7XG4gICAgICBsZXQgcmV0O1xuICAgICAgY29uc3Qgb3B0ID0ge1xuICAgICAgICBcIlkrXCI6IGRhdGUuZ2V0RnVsbFllYXIoKS50b1N0cmluZygpLCAvLyDlubRcbiAgICAgICAgXCJtK1wiOiAoZGF0ZS5nZXRNb250aCgpICsgMSkudG9TdHJpbmcoKSwgLy8g5pyIXG4gICAgICAgIFwiZCtcIjogZGF0ZS5nZXREYXRlKCkudG9TdHJpbmcoKSwgLy8g5pelXG4gICAgICAgIFwiSCtcIjogZGF0ZS5nZXRIb3VycygpLnRvU3RyaW5nKCksIC8vIOaXtlxuICAgICAgICBcIk0rXCI6IGRhdGUuZ2V0TWludXRlcygpLnRvU3RyaW5nKCksIC8vIOWIhlxuICAgICAgICBcIlMrXCI6IGRhdGUuZ2V0U2Vjb25kcygpLnRvU3RyaW5nKCksIC8vIOenklxuICAgICAgICAvLyDmnInlhbbku5bmoLzlvI/ljJblrZfnrKbpnIDmsYLlj6/ku6Xnu6fnu63mt7vliqDvvIzlv4XpobvovazljJbmiJDlrZfnrKbkuLJcbiAgICAgIH07XG4gICAgICBmb3IgKGxldCBrIGluIG9wdCkge1xuICAgICAgICByZXQgPSBuZXcgUmVnRXhwKFwiKFwiICsgayArIFwiKVwiKS5leGVjKGZtdCk7XG4gICAgICAgIGlmIChyZXQpIHtcbiAgICAgICAgICBmbXQgPSBmbXQucmVwbGFjZShcbiAgICAgICAgICAgIHJldFsxXSxcbiAgICAgICAgICAgIHJldFsxXS5sZW5ndGggPT0gMSA/IG9wdFtrXSA6IG9wdFtrXS5wYWRTdGFydChyZXRbMV0ubGVuZ3RoLCBcIjBcIilcbiAgICAgICAgICApO1xuICAgICAgICB9XG4gICAgICB9XG4gICAgICByZXR1cm4gZm10O1xuICAgIH0sXG5cbiAgICAvLyDojrflvpfmmJ/luqdcbiAgICBnZXRBc3RybyhtLCBkKSB7XG4gICAgICByZXR1cm4gXCLmkannvq/msLTnk7blj4zpsbzniaHnvorph5HniZvlj4zlrZDlt6jon7nni67lrZDlpITlpbPlpKnnp6TlpKnonY7lsITmiYvmkannvq9cIi5zdWJzdHIoXG4gICAgICAgIG0gKiAyIC0gKGQgPCBcIjEwMjIyMzQ0NDQzM1wiLmNoYXJBdChtIC0gMSkgLSAtMTkpICogMixcbiAgICAgICAgMlxuICAgICAgKTtcbiAgICB9LFxuICAgIC8v5LiL6Z2i5YaZ5LiA5Liq5rWL6K+V5Ye95pWwXG4gICAgdGVzdEFzdHJvKG1vbnRoLCBkYXkpIHtcbiAgICAgIGNvbnNvbGUubG9nKG1vbnRoICsgXCLmnIhcIiArIGRheSArIFwi5pelOiBcIiArIHRoaXMuZ2V0QXN0cm8obW9udGgsIGRheSkpO1xuICAgIH0sXG4gICAgLy8g6I635b6X55Sf6IKWXG4gICAgZ2V0QW5pbWFsKHllYXIpIHtcbiAgICAgIHllYXIgPSB5ZWFyICUgMTI7XG4gICAgICB2YXIgYW5pbWFsID0gXCJcIjtcbiAgICAgIHN3aXRjaCAoeWVhcikge1xuICAgICAgICBjYXNlIDE6XG4gICAgICAgICAgYW5pbWFsID0gXCLpuKFcIjtcbiAgICAgICAgICBicmVhaztcbiAgICAgICAgY2FzZSAyOlxuICAgICAgICAgIGFuaW1hbCA9IFwi54uXXCI7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICAgIGNhc2UgMzpcbiAgICAgICAgICBhbmltYWwgPSBcIueMqlwiO1xuICAgICAgICAgIGJyZWFrO1xuICAgICAgICBjYXNlIDQ6XG4gICAgICAgICAgYW5pbWFsID0gXCLpvKBcIjtcbiAgICAgICAgICBicmVhaztcbiAgICAgICAgY2FzZSA1OlxuICAgICAgICAgIGFuaW1hbCA9IFwi54mbXCI7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICAgIGNhc2UgNjpcbiAgICAgICAgICBhbmltYWwgPSBcIuiZjlwiO1xuICAgICAgICAgIGJyZWFrO1xuICAgICAgICBjYXNlIDc6XG4gICAgICAgICAgYW5pbWFsID0gXCLlhZRcIjtcbiAgICAgICAgICBicmVhaztcbiAgICAgICAgY2FzZSA4OlxuICAgICAgICAgIGFuaW1hbCA9IFwi6b6ZXCI7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICAgIGNhc2UgOTpcbiAgICAgICAgICBhbmltYWwgPSBcIuibh1wiO1xuICAgICAgICAgIGJyZWFrO1xuICAgICAgICBjYXNlIDEwOlxuICAgICAgICAgIGFuaW1hbCA9IFwi6amsXCI7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICAgIGNhc2UgMTE6XG4gICAgICAgICAgYW5pbWFsID0gXCLnvopcIjtcbiAgICAgICAgICBicmVhaztcbiAgICAgICAgY2FzZSAwOlxuICAgICAgICAgIGFuaW1hbCA9IFwi54y0XCI7XG4gICAgICAgICAgYnJlYWs7XG4gICAgICB9XG4gICAgICByZXR1cm4gYW5pbWFsO1xuICAgIH0sXG4gIH0sXG59O1xuIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///69\n");
 
 /***/ }),
 /* 70 */

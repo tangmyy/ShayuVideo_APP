@@ -81,7 +81,7 @@
 				v-for="(f, index) in followsList" 
 				:key="index">
 				<view class="user-info">
-					<image class="face" :src="f.face" style="align-self: center;"></image>
+					<image class="face" :src="f.face" style="align-self: center;" @click="goUserInfoSeeSee(f.vlogerId)"></image>
 					<text class="user-name" style="align-self: center;">{{f.nickname}}</text>
 				</view>
 				
@@ -220,6 +220,13 @@
 					return;
 				}
 				this.queryMyFollowList(this.page);
+			},
+			// 跳转到用户主页
+			goUserInfoSeeSee(userId) {
+				uni.setStorageSync("userPageId", userId);
+				uni.navigateTo({
+					url: "/pages/me/vlogerInfo?userPageId=" + userId
+				});
 			}
 		}
 	}

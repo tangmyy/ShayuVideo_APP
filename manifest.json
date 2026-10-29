@@ -1,9 +1,9 @@
 {
     "name" : "ShayuVideo",
     "appid" : "__UNI__30883AF",
-    "description" : "",
-    "versionName" : "1.0.0",
-    "versionCode" : "100",
+    "description" : "支持上传拍摄视频",
+    "versionName" : "1.0.1",
+    "versionCode" : 101,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -48,7 +48,8 @@
             },
             /* ios打包配置 */
             "ios" : {
-                "idfa" : false
+                "idfa" : false,
+                "dSYMs" : false
             },
             /* SDK配置 */
             "sdkConfigs" : {
@@ -124,5 +125,6 @@
     },
     "h5" : {
         "title" : "shayuvideo"
-    }
+    },
+    "locale" : "zh-Hans"
 }
